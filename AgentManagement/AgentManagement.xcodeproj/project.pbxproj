@@ -11,6 +11,14 @@
 		270704C11D45F9A900633390 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 270704C01D45F9A900633390 /* AppDelegate.m */; };
 		270704C41D45F9A900633390 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 270704C31D45F9A900633390 /* ViewController.m */; };
 		270704C91D45F9A900633390 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 270704C81D45F9A900633390 /* Assets.xcassets */; };
+		270704EB1D46014600633390 /* KKBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 270704D61D46014600633390 /* KKBaseModel.m */; };
+		270704EC1D46014600633390 /* KKBaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 270704D91D46014600633390 /* KKBaseRequest.m */; };
+		270704ED1D46014600633390 /* KKRequestError.m in Sources */ = {isa = PBXBuildFile; fileRef = 270704DB1D46014600633390 /* KKRequestError.m */; };
+		270704EE1D46014600633390 /* NSMutableDictionary+KKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 270704DE1D46014600633390 /* NSMutableDictionary+KKAdditions.m */; };
+		270704EF1D46014600633390 /* UIColor+KKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 270704E01D46014600633390 /* UIColor+KKAdditions.m */; };
+		270704F01D46014600633390 /* UIView+KKFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 270704E21D46014600633390 /* UIView+KKFrame.m */; };
+		270704F11D46014600633390 /* KKAppUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 270704E71D46014600633390 /* KKAppUtility.m */; };
+		270704F21D46014600633390 /* KKQRCodeScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 270704EA1D46014600633390 /* KKQRCodeScanner.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +30,22 @@
 		270704C31D45F9A900633390 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		270704C81D45F9A900633390 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		270704CD1D45F9A900633390 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		270704D51D46014600633390 /* KKBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKBaseModel.h; sourceTree = "<group>"; };
+		270704D61D46014600633390 /* KKBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KKBaseModel.m; sourceTree = "<group>"; };
+		270704D81D46014600633390 /* KKBaseRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKBaseRequest.h; sourceTree = "<group>"; };
+		270704D91D46014600633390 /* KKBaseRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KKBaseRequest.m; sourceTree = "<group>"; };
+		270704DA1D46014600633390 /* KKRequestError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKRequestError.h; sourceTree = "<group>"; };
+		270704DB1D46014600633390 /* KKRequestError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KKRequestError.m; sourceTree = "<group>"; };
+		270704DD1D46014600633390 /* NSMutableDictionary+KKAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+KKAdditions.h"; sourceTree = "<group>"; };
+		270704DE1D46014600633390 /* NSMutableDictionary+KKAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+KKAdditions.m"; sourceTree = "<group>"; };
+		270704DF1D46014600633390 /* UIColor+KKAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+KKAdditions.h"; sourceTree = "<group>"; };
+		270704E01D46014600633390 /* UIColor+KKAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+KKAdditions.m"; sourceTree = "<group>"; };
+		270704E11D46014600633390 /* UIView+KKFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+KKFrame.h"; sourceTree = "<group>"; };
+		270704E21D46014600633390 /* UIView+KKFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+KKFrame.m"; sourceTree = "<group>"; };
+		270704E61D46014600633390 /* KKAppUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKAppUtility.h; sourceTree = "<group>"; };
+		270704E71D46014600633390 /* KKAppUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KKAppUtility.m; sourceTree = "<group>"; };
+		270704E91D46014600633390 /* KKQRCodeScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKQRCodeScanner.h; sourceTree = "<group>"; };
+		270704EA1D46014600633390 /* KKQRCodeScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KKQRCodeScanner.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +78,7 @@
 		270704BB1D45F9A900633390 /* AgentManagement */ = {
 			isa = PBXGroup;
 			children = (
+				270704D31D46014600633390 /* Common */,
 				270704BF1D45F9A900633390 /* AppDelegate.h */,
 				270704C01D45F9A900633390 /* AppDelegate.m */,
 				270704C21D45F9A900633390 /* ViewController.h */,
@@ -71,6 +96,85 @@
 				270704BD1D45F9A900633390 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		270704D31D46014600633390 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				270704D41D46014600633390 /* BaseModel */,
+				270704D71D46014600633390 /* BaseRequest */,
+				270704DC1D46014600633390 /* Category */,
+				270704E31D46014600633390 /* Control */,
+				270704E41D46014600633390 /* Tool */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		270704D41D46014600633390 /* BaseModel */ = {
+			isa = PBXGroup;
+			children = (
+				270704D51D46014600633390 /* KKBaseModel.h */,
+				270704D61D46014600633390 /* KKBaseModel.m */,
+			);
+			path = BaseModel;
+			sourceTree = "<group>";
+		};
+		270704D71D46014600633390 /* BaseRequest */ = {
+			isa = PBXGroup;
+			children = (
+				270704D81D46014600633390 /* KKBaseRequest.h */,
+				270704D91D46014600633390 /* KKBaseRequest.m */,
+				270704DA1D46014600633390 /* KKRequestError.h */,
+				270704DB1D46014600633390 /* KKRequestError.m */,
+			);
+			path = BaseRequest;
+			sourceTree = "<group>";
+		};
+		270704DC1D46014600633390 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				270704DD1D46014600633390 /* NSMutableDictionary+KKAdditions.h */,
+				270704DE1D46014600633390 /* NSMutableDictionary+KKAdditions.m */,
+				270704DF1D46014600633390 /* UIColor+KKAdditions.h */,
+				270704E01D46014600633390 /* UIColor+KKAdditions.m */,
+				270704E11D46014600633390 /* UIView+KKFrame.h */,
+				270704E21D46014600633390 /* UIView+KKFrame.m */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		270704E31D46014600633390 /* Control */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Control;
+			sourceTree = "<group>";
+		};
+		270704E41D46014600633390 /* Tool */ = {
+			isa = PBXGroup;
+			children = (
+				270704E51D46014600633390 /* AppUtility */,
+				270704E81D46014600633390 /* QRCodeScanner */,
+			);
+			path = Tool;
+			sourceTree = "<group>";
+		};
+		270704E51D46014600633390 /* AppUtility */ = {
+			isa = PBXGroup;
+			children = (
+				270704E61D46014600633390 /* KKAppUtility.h */,
+				270704E71D46014600633390 /* KKAppUtility.m */,
+			);
+			path = AppUtility;
+			sourceTree = "<group>";
+		};
+		270704E81D46014600633390 /* QRCodeScanner */ = {
+			isa = PBXGroup;
+			children = (
+				270704E91D46014600633390 /* KKQRCodeScanner.h */,
+				270704EA1D46014600633390 /* KKQRCodeScanner.m */,
+			);
+			path = QRCodeScanner;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,9 +245,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				270704F21D46014600633390 /* KKQRCodeScanner.m in Sources */,
+				270704ED1D46014600633390 /* KKRequestError.m in Sources */,
+				270704F01D46014600633390 /* UIView+KKFrame.m in Sources */,
 				270704C41D45F9A900633390 /* ViewController.m in Sources */,
 				270704C11D45F9A900633390 /* AppDelegate.m in Sources */,
+				270704EB1D46014600633390 /* KKBaseModel.m in Sources */,
 				270704BE1D45F9A900633390 /* main.m in Sources */,
+				270704F11D46014600633390 /* KKAppUtility.m in Sources */,
+				270704EF1D46014600633390 /* UIColor+KKAdditions.m in Sources */,
+				270704EE1D46014600633390 /* NSMutableDictionary+KKAdditions.m in Sources */,
+				270704EC1D46014600633390 /* KKBaseRequest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
