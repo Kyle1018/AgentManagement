@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import <UIKit/UIKit.h>
 typedef void (^ScanResultBlock)(NSString *codeString);
 
 @interface KKQRCodeScanner : NSObject
