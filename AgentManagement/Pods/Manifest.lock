@@ -31,6 +31,7 @@ PODS:
   - ReactiveCocoa/no-arc (2.5)
   - ReactiveCocoa/UI (2.5):
     - ReactiveCocoa/Core
+  - SDAutoLayout (1.52)
   - SDWebImage (3.7.5):
     - SDWebImage/Core (= 3.7.5)
   - SDWebImage/Core (3.7.5)
@@ -41,6 +42,7 @@ DEPENDENCIES:
   - JSONModel (~> 0.13.0)
   - MBProgressHUD (~> 0.9.1)
   - ReactiveCocoa (~> 2.3)
+  - SDAutoLayout (~> 1.52)
   - SDWebImage (~> 3.7.1)
 
 SPEC CHECKSUMS:
@@ -49,6 +51,7 @@ SPEC CHECKSUMS:
   JSONModel: 5a431961fd11a46840b17cc2bf5ba0b31d210fb3
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
+  SDAutoLayout: 7c92e8f149059e80010507e471e1b4b6c85a62bb
   SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
 
 COCOAPODS: 0.39.0

@@ -34,6 +34,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>SDAutoLayout.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>SDWebImage.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -42,7 +47,7 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>04DA6E93EFA1E0671EECE3481DDF4DBD</key>
+		<key>0B4DD36E41D138DB3E6A49441BA22909</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -52,12 +57,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>747811B4FC657353D51EAD4AFF7701AE</key>
+		<key>6E8A2B519E163C7D83AFEB77AF940AF2</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>89E61F1A4B8B48699E19D66792FA1185</key>
+		<key>747811B4FC657353D51EAD4AFF7701AE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -67,7 +72,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B8194AC86C6B8F3ED3F191C9E0A03178</key>
+		<key>D3A5ECE01711E723A94B07CF37DFE05F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>DC289437E57FA5DC2C3DE60679FDEEC8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
