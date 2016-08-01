@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Mlr-ws-RDc">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="GRg-4a-P78">
+            <objects>
+                <navigationController storyboardIdentifier="NaviVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Mlr-ws-RDc" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="cri-I7-ewB">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="6gA-lj-lbY" kind="relationship" relationship="rootViewController" id="PdV-BM-vdu"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="j23-yO-TzK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="327" y="27"/>
+        </scene>
+        <!--Land View Controller-->
+        <scene sceneID="LP1-Nk-FiB">
+            <objects>
+                <viewController id="6gA-lj-lbY" customClass="LandViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="GWq-5n-992"/>
+                        <viewControllerLayoutGuide type="bottom" id="Kzj-tT-7cu"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="W8y-Qk-7lh">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Arf-bS-BcM">
+                                <rect key="frame" x="103" y="154" width="114" height="30"/>
+                                <color key="backgroundColor" red="0.5" green="0.0" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="登陆"/>
+                                <connections>
+                                    <action selector="LandSuccessAction:" destination="6gA-lj-lbY" eventType="touchUpInside" id="1d3-ut-EHf"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="51o-vs-x5P">
+                                <rect key="frame" x="103" y="192" width="114" height="30"/>
+                                <color key="backgroundColor" red="0.5" green="0.0" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="忘记密码"/>
+                                <connections>
+                                    <segue destination="dWM-4E-bLV" kind="push" id="4As-SD-lkn"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VY6-KQ-XC7">
+                                <rect key="frame" x="103" y="238" width="114" height="30"/>
+                                <color key="backgroundColor" red="0.5" green="0.0" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="注册"/>
+                                <connections>
+                                    <segue destination="k97-zQ-hYJ" kind="push" id="umA-jm-5dT"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="IYJ-0x-zAa"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Veg-Kg-v2K" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="845" y="32"/>
+        </scene>
+        <!--Register View Controller-->
+        <scene sceneID="oee-6k-8rU">
+            <objects>
+                <viewController id="k97-zQ-hYJ" customClass="RegisterViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="qhL-qI-vTU"/>
+                        <viewControllerLayoutGuide type="bottom" id="kjl-dl-LJ9"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Qdf-gd-lpf">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Zzt-8t-OvI"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YKb-RQ-h3y" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1114" y="762"/>
+        </scene>
+        <!--Forget Password View Controller-->
+        <scene sceneID="GQR-Sr-Oc4">
+            <objects>
+                <viewController id="dWM-4E-bLV" customClass="ForgetPasswordViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="eu1-oA-eyf"/>
+                        <viewControllerLayoutGuide type="bottom" id="RLj-jH-YhY"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="u4V-UI-aES">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.98823535439999999" green="0.086274512110000007" blue="0.47450983520000001" alpha="1" colorSpace="deviceRGB"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="XJg-UZ-fbA"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SzM-Yi-fVB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1217" y="32"/>
+        </scene>
+    </scenes>
+</document>

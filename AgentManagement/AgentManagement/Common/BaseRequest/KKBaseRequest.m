@@ -145,7 +145,7 @@
             self.requestSuccess = nil;
         }
     } else {
-       // DDLogError(@"responseObject不为dictionary");
+        //DDLogError(@"responseObject不为dictionary");
     }
 }
 
