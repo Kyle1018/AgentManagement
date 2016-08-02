@@ -94,4 +94,10 @@
     self.center = center;
 }
 
++ (instancetype)createViewFromXib {
+    NSArray *nibs = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass(self) owner:self options:nil];
+    NSAssert(nibs && nibs.count != 0, @"获取Nib失败！");
+    return nibs[0];
+}
+
 @end

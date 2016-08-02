@@ -29,6 +29,8 @@
 		E221EEEE1D4F9F6C005B3417 /* DataAnalysis.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E221EEED1D4F9F6C005B3417 /* DataAnalysis.storyboard */; };
 		E221EEF21D4F9F8F005B3417 /* MeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E221EEF11D4F9F8F005B3417 /* MeViewController.m */; };
 		E221EEF41D4F9F98005B3417 /* Me.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E221EEF31D4F9F98005B3417 /* Me.storyboard */; };
+		E221EEF81D50F0CF005B3417 /* CustomNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E221EEF71D50F0CF005B3417 /* CustomNavigationBar.m */; };
+		E221EEFA1D50F0E3005B3417 /* CustomNavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = E221EEF91D50F0E3005B3417 /* CustomNavigationBar.xib */; };
 		E2FA0C051D4CFF000094A6FE /* KKBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E2FA0BF11D4CFF000094A6FE /* KKBaseModel.m */; };
 		E2FA0C061D4CFF000094A6FE /* KKBaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = E2FA0BF41D4CFF000094A6FE /* KKBaseRequest.m */; };
 		E2FA0C071D4CFF000094A6FE /* KKRequestError.m in Sources */ = {isa = PBXBuildFile; fileRef = E2FA0BF61D4CFF000094A6FE /* KKRequestError.m */; };
@@ -79,6 +81,9 @@
 		E221EEF01D4F9F8F005B3417 /* MeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeViewController.h; sourceTree = "<group>"; };
 		E221EEF11D4F9F8F005B3417 /* MeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeViewController.m; sourceTree = "<group>"; };
 		E221EEF31D4F9F98005B3417 /* Me.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Me.storyboard; sourceTree = "<group>"; };
+		E221EEF61D50F0CF005B3417 /* CustomNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomNavigationBar.h; sourceTree = "<group>"; };
+		E221EEF71D50F0CF005B3417 /* CustomNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomNavigationBar.m; sourceTree = "<group>"; };
+		E221EEF91D50F0E3005B3417 /* CustomNavigationBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomNavigationBar.xib; sourceTree = "<group>"; };
 		E2FA0BF01D4CFF000094A6FE /* KKBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKBaseModel.h; sourceTree = "<group>"; };
 		E2FA0BF11D4CFF000094A6FE /* KKBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KKBaseModel.m; sourceTree = "<group>"; };
 		E2FA0BF31D4CFF000094A6FE /* KKBaseRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKBaseRequest.h; sourceTree = "<group>"; };
@@ -195,6 +200,9 @@
 			children = (
 				E221EEB71D4F8B68005B3417 /* BaseNavigationController.h */,
 				E221EEB81D4F8B68005B3417 /* BaseNavigationController.m */,
+				E221EEF61D50F0CF005B3417 /* CustomNavigationBar.h */,
+				E221EEF71D50F0CF005B3417 /* CustomNavigationBar.m */,
+				E221EEF91D50F0E3005B3417 /* CustomNavigationBar.xib */,
 			);
 			path = BaseNavigationController;
 			sourceTree = "<group>";
@@ -404,6 +412,7 @@
 				E221EEE81D4F9EFB005B3417 /* Launch Screen.storyboard in Resources */,
 				E221EEE61D4F9813005B3417 /* CostManage.storyboard in Resources */,
 				E221EEEE1D4F9F6C005B3417 /* DataAnalysis.storyboard in Resources */,
+				E221EEFA1D50F0E3005B3417 /* CustomNavigationBar.xib in Resources */,
 				270704C91D45F9A900633390 /* Assets.xcassets in Resources */,
 				E221EEE01D4F968D005B3417 /* ProductManage.storyboard in Resources */,
 				E221EED91D4F9650005B3417 /* CustomerManage.storyboard in Resources */,
@@ -485,6 +494,7 @@
 				E221EEB91D4F8B68005B3417 /* BaseNavigationController.m in Sources */,
 				E221EEEC1D4F9F5B005B3417 /* DataAnalysisViewController.m in Sources */,
 				E221EEBD1D4F8B9D005B3417 /* BaseTabbarController.m in Sources */,
+				E221EEF81D50F0CF005B3417 /* CustomNavigationBar.m in Sources */,
 				E2FA0C081D4CFF000094A6FE /* NSMutableDictionary+KKAdditions.m in Sources */,
 				E221EEE41D4F9801005B3417 /* CostManageViewController.m in Sources */,
 				E221EEF21D4F9F8F005B3417 /* MeViewController.m in Sources */,

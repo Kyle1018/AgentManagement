@@ -16,6 +16,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    NSLog(@"ddd");
+   // self.title = @"客户管理";
     // Do any additional setup after loading the view.
 }
 
