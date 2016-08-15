@@ -17,9 +17,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSLog(@"ddd");
-    // Do any additional setup after loading the view.
+
+ 
+ 
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -30,10 +32,11 @@
     
     [super awakeFromNib];
     
-    // 隐藏默认导航栏
-    self.navigationBarHidden = NO; // 使右滑返回手势可用
-    self.navigationBar.hidden = YES; // 隐藏导航栏
+    
+
+  
 }
+
 
 
 

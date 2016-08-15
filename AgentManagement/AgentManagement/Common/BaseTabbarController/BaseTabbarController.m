@@ -28,39 +28,39 @@
                                  @{kClassKey      : @"ProductManageViewController",
                                    kTitleKey      : @"产品管理",
                                    kStoryboardKey : @"ProductManage",
-                                   kImgKey        : @"",
-                                   kSelImgKey     : @""},
+                                   kImgKey        : @"Product_Normal",
+                                   kSelImgKey     : @"Product_Select"},
                                  
                                  @{kClassKey      : @"CustomerManageViewController",
                                    kTitleKey      : @"客户管理",
                                    kStoryboardKey : @"CustomerManage",
-                                   kImgKey        : @"",
-                                   kSelImgKey     : @""},
+                                   kImgKey        : @"Cutom_Normal",
+                                   kSelImgKey     : @"Custom_Select"},
                                  
                                  @{kClassKey      : @"CostManageViewViewController",
                                    kTitleKey      : @"成本管理",
                                    kStoryboardKey : @"CostManage",
-                                   kImgKey        : @"",
-                                   kSelImgKey     : @""},
+                                   kImgKey        : @"Cost_Normal",
+                                   kSelImgKey     : @"Cost_Select"},
                                  
                                  @{kClassKey      : @"DataAnalysisViewController",
                                    kTitleKey      : @"数据分析",
                                    kStoryboardKey : @"DataAnalysis",
-                                   kImgKey        : @"",
-                                   kSelImgKey     : @""},
+                                   kImgKey        : @"Data_Normal",
+                                   kSelImgKey     : @"Data_Select"},
                                  
                                  @{kClassKey      : @"MeViewController",
-                                   kTitleKey      : @"数据分析",
+                                   kTitleKey      : @"我的",
                                    kStoryboardKey : @"Me",
-                                   kImgKey        : @"",
-                                   kSelImgKey     : @""},
+                                   kImgKey        : @"Me_Normal",
+                                   kSelImgKey     : @"Me_Select"},
                             ];
     
     [childItemsArray enumerateObjectsUsingBlock:^(NSDictionary *dict, NSUInteger idx, BOOL *stop) {
         
         UIStoryboard * storyboard = [UIStoryboard storyboardWithName:dict[kStoryboardKey] bundle:nil];
-        BaseNavigationController *nav = [storyboard instantiateViewControllerWithIdentifier:@"Nav"];
-        
+         BaseNavigationController*nav = [storyboard instantiateViewControllerWithIdentifier:@"Nav"];
+      
         
         UITabBarItem *item = nav.tabBarItem;
         
@@ -75,23 +75,8 @@
         [self addChildViewController:nav];
     }];
     
-    //[self setupNavBar];
-
 }
 
-#pragma mark - Config
-
-- (void)setupNavBar
-{
-//    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
-//    
-//    UINavigationBar *bar = [UINavigationBar appearance];
-//    CGFloat rgb = 0.1;
-//    bar.barTintColor = [UIColor colorWithRed:rgb green:rgb blue:rgb alpha:0.9];
-//    bar.tintColor = [UIColor whiteColor];
-//    bar.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor whiteColor]};
-    
-}
 
 
 

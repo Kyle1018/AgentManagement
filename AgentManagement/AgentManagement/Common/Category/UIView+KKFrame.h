@@ -10,6 +10,7 @@
 
 #define ScreenWidth [UIScreen mainScreen].bounds.size.width
 #define ScreenHeight [UIScreen mainScreen].bounds.size.height
+#define ScreenFrame       (CGRectMake(0, 0 ,ScreenWidth,ScreenHeight))
 
 @interface UIView (KKFrame)
 
@@ -20,6 +21,10 @@
 
 @property (nonatomic, assign) CGFloat centerX;
 @property (nonatomic, assign) CGFloat centerY;
+
+@property (nonatomic,assign) CGFloat top;
+
+@property(nonatomic,assign)CGFloat bottom;
 
 + (instancetype)createViewFromXib;
 

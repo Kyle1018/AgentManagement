@@ -1,24 +1,21 @@
 //
-//  ProductManageViewController.m
+//  AddProductViewControllerA.m
 //  AgentManagement
 //
-//  Created by 郭华滨 on 16/8/1.
+//  Created by 郭华滨 on 16/8/14.
 //  Copyright © 2016年 KK. All rights reserved.
 //
 
-#import "ProductManageViewController.h"
+#import "AddProductViewControllerA.h"
 
-@interface ProductManageViewController ()
+@interface AddProductViewControllerA ()
 
 @end
 
-@implementation ProductManageViewController
+@implementation AddProductViewControllerA
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    NSLog(@"ddd");
-   // self.title = @"客户管理";
     // Do any additional setup after loading the view.
 }
 
@@ -27,6 +24,16 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+#warning Incomplete implementation, return the number of sections
+    return 2;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+#warning Incomplete implementation, return the number of rows
+    return 1;
+}
 /*
 #pragma mark - Navigation
 

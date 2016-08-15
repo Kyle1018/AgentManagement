@@ -94,6 +94,19 @@
     self.center = center;
 }
 
+- (void)setTop:(CGFloat)y {
+    CGRect frame = self.frame;
+    frame.origin.y = y;
+    self.frame = frame;
+}
+
+- (void)setBottom:(CGFloat)bottom {
+    CGRect frame = self.frame;
+    frame.origin.y = bottom - frame.size.height;
+    self.frame = frame;
+}
+
+
 + (instancetype)createViewFromXib {
     NSArray *nibs = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass(self) owner:self options:nil];
     NSAssert(nibs && nibs.count != 0, @"获取Nib失败！");

@@ -18,10 +18,6 @@
 		E221EEC01D4F8BCA005B3417 /* LandViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E221EEBF1D4F8BCA005B3417 /* LandViewController.m */; };
 		E221EEC31D4F8F62005B3417 /* ForgetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E221EEC21D4F8F62005B3417 /* ForgetPasswordViewController.m */; };
 		E221EEC61D4F8FAC005B3417 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E221EEC51D4F8FAC005B3417 /* RegisterViewController.m */; };
-		E221EED91D4F9650005B3417 /* CustomerManage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E221EED61D4F9650005B3417 /* CustomerManage.storyboard */; };
-		E221EEDA1D4F9650005B3417 /* CustomerManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E221EED81D4F9650005B3417 /* CustomerManageViewController.m */; };
-		E221EEDE1D4F9674005B3417 /* ProductManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E221EEDD1D4F9674005B3417 /* ProductManageViewController.m */; };
-		E221EEE01D4F968D005B3417 /* ProductManage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E221EEDF1D4F968D005B3417 /* ProductManage.storyboard */; };
 		E221EEE41D4F9801005B3417 /* CostManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E221EEE31D4F9801005B3417 /* CostManageViewController.m */; };
 		E221EEE61D4F9813005B3417 /* CostManage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E221EEE51D4F9813005B3417 /* CostManage.storyboard */; };
 		E221EEE81D4F9EFB005B3417 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E221EEE71D4F9EFB005B3417 /* Launch Screen.storyboard */; };
@@ -29,8 +25,18 @@
 		E221EEEE1D4F9F6C005B3417 /* DataAnalysis.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E221EEED1D4F9F6C005B3417 /* DataAnalysis.storyboard */; };
 		E221EEF21D4F9F8F005B3417 /* MeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E221EEF11D4F9F8F005B3417 /* MeViewController.m */; };
 		E221EEF41D4F9F98005B3417 /* Me.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E221EEF31D4F9F98005B3417 /* Me.storyboard */; };
-		E221EEF81D50F0CF005B3417 /* CustomNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E221EEF71D50F0CF005B3417 /* CustomNavigationBar.m */; };
-		E221EEFA1D50F0E3005B3417 /* CustomNavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = E221EEF91D50F0E3005B3417 /* CustomNavigationBar.xib */; };
+		E221EF7F1D5F21A5005B3417 /* CALayer+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = E221EF7E1D5F21A5005B3417 /* CALayer+Addition.m */; };
+		E221EF8A1D603238005B3417 /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E221EF891D603238005B3417 /* BaseTableViewController.m */; };
+		E221EF9A1D6036D3005B3417 /* AddProductViewControllerA.m in Sources */ = {isa = PBXBuildFile; fileRef = E221EF971D6036D3005B3417 /* AddProductViewControllerA.m */; };
+		E221EF9B1D6036D3005B3417 /* ProductManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E221EF991D6036D3005B3417 /* ProductManageViewController.m */; };
+		E221EFA31D603713005B3417 /* ProductManagerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E221EF9F1D603713005B3417 /* ProductManagerCell.m */; };
+		E221EFA41D603713005B3417 /* SearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = E221EFA11D603713005B3417 /* SearchView.m */; };
+		E221EFA51D603713005B3417 /* SearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E221EFA21D603713005B3417 /* SearchView.xib */; };
+		E221EFA81D603738005B3417 /* ProductManage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E221EFA71D603738005B3417 /* ProductManage.storyboard */; };
+		E221EFAC1D60377D005B3417 /* CustomerManage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E221EFAB1D60377D005B3417 /* CustomerManage.storyboard */; };
+		E221EFB21D60378A005B3417 /* AddCustomerViewControllerA.m in Sources */ = {isa = PBXBuildFile; fileRef = E221EFAF1D60378A005B3417 /* AddCustomerViewControllerA.m */; };
+		E221EFB31D60378A005B3417 /* CustomerManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E221EFB11D60378A005B3417 /* CustomerManageViewController.m */; };
+		E27B06291D616A7000ED18D1 /* address.plist in Resources */ = {isa = PBXBuildFile; fileRef = E27B06281D616A7000ED18D1 /* address.plist */; };
 		E2FA0C051D4CFF000094A6FE /* KKBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E2FA0BF11D4CFF000094A6FE /* KKBaseModel.m */; };
 		E2FA0C061D4CFF000094A6FE /* KKBaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = E2FA0BF41D4CFF000094A6FE /* KKBaseRequest.m */; };
 		E2FA0C071D4CFF000094A6FE /* KKRequestError.m in Sources */ = {isa = PBXBuildFile; fileRef = E2FA0BF61D4CFF000094A6FE /* KKRequestError.m */; };
@@ -65,12 +71,6 @@
 		E221EEC21D4F8F62005B3417 /* ForgetPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetPasswordViewController.m; sourceTree = "<group>"; };
 		E221EEC41D4F8FAC005B3417 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
 		E221EEC51D4F8FAC005B3417 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
-		E221EED61D4F9650005B3417 /* CustomerManage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CustomerManage.storyboard; sourceTree = "<group>"; };
-		E221EED71D4F9650005B3417 /* CustomerManageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerManageViewController.h; sourceTree = "<group>"; };
-		E221EED81D4F9650005B3417 /* CustomerManageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerManageViewController.m; sourceTree = "<group>"; };
-		E221EEDC1D4F9674005B3417 /* ProductManageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductManageViewController.h; sourceTree = "<group>"; };
-		E221EEDD1D4F9674005B3417 /* ProductManageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductManageViewController.m; sourceTree = "<group>"; };
-		E221EEDF1D4F968D005B3417 /* ProductManage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ProductManage.storyboard; sourceTree = "<group>"; };
 		E221EEE21D4F9801005B3417 /* CostManageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CostManageViewController.h; sourceTree = "<group>"; };
 		E221EEE31D4F9801005B3417 /* CostManageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CostManageViewController.m; sourceTree = "<group>"; };
 		E221EEE51D4F9813005B3417 /* CostManage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CostManage.storyboard; sourceTree = "<group>"; };
@@ -81,9 +81,26 @@
 		E221EEF01D4F9F8F005B3417 /* MeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeViewController.h; sourceTree = "<group>"; };
 		E221EEF11D4F9F8F005B3417 /* MeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeViewController.m; sourceTree = "<group>"; };
 		E221EEF31D4F9F98005B3417 /* Me.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Me.storyboard; sourceTree = "<group>"; };
-		E221EEF61D50F0CF005B3417 /* CustomNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomNavigationBar.h; sourceTree = "<group>"; };
-		E221EEF71D50F0CF005B3417 /* CustomNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomNavigationBar.m; sourceTree = "<group>"; };
-		E221EEF91D50F0E3005B3417 /* CustomNavigationBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomNavigationBar.xib; sourceTree = "<group>"; };
+		E221EF7D1D5F21A5005B3417 /* CALayer+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+Addition.h"; sourceTree = "<group>"; };
+		E221EF7E1D5F21A5005B3417 /* CALayer+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+Addition.m"; sourceTree = "<group>"; };
+		E221EF881D603238005B3417 /* BaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewController.h; sourceTree = "<group>"; };
+		E221EF891D603238005B3417 /* BaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewController.m; sourceTree = "<group>"; };
+		E221EF961D6036D3005B3417 /* AddProductViewControllerA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddProductViewControllerA.h; sourceTree = "<group>"; };
+		E221EF971D6036D3005B3417 /* AddProductViewControllerA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddProductViewControllerA.m; sourceTree = "<group>"; };
+		E221EF981D6036D3005B3417 /* ProductManageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductManageViewController.h; sourceTree = "<group>"; };
+		E221EF991D6036D3005B3417 /* ProductManageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductManageViewController.m; sourceTree = "<group>"; };
+		E221EF9E1D603713005B3417 /* ProductManagerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductManagerCell.h; sourceTree = "<group>"; };
+		E221EF9F1D603713005B3417 /* ProductManagerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductManagerCell.m; sourceTree = "<group>"; };
+		E221EFA01D603713005B3417 /* SearchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchView.h; sourceTree = "<group>"; };
+		E221EFA11D603713005B3417 /* SearchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchView.m; sourceTree = "<group>"; };
+		E221EFA21D603713005B3417 /* SearchView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchView.xib; sourceTree = "<group>"; };
+		E221EFA71D603738005B3417 /* ProductManage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ProductManage.storyboard; sourceTree = "<group>"; };
+		E221EFAB1D60377D005B3417 /* CustomerManage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CustomerManage.storyboard; sourceTree = "<group>"; };
+		E221EFAE1D60378A005B3417 /* AddCustomerViewControllerA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddCustomerViewControllerA.h; sourceTree = "<group>"; };
+		E221EFAF1D60378A005B3417 /* AddCustomerViewControllerA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddCustomerViewControllerA.m; sourceTree = "<group>"; };
+		E221EFB01D60378A005B3417 /* CustomerManageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerManageViewController.h; sourceTree = "<group>"; };
+		E221EFB11D60378A005B3417 /* CustomerManageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerManageViewController.m; sourceTree = "<group>"; };
+		E27B06281D616A7000ED18D1 /* address.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = address.plist; sourceTree = "<group>"; };
 		E2FA0BF01D4CFF000094A6FE /* KKBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKBaseModel.h; sourceTree = "<group>"; };
 		E2FA0BF11D4CFF000094A6FE /* KKBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KKBaseModel.m; sourceTree = "<group>"; };
 		E2FA0BF31D4CFF000094A6FE /* KKBaseRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKBaseRequest.h; sourceTree = "<group>"; };
@@ -159,6 +176,7 @@
 		270704BC1D45F9A900633390 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E27B06281D616A7000ED18D1 /* address.plist */,
 				270704BD1D45F9A900633390 /* main.m */,
 			);
 			name = "Supporting Files";
@@ -200,9 +218,6 @@
 			children = (
 				E221EEB71D4F8B68005B3417 /* BaseNavigationController.h */,
 				E221EEB81D4F8B68005B3417 /* BaseNavigationController.m */,
-				E221EEF61D50F0CF005B3417 /* CustomNavigationBar.h */,
-				E221EEF71D50F0CF005B3417 /* CustomNavigationBar.m */,
-				E221EEF91D50F0E3005B3417 /* CustomNavigationBar.xib */,
 			);
 			path = BaseNavigationController;
 			sourceTree = "<group>";
@@ -219,9 +234,9 @@
 		E221EED51D4F9650005B3417 /* CustomerManagePage */ = {
 			isa = PBXGroup;
 			children = (
-				E221EED61D4F9650005B3417 /* CustomerManage.storyboard */,
-				E221EED71D4F9650005B3417 /* CustomerManageViewController.h */,
-				E221EED81D4F9650005B3417 /* CustomerManageViewController.m */,
+				E221EFAD1D60378A005B3417 /* VC */,
+				E221EFAA1D60377D005B3417 /* SB */,
+				E221EFA91D603771005B3417 /* View */,
 			);
 			path = CustomerManagePage;
 			sourceTree = "<group>";
@@ -229,9 +244,9 @@
 		E221EEDB1D4F965D005B3417 /* ProductManagePage */ = {
 			isa = PBXGroup;
 			children = (
-				E221EEDF1D4F968D005B3417 /* ProductManage.storyboard */,
-				E221EEDC1D4F9674005B3417 /* ProductManageViewController.h */,
-				E221EEDD1D4F9674005B3417 /* ProductManageViewController.m */,
+				E221EFA61D603738005B3417 /* SB */,
+				E221EF9D1D603713005B3417 /* View */,
+				E221EF951D6036D3005B3417 /* VC */,
 			);
 			path = ProductManagePage;
 			sourceTree = "<group>";
@@ -264,6 +279,63 @@
 				E221EEF31D4F9F98005B3417 /* Me.storyboard */,
 			);
 			path = MePage;
+			sourceTree = "<group>";
+		};
+		E221EF951D6036D3005B3417 /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				E221EF961D6036D3005B3417 /* AddProductViewControllerA.h */,
+				E221EF971D6036D3005B3417 /* AddProductViewControllerA.m */,
+				E221EF981D6036D3005B3417 /* ProductManageViewController.h */,
+				E221EF991D6036D3005B3417 /* ProductManageViewController.m */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
+		E221EF9D1D603713005B3417 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E221EF9E1D603713005B3417 /* ProductManagerCell.h */,
+				E221EF9F1D603713005B3417 /* ProductManagerCell.m */,
+				E221EFA01D603713005B3417 /* SearchView.h */,
+				E221EFA11D603713005B3417 /* SearchView.m */,
+				E221EFA21D603713005B3417 /* SearchView.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E221EFA61D603738005B3417 /* SB */ = {
+			isa = PBXGroup;
+			children = (
+				E221EFA71D603738005B3417 /* ProductManage.storyboard */,
+			);
+			path = SB;
+			sourceTree = "<group>";
+		};
+		E221EFA91D603771005B3417 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E221EFAA1D60377D005B3417 /* SB */ = {
+			isa = PBXGroup;
+			children = (
+				E221EFAB1D60377D005B3417 /* CustomerManage.storyboard */,
+			);
+			path = SB;
+			sourceTree = "<group>";
+		};
+		E221EFAD1D60378A005B3417 /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				E221EFAE1D60378A005B3417 /* AddCustomerViewControllerA.h */,
+				E221EFAF1D60378A005B3417 /* AddCustomerViewControllerA.m */,
+				E221EFB01D60378A005B3417 /* CustomerManageViewController.h */,
+				E221EFB11D60378A005B3417 /* CustomerManageViewController.m */,
+			);
+			path = VC;
 			sourceTree = "<group>";
 		};
 		E2FA0BEE1D4CFF000094A6FE /* Common */ = {
@@ -309,6 +381,8 @@
 				E2FA0BFB1D4CFF000094A6FE /* UIColor+KKAdditions.m */,
 				E2FA0BFC1D4CFF000094A6FE /* UIView+KKFrame.h */,
 				E2FA0BFD1D4CFF000094A6FE /* UIView+KKFrame.m */,
+				E221EF7D1D5F21A5005B3417 /* CALayer+Addition.h */,
+				E221EF7E1D5F21A5005B3417 /* CALayer+Addition.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -345,6 +419,8 @@
 			children = (
 				E2FA0C1C1D4D036F0094A6FE /* BaseViewController.h */,
 				E2FA0C1D1D4D036F0094A6FE /* BaseViewController.m */,
+				E221EF881D603238005B3417 /* BaseTableViewController.h */,
+				E221EF891D603238005B3417 /* BaseTableViewController.m */,
 			);
 			path = BaseViewController;
 			sourceTree = "<group>";
@@ -410,12 +486,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				E221EEE81D4F9EFB005B3417 /* Launch Screen.storyboard in Resources */,
+				E27B06291D616A7000ED18D1 /* address.plist in Resources */,
+				E221EFAC1D60377D005B3417 /* CustomerManage.storyboard in Resources */,
 				E221EEE61D4F9813005B3417 /* CostManage.storyboard in Resources */,
 				E221EEEE1D4F9F6C005B3417 /* DataAnalysis.storyboard in Resources */,
-				E221EEFA1D50F0E3005B3417 /* CustomNavigationBar.xib in Resources */,
 				270704C91D45F9A900633390 /* Assets.xcassets in Resources */,
-				E221EEE01D4F968D005B3417 /* ProductManage.storyboard in Resources */,
-				E221EED91D4F9650005B3417 /* CustomerManage.storyboard in Resources */,
+				E221EFA81D603738005B3417 /* ProductManage.storyboard in Resources */,
+				E221EFA51D603713005B3417 /* SearchView.xib in Resources */,
 				E221EEF41D4F9F98005B3417 /* Me.storyboard in Resources */,
 				E221EEB41D4F8AA2005B3417 /* Land.storyboard in Resources */,
 			);
@@ -479,25 +556,30 @@
 				E221EEC01D4F8BCA005B3417 /* LandViewController.m in Sources */,
 				E2FA0C0C1D4CFF000094A6FE /* KKQRCodeScanner.m in Sources */,
 				E2FA0C1E1D4D036F0094A6FE /* BaseViewController.m in Sources */,
+				E221EFB31D60378A005B3417 /* CustomerManageViewController.m in Sources */,
 				E2FA0C071D4CFF000094A6FE /* KKRequestError.m in Sources */,
 				E2FA0C0A1D4CFF000094A6FE /* UIView+KKFrame.m in Sources */,
+				E221EF7F1D5F21A5005B3417 /* CALayer+Addition.m in Sources */,
+				E221EF9A1D6036D3005B3417 /* AddProductViewControllerA.m in Sources */,
 				270704C41D45F9A900633390 /* ViewController.m in Sources */,
 				E221EEC31D4F8F62005B3417 /* ForgetPasswordViewController.m in Sources */,
+				E221EF9B1D6036D3005B3417 /* ProductManageViewController.m in Sources */,
+				E221EF8A1D603238005B3417 /* BaseTableViewController.m in Sources */,
 				270704C11D45F9A900633390 /* AppDelegate.m in Sources */,
 				E2FA0C051D4CFF000094A6FE /* KKBaseModel.m in Sources */,
-				E221EEDA1D4F9650005B3417 /* CustomerManageViewController.m in Sources */,
 				270704BE1D45F9A900633390 /* main.m in Sources */,
 				E2FA0C0B1D4CFF000094A6FE /* KKAppUtility.m in Sources */,
 				E2FA0C091D4CFF000094A6FE /* UIColor+KKAdditions.m in Sources */,
-				E221EEDE1D4F9674005B3417 /* ProductManageViewController.m in Sources */,
+				E221EFB21D60378A005B3417 /* AddCustomerViewControllerA.m in Sources */,
 				E221EEC61D4F8FAC005B3417 /* RegisterViewController.m in Sources */,
 				E221EEB91D4F8B68005B3417 /* BaseNavigationController.m in Sources */,
 				E221EEEC1D4F9F5B005B3417 /* DataAnalysisViewController.m in Sources */,
 				E221EEBD1D4F8B9D005B3417 /* BaseTabbarController.m in Sources */,
-				E221EEF81D50F0CF005B3417 /* CustomNavigationBar.m in Sources */,
 				E2FA0C081D4CFF000094A6FE /* NSMutableDictionary+KKAdditions.m in Sources */,
 				E221EEE41D4F9801005B3417 /* CostManageViewController.m in Sources */,
+				E221EFA41D603713005B3417 /* SearchView.m in Sources */,
 				E221EEF21D4F9F8F005B3417 /* MeViewController.m in Sources */,
+				E221EFA31D603713005B3417 /* ProductManagerCell.m in Sources */,
 				E2FA0C061D4CFF000094A6FE /* KKBaseRequest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
