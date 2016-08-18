@@ -227,8 +227,7 @@
         [self.view addSubview:self.maskView];
         [self.view addSubview:self.pickerBGView];
         self.maskView.alpha = 0;
-       // self.pickerBGView.top = ScreenHeight;
-        
+     
         [UIView animateWithDuration:0.3 animations:^{
             self.maskView.alpha = 0.3;
             self.pickerBGView.bottom = ScreenHeight-110;
@@ -257,5 +256,44 @@
       [self hideMyPicker];
 }
 
+- (IBAction)textFieldChanged:(UITextField *)sender {
+    
+    //客户姓名
+    if (sender.tag == 101) {
+     
+          NSLog(@"客户姓名-------%@",sender.text);
+    }
+    
+    //手机号码
+    else if (sender.tag == 102) {
+        
+          NSLog(@"手机号码-------%@",sender.text);
+    }
+    
+    //TDS值
+    else if (sender.tag == 103) {
+        
+          NSLog(@"TDS值-------%@",sender.text);
+    }
+    
+    //PH值
+    else if (sender.tag == 104) {
+        
+          NSLog(@"PH值-------%@",sender.text);
+    }
+    
+    //硬度
+    else if (sender.tag == 105) {
+        
+          NSLog(@"硬度-------%@",sender.text);
+    }
+    
+    //余氯值
+    else if (sender.tag == 106) {
+        
+          NSLog(@"余氯值-------%@",sender.text);
+    }
+  
+}
 
 @end

@@ -7,12 +7,26 @@
 //
 
 #import "ProductManagerCell.h"
-
+#import <ReactiveCocoa/ReactiveCocoa.h>
 @implementation ProductManagerCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
+    
+    __weak typeof(self) weakSelf = self;
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]init];
+    [self.seeDetails addGestureRecognizer:tap];
+    
+    [tap.rac_gestureSignal subscribeNext:^(id x) {
+        
+        if (weakSelf.tapSeeDetailsBlock) {
+            
+            weakSelf.tapSeeDetailsBlock();
+        }
+     
+    }];
+
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

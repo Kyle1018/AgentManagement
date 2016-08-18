@@ -37,6 +37,9 @@
 		E221EFB21D60378A005B3417 /* AddCustomerViewControllerA.m in Sources */ = {isa = PBXBuildFile; fileRef = E221EFAF1D60378A005B3417 /* AddCustomerViewControllerA.m */; };
 		E221EFB31D60378A005B3417 /* CustomerManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E221EFB11D60378A005B3417 /* CustomerManageViewController.m */; };
 		E27B06291D616A7000ED18D1 /* address.plist in Resources */ = {isa = PBXBuildFile; fileRef = E27B06281D616A7000ED18D1 /* address.plist */; };
+		E27B062C1D6360B100ED18D1 /* AddCustomerViewControllerB.m in Sources */ = {isa = PBXBuildFile; fileRef = E27B062B1D6360B100ED18D1 /* AddCustomerViewControllerB.m */; };
+		E27B062F1D6363CC00ED18D1 /* AddCustomerViewControllerC.m in Sources */ = {isa = PBXBuildFile; fileRef = E27B062E1D6363CC00ED18D1 /* AddCustomerViewControllerC.m */; };
+		E27B063D1D65FE0300ED18D1 /* CustomerDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E27B063C1D65FE0300ED18D1 /* CustomerDetailViewController.m */; };
 		E2FA0C051D4CFF000094A6FE /* KKBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E2FA0BF11D4CFF000094A6FE /* KKBaseModel.m */; };
 		E2FA0C061D4CFF000094A6FE /* KKBaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = E2FA0BF41D4CFF000094A6FE /* KKBaseRequest.m */; };
 		E2FA0C071D4CFF000094A6FE /* KKRequestError.m in Sources */ = {isa = PBXBuildFile; fileRef = E2FA0BF61D4CFF000094A6FE /* KKRequestError.m */; };
@@ -101,6 +104,12 @@
 		E221EFB01D60378A005B3417 /* CustomerManageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerManageViewController.h; sourceTree = "<group>"; };
 		E221EFB11D60378A005B3417 /* CustomerManageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerManageViewController.m; sourceTree = "<group>"; };
 		E27B06281D616A7000ED18D1 /* address.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = address.plist; sourceTree = "<group>"; };
+		E27B062A1D6360B100ED18D1 /* AddCustomerViewControllerB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddCustomerViewControllerB.h; sourceTree = "<group>"; };
+		E27B062B1D6360B100ED18D1 /* AddCustomerViewControllerB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddCustomerViewControllerB.m; sourceTree = "<group>"; };
+		E27B062D1D6363CC00ED18D1 /* AddCustomerViewControllerC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddCustomerViewControllerC.h; sourceTree = "<group>"; };
+		E27B062E1D6363CC00ED18D1 /* AddCustomerViewControllerC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddCustomerViewControllerC.m; sourceTree = "<group>"; };
+		E27B063B1D65FE0300ED18D1 /* CustomerDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerDetailViewController.h; sourceTree = "<group>"; };
+		E27B063C1D65FE0300ED18D1 /* CustomerDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerDetailViewController.m; sourceTree = "<group>"; };
 		E2FA0BF01D4CFF000094A6FE /* KKBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKBaseModel.h; sourceTree = "<group>"; };
 		E2FA0BF11D4CFF000094A6FE /* KKBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KKBaseModel.m; sourceTree = "<group>"; };
 		E2FA0BF31D4CFF000094A6FE /* KKBaseRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKBaseRequest.h; sourceTree = "<group>"; };
@@ -332,8 +341,14 @@
 			children = (
 				E221EFAE1D60378A005B3417 /* AddCustomerViewControllerA.h */,
 				E221EFAF1D60378A005B3417 /* AddCustomerViewControllerA.m */,
+				E27B062A1D6360B100ED18D1 /* AddCustomerViewControllerB.h */,
+				E27B062B1D6360B100ED18D1 /* AddCustomerViewControllerB.m */,
+				E27B062D1D6363CC00ED18D1 /* AddCustomerViewControllerC.h */,
+				E27B062E1D6363CC00ED18D1 /* AddCustomerViewControllerC.m */,
 				E221EFB01D60378A005B3417 /* CustomerManageViewController.h */,
 				E221EFB11D60378A005B3417 /* CustomerManageViewController.m */,
+				E27B063B1D65FE0300ED18D1 /* CustomerDetailViewController.h */,
+				E27B063C1D65FE0300ED18D1 /* CustomerDetailViewController.m */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -558,6 +573,7 @@
 				E2FA0C1E1D4D036F0094A6FE /* BaseViewController.m in Sources */,
 				E221EFB31D60378A005B3417 /* CustomerManageViewController.m in Sources */,
 				E2FA0C071D4CFF000094A6FE /* KKRequestError.m in Sources */,
+				E27B063D1D65FE0300ED18D1 /* CustomerDetailViewController.m in Sources */,
 				E2FA0C0A1D4CFF000094A6FE /* UIView+KKFrame.m in Sources */,
 				E221EF7F1D5F21A5005B3417 /* CALayer+Addition.m in Sources */,
 				E221EF9A1D6036D3005B3417 /* AddProductViewControllerA.m in Sources */,
@@ -572,12 +588,14 @@
 				E2FA0C091D4CFF000094A6FE /* UIColor+KKAdditions.m in Sources */,
 				E221EFB21D60378A005B3417 /* AddCustomerViewControllerA.m in Sources */,
 				E221EEC61D4F8FAC005B3417 /* RegisterViewController.m in Sources */,
+				E27B062C1D6360B100ED18D1 /* AddCustomerViewControllerB.m in Sources */,
 				E221EEB91D4F8B68005B3417 /* BaseNavigationController.m in Sources */,
 				E221EEEC1D4F9F5B005B3417 /* DataAnalysisViewController.m in Sources */,
 				E221EEBD1D4F8B9D005B3417 /* BaseTabbarController.m in Sources */,
 				E2FA0C081D4CFF000094A6FE /* NSMutableDictionary+KKAdditions.m in Sources */,
 				E221EEE41D4F9801005B3417 /* CostManageViewController.m in Sources */,
 				E221EFA41D603713005B3417 /* SearchView.m in Sources */,
+				E27B062F1D6363CC00ED18D1 /* AddCustomerViewControllerC.m in Sources */,
 				E221EEF21D4F9F8F005B3417 /* MeViewController.m in Sources */,
 				E221EFA31D603713005B3417 /* ProductManagerCell.m in Sources */,
 				E2FA0C061D4CFF000094A6FE /* KKBaseRequest.m in Sources */,
