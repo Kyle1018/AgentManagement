@@ -14,8 +14,6 @@
 #import <SDAutoLayout/UIView+SDAutoLayout.h>
 @interface ProductManageViewController ()<UITableViewDelegate,UITableViewDataSource>
 
-@property (weak, nonatomic) IBOutlet UITableView *dd;
-
 
 
 @end
@@ -24,27 +22,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-     self.dd.delegate = self;
-     self.dd.dataSource = self;
-    
-//    self.dd.separatorInset = UIEdgeInsetsMake(0, -100, 0, 0);
-    
- //   self.lineA.sd_layout.widthIs(10);
-//    self.lineA.frame = CGRectMake(88, 0, 10, 41);
-//
     
 
-    //[self.view addSubview: self.dd];
-
-    
-//    UIView *headerView = self.formTabelView.tableHeaderView;
-//    headerView.frame = CGRectMake(-50, 0, self.view.bounds.size.width, 100);
-//    self.formTabelView.tableHeaderView = headerView;
-    
-  
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    
+    [super viewWillAppear:animated];
+    
+        NSLog(@"%@",self.dic);
+}
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

@@ -10,4 +10,6 @@
 
 @interface ProductManageViewController : BaseViewController
 
+@property(nonatomic,strong)NSDictionary *dic;
+
 @end

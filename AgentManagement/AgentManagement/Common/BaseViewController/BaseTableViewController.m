@@ -7,8 +7,10 @@
 //
 
 #import "BaseTableViewController.h"
-
+#import "AlertController.h"
 @interface BaseTableViewController ()
+
+@property(nonatomic,strong)AlertController *alertVC;
 
 @end
 
@@ -25,11 +27,6 @@
     UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
     self.navigationItem.leftBarButtonItem=backItem;
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -39,7 +36,19 @@
 
 -(void)doBack:(id)sender
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    __weak typeof(self) weakSelf = self;
+    
+    self.alertVC = [AlertController alertControllerWithTitle:@"退出此次编辑" message:nil preferredStyle:UIAlertControllerStyleAlert];
+    
+    [self presentViewController: self.alertVC animated: YES completion:^{
+        
+        
+    }];
+    
+    self.alertVC.tapExitButtonBlock = ^() {
+        
+        [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+    };
 }
 
 

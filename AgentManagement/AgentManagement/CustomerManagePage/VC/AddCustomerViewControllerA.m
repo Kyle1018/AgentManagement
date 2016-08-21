@@ -55,10 +55,8 @@
 - (void)hideMyPicker {
     [UIView animateWithDuration:0.3 animations:^{
         self.maskView.alpha = 0;
-        self.pickerBGView.top = self.view.height;
     } completion:^(BOOL finished) {
         [self.maskView removeFromSuperview];
-        [self.pickerBGView removeFromSuperview];
     }];
 }
 
@@ -196,15 +194,15 @@
 
 
 #pragma mark -UITabelViewDatasource
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 2;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 4;
-}
+//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+//#warning Incomplete implementation, return the number of sections
+//    return 2;
+//}
+//
+//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+//#warning Incomplete implementation, return the number of rows
+//    return 4;
+//}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     

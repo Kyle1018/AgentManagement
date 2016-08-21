@@ -26,7 +26,7 @@
         <!--客户管理-->
         <scene sceneID="CZI-tv-RyN">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="w0T-tN-4da" customClass="CustomerManageViewController" sceneMemberID="viewController">
+                <viewController id="w0T-tN-4da" customClass="CustomerManageViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jrB-O4-KOB"/>
                         <viewControllerLayoutGuide type="bottom" id="k07-It-D3J"/>
@@ -298,6 +298,7 @@
                             </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="flx-OP-UIj" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -307,7 +308,7 @@
         <!--新增客户-->
         <scene sceneID="1XH-cD-ALA">
             <objects>
-                <tableViewController id="FaE-SH-21T" customClass="AddCustomerViewControllerA" sceneMemberID="viewController">
+                <tableViewController hidesBottomBarWhenPushed="YES" id="FaE-SH-21T" customClass="AddCustomerViewControllerA" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="44" sectionFooterHeight="18" id="hPh-zT-pp1">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

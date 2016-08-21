@@ -40,6 +40,10 @@
 		E27B062C1D6360B100ED18D1 /* AddCustomerViewControllerB.m in Sources */ = {isa = PBXBuildFile; fileRef = E27B062B1D6360B100ED18D1 /* AddCustomerViewControllerB.m */; };
 		E27B062F1D6363CC00ED18D1 /* AddCustomerViewControllerC.m in Sources */ = {isa = PBXBuildFile; fileRef = E27B062E1D6363CC00ED18D1 /* AddCustomerViewControllerC.m */; };
 		E27B063D1D65FE0300ED18D1 /* CustomerDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E27B063C1D65FE0300ED18D1 /* CustomerDetailViewController.m */; };
+		E2A3F2521D684703006EC120 /* AddProductViewControllerB.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A3F2511D684703006EC120 /* AddProductViewControllerB.m */; };
+		E2A3F2561D68A5E7006EC120 /* AlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A3F2541D68A5E7006EC120 /* AlertController.m */; };
+		E2A3F2571D68A5E7006EC120 /* AlertController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2A3F2551D68A5E7006EC120 /* AlertController.xib */; };
+		E2A3F25A1D69B631006EC120 /* AddProductViewControllerC.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A3F2591D69B631006EC120 /* AddProductViewControllerC.m */; };
 		E2FA0C051D4CFF000094A6FE /* KKBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E2FA0BF11D4CFF000094A6FE /* KKBaseModel.m */; };
 		E2FA0C061D4CFF000094A6FE /* KKBaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = E2FA0BF41D4CFF000094A6FE /* KKBaseRequest.m */; };
 		E2FA0C071D4CFF000094A6FE /* KKRequestError.m in Sources */ = {isa = PBXBuildFile; fileRef = E2FA0BF61D4CFF000094A6FE /* KKRequestError.m */; };
@@ -110,6 +114,13 @@
 		E27B062E1D6363CC00ED18D1 /* AddCustomerViewControllerC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddCustomerViewControllerC.m; sourceTree = "<group>"; };
 		E27B063B1D65FE0300ED18D1 /* CustomerDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerDetailViewController.h; sourceTree = "<group>"; };
 		E27B063C1D65FE0300ED18D1 /* CustomerDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerDetailViewController.m; sourceTree = "<group>"; };
+		E2A3F2501D684703006EC120 /* AddProductViewControllerB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddProductViewControllerB.h; sourceTree = "<group>"; };
+		E2A3F2511D684703006EC120 /* AddProductViewControllerB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddProductViewControllerB.m; sourceTree = "<group>"; };
+		E2A3F2531D68A5E7006EC120 /* AlertController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertController.h; sourceTree = "<group>"; };
+		E2A3F2541D68A5E7006EC120 /* AlertController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertController.m; sourceTree = "<group>"; };
+		E2A3F2551D68A5E7006EC120 /* AlertController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlertController.xib; sourceTree = "<group>"; };
+		E2A3F2581D69B631006EC120 /* AddProductViewControllerC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddProductViewControllerC.h; sourceTree = "<group>"; };
+		E2A3F2591D69B631006EC120 /* AddProductViewControllerC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddProductViewControllerC.m; sourceTree = "<group>"; };
 		E2FA0BF01D4CFF000094A6FE /* KKBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKBaseModel.h; sourceTree = "<group>"; };
 		E2FA0BF11D4CFF000094A6FE /* KKBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KKBaseModel.m; sourceTree = "<group>"; };
 		E2FA0BF31D4CFF000094A6FE /* KKBaseRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKBaseRequest.h; sourceTree = "<group>"; };
@@ -295,8 +306,15 @@
 			children = (
 				E221EF961D6036D3005B3417 /* AddProductViewControllerA.h */,
 				E221EF971D6036D3005B3417 /* AddProductViewControllerA.m */,
+				E2A3F2501D684703006EC120 /* AddProductViewControllerB.h */,
+				E2A3F2511D684703006EC120 /* AddProductViewControllerB.m */,
+				E2A3F2581D69B631006EC120 /* AddProductViewControllerC.h */,
+				E2A3F2591D69B631006EC120 /* AddProductViewControllerC.m */,
 				E221EF981D6036D3005B3417 /* ProductManageViewController.h */,
 				E221EF991D6036D3005B3417 /* ProductManageViewController.m */,
+				E2A3F2531D68A5E7006EC120 /* AlertController.h */,
+				E2A3F2541D68A5E7006EC120 /* AlertController.m */,
+				E2A3F2551D68A5E7006EC120 /* AlertController.xib */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -504,6 +522,7 @@
 				E27B06291D616A7000ED18D1 /* address.plist in Resources */,
 				E221EFAC1D60377D005B3417 /* CustomerManage.storyboard in Resources */,
 				E221EEE61D4F9813005B3417 /* CostManage.storyboard in Resources */,
+				E2A3F2571D68A5E7006EC120 /* AlertController.xib in Resources */,
 				E221EEEE1D4F9F6C005B3417 /* DataAnalysis.storyboard in Resources */,
 				270704C91D45F9A900633390 /* Assets.xcassets in Resources */,
 				E221EFA81D603738005B3417 /* ProductManage.storyboard in Resources */,
@@ -569,6 +588,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E221EEC01D4F8BCA005B3417 /* LandViewController.m in Sources */,
+				E2A3F2521D684703006EC120 /* AddProductViewControllerB.m in Sources */,
 				E2FA0C0C1D4CFF000094A6FE /* KKQRCodeScanner.m in Sources */,
 				E2FA0C1E1D4D036F0094A6FE /* BaseViewController.m in Sources */,
 				E221EFB31D60378A005B3417 /* CustomerManageViewController.m in Sources */,
@@ -576,12 +596,14 @@
 				E27B063D1D65FE0300ED18D1 /* CustomerDetailViewController.m in Sources */,
 				E2FA0C0A1D4CFF000094A6FE /* UIView+KKFrame.m in Sources */,
 				E221EF7F1D5F21A5005B3417 /* CALayer+Addition.m in Sources */,
+				E2A3F2561D68A5E7006EC120 /* AlertController.m in Sources */,
 				E221EF9A1D6036D3005B3417 /* AddProductViewControllerA.m in Sources */,
 				270704C41D45F9A900633390 /* ViewController.m in Sources */,
 				E221EEC31D4F8F62005B3417 /* ForgetPasswordViewController.m in Sources */,
 				E221EF9B1D6036D3005B3417 /* ProductManageViewController.m in Sources */,
 				E221EF8A1D603238005B3417 /* BaseTableViewController.m in Sources */,
 				270704C11D45F9A900633390 /* AppDelegate.m in Sources */,
+				E2A3F25A1D69B631006EC120 /* AddProductViewControllerC.m in Sources */,
 				E2FA0C051D4CFF000094A6FE /* KKBaseModel.m in Sources */,
 				270704BE1D45F9A900633390 /* main.m in Sources */,
 				E2FA0C0B1D4CFF000094A6FE /* KKAppUtility.m in Sources */,
