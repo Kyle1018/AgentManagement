@@ -562,12 +562,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 270704D01D45F9A900633390 /* Build configuration list for PBXNativeTarget "AgentManagement" */;
 			buildPhases = (
-				6EE97838359C73A02BE1306A /* Check Pods Manifest.lock */,
+				6EE97838359C73A02BE1306A /* 📦 Check Pods Manifest.lock */,
 				270704B51D45F9A900633390 /* Sources */,
 				270704B61D45F9A900633390 /* Frameworks */,
 				270704B71D45F9A900633390 /* Resources */,
-				FA3D025023C6ED8BEC7F5539 /* Embed Pods Frameworks */,
-				7AFD04470378C3C4198FF8F3 /* Copy Pods Resources */,
+				FA3D025023C6ED8BEC7F5539 /* 📦 Embed Pods Frameworks */,
+				7AFD04470378C3C4198FF8F3 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -632,14 +632,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		6EE97838359C73A02BE1306A /* Check Pods Manifest.lock */ = {
+		6EE97838359C73A02BE1306A /* 📦 Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "📦 Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -647,14 +647,14 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		7AFD04470378C3C4198FF8F3 /* Copy Pods Resources */ = {
+		7AFD04470378C3C4198FF8F3 /* 📦 Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "📦 Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -662,14 +662,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AgentManagement/Pods-AgentManagement-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		FA3D025023C6ED8BEC7F5539 /* Embed Pods Frameworks */ = {
+		FA3D025023C6ED8BEC7F5539 /* 📦 Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "📦 Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
