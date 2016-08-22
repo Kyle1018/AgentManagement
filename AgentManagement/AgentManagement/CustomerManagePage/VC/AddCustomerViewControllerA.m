@@ -227,7 +227,7 @@
      
         [UIView animateWithDuration:0.3 animations:^{
             self.maskView.alpha = 0.3;
-            self.pickerBGView.originY = ScreenHeight-110;
+            self.pickerBGView.bottom = ScreenHeight-110;
         }];
     }
     else {
