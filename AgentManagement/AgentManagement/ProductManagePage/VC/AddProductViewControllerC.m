@@ -8,7 +8,6 @@
 
 #import "AddProductViewControllerC.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import "UIView+KKFrame.h"
 #import "ProductManageViewController.h"
 @interface AddProductViewControllerC ()
 @property (weak, nonatomic) IBOutlet UITextField *price;

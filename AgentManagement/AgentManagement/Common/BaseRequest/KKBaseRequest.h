@@ -10,6 +10,8 @@
 #import "KKBaseModel.h"
 #import "KKRequestError.h"
 
+@class AFHTTPSessionManager;
+
 typedef NS_ENUM(NSInteger, KKHttpMethodType) {
     KKHttpMethodType_GET,
     KKHttpMethodType_POST,
@@ -20,6 +22,7 @@ typedef void (^KKRequestFailure)(KKBaseModel *model, KKRequestError *error);
 
 @interface KKBaseRequest : NSObject
 
+@property (nonatomic, strong, readonly) AFHTTPSessionManager *httpSessionManager;
 @property (nonatomic, strong) NSMutableDictionary *requestParameters;
 
 - (KKHttpMethodType)httpMethodType;
@@ -31,18 +34,10 @@ typedef void (^KKRequestFailure)(KKBaseModel *model, KKRequestError *error);
 - (void)requestWithSuccess:(KKRequestSuccess)success failure:(KKRequestFailure)failure;
 - (void)cancel;
 
-@end
-
-@interface KKBaseRequest (KKRetry)
-
 /// Default is 0.
 @property (nonatomic, assign) NSUInteger retryCount;
 /// Default is 0.0.
 @property (nonatomic, assign) NSTimeInterval retryTimeInterval;
-
-@end
-
-@interface KKBaseRequest (KKCache)
 
 @property (nonatomic, assign) BOOL isUseCache;
 
@@ -51,3 +46,22 @@ typedef void (^KKRequestFailure)(KKBaseModel *model, KKRequestError *error);
 - (id)getCacheObject;
 
 @end
+
+//@interface KKBaseRequest (KKRetry)
+//
+///// Default is 0.
+//@property (nonatomic, assign) NSUInteger retryCount;
+///// Default is 0.0.
+//@property (nonatomic, assign) NSTimeInterval retryTimeInterval;
+//
+//@end
+
+//@interface KKBaseRequest (KKCache)
+//
+//@property (nonatomic, assign) BOOL isUseCache;
+//
+//- (NSString *)cacheFilePath;
+//
+//- (id)getCacheObject;
+//
+//@end

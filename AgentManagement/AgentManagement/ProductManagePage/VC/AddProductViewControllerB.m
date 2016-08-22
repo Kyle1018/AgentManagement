@@ -7,7 +7,6 @@
 //
 
 #import "AddProductViewControllerB.h"
-#import "UIView+KKFrame.h"
 #import "AlertController.h"
 
 @interface AddProductViewControllerB ()

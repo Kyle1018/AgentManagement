@@ -8,10 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-@interface KKRequestError : NSObject
+@interface KKRequestError : NSError
 
 - (instancetype)initWithError:(NSError *)error;
 - (instancetype)initWithErrorCode:(NSInteger)code errorMessage:(NSString *)message;
+- (instancetype)initWithErrorMessage:(NSString *)errorMessage;
 
 - (NSInteger)errorCode;
 - (NSString *)errorMessage;

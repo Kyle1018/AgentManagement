@@ -1,5 +1,5 @@
 //
-//  UIView+KKFrame.h
+//  UIView+KKAdditions.h
 //  PuRunMedical
 //
 //  Created by Kyle on 16/6/17.
@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+#define ScreenFrame [UIScreen mainScreen].bounds
 #define ScreenWidth [UIScreen mainScreen].bounds.size.width
 #define ScreenHeight [UIScreen mainScreen].bounds.size.height
-#define ScreenFrame       (CGRectMake(0, 0 ,ScreenWidth,ScreenHeight))
 
 @interface UIView (KKFrame)
 
@@ -22,10 +22,12 @@
 @property (nonatomic, assign) CGFloat centerX;
 @property (nonatomic, assign) CGFloat centerY;
 
-@property (nonatomic,assign) CGFloat top;
+- (void)removeAllSubviews;
 
-@property(nonatomic,assign)CGFloat bottom;
+@end
 
-+ (instancetype)createViewFromXib;
+@interface UIView (Xib)
+
++ (instancetype)viewFromXib;
 
 @end

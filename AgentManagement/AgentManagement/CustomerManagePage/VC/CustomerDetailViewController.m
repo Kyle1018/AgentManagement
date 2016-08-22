@@ -7,7 +7,6 @@
 //
 
 #import "CustomerDetailViewController.h"
-#import "UIView+KKFrame.h"
 @interface CustomerDetailViewController ()
 
 @property (strong, nonatomic) UIView *maskView;
@@ -31,7 +30,7 @@
     
     [UIView animateWithDuration:0.3 animations:^{
         self.maskView.alpha = 0;
-        self.editBGView.top = self.view.height;
+        self.editBGView.originY = self.view.height;
     } completion:^(BOOL finished) {
         [self.maskView removeFromSuperview];
         [self.editBGView removeFromSuperview];
@@ -47,7 +46,7 @@
     
     [UIView animateWithDuration:0.3 animations:^{
         self.maskView.alpha = 0.3;
-        self.editBGView.bottom = ScreenHeight-60;
+        self.editBGView.originX = ScreenHeight-60;
     }];
 }
 

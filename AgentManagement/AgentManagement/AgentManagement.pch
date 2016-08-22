@@ -1,0 +1,26 @@
+//
+//  AgentManagement.pch
+//  AgentManagement
+//
+//  Created by Kyle on 16/8/13.
+//  Copyright © 2016年 KK. All rights reserved.
+//
+
+#ifndef AgentManagement_pch
+#define AgentManagement_pch
+
+#ifdef __OBJC__
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import <ReactiveCocoa/ReactiveCocoa.h>
+#import <CocoaLumberjack/CocoaLumberjack.h>
+#import "KKCategory.h"
+#endif
+
+#ifdef DEBUG
+static const int ddLogLevel = DDLogLevelVerbose;
+#else
+static const int ddLogLevel = DDLogLevelWarning;
+#endif
+
+#endif /* AgentManagement_pch */

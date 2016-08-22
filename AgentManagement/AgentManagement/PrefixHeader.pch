@@ -1,0 +1,24 @@
+//
+//  PrefixHeader.pch
+//  AgentManagement
+//
+//  Created by Kyle on 16/8/22.
+//  Copyright © 2016年 KK. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import <ReactiveCocoa/ReactiveCocoa.h>
+#import <CocoaLumberjack/CocoaLumberjack.h>
+#import "KKCategory.h"
+
+#endif /* PrefixHeader_pch */
+
+#ifdef DEBUG
+static const int ddLogLevel = DDLogLevelVerbose;
+#else
+static const int ddLogLevel = DDLogLevelWarning;
+#endif

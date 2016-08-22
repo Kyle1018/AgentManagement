@@ -11,6 +11,17 @@
 		270704C11D45F9A900633390 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 270704C01D45F9A900633390 /* AppDelegate.m */; };
 		270704C41D45F9A900633390 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 270704C31D45F9A900633390 /* ViewController.m */; };
 		270704C91D45F9A900633390 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 270704C81D45F9A900633390 /* Assets.xcassets */; };
+		27CA012F1D6B10E4009F9A25 /* CALayer+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA01241D6B10E4009F9A25 /* CALayer+Addition.m */; };
+		27CA01301D6B10E4009F9A25 /* NSMutableDictionary+KKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA01281D6B10E4009F9A25 /* NSMutableDictionary+KKAdditions.m */; };
+		27CA01311D6B10E4009F9A25 /* UIColor+KKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA012A1D6B10E4009F9A25 /* UIColor+KKAdditions.m */; };
+		27CA01321D6B10E4009F9A25 /* UIImage+KKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA012C1D6B10E4009F9A25 /* UIImage+KKAdditions.m */; };
+		27CA01331D6B10E4009F9A25 /* UIView+KKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA012E1D6B10E4009F9A25 /* UIView+KKAdditions.m */; };
+		27CA01381D6B1167009F9A25 /* AMBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA01371D6B1167009F9A25 /* AMBaseModel.m */; };
+		27CA01481D6B116F009F9A25 /* AMBaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA013B1D6B116F009F9A25 /* AMBaseRequest.m */; };
+		27CA01491D6B116F009F9A25 /* AMIdentifyCodeRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA013E1D6B116F009F9A25 /* AMIdentifyCodeRequest.m */; };
+		27CA014A1D6B116F009F9A25 /* AMLoginRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA01411D6B116F009F9A25 /* AMLoginRequest.m */; };
+		27CA014B1D6B116F009F9A25 /* AMLogoutRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA01441D6B116F009F9A25 /* AMLogoutRequest.m */; };
+		27CA014C1D6B116F009F9A25 /* AMRegisterRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA01471D6B116F009F9A25 /* AMRegisterRequest.m */; };
 		BF9F2BB189B26DBF3F73AD65 /* libPods-AgentManagement.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C806F49AB69A45A297CCBD97 /* libPods-AgentManagement.a */; };
 		E221EEB41D4F8AA2005B3417 /* Land.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E221EEB31D4F8AA2005B3417 /* Land.storyboard */; };
 		E221EEB91D4F8B68005B3417 /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = E221EEB81D4F8B68005B3417 /* BaseNavigationController.m */; };
@@ -25,7 +36,6 @@
 		E221EEEE1D4F9F6C005B3417 /* DataAnalysis.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E221EEED1D4F9F6C005B3417 /* DataAnalysis.storyboard */; };
 		E221EEF21D4F9F8F005B3417 /* MeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E221EEF11D4F9F8F005B3417 /* MeViewController.m */; };
 		E221EEF41D4F9F98005B3417 /* Me.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E221EEF31D4F9F98005B3417 /* Me.storyboard */; };
-		E221EF7F1D5F21A5005B3417 /* CALayer+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = E221EF7E1D5F21A5005B3417 /* CALayer+Addition.m */; };
 		E221EF8A1D603238005B3417 /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E221EF891D603238005B3417 /* BaseTableViewController.m */; };
 		E221EF9A1D6036D3005B3417 /* AddProductViewControllerA.m in Sources */ = {isa = PBXBuildFile; fileRef = E221EF971D6036D3005B3417 /* AddProductViewControllerA.m */; };
 		E221EF9B1D6036D3005B3417 /* ProductManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E221EF991D6036D3005B3417 /* ProductManageViewController.m */; };
@@ -47,9 +57,6 @@
 		E2FA0C051D4CFF000094A6FE /* KKBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E2FA0BF11D4CFF000094A6FE /* KKBaseModel.m */; };
 		E2FA0C061D4CFF000094A6FE /* KKBaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = E2FA0BF41D4CFF000094A6FE /* KKBaseRequest.m */; };
 		E2FA0C071D4CFF000094A6FE /* KKRequestError.m in Sources */ = {isa = PBXBuildFile; fileRef = E2FA0BF61D4CFF000094A6FE /* KKRequestError.m */; };
-		E2FA0C081D4CFF000094A6FE /* NSMutableDictionary+KKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = E2FA0BF91D4CFF000094A6FE /* NSMutableDictionary+KKAdditions.m */; };
-		E2FA0C091D4CFF000094A6FE /* UIColor+KKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = E2FA0BFB1D4CFF000094A6FE /* UIColor+KKAdditions.m */; };
-		E2FA0C0A1D4CFF000094A6FE /* UIView+KKFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = E2FA0BFD1D4CFF000094A6FE /* UIView+KKFrame.m */; };
 		E2FA0C0B1D4CFF000094A6FE /* KKAppUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = E2FA0C011D4CFF000094A6FE /* KKAppUtility.m */; };
 		E2FA0C0C1D4CFF000094A6FE /* KKQRCodeScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = E2FA0C041D4CFF000094A6FE /* KKQRCodeScanner.m */; };
 		E2FA0C1E1D4D036F0094A6FE /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2FA0C1D1D4D036F0094A6FE /* BaseViewController.m */; };
@@ -64,6 +71,31 @@
 		270704C31D45F9A900633390 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		270704C81D45F9A900633390 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		270704CD1D45F9A900633390 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		27CA01231D6B10E4009F9A25 /* CALayer+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+Addition.h"; sourceTree = "<group>"; };
+		27CA01241D6B10E4009F9A25 /* CALayer+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+Addition.m"; sourceTree = "<group>"; };
+		27CA01251D6B10E4009F9A25 /* KKCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKCategory.h; sourceTree = "<group>"; };
+		27CA01261D6B10E4009F9A25 /* KKCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKCommon.h; sourceTree = "<group>"; };
+		27CA01271D6B10E4009F9A25 /* NSMutableDictionary+KKAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+KKAdditions.h"; sourceTree = "<group>"; };
+		27CA01281D6B10E4009F9A25 /* NSMutableDictionary+KKAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+KKAdditions.m"; sourceTree = "<group>"; };
+		27CA01291D6B10E4009F9A25 /* UIColor+KKAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+KKAdditions.h"; sourceTree = "<group>"; };
+		27CA012A1D6B10E4009F9A25 /* UIColor+KKAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+KKAdditions.m"; sourceTree = "<group>"; };
+		27CA012B1D6B10E4009F9A25 /* UIImage+KKAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+KKAdditions.h"; sourceTree = "<group>"; };
+		27CA012C1D6B10E4009F9A25 /* UIImage+KKAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+KKAdditions.m"; sourceTree = "<group>"; };
+		27CA012D1D6B10E4009F9A25 /* UIView+KKAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+KKAdditions.h"; sourceTree = "<group>"; };
+		27CA012E1D6B10E4009F9A25 /* UIView+KKAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+KKAdditions.m"; sourceTree = "<group>"; };
+		27CA01361D6B1167009F9A25 /* AMBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMBaseModel.h; sourceTree = "<group>"; };
+		27CA01371D6B1167009F9A25 /* AMBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMBaseModel.m; sourceTree = "<group>"; };
+		27CA013A1D6B116F009F9A25 /* AMBaseRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMBaseRequest.h; sourceTree = "<group>"; };
+		27CA013B1D6B116F009F9A25 /* AMBaseRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMBaseRequest.m; sourceTree = "<group>"; };
+		27CA013D1D6B116F009F9A25 /* AMIdentifyCodeRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMIdentifyCodeRequest.h; sourceTree = "<group>"; };
+		27CA013E1D6B116F009F9A25 /* AMIdentifyCodeRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMIdentifyCodeRequest.m; sourceTree = "<group>"; };
+		27CA01401D6B116F009F9A25 /* AMLoginRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMLoginRequest.h; sourceTree = "<group>"; };
+		27CA01411D6B116F009F9A25 /* AMLoginRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMLoginRequest.m; sourceTree = "<group>"; };
+		27CA01431D6B116F009F9A25 /* AMLogoutRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMLogoutRequest.h; sourceTree = "<group>"; };
+		27CA01441D6B116F009F9A25 /* AMLogoutRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMLogoutRequest.m; sourceTree = "<group>"; };
+		27CA01461D6B116F009F9A25 /* AMRegisterRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMRegisterRequest.h; sourceTree = "<group>"; };
+		27CA01471D6B116F009F9A25 /* AMRegisterRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMRegisterRequest.m; sourceTree = "<group>"; };
+		27CA014D1D6B11E6009F9A25 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		478FBB2CEED5387933066CAF /* Pods-AgentManagement.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgentManagement.release.xcconfig"; path = "Pods/Target Support Files/Pods-AgentManagement/Pods-AgentManagement.release.xcconfig"; sourceTree = "<group>"; };
 		A4D39D6814FFFBB4493A8E64 /* Pods-AgentManagement.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgentManagement.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AgentManagement/Pods-AgentManagement.debug.xcconfig"; sourceTree = "<group>"; };
 		C806F49AB69A45A297CCBD97 /* libPods-AgentManagement.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AgentManagement.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -88,8 +120,6 @@
 		E221EEF01D4F9F8F005B3417 /* MeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeViewController.h; sourceTree = "<group>"; };
 		E221EEF11D4F9F8F005B3417 /* MeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeViewController.m; sourceTree = "<group>"; };
 		E221EEF31D4F9F98005B3417 /* Me.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Me.storyboard; sourceTree = "<group>"; };
-		E221EF7D1D5F21A5005B3417 /* CALayer+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+Addition.h"; sourceTree = "<group>"; };
-		E221EF7E1D5F21A5005B3417 /* CALayer+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+Addition.m"; sourceTree = "<group>"; };
 		E221EF881D603238005B3417 /* BaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewController.h; sourceTree = "<group>"; };
 		E221EF891D603238005B3417 /* BaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewController.m; sourceTree = "<group>"; };
 		E221EF961D6036D3005B3417 /* AddProductViewControllerA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddProductViewControllerA.h; sourceTree = "<group>"; };
@@ -127,12 +157,6 @@
 		E2FA0BF41D4CFF000094A6FE /* KKBaseRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KKBaseRequest.m; sourceTree = "<group>"; };
 		E2FA0BF51D4CFF000094A6FE /* KKRequestError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKRequestError.h; sourceTree = "<group>"; };
 		E2FA0BF61D4CFF000094A6FE /* KKRequestError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KKRequestError.m; sourceTree = "<group>"; };
-		E2FA0BF81D4CFF000094A6FE /* NSMutableDictionary+KKAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+KKAdditions.h"; sourceTree = "<group>"; };
-		E2FA0BF91D4CFF000094A6FE /* NSMutableDictionary+KKAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+KKAdditions.m"; sourceTree = "<group>"; };
-		E2FA0BFA1D4CFF000094A6FE /* UIColor+KKAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+KKAdditions.h"; sourceTree = "<group>"; };
-		E2FA0BFB1D4CFF000094A6FE /* UIColor+KKAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+KKAdditions.m"; sourceTree = "<group>"; };
-		E2FA0BFC1D4CFF000094A6FE /* UIView+KKFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+KKFrame.h"; sourceTree = "<group>"; };
-		E2FA0BFD1D4CFF000094A6FE /* UIView+KKFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+KKFrame.m"; sourceTree = "<group>"; };
 		E2FA0C001D4CFF000094A6FE /* KKAppUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKAppUtility.h; sourceTree = "<group>"; };
 		E2FA0C011D4CFF000094A6FE /* KKAppUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KKAppUtility.m; sourceTree = "<group>"; };
 		E2FA0C031D4CFF000094A6FE /* KKQRCodeScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKQRCodeScanner.h; sourceTree = "<group>"; };
@@ -174,6 +198,8 @@
 		270704BB1D45F9A900633390 /* AgentManagement */ = {
 			isa = PBXGroup;
 			children = (
+				27CA01391D6B116F009F9A25 /* Request */,
+				27CA01351D6B1167009F9A25 /* Model */,
 				E221EEEF1D4F9F85005B3417 /* MePage */,
 				E221EEE91D4F9F4B005B3417 /* DataAnalysisPage */,
 				E221EEE11D4F97EC005B3417 /* CostManagePage */,
@@ -198,8 +224,74 @@
 			children = (
 				E27B06281D616A7000ED18D1 /* address.plist */,
 				270704BD1D45F9A900633390 /* main.m */,
+				27CA014D1D6B11E6009F9A25 /* PrefixHeader.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		27CA01341D6B1159009F9A25 /* Control */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Control;
+			sourceTree = "<group>";
+		};
+		27CA01351D6B1167009F9A25 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				27CA01361D6B1167009F9A25 /* AMBaseModel.h */,
+				27CA01371D6B1167009F9A25 /* AMBaseModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		27CA01391D6B116F009F9A25 /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				27CA013A1D6B116F009F9A25 /* AMBaseRequest.h */,
+				27CA013B1D6B116F009F9A25 /* AMBaseRequest.m */,
+				27CA013C1D6B116F009F9A25 /* IdenfityCode */,
+				27CA013F1D6B116F009F9A25 /* Login */,
+				27CA01421D6B116F009F9A25 /* Logout */,
+				27CA01451D6B116F009F9A25 /* Register */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
+		27CA013C1D6B116F009F9A25 /* IdenfityCode */ = {
+			isa = PBXGroup;
+			children = (
+				27CA013D1D6B116F009F9A25 /* AMIdentifyCodeRequest.h */,
+				27CA013E1D6B116F009F9A25 /* AMIdentifyCodeRequest.m */,
+			);
+			path = IdenfityCode;
+			sourceTree = "<group>";
+		};
+		27CA013F1D6B116F009F9A25 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				27CA01401D6B116F009F9A25 /* AMLoginRequest.h */,
+				27CA01411D6B116F009F9A25 /* AMLoginRequest.m */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		27CA01421D6B116F009F9A25 /* Logout */ = {
+			isa = PBXGroup;
+			children = (
+				27CA01431D6B116F009F9A25 /* AMLogoutRequest.h */,
+				27CA01441D6B116F009F9A25 /* AMLogoutRequest.m */,
+			);
+			path = Logout;
+			sourceTree = "<group>";
+		};
+		27CA01451D6B116F009F9A25 /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				27CA01461D6B116F009F9A25 /* AMRegisterRequest.h */,
+				27CA01471D6B116F009F9A25 /* AMRegisterRequest.m */,
+			);
+			path = Register;
 			sourceTree = "<group>";
 		};
 		9A8A467E971840DF1695F233 /* Pods */ = {
@@ -374,6 +466,7 @@
 		E2FA0BEE1D4CFF000094A6FE /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				27CA01341D6B1159009F9A25 /* Control */,
 				E221EEBA1D4F8B84005B3417 /* BaseTabbarController */,
 				E221EEB61D4F8B50005B3417 /* BaseNavigationController */,
 				E2FA0C1B1D4D03550094A6FE /* BaseViewController */,
@@ -408,14 +501,18 @@
 		E2FA0BF71D4CFF000094A6FE /* Category */ = {
 			isa = PBXGroup;
 			children = (
-				E2FA0BF81D4CFF000094A6FE /* NSMutableDictionary+KKAdditions.h */,
-				E2FA0BF91D4CFF000094A6FE /* NSMutableDictionary+KKAdditions.m */,
-				E2FA0BFA1D4CFF000094A6FE /* UIColor+KKAdditions.h */,
-				E2FA0BFB1D4CFF000094A6FE /* UIColor+KKAdditions.m */,
-				E2FA0BFC1D4CFF000094A6FE /* UIView+KKFrame.h */,
-				E2FA0BFD1D4CFF000094A6FE /* UIView+KKFrame.m */,
-				E221EF7D1D5F21A5005B3417 /* CALayer+Addition.h */,
-				E221EF7E1D5F21A5005B3417 /* CALayer+Addition.m */,
+				27CA01231D6B10E4009F9A25 /* CALayer+Addition.h */,
+				27CA01241D6B10E4009F9A25 /* CALayer+Addition.m */,
+				27CA01251D6B10E4009F9A25 /* KKCategory.h */,
+				27CA01261D6B10E4009F9A25 /* KKCommon.h */,
+				27CA01271D6B10E4009F9A25 /* NSMutableDictionary+KKAdditions.h */,
+				27CA01281D6B10E4009F9A25 /* NSMutableDictionary+KKAdditions.m */,
+				27CA01291D6B10E4009F9A25 /* UIColor+KKAdditions.h */,
+				27CA012A1D6B10E4009F9A25 /* UIColor+KKAdditions.m */,
+				27CA012B1D6B10E4009F9A25 /* UIImage+KKAdditions.h */,
+				27CA012C1D6B10E4009F9A25 /* UIImage+KKAdditions.m */,
+				27CA012D1D6B10E4009F9A25 /* UIView+KKAdditions.h */,
+				27CA012E1D6B10E4009F9A25 /* UIView+KKAdditions.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -594,33 +691,40 @@
 				E221EFB31D60378A005B3417 /* CustomerManageViewController.m in Sources */,
 				E2FA0C071D4CFF000094A6FE /* KKRequestError.m in Sources */,
 				E27B063D1D65FE0300ED18D1 /* CustomerDetailViewController.m in Sources */,
-				E2FA0C0A1D4CFF000094A6FE /* UIView+KKFrame.m in Sources */,
-				E221EF7F1D5F21A5005B3417 /* CALayer+Addition.m in Sources */,
 				E2A3F2561D68A5E7006EC120 /* AlertController.m in Sources */,
+				27CA012F1D6B10E4009F9A25 /* CALayer+Addition.m in Sources */,
 				E221EF9A1D6036D3005B3417 /* AddProductViewControllerA.m in Sources */,
+				27CA01381D6B1167009F9A25 /* AMBaseModel.m in Sources */,
 				270704C41D45F9A900633390 /* ViewController.m in Sources */,
 				E221EEC31D4F8F62005B3417 /* ForgetPasswordViewController.m in Sources */,
 				E221EF9B1D6036D3005B3417 /* ProductManageViewController.m in Sources */,
 				E221EF8A1D603238005B3417 /* BaseTableViewController.m in Sources */,
 				270704C11D45F9A900633390 /* AppDelegate.m in Sources */,
+				27CA01321D6B10E4009F9A25 /* UIImage+KKAdditions.m in Sources */,
+				27CA014A1D6B116F009F9A25 /* AMLoginRequest.m in Sources */,
 				E2A3F25A1D69B631006EC120 /* AddProductViewControllerC.m in Sources */,
 				E2FA0C051D4CFF000094A6FE /* KKBaseModel.m in Sources */,
 				270704BE1D45F9A900633390 /* main.m in Sources */,
 				E2FA0C0B1D4CFF000094A6FE /* KKAppUtility.m in Sources */,
-				E2FA0C091D4CFF000094A6FE /* UIColor+KKAdditions.m in Sources */,
 				E221EFB21D60378A005B3417 /* AddCustomerViewControllerA.m in Sources */,
 				E221EEC61D4F8FAC005B3417 /* RegisterViewController.m in Sources */,
 				E27B062C1D6360B100ED18D1 /* AddCustomerViewControllerB.m in Sources */,
 				E221EEB91D4F8B68005B3417 /* BaseNavigationController.m in Sources */,
+				27CA014C1D6B116F009F9A25 /* AMRegisterRequest.m in Sources */,
+				27CA01301D6B10E4009F9A25 /* NSMutableDictionary+KKAdditions.m in Sources */,
+				27CA01491D6B116F009F9A25 /* AMIdentifyCodeRequest.m in Sources */,
 				E221EEEC1D4F9F5B005B3417 /* DataAnalysisViewController.m in Sources */,
+				27CA014B1D6B116F009F9A25 /* AMLogoutRequest.m in Sources */,
 				E221EEBD1D4F8B9D005B3417 /* BaseTabbarController.m in Sources */,
-				E2FA0C081D4CFF000094A6FE /* NSMutableDictionary+KKAdditions.m in Sources */,
 				E221EEE41D4F9801005B3417 /* CostManageViewController.m in Sources */,
 				E221EFA41D603713005B3417 /* SearchView.m in Sources */,
 				E27B062F1D6363CC00ED18D1 /* AddCustomerViewControllerC.m in Sources */,
 				E221EEF21D4F9F8F005B3417 /* MeViewController.m in Sources */,
 				E221EFA31D603713005B3417 /* ProductManagerCell.m in Sources */,
+				27CA01311D6B10E4009F9A25 /* UIColor+KKAdditions.m in Sources */,
+				27CA01331D6B10E4009F9A25 /* UIView+KKAdditions.m in Sources */,
 				E2FA0C061D4CFF000094A6FE /* KKBaseRequest.m in Sources */,
+				27CA01481D6B116F009F9A25 /* AMBaseRequest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -715,6 +819,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/AgentManagement/PrefixHeader.pch";
 				INFOPLIST_FILE = AgentManagement/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -730,6 +835,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/AgentManagement/PrefixHeader.pch";
 				INFOPLIST_FILE = AgentManagement/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

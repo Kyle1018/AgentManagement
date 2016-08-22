@@ -8,7 +8,8 @@
 
 #import "KKRequestError.h"
 
-NSString *const kDefaultErrorMessage = @"请求发生错误";
+static NSString *const kDefaultErrorMessage = @"请求发生错误";
+static NSInteger const kDefaultErrorCode = -1000;
 
 @interface KKRequestError () {
     NSInteger _errorCode;
@@ -36,6 +37,11 @@ NSString *const kDefaultErrorMessage = @"请求发生错误";
         _errorMessage = message;
     }
     return self;
+}
+
+- (instancetype)initWithErrorMessage:(NSString *)errorMessage
+{
+    return [self initWithErrorCode:kDefaultErrorCode errorMessage:errorMessage];
 }
 
 - (NSInteger)errorCode

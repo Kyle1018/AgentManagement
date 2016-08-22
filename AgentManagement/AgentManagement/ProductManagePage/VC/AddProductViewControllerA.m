@@ -8,7 +8,6 @@
 
 #import "AddProductViewControllerA.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import "UIView+KKFrame.h"
 @interface AddProductViewControllerA ()<UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *brandTextField;//品牌输入

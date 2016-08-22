@@ -10,7 +10,6 @@
 //#import "FormTabelView.h"
 //#import "FormTabelViewProtocol.h"
 #import "ProductManagerCell.h"
-#import "UIView+KKFrame.h"
 #import <SDAutoLayout/UIView+SDAutoLayout.h>
 @interface ProductManageViewController ()<UITableViewDelegate,UITableViewDataSource>
 

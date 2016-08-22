@@ -31,7 +31,8 @@
         self.retryTimeInterval = 0.;
         self.isUseCache = NO;
         self.httpSessionManager = [AFHTTPSessionManager manager];
-        self.httpSessionManager.responseSerializer = [AFJSONResponseSerializer new];
+//        self.httpSessionManager.responseSerializer = [AFJSONResponseSerializer serializer];
+//        self.httpSessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", @"text/html", @"text/plain", nil];
     }
     return self;
 }
@@ -145,7 +146,7 @@
             self.requestSuccess = nil;
         }
     } else {
-        //DDLogError(@"responseObject不为dictionary");
+        DDLogError(@"responseObject不为dictionary");
     }
 }
 

@@ -1,12 +1,12 @@
 //
-//  UIView+KKFrame.m
+//  UIView+KKAdditions.m
 //  PuRunMedical
 //
 //  Created by Kyle on 16/6/17.
 //  Copyright © 2016年 PuRun. All rights reserved.
 //
 
-#import "UIView+KKFrame.h"
+#import "UIView+KKAdditions.h"
 
 @implementation UIView (KKFrame)
 
@@ -94,23 +94,27 @@
     self.center = center;
 }
 
-- (void)setTop:(CGFloat)y {
-    CGRect frame = self.frame;
-    frame.origin.y = y;
-    self.frame = frame;
+- (void)removeAllSubviews
+{
+    for (UIView *subview in self.subviews) {
+        [subview removeFromSuperview];
+    }
 }
 
-- (void)setBottom:(CGFloat)bottom {
-    CGRect frame = self.frame;
-    frame.origin.y = bottom - frame.size.height;
-    self.frame = frame;
-}
+@end
 
+@implementation UIView (Xib)
 
-+ (instancetype)createViewFromXib {
-    NSArray *nibs = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass(self) owner:self options:nil];
-    NSAssert(nibs && nibs.count != 0, @"获取Nib失败！");
-    return nibs[0];
++ (instancetype)viewFromXib
+{
+    UIView *view = nil;
+    NSArray *array = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([self class]) owner:self options:nil];
+    
+    if (array.count > 0) {
+        view = [array objectAtIndex:0];
+    }
+    
+    return view;
 }
 
 @end
