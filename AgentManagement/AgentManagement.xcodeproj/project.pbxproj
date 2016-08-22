@@ -22,38 +22,38 @@
 		27CA014A1D6B116F009F9A25 /* AMLoginRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA01411D6B116F009F9A25 /* AMLoginRequest.m */; };
 		27CA014B1D6B116F009F9A25 /* AMLogoutRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA01441D6B116F009F9A25 /* AMLogoutRequest.m */; };
 		27CA014C1D6B116F009F9A25 /* AMRegisterRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA01471D6B116F009F9A25 /* AMRegisterRequest.m */; };
+		27E26B3A1D6B1D360072F26E /* CostManage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27E26B041D6B1D360072F26E /* CostManage.storyboard */; };
+		27E26B3B1D6B1D360072F26E /* CostManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E26B061D6B1D360072F26E /* CostManageViewController.m */; };
+		27E26B3C1D6B1D360072F26E /* CustomerManage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27E26B091D6B1D360072F26E /* CustomerManage.storyboard */; };
+		27E26B3D1D6B1D360072F26E /* AddCustomerViewControllerA.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E26B0C1D6B1D360072F26E /* AddCustomerViewControllerA.m */; };
+		27E26B3E1D6B1D360072F26E /* AddCustomerViewControllerB.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E26B0E1D6B1D360072F26E /* AddCustomerViewControllerB.m */; };
+		27E26B3F1D6B1D360072F26E /* AddCustomerViewControllerC.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E26B101D6B1D360072F26E /* AddCustomerViewControllerC.m */; };
+		27E26B401D6B1D360072F26E /* CustomerDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E26B121D6B1D360072F26E /* CustomerDetailViewController.m */; };
+		27E26B411D6B1D360072F26E /* CustomerManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E26B141D6B1D360072F26E /* CustomerManageViewController.m */; };
+		27E26B421D6B1D360072F26E /* DataAnalysis.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27E26B161D6B1D360072F26E /* DataAnalysis.storyboard */; };
+		27E26B431D6B1D360072F26E /* DataAnalysisViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E26B181D6B1D360072F26E /* DataAnalysisViewController.m */; };
+		27E26B441D6B1D360072F26E /* ForgetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E26B1B1D6B1D360072F26E /* ForgetPasswordViewController.m */; };
+		27E26B451D6B1D360072F26E /* Land.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27E26B1C1D6B1D360072F26E /* Land.storyboard */; };
+		27E26B461D6B1D360072F26E /* LandViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E26B1E1D6B1D360072F26E /* LandViewController.m */; };
+		27E26B471D6B1D360072F26E /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E26B201D6B1D360072F26E /* RegisterViewController.m */; };
+		27E26B481D6B1D360072F26E /* Me.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27E26B221D6B1D360072F26E /* Me.storyboard */; };
+		27E26B491D6B1D360072F26E /* MeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E26B241D6B1D360072F26E /* MeViewController.m */; };
+		27E26B4A1D6B1D360072F26E /* ProductManage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27E26B271D6B1D360072F26E /* ProductManage.storyboard */; };
+		27E26B4B1D6B1D360072F26E /* AddProductViewControllerA.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E26B2A1D6B1D360072F26E /* AddProductViewControllerA.m */; };
+		27E26B4C1D6B1D360072F26E /* AddProductViewControllerB.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E26B2C1D6B1D360072F26E /* AddProductViewControllerB.m */; };
+		27E26B4D1D6B1D360072F26E /* AddProductViewControllerC.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E26B2E1D6B1D360072F26E /* AddProductViewControllerC.m */; };
+		27E26B4E1D6B1D360072F26E /* AlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E26B301D6B1D360072F26E /* AlertController.m */; };
+		27E26B4F1D6B1D360072F26E /* AlertController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27E26B311D6B1D360072F26E /* AlertController.xib */; };
+		27E26B501D6B1D360072F26E /* ProductManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E26B331D6B1D360072F26E /* ProductManageViewController.m */; };
+		27E26B511D6B1D360072F26E /* ProductManagerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E26B361D6B1D360072F26E /* ProductManagerCell.m */; };
+		27E26B521D6B1D360072F26E /* SearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E26B381D6B1D360072F26E /* SearchView.m */; };
+		27E26B531D6B1D360072F26E /* SearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27E26B391D6B1D360072F26E /* SearchView.xib */; };
 		BF9F2BB189B26DBF3F73AD65 /* libPods-AgentManagement.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C806F49AB69A45A297CCBD97 /* libPods-AgentManagement.a */; };
-		E221EEB41D4F8AA2005B3417 /* Land.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E221EEB31D4F8AA2005B3417 /* Land.storyboard */; };
 		E221EEB91D4F8B68005B3417 /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = E221EEB81D4F8B68005B3417 /* BaseNavigationController.m */; };
 		E221EEBD1D4F8B9D005B3417 /* BaseTabbarController.m in Sources */ = {isa = PBXBuildFile; fileRef = E221EEBC1D4F8B9D005B3417 /* BaseTabbarController.m */; };
-		E221EEC01D4F8BCA005B3417 /* LandViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E221EEBF1D4F8BCA005B3417 /* LandViewController.m */; };
-		E221EEC31D4F8F62005B3417 /* ForgetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E221EEC21D4F8F62005B3417 /* ForgetPasswordViewController.m */; };
-		E221EEC61D4F8FAC005B3417 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E221EEC51D4F8FAC005B3417 /* RegisterViewController.m */; };
-		E221EEE41D4F9801005B3417 /* CostManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E221EEE31D4F9801005B3417 /* CostManageViewController.m */; };
-		E221EEE61D4F9813005B3417 /* CostManage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E221EEE51D4F9813005B3417 /* CostManage.storyboard */; };
 		E221EEE81D4F9EFB005B3417 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E221EEE71D4F9EFB005B3417 /* Launch Screen.storyboard */; };
-		E221EEEC1D4F9F5B005B3417 /* DataAnalysisViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E221EEEB1D4F9F5B005B3417 /* DataAnalysisViewController.m */; };
-		E221EEEE1D4F9F6C005B3417 /* DataAnalysis.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E221EEED1D4F9F6C005B3417 /* DataAnalysis.storyboard */; };
-		E221EEF21D4F9F8F005B3417 /* MeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E221EEF11D4F9F8F005B3417 /* MeViewController.m */; };
-		E221EEF41D4F9F98005B3417 /* Me.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E221EEF31D4F9F98005B3417 /* Me.storyboard */; };
 		E221EF8A1D603238005B3417 /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E221EF891D603238005B3417 /* BaseTableViewController.m */; };
-		E221EF9A1D6036D3005B3417 /* AddProductViewControllerA.m in Sources */ = {isa = PBXBuildFile; fileRef = E221EF971D6036D3005B3417 /* AddProductViewControllerA.m */; };
-		E221EF9B1D6036D3005B3417 /* ProductManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E221EF991D6036D3005B3417 /* ProductManageViewController.m */; };
-		E221EFA31D603713005B3417 /* ProductManagerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E221EF9F1D603713005B3417 /* ProductManagerCell.m */; };
-		E221EFA41D603713005B3417 /* SearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = E221EFA11D603713005B3417 /* SearchView.m */; };
-		E221EFA51D603713005B3417 /* SearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E221EFA21D603713005B3417 /* SearchView.xib */; };
-		E221EFA81D603738005B3417 /* ProductManage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E221EFA71D603738005B3417 /* ProductManage.storyboard */; };
-		E221EFAC1D60377D005B3417 /* CustomerManage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E221EFAB1D60377D005B3417 /* CustomerManage.storyboard */; };
-		E221EFB21D60378A005B3417 /* AddCustomerViewControllerA.m in Sources */ = {isa = PBXBuildFile; fileRef = E221EFAF1D60378A005B3417 /* AddCustomerViewControllerA.m */; };
-		E221EFB31D60378A005B3417 /* CustomerManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E221EFB11D60378A005B3417 /* CustomerManageViewController.m */; };
 		E27B06291D616A7000ED18D1 /* address.plist in Resources */ = {isa = PBXBuildFile; fileRef = E27B06281D616A7000ED18D1 /* address.plist */; };
-		E27B062C1D6360B100ED18D1 /* AddCustomerViewControllerB.m in Sources */ = {isa = PBXBuildFile; fileRef = E27B062B1D6360B100ED18D1 /* AddCustomerViewControllerB.m */; };
-		E27B062F1D6363CC00ED18D1 /* AddCustomerViewControllerC.m in Sources */ = {isa = PBXBuildFile; fileRef = E27B062E1D6363CC00ED18D1 /* AddCustomerViewControllerC.m */; };
-		E27B063D1D65FE0300ED18D1 /* CustomerDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E27B063C1D65FE0300ED18D1 /* CustomerDetailViewController.m */; };
-		E2A3F2521D684703006EC120 /* AddProductViewControllerB.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A3F2511D684703006EC120 /* AddProductViewControllerB.m */; };
-		E2A3F2561D68A5E7006EC120 /* AlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A3F2541D68A5E7006EC120 /* AlertController.m */; };
-		E2A3F2571D68A5E7006EC120 /* AlertController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2A3F2551D68A5E7006EC120 /* AlertController.xib */; };
-		E2A3F25A1D69B631006EC120 /* AddProductViewControllerC.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A3F2591D69B631006EC120 /* AddProductViewControllerC.m */; };
 		E2FA0C051D4CFF000094A6FE /* KKBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E2FA0BF11D4CFF000094A6FE /* KKBaseModel.m */; };
 		E2FA0C061D4CFF000094A6FE /* KKBaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = E2FA0BF41D4CFF000094A6FE /* KKBaseRequest.m */; };
 		E2FA0C071D4CFF000094A6FE /* KKRequestError.m in Sources */ = {isa = PBXBuildFile; fileRef = E2FA0BF61D4CFF000094A6FE /* KKRequestError.m */; };
@@ -96,61 +96,61 @@
 		27CA01461D6B116F009F9A25 /* AMRegisterRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMRegisterRequest.h; sourceTree = "<group>"; };
 		27CA01471D6B116F009F9A25 /* AMRegisterRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMRegisterRequest.m; sourceTree = "<group>"; };
 		27CA014D1D6B11E6009F9A25 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		27E26B041D6B1D360072F26E /* CostManage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CostManage.storyboard; sourceTree = "<group>"; };
+		27E26B051D6B1D360072F26E /* CostManageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CostManageViewController.h; sourceTree = "<group>"; };
+		27E26B061D6B1D360072F26E /* CostManageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CostManageViewController.m; sourceTree = "<group>"; };
+		27E26B091D6B1D360072F26E /* CustomerManage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CustomerManage.storyboard; sourceTree = "<group>"; };
+		27E26B0B1D6B1D360072F26E /* AddCustomerViewControllerA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddCustomerViewControllerA.h; sourceTree = "<group>"; };
+		27E26B0C1D6B1D360072F26E /* AddCustomerViewControllerA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddCustomerViewControllerA.m; sourceTree = "<group>"; };
+		27E26B0D1D6B1D360072F26E /* AddCustomerViewControllerB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddCustomerViewControllerB.h; sourceTree = "<group>"; };
+		27E26B0E1D6B1D360072F26E /* AddCustomerViewControllerB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddCustomerViewControllerB.m; sourceTree = "<group>"; };
+		27E26B0F1D6B1D360072F26E /* AddCustomerViewControllerC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddCustomerViewControllerC.h; sourceTree = "<group>"; };
+		27E26B101D6B1D360072F26E /* AddCustomerViewControllerC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddCustomerViewControllerC.m; sourceTree = "<group>"; };
+		27E26B111D6B1D360072F26E /* CustomerDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerDetailViewController.h; sourceTree = "<group>"; };
+		27E26B121D6B1D360072F26E /* CustomerDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerDetailViewController.m; sourceTree = "<group>"; };
+		27E26B131D6B1D360072F26E /* CustomerManageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerManageViewController.h; sourceTree = "<group>"; };
+		27E26B141D6B1D360072F26E /* CustomerManageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerManageViewController.m; sourceTree = "<group>"; };
+		27E26B161D6B1D360072F26E /* DataAnalysis.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = DataAnalysis.storyboard; sourceTree = "<group>"; };
+		27E26B171D6B1D360072F26E /* DataAnalysisViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataAnalysisViewController.h; sourceTree = "<group>"; };
+		27E26B181D6B1D360072F26E /* DataAnalysisViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataAnalysisViewController.m; sourceTree = "<group>"; };
+		27E26B1A1D6B1D360072F26E /* ForgetPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetPasswordViewController.h; sourceTree = "<group>"; };
+		27E26B1B1D6B1D360072F26E /* ForgetPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetPasswordViewController.m; sourceTree = "<group>"; };
+		27E26B1C1D6B1D360072F26E /* Land.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Land.storyboard; sourceTree = "<group>"; };
+		27E26B1D1D6B1D360072F26E /* LandViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LandViewController.h; sourceTree = "<group>"; };
+		27E26B1E1D6B1D360072F26E /* LandViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LandViewController.m; sourceTree = "<group>"; };
+		27E26B1F1D6B1D360072F26E /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
+		27E26B201D6B1D360072F26E /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
+		27E26B221D6B1D360072F26E /* Me.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Me.storyboard; sourceTree = "<group>"; };
+		27E26B231D6B1D360072F26E /* MeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeViewController.h; sourceTree = "<group>"; };
+		27E26B241D6B1D360072F26E /* MeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeViewController.m; sourceTree = "<group>"; };
+		27E26B271D6B1D360072F26E /* ProductManage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ProductManage.storyboard; sourceTree = "<group>"; };
+		27E26B291D6B1D360072F26E /* AddProductViewControllerA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddProductViewControllerA.h; sourceTree = "<group>"; };
+		27E26B2A1D6B1D360072F26E /* AddProductViewControllerA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddProductViewControllerA.m; sourceTree = "<group>"; };
+		27E26B2B1D6B1D360072F26E /* AddProductViewControllerB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddProductViewControllerB.h; sourceTree = "<group>"; };
+		27E26B2C1D6B1D360072F26E /* AddProductViewControllerB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddProductViewControllerB.m; sourceTree = "<group>"; };
+		27E26B2D1D6B1D360072F26E /* AddProductViewControllerC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddProductViewControllerC.h; sourceTree = "<group>"; };
+		27E26B2E1D6B1D360072F26E /* AddProductViewControllerC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddProductViewControllerC.m; sourceTree = "<group>"; };
+		27E26B2F1D6B1D360072F26E /* AlertController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertController.h; sourceTree = "<group>"; };
+		27E26B301D6B1D360072F26E /* AlertController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertController.m; sourceTree = "<group>"; };
+		27E26B311D6B1D360072F26E /* AlertController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlertController.xib; sourceTree = "<group>"; };
+		27E26B321D6B1D360072F26E /* ProductManageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductManageViewController.h; sourceTree = "<group>"; };
+		27E26B331D6B1D360072F26E /* ProductManageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductManageViewController.m; sourceTree = "<group>"; };
+		27E26B351D6B1D360072F26E /* ProductManagerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductManagerCell.h; sourceTree = "<group>"; };
+		27E26B361D6B1D360072F26E /* ProductManagerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductManagerCell.m; sourceTree = "<group>"; };
+		27E26B371D6B1D360072F26E /* SearchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchView.h; sourceTree = "<group>"; };
+		27E26B381D6B1D360072F26E /* SearchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchView.m; sourceTree = "<group>"; };
+		27E26B391D6B1D360072F26E /* SearchView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchView.xib; sourceTree = "<group>"; };
 		478FBB2CEED5387933066CAF /* Pods-AgentManagement.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgentManagement.release.xcconfig"; path = "Pods/Target Support Files/Pods-AgentManagement/Pods-AgentManagement.release.xcconfig"; sourceTree = "<group>"; };
 		A4D39D6814FFFBB4493A8E64 /* Pods-AgentManagement.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgentManagement.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AgentManagement/Pods-AgentManagement.debug.xcconfig"; sourceTree = "<group>"; };
 		C806F49AB69A45A297CCBD97 /* libPods-AgentManagement.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AgentManagement.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		E221EEB31D4F8AA2005B3417 /* Land.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Land.storyboard; sourceTree = "<group>"; };
 		E221EEB71D4F8B68005B3417 /* BaseNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseNavigationController.h; sourceTree = "<group>"; };
 		E221EEB81D4F8B68005B3417 /* BaseNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseNavigationController.m; sourceTree = "<group>"; };
 		E221EEBB1D4F8B9D005B3417 /* BaseTabbarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTabbarController.h; sourceTree = "<group>"; };
 		E221EEBC1D4F8B9D005B3417 /* BaseTabbarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTabbarController.m; sourceTree = "<group>"; };
-		E221EEBE1D4F8BCA005B3417 /* LandViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LandViewController.h; sourceTree = "<group>"; };
-		E221EEBF1D4F8BCA005B3417 /* LandViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LandViewController.m; sourceTree = "<group>"; };
-		E221EEC11D4F8F62005B3417 /* ForgetPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetPasswordViewController.h; sourceTree = "<group>"; };
-		E221EEC21D4F8F62005B3417 /* ForgetPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetPasswordViewController.m; sourceTree = "<group>"; };
-		E221EEC41D4F8FAC005B3417 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
-		E221EEC51D4F8FAC005B3417 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
-		E221EEE21D4F9801005B3417 /* CostManageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CostManageViewController.h; sourceTree = "<group>"; };
-		E221EEE31D4F9801005B3417 /* CostManageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CostManageViewController.m; sourceTree = "<group>"; };
-		E221EEE51D4F9813005B3417 /* CostManage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CostManage.storyboard; sourceTree = "<group>"; };
 		E221EEE71D4F9EFB005B3417 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
-		E221EEEA1D4F9F5B005B3417 /* DataAnalysisViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataAnalysisViewController.h; sourceTree = "<group>"; };
-		E221EEEB1D4F9F5B005B3417 /* DataAnalysisViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataAnalysisViewController.m; sourceTree = "<group>"; };
-		E221EEED1D4F9F6C005B3417 /* DataAnalysis.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = DataAnalysis.storyboard; sourceTree = "<group>"; };
-		E221EEF01D4F9F8F005B3417 /* MeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeViewController.h; sourceTree = "<group>"; };
-		E221EEF11D4F9F8F005B3417 /* MeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeViewController.m; sourceTree = "<group>"; };
-		E221EEF31D4F9F98005B3417 /* Me.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Me.storyboard; sourceTree = "<group>"; };
 		E221EF881D603238005B3417 /* BaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewController.h; sourceTree = "<group>"; };
 		E221EF891D603238005B3417 /* BaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewController.m; sourceTree = "<group>"; };
-		E221EF961D6036D3005B3417 /* AddProductViewControllerA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddProductViewControllerA.h; sourceTree = "<group>"; };
-		E221EF971D6036D3005B3417 /* AddProductViewControllerA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddProductViewControllerA.m; sourceTree = "<group>"; };
-		E221EF981D6036D3005B3417 /* ProductManageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductManageViewController.h; sourceTree = "<group>"; };
-		E221EF991D6036D3005B3417 /* ProductManageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductManageViewController.m; sourceTree = "<group>"; };
-		E221EF9E1D603713005B3417 /* ProductManagerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductManagerCell.h; sourceTree = "<group>"; };
-		E221EF9F1D603713005B3417 /* ProductManagerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductManagerCell.m; sourceTree = "<group>"; };
-		E221EFA01D603713005B3417 /* SearchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchView.h; sourceTree = "<group>"; };
-		E221EFA11D603713005B3417 /* SearchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchView.m; sourceTree = "<group>"; };
-		E221EFA21D603713005B3417 /* SearchView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchView.xib; sourceTree = "<group>"; };
-		E221EFA71D603738005B3417 /* ProductManage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ProductManage.storyboard; sourceTree = "<group>"; };
-		E221EFAB1D60377D005B3417 /* CustomerManage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CustomerManage.storyboard; sourceTree = "<group>"; };
-		E221EFAE1D60378A005B3417 /* AddCustomerViewControllerA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddCustomerViewControllerA.h; sourceTree = "<group>"; };
-		E221EFAF1D60378A005B3417 /* AddCustomerViewControllerA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddCustomerViewControllerA.m; sourceTree = "<group>"; };
-		E221EFB01D60378A005B3417 /* CustomerManageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerManageViewController.h; sourceTree = "<group>"; };
-		E221EFB11D60378A005B3417 /* CustomerManageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerManageViewController.m; sourceTree = "<group>"; };
 		E27B06281D616A7000ED18D1 /* address.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = address.plist; sourceTree = "<group>"; };
-		E27B062A1D6360B100ED18D1 /* AddCustomerViewControllerB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddCustomerViewControllerB.h; sourceTree = "<group>"; };
-		E27B062B1D6360B100ED18D1 /* AddCustomerViewControllerB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddCustomerViewControllerB.m; sourceTree = "<group>"; };
-		E27B062D1D6363CC00ED18D1 /* AddCustomerViewControllerC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddCustomerViewControllerC.h; sourceTree = "<group>"; };
-		E27B062E1D6363CC00ED18D1 /* AddCustomerViewControllerC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddCustomerViewControllerC.m; sourceTree = "<group>"; };
-		E27B063B1D65FE0300ED18D1 /* CustomerDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerDetailViewController.h; sourceTree = "<group>"; };
-		E27B063C1D65FE0300ED18D1 /* CustomerDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerDetailViewController.m; sourceTree = "<group>"; };
-		E2A3F2501D684703006EC120 /* AddProductViewControllerB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddProductViewControllerB.h; sourceTree = "<group>"; };
-		E2A3F2511D684703006EC120 /* AddProductViewControllerB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddProductViewControllerB.m; sourceTree = "<group>"; };
-		E2A3F2531D68A5E7006EC120 /* AlertController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertController.h; sourceTree = "<group>"; };
-		E2A3F2541D68A5E7006EC120 /* AlertController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertController.m; sourceTree = "<group>"; };
-		E2A3F2551D68A5E7006EC120 /* AlertController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlertController.xib; sourceTree = "<group>"; };
-		E2A3F2581D69B631006EC120 /* AddProductViewControllerC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddProductViewControllerC.h; sourceTree = "<group>"; };
-		E2A3F2591D69B631006EC120 /* AddProductViewControllerC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddProductViewControllerC.m; sourceTree = "<group>"; };
 		E2FA0BF01D4CFF000094A6FE /* KKBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKBaseModel.h; sourceTree = "<group>"; };
 		E2FA0BF11D4CFF000094A6FE /* KKBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KKBaseModel.m; sourceTree = "<group>"; };
 		E2FA0BF31D4CFF000094A6FE /* KKBaseRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKBaseRequest.h; sourceTree = "<group>"; };
@@ -198,14 +198,9 @@
 		270704BB1D45F9A900633390 /* AgentManagement */ = {
 			isa = PBXGroup;
 			children = (
+				27E26B021D6B1D360072F26E /* Module */,
 				27CA01391D6B116F009F9A25 /* Request */,
 				27CA01351D6B1167009F9A25 /* Model */,
-				E221EEEF1D4F9F85005B3417 /* MePage */,
-				E221EEE91D4F9F4B005B3417 /* DataAnalysisPage */,
-				E221EEE11D4F97EC005B3417 /* CostManagePage */,
-				E221EEDB1D4F965D005B3417 /* ProductManagePage */,
-				E221EED51D4F9650005B3417 /* CustomerManagePage */,
-				E221EEB21D4F8A80005B3417 /* LandPage */,
 				E2FA0BEE1D4CFF000094A6FE /* Common */,
 				270704BF1D45F9A900633390 /* AppDelegate.h */,
 				270704C01D45F9A900633390 /* AppDelegate.m */,
@@ -294,6 +289,145 @@
 			path = Register;
 			sourceTree = "<group>";
 		};
+		27E26B021D6B1D360072F26E /* Module */ = {
+			isa = PBXGroup;
+			children = (
+				27E26B031D6B1D360072F26E /* CostManagePage */,
+				27E26B071D6B1D360072F26E /* CustomerManagePage */,
+				27E26B151D6B1D360072F26E /* DataAnalysisPage */,
+				27E26B191D6B1D360072F26E /* LandPage */,
+				27E26B211D6B1D360072F26E /* MePage */,
+				27E26B251D6B1D360072F26E /* ProductManagePage */,
+			);
+			path = Module;
+			sourceTree = "<group>";
+		};
+		27E26B031D6B1D360072F26E /* CostManagePage */ = {
+			isa = PBXGroup;
+			children = (
+				27E26B041D6B1D360072F26E /* CostManage.storyboard */,
+				27E26B051D6B1D360072F26E /* CostManageViewController.h */,
+				27E26B061D6B1D360072F26E /* CostManageViewController.m */,
+			);
+			path = CostManagePage;
+			sourceTree = "<group>";
+		};
+		27E26B071D6B1D360072F26E /* CustomerManagePage */ = {
+			isa = PBXGroup;
+			children = (
+				27E26B081D6B1D360072F26E /* SB */,
+				27E26B0A1D6B1D360072F26E /* VC */,
+			);
+			path = CustomerManagePage;
+			sourceTree = "<group>";
+		};
+		27E26B081D6B1D360072F26E /* SB */ = {
+			isa = PBXGroup;
+			children = (
+				27E26B091D6B1D360072F26E /* CustomerManage.storyboard */,
+			);
+			path = SB;
+			sourceTree = "<group>";
+		};
+		27E26B0A1D6B1D360072F26E /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				27E26B0B1D6B1D360072F26E /* AddCustomerViewControllerA.h */,
+				27E26B0C1D6B1D360072F26E /* AddCustomerViewControllerA.m */,
+				27E26B0D1D6B1D360072F26E /* AddCustomerViewControllerB.h */,
+				27E26B0E1D6B1D360072F26E /* AddCustomerViewControllerB.m */,
+				27E26B0F1D6B1D360072F26E /* AddCustomerViewControllerC.h */,
+				27E26B101D6B1D360072F26E /* AddCustomerViewControllerC.m */,
+				27E26B111D6B1D360072F26E /* CustomerDetailViewController.h */,
+				27E26B121D6B1D360072F26E /* CustomerDetailViewController.m */,
+				27E26B131D6B1D360072F26E /* CustomerManageViewController.h */,
+				27E26B141D6B1D360072F26E /* CustomerManageViewController.m */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
+		27E26B151D6B1D360072F26E /* DataAnalysisPage */ = {
+			isa = PBXGroup;
+			children = (
+				27E26B161D6B1D360072F26E /* DataAnalysis.storyboard */,
+				27E26B171D6B1D360072F26E /* DataAnalysisViewController.h */,
+				27E26B181D6B1D360072F26E /* DataAnalysisViewController.m */,
+			);
+			path = DataAnalysisPage;
+			sourceTree = "<group>";
+		};
+		27E26B191D6B1D360072F26E /* LandPage */ = {
+			isa = PBXGroup;
+			children = (
+				27E26B1A1D6B1D360072F26E /* ForgetPasswordViewController.h */,
+				27E26B1B1D6B1D360072F26E /* ForgetPasswordViewController.m */,
+				27E26B1C1D6B1D360072F26E /* Land.storyboard */,
+				27E26B1D1D6B1D360072F26E /* LandViewController.h */,
+				27E26B1E1D6B1D360072F26E /* LandViewController.m */,
+				27E26B1F1D6B1D360072F26E /* RegisterViewController.h */,
+				27E26B201D6B1D360072F26E /* RegisterViewController.m */,
+			);
+			path = LandPage;
+			sourceTree = "<group>";
+		};
+		27E26B211D6B1D360072F26E /* MePage */ = {
+			isa = PBXGroup;
+			children = (
+				27E26B221D6B1D360072F26E /* Me.storyboard */,
+				27E26B231D6B1D360072F26E /* MeViewController.h */,
+				27E26B241D6B1D360072F26E /* MeViewController.m */,
+			);
+			path = MePage;
+			sourceTree = "<group>";
+		};
+		27E26B251D6B1D360072F26E /* ProductManagePage */ = {
+			isa = PBXGroup;
+			children = (
+				27E26B261D6B1D360072F26E /* SB */,
+				27E26B281D6B1D360072F26E /* VC */,
+				27E26B341D6B1D360072F26E /* View */,
+			);
+			path = ProductManagePage;
+			sourceTree = "<group>";
+		};
+		27E26B261D6B1D360072F26E /* SB */ = {
+			isa = PBXGroup;
+			children = (
+				27E26B271D6B1D360072F26E /* ProductManage.storyboard */,
+			);
+			path = SB;
+			sourceTree = "<group>";
+		};
+		27E26B281D6B1D360072F26E /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				27E26B291D6B1D360072F26E /* AddProductViewControllerA.h */,
+				27E26B2A1D6B1D360072F26E /* AddProductViewControllerA.m */,
+				27E26B2B1D6B1D360072F26E /* AddProductViewControllerB.h */,
+				27E26B2C1D6B1D360072F26E /* AddProductViewControllerB.m */,
+				27E26B2D1D6B1D360072F26E /* AddProductViewControllerC.h */,
+				27E26B2E1D6B1D360072F26E /* AddProductViewControllerC.m */,
+				27E26B2F1D6B1D360072F26E /* AlertController.h */,
+				27E26B301D6B1D360072F26E /* AlertController.m */,
+				27E26B311D6B1D360072F26E /* AlertController.xib */,
+				27E26B321D6B1D360072F26E /* ProductManageViewController.h */,
+				27E26B331D6B1D360072F26E /* ProductManageViewController.m */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
+		27E26B341D6B1D360072F26E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				27E26B351D6B1D360072F26E /* ProductManagerCell.h */,
+				27E26B361D6B1D360072F26E /* ProductManagerCell.m */,
+				27E26B371D6B1D360072F26E /* SearchView.h */,
+				27E26B381D6B1D360072F26E /* SearchView.m */,
+				27E26B391D6B1D360072F26E /* SearchView.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		9A8A467E971840DF1695F233 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -309,20 +443,6 @@
 				C806F49AB69A45A297CCBD97 /* libPods-AgentManagement.a */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		E221EEB21D4F8A80005B3417 /* LandPage */ = {
-			isa = PBXGroup;
-			children = (
-				E221EEB31D4F8AA2005B3417 /* Land.storyboard */,
-				E221EEBE1D4F8BCA005B3417 /* LandViewController.h */,
-				E221EEBF1D4F8BCA005B3417 /* LandViewController.m */,
-				E221EEC11D4F8F62005B3417 /* ForgetPasswordViewController.h */,
-				E221EEC21D4F8F62005B3417 /* ForgetPasswordViewController.m */,
-				E221EEC41D4F8FAC005B3417 /* RegisterViewController.h */,
-				E221EEC51D4F8FAC005B3417 /* RegisterViewController.m */,
-			);
-			path = LandPage;
 			sourceTree = "<group>";
 		};
 		E221EEB61D4F8B50005B3417 /* BaseNavigationController */ = {
@@ -341,126 +461,6 @@
 				E221EEBC1D4F8B9D005B3417 /* BaseTabbarController.m */,
 			);
 			path = BaseTabbarController;
-			sourceTree = "<group>";
-		};
-		E221EED51D4F9650005B3417 /* CustomerManagePage */ = {
-			isa = PBXGroup;
-			children = (
-				E221EFAD1D60378A005B3417 /* VC */,
-				E221EFAA1D60377D005B3417 /* SB */,
-				E221EFA91D603771005B3417 /* View */,
-			);
-			path = CustomerManagePage;
-			sourceTree = "<group>";
-		};
-		E221EEDB1D4F965D005B3417 /* ProductManagePage */ = {
-			isa = PBXGroup;
-			children = (
-				E221EFA61D603738005B3417 /* SB */,
-				E221EF9D1D603713005B3417 /* View */,
-				E221EF951D6036D3005B3417 /* VC */,
-			);
-			path = ProductManagePage;
-			sourceTree = "<group>";
-		};
-		E221EEE11D4F97EC005B3417 /* CostManagePage */ = {
-			isa = PBXGroup;
-			children = (
-				E221EEE21D4F9801005B3417 /* CostManageViewController.h */,
-				E221EEE31D4F9801005B3417 /* CostManageViewController.m */,
-				E221EEE51D4F9813005B3417 /* CostManage.storyboard */,
-			);
-			path = CostManagePage;
-			sourceTree = "<group>";
-		};
-		E221EEE91D4F9F4B005B3417 /* DataAnalysisPage */ = {
-			isa = PBXGroup;
-			children = (
-				E221EEEA1D4F9F5B005B3417 /* DataAnalysisViewController.h */,
-				E221EEEB1D4F9F5B005B3417 /* DataAnalysisViewController.m */,
-				E221EEED1D4F9F6C005B3417 /* DataAnalysis.storyboard */,
-			);
-			path = DataAnalysisPage;
-			sourceTree = "<group>";
-		};
-		E221EEEF1D4F9F85005B3417 /* MePage */ = {
-			isa = PBXGroup;
-			children = (
-				E221EEF01D4F9F8F005B3417 /* MeViewController.h */,
-				E221EEF11D4F9F8F005B3417 /* MeViewController.m */,
-				E221EEF31D4F9F98005B3417 /* Me.storyboard */,
-			);
-			path = MePage;
-			sourceTree = "<group>";
-		};
-		E221EF951D6036D3005B3417 /* VC */ = {
-			isa = PBXGroup;
-			children = (
-				E221EF961D6036D3005B3417 /* AddProductViewControllerA.h */,
-				E221EF971D6036D3005B3417 /* AddProductViewControllerA.m */,
-				E2A3F2501D684703006EC120 /* AddProductViewControllerB.h */,
-				E2A3F2511D684703006EC120 /* AddProductViewControllerB.m */,
-				E2A3F2581D69B631006EC120 /* AddProductViewControllerC.h */,
-				E2A3F2591D69B631006EC120 /* AddProductViewControllerC.m */,
-				E221EF981D6036D3005B3417 /* ProductManageViewController.h */,
-				E221EF991D6036D3005B3417 /* ProductManageViewController.m */,
-				E2A3F2531D68A5E7006EC120 /* AlertController.h */,
-				E2A3F2541D68A5E7006EC120 /* AlertController.m */,
-				E2A3F2551D68A5E7006EC120 /* AlertController.xib */,
-			);
-			path = VC;
-			sourceTree = "<group>";
-		};
-		E221EF9D1D603713005B3417 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				E221EF9E1D603713005B3417 /* ProductManagerCell.h */,
-				E221EF9F1D603713005B3417 /* ProductManagerCell.m */,
-				E221EFA01D603713005B3417 /* SearchView.h */,
-				E221EFA11D603713005B3417 /* SearchView.m */,
-				E221EFA21D603713005B3417 /* SearchView.xib */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		E221EFA61D603738005B3417 /* SB */ = {
-			isa = PBXGroup;
-			children = (
-				E221EFA71D603738005B3417 /* ProductManage.storyboard */,
-			);
-			path = SB;
-			sourceTree = "<group>";
-		};
-		E221EFA91D603771005B3417 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		E221EFAA1D60377D005B3417 /* SB */ = {
-			isa = PBXGroup;
-			children = (
-				E221EFAB1D60377D005B3417 /* CustomerManage.storyboard */,
-			);
-			path = SB;
-			sourceTree = "<group>";
-		};
-		E221EFAD1D60378A005B3417 /* VC */ = {
-			isa = PBXGroup;
-			children = (
-				E221EFAE1D60378A005B3417 /* AddCustomerViewControllerA.h */,
-				E221EFAF1D60378A005B3417 /* AddCustomerViewControllerA.m */,
-				E27B062A1D6360B100ED18D1 /* AddCustomerViewControllerB.h */,
-				E27B062B1D6360B100ED18D1 /* AddCustomerViewControllerB.m */,
-				E27B062D1D6363CC00ED18D1 /* AddCustomerViewControllerC.h */,
-				E27B062E1D6363CC00ED18D1 /* AddCustomerViewControllerC.m */,
-				E221EFB01D60378A005B3417 /* CustomerManageViewController.h */,
-				E221EFB11D60378A005B3417 /* CustomerManageViewController.m */,
-				E27B063B1D65FE0300ED18D1 /* CustomerDetailViewController.h */,
-				E27B063C1D65FE0300ED18D1 /* CustomerDetailViewController.m */,
-			);
-			path = VC;
 			sourceTree = "<group>";
 		};
 		E2FA0BEE1D4CFF000094A6FE /* Common */ = {
@@ -615,17 +615,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27E26B3C1D6B1D360072F26E /* CustomerManage.storyboard in Resources */,
 				E221EEE81D4F9EFB005B3417 /* Launch Screen.storyboard in Resources */,
+				27E26B421D6B1D360072F26E /* DataAnalysis.storyboard in Resources */,
+				27E26B531D6B1D360072F26E /* SearchView.xib in Resources */,
 				E27B06291D616A7000ED18D1 /* address.plist in Resources */,
-				E221EFAC1D60377D005B3417 /* CustomerManage.storyboard in Resources */,
-				E221EEE61D4F9813005B3417 /* CostManage.storyboard in Resources */,
-				E2A3F2571D68A5E7006EC120 /* AlertController.xib in Resources */,
-				E221EEEE1D4F9F6C005B3417 /* DataAnalysis.storyboard in Resources */,
+				27E26B4A1D6B1D360072F26E /* ProductManage.storyboard in Resources */,
+				27E26B3A1D6B1D360072F26E /* CostManage.storyboard in Resources */,
+				27E26B4F1D6B1D360072F26E /* AlertController.xib in Resources */,
 				270704C91D45F9A900633390 /* Assets.xcassets in Resources */,
-				E221EFA81D603738005B3417 /* ProductManage.storyboard in Resources */,
-				E221EFA51D603713005B3417 /* SearchView.xib in Resources */,
-				E221EEF41D4F9F98005B3417 /* Me.storyboard in Resources */,
-				E221EEB41D4F8AA2005B3417 /* Land.storyboard in Resources */,
+				27E26B481D6B1D360072F26E /* Me.storyboard in Resources */,
+				27E26B451D6B1D360072F26E /* Land.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -684,46 +684,46 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E221EEC01D4F8BCA005B3417 /* LandViewController.m in Sources */,
-				E2A3F2521D684703006EC120 /* AddProductViewControllerB.m in Sources */,
+				27E26B4D1D6B1D360072F26E /* AddProductViewControllerC.m in Sources */,
 				E2FA0C0C1D4CFF000094A6FE /* KKQRCodeScanner.m in Sources */,
 				E2FA0C1E1D4D036F0094A6FE /* BaseViewController.m in Sources */,
-				E221EFB31D60378A005B3417 /* CustomerManageViewController.m in Sources */,
+				27E26B411D6B1D360072F26E /* CustomerManageViewController.m in Sources */,
+				27E26B3F1D6B1D360072F26E /* AddCustomerViewControllerC.m in Sources */,
 				E2FA0C071D4CFF000094A6FE /* KKRequestError.m in Sources */,
-				E27B063D1D65FE0300ED18D1 /* CustomerDetailViewController.m in Sources */,
-				E2A3F2561D68A5E7006EC120 /* AlertController.m in Sources */,
 				27CA012F1D6B10E4009F9A25 /* CALayer+Addition.m in Sources */,
-				E221EF9A1D6036D3005B3417 /* AddProductViewControllerA.m in Sources */,
+				27E26B501D6B1D360072F26E /* ProductManageViewController.m in Sources */,
 				27CA01381D6B1167009F9A25 /* AMBaseModel.m in Sources */,
 				270704C41D45F9A900633390 /* ViewController.m in Sources */,
-				E221EEC31D4F8F62005B3417 /* ForgetPasswordViewController.m in Sources */,
-				E221EF9B1D6036D3005B3417 /* ProductManageViewController.m in Sources */,
 				E221EF8A1D603238005B3417 /* BaseTableViewController.m in Sources */,
+				27E26B511D6B1D360072F26E /* ProductManagerCell.m in Sources */,
+				27E26B3E1D6B1D360072F26E /* AddCustomerViewControllerB.m in Sources */,
 				270704C11D45F9A900633390 /* AppDelegate.m in Sources */,
 				27CA01321D6B10E4009F9A25 /* UIImage+KKAdditions.m in Sources */,
 				27CA014A1D6B116F009F9A25 /* AMLoginRequest.m in Sources */,
-				E2A3F25A1D69B631006EC120 /* AddProductViewControllerC.m in Sources */,
+				27E26B461D6B1D360072F26E /* LandViewController.m in Sources */,
+				27E26B3D1D6B1D360072F26E /* AddCustomerViewControllerA.m in Sources */,
+				27E26B4B1D6B1D360072F26E /* AddProductViewControllerA.m in Sources */,
 				E2FA0C051D4CFF000094A6FE /* KKBaseModel.m in Sources */,
+				27E26B491D6B1D360072F26E /* MeViewController.m in Sources */,
+				27E26B521D6B1D360072F26E /* SearchView.m in Sources */,
 				270704BE1D45F9A900633390 /* main.m in Sources */,
+				27E26B4E1D6B1D360072F26E /* AlertController.m in Sources */,
+				27E26B431D6B1D360072F26E /* DataAnalysisViewController.m in Sources */,
 				E2FA0C0B1D4CFF000094A6FE /* KKAppUtility.m in Sources */,
-				E221EFB21D60378A005B3417 /* AddCustomerViewControllerA.m in Sources */,
-				E221EEC61D4F8FAC005B3417 /* RegisterViewController.m in Sources */,
-				E27B062C1D6360B100ED18D1 /* AddCustomerViewControllerB.m in Sources */,
+				27E26B441D6B1D360072F26E /* ForgetPasswordViewController.m in Sources */,
 				E221EEB91D4F8B68005B3417 /* BaseNavigationController.m in Sources */,
 				27CA014C1D6B116F009F9A25 /* AMRegisterRequest.m in Sources */,
+				27E26B471D6B1D360072F26E /* RegisterViewController.m in Sources */,
 				27CA01301D6B10E4009F9A25 /* NSMutableDictionary+KKAdditions.m in Sources */,
 				27CA01491D6B116F009F9A25 /* AMIdentifyCodeRequest.m in Sources */,
-				E221EEEC1D4F9F5B005B3417 /* DataAnalysisViewController.m in Sources */,
 				27CA014B1D6B116F009F9A25 /* AMLogoutRequest.m in Sources */,
 				E221EEBD1D4F8B9D005B3417 /* BaseTabbarController.m in Sources */,
-				E221EEE41D4F9801005B3417 /* CostManageViewController.m in Sources */,
-				E221EFA41D603713005B3417 /* SearchView.m in Sources */,
-				E27B062F1D6363CC00ED18D1 /* AddCustomerViewControllerC.m in Sources */,
-				E221EEF21D4F9F8F005B3417 /* MeViewController.m in Sources */,
-				E221EFA31D603713005B3417 /* ProductManagerCell.m in Sources */,
 				27CA01311D6B10E4009F9A25 /* UIColor+KKAdditions.m in Sources */,
 				27CA01331D6B10E4009F9A25 /* UIView+KKAdditions.m in Sources */,
 				E2FA0C061D4CFF000094A6FE /* KKBaseRequest.m in Sources */,
+				27E26B401D6B1D360072F26E /* CustomerDetailViewController.m in Sources */,
+				27E26B4C1D6B1D360072F26E /* AddProductViewControllerB.m in Sources */,
+				27E26B3B1D6B1D360072F26E /* CostManageViewController.m in Sources */,
 				27CA01481D6B116F009F9A25 /* AMBaseRequest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
