@@ -101,11 +101,21 @@
     self.frame = frame;
 }
 
+- (CGFloat)top
+{
+    return self.frame.origin.y;
+}
+
 - (void)setBottom:(CGFloat)bottom {
     CGRect frame = self.frame;
     
     frame.origin.y = bottom - frame.size.height;
     self.frame = frame;
+}
+
+- (CGFloat)bottom
+{
+    return (self.frame.origin.y + self.frame.size.height);
 }
 
 - (void)removeAllSubviews
