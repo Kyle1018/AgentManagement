@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
-typedef void(^TapActionButtonBlock)(NSInteger labelTag,NSInteger index);//选项点击
+
+
+
+typedef void(^TapActionButtonBlock)(OptionName optionName,NSString* keyName,NSInteger index);//选项点击
 
 typedef void(^TapExitButtonBlock)();
 
@@ -18,7 +21,7 @@ typedef void(^TapExitButtonBlock)();
 
 @property(nonatomic,copy)TapActionButtonBlock tapActionButtonBlock;
 
-@property(nonatomic,assign)NSInteger kTag;
+@property(nonatomic,assign)OptionName optionName;
 
 @property(nonatomic,copy)TapExitButtonBlock tapExitButtonBlock;
 

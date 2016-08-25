@@ -14,7 +14,7 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <CocoaLumberjack/CocoaLumberjack.h>
 #import "KKCategory.h"
-
+#import "DataCacheManager.h"
 #endif /* PrefixHeader_pch */
 
 #ifdef DEBUG
@@ -22,3 +22,26 @@ static const int ddLogLevel = DDLogLevelVerbose;
 #else
 static const int ddLogLevel = DDLogLevelWarning;
 #endif
+
+
+typedef enum 
+{
+    IsDrinking                 =300,//是否能直接饮用
+    Classification             =301,//分类
+    FilterMedia                =302,//过滤介质
+    ProductFeatures            =303,//产品特点
+    PlacingPosition            =304,//摆放位置
+    FilterElementCounts        =305,//滤芯个数
+    ApplyRegion                =306,//适用地区
+    WholesalePrice             =307,//零售价格
+    ChangeFilterElementCycle   =308,//换滤芯周期
+    
+}OptionName;
+
+
+////插入数据库的数据类型
+//typedef enum FORMTYPE{
+//    PRODUCT_MANAGER  = 0 ,//产品管理
+//    CUSTIMER_MANAGER = 1,//客户管理
+//    COST_MANAGER     = 2 //成本管理
+//}FORMTYPE;

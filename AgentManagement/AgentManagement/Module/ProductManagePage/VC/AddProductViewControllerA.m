@@ -89,8 +89,8 @@
     
     UITextField*modelTextField = [self.view viewWithTag:102];
     
-    [_inputContentDic setObject:brandTextField.text forKey:@"brandName"];
-    [_inputContentDic setObject:modelTextField.text forKey:@"modelName"];
+    [_inputContentDic setObject:brandTextField.text forKey:@"brand"];
+    [_inputContentDic setObject:modelTextField.text forKey:@"model"];
 
 
     [UIView animateWithDuration:0.3 animations:^{
@@ -138,12 +138,12 @@
     
     if (textField.tag == 101) {
         
-        [_inputContentDic setObject:textField.text forKey:@"brandName"];
+        [_inputContentDic setObject:textField.text forKey:@"brand"];
     }
     
     else if (textField.tag == 102) {
         
-        [_inputContentDic setObject:textField.text forKey:@"modelName"];
+        [_inputContentDic setObject:textField.text forKey:@"model"];
     }
     
     [UIView animateWithDuration:0.3 animations:^{

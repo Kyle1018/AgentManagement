@@ -7,8 +7,9 @@
 //
 
 #import "AddProductViewControllerC.h"
-#import <ReactiveCocoa/ReactiveCocoa.h>
-#import "ProductManageViewController.h"
+//#import <ReactiveCocoa/ReactiveCocoa.h>
+//#import "ProductManageViewController.h"
+//#import "DataCacheManager.h"
 @interface AddProductViewControllerC ()
 @property (weak, nonatomic) IBOutlet UITextField *price;
 @property (weak, nonatomic) IBOutlet UITextField *count;
@@ -44,8 +45,8 @@
     
     UITextField*modelTextField = [self.view viewWithTag:102];
     
-    [_optionDic setObject:brandTextField.text forKey:@"Jprice"];
-    [_optionDic setObject:modelTextField.text forKey:@"Jcount"];
+    [_optionDic setObject:brandTextField.text forKey:@"purchasePrice"];
+    [_optionDic setObject:modelTextField.text forKey:@"purchaseCount"];
 
     
     [UIView animateWithDuration:0.3 animations:^{
@@ -110,29 +111,23 @@
 
 - (IBAction)saveAction:(UIButton *)sender {
    
-//    ProductManageViewController*productManagerVC =(ProductManageViewController*) self.navigationController.topViewController;
-//
+//    for (UIViewController *vc in self.navigationController.viewControllers) {
+//        
+//        if ([vc isKindOfClass:[ProductManageViewController class]]) {
+//            
+//            ProductManageViewController*productManagerVC = (ProductManageViewController*)vc;
+//            productManagerVC.optionResultDic = self.optionDic;
+//            
+//        }
+//    }
     
-    for (UIViewController *vc in self.navigationController.viewControllers) {
-        
-        if ([vc isKindOfClass:[ProductManageViewController class]]) {
-            
-            ProductManageViewController*productManagerVC = (ProductManageViewController*)vc;
-            productManagerVC.dic = self.optionDic;
-            
-          
-        }
-        
-          [self.navigationController popToRootViewControllerAnimated:YES];
-    }
+    NSLog(@"%@",self.optionDic);
+    
+    //插入数据库
+    [[DataCacheManager shareDataCacheManager]setInsertOrDelete:YES withType:PRODUCT_MANAGER andDic:self.optionDic];
+    
+    [self.navigationController popToRootViewControllerAnimated:YES];
 
-//    
-//    UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"ProductManage" bundle:nil];
-//    ProductManageViewController*productManagerVC = [storyboard instantiateViewControllerWithIdentifier:@"ProductManageID"];
-//    
-//    [self.navigationController popToViewController:productManagerVC animated:YES];
-//    
-//   //
 }
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
@@ -151,12 +146,12 @@
     
     if (textField.tag == 101) {
         
-        [_optionDic setObject:textField.text forKey:@"Jprice"];
+        [_optionDic setObject:textField.text forKey:@"purchasePrice"];
     }
     
     else if (textField.tag == 102) {
         
-        [_optionDic setObject:textField.text forKey:@"Jcount"];
+        [_optionDic setObject:textField.text forKey:@"purchaseCount"];
     }
     
     [UIView animateWithDuration:0.3 animations:^{

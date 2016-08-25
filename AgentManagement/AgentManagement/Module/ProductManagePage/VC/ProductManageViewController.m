@@ -7,19 +7,22 @@
 //
 
 #import "ProductManageViewController.h"
-//#import "FormTabelView.h"
-//#import "FormTabelViewProtocol.h"
 #import "ProductManagerCell.h"
 #import <SDAutoLayout/UIView+SDAutoLayout.h>
-@interface ProductManageViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface ProductManageViewController ()//<UITableViewDelegate,UITableViewDataSource>
 
+@property (weak, nonatomic) IBOutlet UITableView *formTabelView;
 
+@property (weak, nonatomic) IBOutlet UIView *formHeaderView;
+
+@property(nonatomic,strong)   NSMutableArray *array;
 
 @end
 
 @implementation ProductManageViewController
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
     
 
@@ -29,13 +32,29 @@
     
     [super viewWillAppear:animated];
     
-        NSLog(@"%@",self.dic);
+    //如果点击了保存按钮
+//    if (self.optionResultDic.count > 0) {
+//        
+//        self.formTabelView.hidden = NO;
+//        
+//        self.formHeaderView.hidden = NO;
+//        
+//    }
+//
+    //插入数据库
+    
+    NSLog(@"%@",[[DataCacheManager shareDataCacheManager]getOptionResult]);
+    self.array=[[DataCacheManager shareDataCacheManager]getOptionResult];
+    
+    NSLog(@"%@",self.array);
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return 100;
+    //return self.optionResultDic.count;
+    
+    return 1;
 }
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

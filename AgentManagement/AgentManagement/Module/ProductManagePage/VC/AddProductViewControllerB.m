@@ -149,12 +149,14 @@
     self.alertVC = [AlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
 
     //点击了选项回调
-    self.alertVC.tapActionButtonBlock = ^(NSInteger kTag,NSInteger index) {
+    self.alertVC.tapActionButtonBlock = ^(OptionName optionName,NSString* keyName,NSInteger index) {
         
-        UILabel *label = [tableView viewWithTag:kTag];
+        UILabel *label = [tableView viewWithTag:optionName];
         label.text = weakSelf.alertVC.actionButtonArray[index];
         
-        [weakSelf.optionDic setObject:label.text forKey:@(kTag)];
+    
+        
+        [weakSelf.optionDic setObject:label.text forKey:keyName];
         
         if (label.tag == 307) {
             
@@ -167,7 +169,7 @@
             }
         }
         
-        [weakSelf.set addObject:@(kTag)];
+        [weakSelf.set addObject:@(optionName)];
         
         
         if (weakSelf.set.count == 9) {
@@ -191,7 +193,7 @@
         
         self.alertVC.title = @"直接饮用";
         self.alertVC.actionButtonArray = @[@"可以",@"不可以"];
-        self.alertVC.kTag = 300;
+        self.alertVC.optionName = IsDrinking;
         
     }
     
@@ -200,7 +202,7 @@
         
         self.alertVC.title = @"分类";
         self.alertVC.actionButtonArray = @[@"纯水机",@"家用净水机",@"商用净水器",@"软水机",@"管线机",@"水处理设备",@"龙头净水器",@"净水杯"];
-        self.alertVC.kTag = 301;
+        self.alertVC.optionName = Classification;
     }
     
     //过滤介质
@@ -208,7 +210,7 @@
         
         self.alertVC.title = @"过滤介质";
         self.alertVC.actionButtonArray = @[@"反渗透",@"超滤",@"活性炭",@"PP棉",@"陶瓷纳滤",@"不锈钢滤网",@"微滤",@"其它"];
-        self.alertVC.kTag = 302;
+        self.alertVC.optionName = FilterMedia;
         
     }
     
@@ -217,7 +219,7 @@
         
         self.alertVC.title = @"产品特点";
         self.alertVC.actionButtonArray = @[@"无废水",@"无桶大通量",@"双出水",@"滤芯寿命提示",@"低废水单出水",@"双模双出水",@"紫外线杀菌",@"TDS显示"];
-        self.alertVC.kTag = 303;
+        self.alertVC.optionName = ProductFeatures;
     }
     
     //摆放位置
@@ -225,7 +227,7 @@
         
         self.alertVC.title = @"摆放位置";
         self.alertVC.actionButtonArray = @[@"厨下式",@"龙头式",@"台上式",@"滤芯寿命提示",@"低废水入户过滤",@"壁挂式",@"其它"];
-        self.alertVC.kTag = 304;
+        self.alertVC.optionName = PlacingPosition;
     }
     
     //滤芯个数
@@ -233,7 +235,7 @@
         
         self.alertVC.title = @"滤芯个数";
         self.alertVC.actionButtonArray = @[@"1级",@"2级",@"3级",@"4级",@"5级",@"6级",@"6级以上"];
-        self.alertVC.kTag = 305;
+        self.alertVC.optionName = FilterElementCounts;
     }
     
     //适用地区
@@ -241,7 +243,7 @@
         
         self.alertVC.title = @"适用地区";
         self.alertVC.actionButtonArray = @[@"华北",@"华南",@"华东",@"华中",@"其它"];
-        self.alertVC.kTag = 306;
+        self.alertVC.optionName = ApplyRegion;
         
     }
     
@@ -250,7 +252,7 @@
         
         self.alertVC.title = @"零售价格";
         self.alertVC.actionButtonArray = @[@"0-399",@"400-999",@"1000-2199",@"2200-3799",@"其它"];
-        self.alertVC.kTag = 307;
+        self.alertVC.optionName = WholesalePrice;
     }
     
     //手动输入——零售价格
@@ -265,7 +267,7 @@
         
         self.alertVC.title = @"换滤芯周期";
         self.alertVC.actionButtonArray = @[@"1个月",@"3个月",@"6个月",@"12个月",@"18个月",@"24个月"];
-        self.alertVC.kTag = 308;
+        self.alertVC.optionName = ChangeFilterElementCycle;
     }
     
     

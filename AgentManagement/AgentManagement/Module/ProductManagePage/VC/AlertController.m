@@ -36,7 +36,7 @@
 
                 if (weakSelf.tapActionButtonBlock) {
                     
-                    weakSelf.tapActionButtonBlock(self.kTag,i);
+                    weakSelf.tapActionButtonBlock(self.optionName,[self keyName],i);
                 }
                 
             }]];
@@ -75,9 +75,61 @@
  
     }
     
-
 }
 
-
+- (NSString*)keyName {
+    
+    switch (self.optionName) {
+        case IsDrinking:
+            
+            return @"isDrinking";
+            
+            break;
+            
+        case Classification:
+            
+            return @"classification";
+            
+            break;
+        case FilterMedia:
+            
+            return @"filterMedia";
+            
+            break;
+        case ProductFeatures:
+            
+            return @"productFeatures";
+            
+            break;
+        case FilterElementCounts:
+            
+            return @"filterElementCounts";
+            
+            break;
+        case PlacingPosition:
+            
+            return @"placingPosition";
+            
+            break;
+        case ApplyRegion:
+            
+            return @"applyRegion";
+            
+            break;
+        case WholesalePrice:
+            
+            return @"wholesalePrice";
+            
+            break;
+        case ChangeFilterElementCycle:
+            
+            return @"changeFilterElementCycle";
+            
+            break;
+            
+        default:
+            break;
+    }
+}
 
 @end
