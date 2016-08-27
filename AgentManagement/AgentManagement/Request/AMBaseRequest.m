@@ -16,6 +16,7 @@ static NSString *const kAPIBaseURL = @"http://123.56.10.232:81/index.php?r=";
 @interface AMBaseRequest ()<ASIHTTPRequestDelegate>
 
 @property (nonatomic, strong) ASIHTTPRequest *request;
+@property (nonatomic, strong) NSMutableData *receiveData;
 
 @property (nonatomic, copy) KKRequestSuccess requestSuccess;
 @property (nonatomic, copy) KKRequestFailure requestFailure;
@@ -74,6 +75,7 @@ static NSString *const kAPIBaseURL = @"http://123.56.10.232:81/index.php?r=";
 {
     self.requestSuccess = success;
     self.requestFailure = failure;
+    self.receiveData = [NSMutableData data];
     switch ([self httpMethodType]) {
         case KKHttpMethodType_GET: {
             [self makeGetRequest];
@@ -146,7 +148,7 @@ static NSString *const kAPIBaseURL = @"http://123.56.10.232:81/index.php?r=";
 
 - (void)handleSuccessWithRequest:(ASIHTTPRequest *)request
 {
-    NSDictionary *responseDictionary = [request.responseData convertToDictionary];
+    NSDictionary *responseDictionary = [self.receiveData convertToDictionary];
     
     if (responseDictionary) {
         if (self.isUseCache) {
@@ -230,9 +232,12 @@ static NSString *const kAPIBaseURL = @"http://123.56.10.232:81/index.php?r=";
     [self handleResultWithRequest:request];
 }
 
-//- (void)request:(ASIHTTPRequest *)request didReceiveData:(NSData *)data
-//{
-//}
+- (void)request:(ASIHTTPRequest *)request didReceiveData:(NSData *)data
+{
+    if (data && [data isKindOfClass:[NSData class]]) {
+        [self.receiveData appendData:data];
+    }
+}
 
 - (void)requestFailed:(ASIHTTPRequest *)request
 {

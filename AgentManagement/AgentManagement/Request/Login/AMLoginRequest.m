@@ -22,7 +22,7 @@
 
 - (NSString *)urlPath
 {
-    return @"login";
+    return @"apiuser/login";
 }
 
 - (id)buildModelWithJsonDictionary:(NSDictionary *)dictionary

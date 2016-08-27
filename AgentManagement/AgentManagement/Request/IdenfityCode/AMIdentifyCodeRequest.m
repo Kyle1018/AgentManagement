@@ -21,7 +21,7 @@
 
 - (NSString *)urlPath
 {
-    return @"sendsms";
+    return @"apiuser/sendsms";
 }
 
 - (id)buildModelWithJsonDictionary:(NSDictionary *)dictionary
