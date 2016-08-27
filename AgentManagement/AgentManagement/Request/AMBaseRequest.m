@@ -9,7 +9,7 @@
 #import "AMBaseRequest.h"
 #import <AFNetworking/AFNetworking.h>
 
-static NSString *const kAPIBaseURL = @"http://123.56.10.232:81/index.php?r=apiuser/";
+static NSString *const kAPIBaseURL = @"http://123.56.10.232:81/index.php?r=";
 
 @implementation AMBaseRequest
 
