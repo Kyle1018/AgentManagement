@@ -9,7 +9,8 @@
 #import "ProductManageViewController.h"
 #import "ProductManagerCell.h"
 #import <SDAutoLayout/UIView+SDAutoLayout.h>
-#import "MenuView.h"
+
+#import "SearchMenuViewController.h"
 #define KFormTabelView tableView.tag == 1000
 #define KMenuTabelView tableView.tag == 1001
 
@@ -22,8 +23,9 @@
 
 @property(nonatomic,strong)   NSMutableArray *array;
 
-@property(nonatomic,strong)MenuView *menuView;
 
+
+@property(nonatomic,strong)SearchMenuViewController*searchMenuVC;
 @end
 
 @implementation ProductManageViewController
@@ -91,7 +93,7 @@
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 
-    if (KFormTabelView) {
+  //  if (KFormTabelView) {
         
         static NSString *cellID = @"CellId";
         
@@ -103,66 +105,43 @@
         }
         
         return cell;
-    }
-    
-    else {
-        
-        static NSString *cellID = @"MenuCellID";
-    
-        MenuViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-        
-        if (!cell) {
-            
-            cell = [MenuViewCell createFromXibWithMenuViewCell];
-        }
-
-        return cell;
-    }
-    
+//    }
+//    
+//    else {
+//        
+//        static NSString *cellID = @"MenuCellID";
+//    
+//        MenuViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+//        
+//        if (!cell) {
+//            
+//            cell = [MenuViewCell createFromXibWithMenuViewCell];
+//        }
+//        
+////        cell.optionA.tag = indexPath.row+2000;
+////        cell.optionB.tag = indexPath.row+2001;
+////        cell.optionC.tag = indexPath.row+2003;
+//
+//        return cell;
+//    }
+//    
     
 
 }
 
-- (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    
 
-    if (KMenuTabelView) {
 
-        MenuCellHeaderView *view = [MenuCellHeaderView createFromXibWithMenuCellHeaderView];
-        
-        view.tapAllButtonBlock = ^() {
-            
-            NSLog(@"%ld",section);
-            
-        };
-        
-        return view;
-    }
-    else {
-        
-        return nil;
-    }
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    
-    if (KMenuTabelView) {
-        
-        return 40;
-    }
-    
-    else {
-        
-        return 0;
-    }
-}
 
 - (IBAction)searchMenuAction:(UIButton *)sender {
     
-    _menuView = [MenuView createFromXibWithViewTag:0 ToAddView:[UIApplication sharedApplication].keyWindow];
-    _menuView.menuTabelView.delegate = self;
-    _menuView.menuTabelView.dataSource = self;
-    [_menuView show];
+//    _menuView = [MenuView createFromXibWithViewTag:0 ToAddView:[UIApplication sharedApplication].keyWindow];
+//    _menuView.menuTabelView.delegate = self;
+//    _menuView.menuTabelView.dataSource = self;
+//    [_menuView show];
+    
+    UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"ProductManage" bundle:nil];
+    _searchMenuVC = [storyboard instantiateViewControllerWithIdentifier:@"SearchMenuViewID"];
+    [[UIApplication sharedApplication].keyWindow addSubview:_searchMenuVC.view];
     
 }
 

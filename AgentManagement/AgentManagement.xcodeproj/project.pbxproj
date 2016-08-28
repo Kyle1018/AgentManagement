@@ -78,8 +78,8 @@
 		E221EEBD1D4F8B9D005B3417 /* BaseTabbarController.m in Sources */ = {isa = PBXBuildFile; fileRef = E221EEBC1D4F8B9D005B3417 /* BaseTabbarController.m */; };
 		E221EEE81D4F9EFB005B3417 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E221EEE71D4F9EFB005B3417 /* Launch Screen.storyboard */; };
 		E221EF8A1D603238005B3417 /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E221EF891D603238005B3417 /* BaseTableViewController.m */; };
-		E24BF41F1D729B150054DFDC /* MenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = E24BF41D1D729B150054DFDC /* MenuView.m */; };
-		E24BF4201D729B150054DFDC /* MenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E24BF41E1D729B150054DFDC /* MenuView.xib */; };
+		E24BF4481D734AAD0054DFDC /* SearchMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E24BF4471D734AAD0054DFDC /* SearchMenuViewController.m */; };
+		E24BF4511D7355760054DFDC /* MenuCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E24BF4501D7355760054DFDC /* MenuCollectionViewCell.m */; };
 		E27B06291D616A7000ED18D1 /* address.plist in Resources */ = {isa = PBXBuildFile; fileRef = E27B06281D616A7000ED18D1 /* address.plist */; };
 		E2A3F27B1D6F2192006EC120 /* DataCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A3F27A1D6F2192006EC120 /* DataCacheManager.m */; };
 		E2FA0C051D4CFF000094A6FE /* KKBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E2FA0BF11D4CFF000094A6FE /* KKBaseModel.m */; };
@@ -232,9 +232,10 @@
 		E221EEE71D4F9EFB005B3417 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		E221EF881D603238005B3417 /* BaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewController.h; sourceTree = "<group>"; };
 		E221EF891D603238005B3417 /* BaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewController.m; sourceTree = "<group>"; };
-		E24BF41C1D729B150054DFDC /* MenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuView.h; sourceTree = "<group>"; };
-		E24BF41D1D729B150054DFDC /* MenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuView.m; sourceTree = "<group>"; };
-		E24BF41E1D729B150054DFDC /* MenuView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuView.xib; sourceTree = "<group>"; };
+		E24BF4461D734AAD0054DFDC /* SearchMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchMenuViewController.h; sourceTree = "<group>"; };
+		E24BF4471D734AAD0054DFDC /* SearchMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchMenuViewController.m; sourceTree = "<group>"; };
+		E24BF44F1D7355760054DFDC /* MenuCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuCollectionViewCell.h; sourceTree = "<group>"; };
+		E24BF4501D7355760054DFDC /* MenuCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuCollectionViewCell.m; sourceTree = "<group>"; };
 		E27B06281D616A7000ED18D1 /* address.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = address.plist; sourceTree = "<group>"; };
 		E2A3F2791D6F2192006EC120 /* DataCacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataCacheManager.h; sourceTree = "<group>"; };
 		E2A3F27A1D6F2192006EC120 /* DataCacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataCacheManager.m; sourceTree = "<group>"; };
@@ -600,6 +601,8 @@
 				27E26B311D6B1D360072F26E /* AlertController.xib */,
 				27E26B321D6B1D360072F26E /* ProductManageViewController.h */,
 				27E26B331D6B1D360072F26E /* ProductManageViewController.m */,
+				E24BF4461D734AAD0054DFDC /* SearchMenuViewController.h */,
+				E24BF4471D734AAD0054DFDC /* SearchMenuViewController.m */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -609,6 +612,8 @@
 			children = (
 				27E26B351D6B1D360072F26E /* ProductManagerCell.h */,
 				27E26B361D6B1D360072F26E /* ProductManagerCell.m */,
+				E24BF44F1D7355760054DFDC /* MenuCollectionViewCell.h */,
+				E24BF4501D7355760054DFDC /* MenuCollectionViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -650,16 +655,6 @@
 			path = BaseTabbarController;
 			sourceTree = "<group>";
 		};
-		E24BF41B1D729B150054DFDC /* CommonView */ = {
-			isa = PBXGroup;
-			children = (
-				E24BF41C1D729B150054DFDC /* MenuView.h */,
-				E24BF41D1D729B150054DFDC /* MenuView.m */,
-				E24BF41E1D729B150054DFDC /* MenuView.xib */,
-			);
-			path = CommonView;
-			sourceTree = "<group>";
-		};
 		E2A3F2781D6F216C006EC120 /* DataCache */ = {
 			isa = PBXGroup;
 			children = (
@@ -672,7 +667,6 @@
 		E2FA0BEE1D4CFF000094A6FE /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				E24BF41B1D729B150054DFDC /* CommonView */,
 				27CA01341D6B1159009F9A25 /* Control */,
 				E221EEBA1D4F8B84005B3417 /* BaseTabbarController */,
 				E221EEB61D4F8B50005B3417 /* BaseNavigationController */,
@@ -829,7 +823,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				27E26B3C1D6B1D360072F26E /* CustomerManage.storyboard in Resources */,
-				E24BF4201D729B150054DFDC /* MenuView.xib in Resources */,
 				E221EEE81D4F9EFB005B3417 /* Launch Screen.storyboard in Resources */,
 				27E26B421D6B1D360072F26E /* DataAnalysis.storyboard in Resources */,
 				E27B06291D616A7000ED18D1 /* address.plist in Resources */,
@@ -917,7 +910,6 @@
 				E2FA0C1E1D4D036F0094A6FE /* BaseViewController.m in Sources */,
 				27E26B411D6B1D360072F26E /* CustomerManageViewController.m in Sources */,
 				275F32951D717B210033C8FF /* ASICloudFilesContainer.m in Sources */,
-				E24BF41F1D729B150054DFDC /* MenuView.m in Sources */,
 				27E26B3F1D6B1D360072F26E /* AddCustomerViewControllerC.m in Sources */,
 				E2FA0C071D4CFF000094A6FE /* KKRequestError.m in Sources */,
 				27CA012F1D6B10E4009F9A25 /* CALayer+Addition.m in Sources */,
@@ -931,6 +923,7 @@
 				275F32961D717B210033C8FF /* ASICloudFilesContainerRequest.m in Sources */,
 				27E26B511D6B1D360072F26E /* ProductManagerCell.m in Sources */,
 				275F32971D717B210033C8FF /* ASICloudFilesContainerXMLParserDelegate.m in Sources */,
+				E24BF4511D7355760054DFDC /* MenuCollectionViewCell.m in Sources */,
 				275F328B1D717B210033C8FF /* ASIAuthenticationDialog.m in Sources */,
 				27E26B3E1D6B1D360072F26E /* AddCustomerViewControllerB.m in Sources */,
 				275F328D1D717B210033C8FF /* ASIDataDecompressor.m in Sources */,
@@ -971,6 +964,7 @@
 				27CA01331D6B10E4009F9A25 /* UIView+KKAdditions.m in Sources */,
 				275F328E1D717B210033C8FF /* ASIDownloadCache.m in Sources */,
 				E2FA0C061D4CFF000094A6FE /* KKBaseRequest.m in Sources */,
+				E24BF4481D734AAD0054DFDC /* SearchMenuViewController.m in Sources */,
 				275F32B71D718A8A0033C8FF /* NSData+KKAdditions.m in Sources */,
 				27E26B401D6B1D360072F26E /* CustomerDetailViewController.m in Sources */,
 				27E26B4C1D6B1D360072F26E /* AddProductViewControllerB.m in Sources */,
