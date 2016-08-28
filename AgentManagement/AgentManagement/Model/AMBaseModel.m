@@ -17,9 +17,9 @@
 
 - (instancetype)initWithDictionary:(NSDictionary *)dict error:(NSError *__autoreleasing *)err
 {
-    NSDictionary *dataDictionary = dict[@"data"];
+    id dataDictionary = dict[@"data"];
     
-    if (dataDictionary) {
+    if (dataDictionary && [dataDictionary isKindOfClass:[NSDictionary class]]) {
         self = [super initWithDictionary:dataDictionary error:err];
         self.resultCode = dict[@"resultCode"];
         self.resultMessage = dict[@"resultMessage"];
