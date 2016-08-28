@@ -10,4 +10,9 @@
 
 @implementation KKBaseModel
 
+- (BOOL)isValid
+{
+    return YES;
+}
+
 @end

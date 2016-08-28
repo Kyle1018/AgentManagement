@@ -38,6 +38,7 @@
 		275F32B71D718A8A0033C8FF /* NSData+KKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 275F32B61D718A8A0033C8FF /* NSData+KKAdditions.m */; };
 		275F32BD1D71916A0033C8FF /* NSDictionary+KKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 275F32BC1D71916A0033C8FF /* NSDictionary+KKAdditions.m */; };
 		275F32BF1D71924B0033C8FF /* AMBaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 275F32BE1D71924B0033C8FF /* AMBaseRequest.m */; };
+		279C04161D727D2E00663EBA /* AMIdentifyCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 279C04151D727D2E00663EBA /* AMIdentifyCode.m */; };
 		27CA012F1D6B10E4009F9A25 /* CALayer+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA01241D6B10E4009F9A25 /* CALayer+Addition.m */; };
 		27CA01301D6B10E4009F9A25 /* NSMutableDictionary+KKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA01281D6B10E4009F9A25 /* NSMutableDictionary+KKAdditions.m */; };
 		27CA01311D6B10E4009F9A25 /* UIColor+KKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA012A1D6B10E4009F9A25 /* UIColor+KKAdditions.m */; };
@@ -154,6 +155,8 @@
 		275F32BB1D71916A0033C8FF /* NSDictionary+KKAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+KKAdditions.h"; sourceTree = "<group>"; };
 		275F32BC1D71916A0033C8FF /* NSDictionary+KKAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+KKAdditions.m"; sourceTree = "<group>"; };
 		275F32BE1D71924B0033C8FF /* AMBaseRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMBaseRequest.m; sourceTree = "<group>"; };
+		279C04141D727D2E00663EBA /* AMIdentifyCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMIdentifyCode.h; sourceTree = "<group>"; };
+		279C04151D727D2E00663EBA /* AMIdentifyCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMIdentifyCode.m; sourceTree = "<group>"; };
 		27CA01231D6B10E4009F9A25 /* CALayer+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+Addition.h"; sourceTree = "<group>"; };
 		27CA01241D6B10E4009F9A25 /* CALayer+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+Addition.m"; sourceTree = "<group>"; };
 		27CA01251D6B10E4009F9A25 /* KKCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKCategory.h; sourceTree = "<group>"; };
@@ -399,6 +402,15 @@
 			path = Reachability;
 			sourceTree = "<group>";
 		};
+		279C04131D727D1600663EBA /* IdentifyCode */ = {
+			isa = PBXGroup;
+			children = (
+				279C04141D727D2E00663EBA /* AMIdentifyCode.h */,
+				279C04151D727D2E00663EBA /* AMIdentifyCode.m */,
+			);
+			path = IdentifyCode;
+			sourceTree = "<group>";
+		};
 		27CA01341D6B1159009F9A25 /* Control */ = {
 			isa = PBXGroup;
 			children = (
@@ -409,6 +421,7 @@
 		27CA01351D6B1167009F9A25 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				279C04131D727D1600663EBA /* IdentifyCode */,
 				27CA01361D6B1167009F9A25 /* AMBaseModel.h */,
 				27CA01371D6B1167009F9A25 /* AMBaseModel.m */,
 			);
@@ -903,6 +916,7 @@
 				27CA01381D6B1167009F9A25 /* AMBaseModel.m in Sources */,
 				275F329A1D717B210033C8FF /* ASICloudFilesRequest.m in Sources */,
 				270704C41D45F9A900633390 /* ViewController.m in Sources */,
+				279C04161D727D2E00663EBA /* AMIdentifyCode.m in Sources */,
 				275F32A01D717B210033C8FF /* ASIS3ServiceRequest.m in Sources */,
 				E221EF8A1D603238005B3417 /* BaseTableViewController.m in Sources */,
 				275F32961D717B210033C8FF /* ASICloudFilesContainerRequest.m in Sources */,

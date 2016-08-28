@@ -10,4 +10,7 @@
 
 @interface AMBaseModel : KKBaseModel
 
+@property (nonatomic, copy) NSString *resultCode;
+@property (nonatomic, copy) NSString *resultMessage;
+
 @end

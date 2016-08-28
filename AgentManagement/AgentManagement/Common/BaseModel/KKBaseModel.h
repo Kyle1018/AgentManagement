@@ -10,4 +10,6 @@
 
 @interface KKBaseModel : JSONModel
 
+- (BOOL)isValid;
+
 @end

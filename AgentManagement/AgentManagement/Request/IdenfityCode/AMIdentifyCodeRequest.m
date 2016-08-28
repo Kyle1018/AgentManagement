@@ -7,6 +7,7 @@
 //
 
 #import "AMIdentifyCodeRequest.h"
+#import "AMIdentifyCode.h"
 
 @implementation AMIdentifyCodeRequest
 
@@ -26,7 +27,7 @@
 
 - (id)buildModelWithJsonDictionary:(NSDictionary *)dictionary
 {
-    return nil;
+    return [[AMIdentifyCode alloc] initWithDictionary:dictionary error:nil];
 }
 
 @end

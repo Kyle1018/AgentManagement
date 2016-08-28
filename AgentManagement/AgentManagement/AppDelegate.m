@@ -8,8 +8,11 @@
 
 #import "AppDelegate.h"
 #import "ViewController.h"
+#import "AMIdentifyCodeRequest.h"
 
 @interface AppDelegate ()
+
+@property (nonatomic, strong) AMIdentifyCodeRequest *request;
 
 @end
 
@@ -30,6 +33,13 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    
+    self.request = [[AMIdentifyCodeRequest alloc] initWithPhone:@"18500326684"];
+    [self.request requestWithSuccess:^(KKBaseModel *model, KKRequestError *error) {
+        NSLog(@"%@", model);
+    } failure:^(KKBaseModel *model, KKRequestError *error) {
+        NSLog(@"%@", model);
+    }];
 
     
     return YES;
