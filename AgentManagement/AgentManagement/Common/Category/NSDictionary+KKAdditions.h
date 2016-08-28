@@ -12,4 +12,6 @@
 
 - (NSData *)convertToData;
 
+- (NSString *)convertToJSONString;
+
 @end

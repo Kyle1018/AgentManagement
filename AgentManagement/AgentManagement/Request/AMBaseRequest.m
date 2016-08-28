@@ -7,7 +7,7 @@
 //
 
 #import "AMBaseRequest.h"
-#import "ASIHTTPRequest.h"
+#import "ASIFormDataRequest.h"
 #import "NSDictionary+KKAdditions.h"
 #import "NSData+KKAdditions.h"
 
@@ -15,7 +15,7 @@ static NSString *const kAPIBaseURL = @"http://123.56.10.232:81/index.php?r=";
 
 @interface AMBaseRequest ()<ASIHTTPRequestDelegate>
 
-@property (nonatomic, strong) ASIHTTPRequest *request;
+@property (nonatomic, strong) ASIFormDataRequest *request;
 @property (nonatomic, strong) NSMutableData *receiveData;
 
 @property (nonatomic, copy) KKRequestSuccess requestSuccess;
@@ -128,12 +128,15 @@ static NSString *const kAPIBaseURL = @"http://123.56.10.232:81/index.php?r=";
 - (void)makePostRequest
 {
     NSDictionary *parameters = [self buildParameters];
+    NSString *parametersJSON = [parameters convertToJSONString];
     
-    self.request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:[self buildRequestURL]]];
+    self.request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:[self buildRequestURL]]];
     self.request.requestMethod = @"POST";
     self.request.allowCompressedResponse = YES;
     self.request.delegate = self;
-    [self.request setPostBody:[NSMutableData dataWithData:[parameters convertToData]]];
+    if (parametersJSON) {
+        [self.request setPostValue:parametersJSON forKey:@"data"];
+    }
     [self.request startAsynchronous];
 }
 

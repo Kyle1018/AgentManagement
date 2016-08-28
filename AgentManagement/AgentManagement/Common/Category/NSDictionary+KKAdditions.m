@@ -15,4 +15,9 @@
     return [NSJSONSerialization dataWithJSONObject:self options:NSJSONWritingPrettyPrinted error:nil];
 }
 
+- (NSString *)convertToJSONString
+{
+    return [[NSString alloc] initWithData:[self convertToData] encoding:NSUTF8StringEncoding];
+}
+
 @end
