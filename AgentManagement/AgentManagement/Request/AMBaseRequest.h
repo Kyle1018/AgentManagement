@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "KKBaseModel.h"
 #import "KKRequestError.h"
-
+#import "AMBaseModel.h"
 typedef NS_ENUM(NSInteger, KKHttpMethodType) {
     KKHttpMethodType_GET,
     KKHttpMethodType_POST,

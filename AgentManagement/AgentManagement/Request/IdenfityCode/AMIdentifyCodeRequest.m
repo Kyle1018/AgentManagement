@@ -27,6 +27,7 @@
 
 - (id)buildModelWithJsonDictionary:(NSDictionary *)dictionary
 {
+   // NSLog(@"验证码：－－－－－－－－－－－%@",dictionary);
     return [[AMIdentifyCode alloc] initWithDictionary:dictionary error:nil];
 }
 

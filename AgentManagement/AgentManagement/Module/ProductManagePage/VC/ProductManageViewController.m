@@ -7,14 +7,9 @@
 //
 
 #import "ProductManageViewController.h"
-#import "ProductManagerCell.h"
-#import <SDAutoLayout/UIView+SDAutoLayout.h>
-
+#import "ProductManageTableViewCell.h"
 #import "SearchMenuViewController.h"
-#define KFormTabelView tableView.tag == 1000
-#define KMenuTabelView tableView.tag == 1001
-
-
+#import "ProductManageViewModel.h"
 @interface ProductManageViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *formTabelView;
@@ -23,6 +18,7 @@
 
 @property(nonatomic,strong)   NSMutableArray *array;
 
+@property(nonatomic,strong)ProductManageViewModel *viewModel;
 
 
 @property(nonatomic,strong)SearchMenuViewController*searchMenuVC;
@@ -34,7 +30,16 @@
     
     [super viewDidLoad];
     
-
+//
+//    _viewModel = [[ProductManageViewModel alloc]init];
+//    
+//    [[_viewModel requestProductRelatedInformationData]subscribeNext:^(id x) {
+//        
+//    }];
+//    
+//    [[_viewModel requestProductAndModelListData]subscribeNext:^(id x) {
+//        
+//    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -58,91 +63,35 @@
     NSLog(@"%@",self.array);
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    
-    if (KFormTabelView) {
-        
-        return 0;
-    }
-    
-    else if(KMenuTabelView){
-        
-        return 5;
-    }
-    
-    return 0;
-}
+//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+//
+//    return 10;
+//}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    //return self.optionResultDic.count;
-    
-    if (KFormTabelView) {
-        
-        return 1;
-    }
-    
-    else if(KMenuTabelView){
-        
-        return 3;
-    }
-    
-    return 0;
-    
+    return 3;
 }
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 
-  //  if (KFormTabelView) {
+    static NSString *cellID = @"ProductManageCellId";
         
-        static NSString *cellID = @"CellId";
+    ProductManageTableViewCell*cell = [tableView dequeueReusableCellWithIdentifier:cellID];
         
-        ProductManagerCell*cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-        
-        if (!cell) {
+    if (!cell) {
             
-            cell =[[ProductManagerCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-        }
+        cell =[[ProductManageTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+    }
         
-        return cell;
-//    }
-//    
-//    else {
-//        
-//        static NSString *cellID = @"MenuCellID";
-//    
-//        MenuViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-//        
-//        if (!cell) {
-//            
-//            cell = [MenuViewCell createFromXibWithMenuViewCell];
-//        }
-//        
-////        cell.optionA.tag = indexPath.row+2000;
-////        cell.optionB.tag = indexPath.row+2001;
-////        cell.optionC.tag = indexPath.row+2003;
-//
-//        return cell;
-//    }
-//    
-    
-
+    return cell;
 }
 
-
-
-
 - (IBAction)searchMenuAction:(UIButton *)sender {
-    
-//    _menuView = [MenuView createFromXibWithViewTag:0 ToAddView:[UIApplication sharedApplication].keyWindow];
-//    _menuView.menuTabelView.delegate = self;
-//    _menuView.menuTabelView.dataSource = self;
-//    [_menuView show];
-    
+
     UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"ProductManage" bundle:nil];
     _searchMenuVC = [storyboard instantiateViewControllerWithIdentifier:@"SearchMenuViewID"];
     [[UIApplication sharedApplication].keyWindow addSubview:_searchMenuVC.view];
-    
 }
 
 @end

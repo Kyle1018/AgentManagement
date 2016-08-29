@@ -110,16 +110,6 @@
 }
 
 - (IBAction)saveAction:(UIButton *)sender {
-   
-//    for (UIViewController *vc in self.navigationController.viewControllers) {
-//        
-//        if ([vc isKindOfClass:[ProductManageViewController class]]) {
-//            
-//            ProductManageViewController*productManagerVC = (ProductManageViewController*)vc;
-//            productManagerVC.optionResultDic = self.optionDic;
-//            
-//        }
-//    }
     
     NSLog(@"%@",self.optionDic);
     

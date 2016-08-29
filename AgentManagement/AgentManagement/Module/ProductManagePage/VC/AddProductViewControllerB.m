@@ -8,28 +8,82 @@
 
 #import "AddProductViewControllerB.h"
 #import "AlertController.h"
-
+#import "ProductManageViewModel.h"
+#import "AMProductRelatedInformation.h"
 @interface AddProductViewControllerB ()
-
+@property(nonatomic,strong)ProductManageViewModel *viewModel;
 @property(nonatomic,strong)AlertController *alertVC;
 @property (weak, nonatomic) IBOutlet UIButton *nextButton;
 @property(nonatomic,strong)UIView *maskView;
 @property (weak, nonatomic) IBOutlet UITextField *inputPrice;
 @property(nonatomic,strong)NSMutableSet *set;
 @property(nonatomic,strong)NSMutableDictionary *optionDic;
+@property(nonatomic,strong)NSMutableArray *dataArray;
 @end
 
 @implementation AddProductViewControllerB
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 
     _set = [NSMutableSet set];
     
-    _optionDic = [NSMutableDictionary dictionaryWithDictionary:self.dic];
+//    _optionDic = [NSMutableDictionary dictionaryWithDictionary:self.dic];
+    
+    [self requestData];
+    
+    [self observeData];
     
     [self createMaskView];
  
+}
+
+- (void)requestData {
+    
+    _viewModel = [[ProductManageViewModel alloc]init];
+    
+    [[[_viewModel requestProductRelatedInformationData]filter:^BOOL(NSNumber* value) {
+        
+        switch ([value integerValue]) {
+            case RequestSuccess:
+                
+                return YES;
+                
+                break;
+            case RequestNoData:
+                
+                return NO;
+                
+                break;
+                
+            case RequestError:
+                
+                return NO;
+                
+                break;
+                
+            default:
+                return NO;
+                break;
+        }
+
+    }]subscribeNext:^(NSNumber* x) {
+        
+        //数据请求成功后做的事情
+    }];
+}
+
+- (void)observeData {
+    
+      __weak typeof(self) weakSelf = self;
+    
+    [RACObserve(self.viewModel, productRelatedInformationArray)subscribeNext:^(NSMutableArray* x) {
+       
+        weakSelf.dataArray = [NSMutableArray arrayWithArray:x];
+     
+     
+    }];
 }
 
 - (void)createMaskView {
@@ -140,7 +194,6 @@
     }
 }
 
-
 #pragma mark -TabelViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -188,6 +241,16 @@
  
     
  
+    
+    /*现有的数据
+     
+     sale __销售员级别
+     
+     admin ——管理员级别
+     
+     cycle ——换滤芯周期
+     */
+    
     //直接饮用
     if (indexPath.row == 0) {
         
@@ -265,8 +328,21 @@
     //换滤芯周期
     else if (indexPath.row == 9) {
         
+        AMProductRelatedInformation *model = _dataArray[0];
+        
         self.alertVC.title = @"换滤芯周期";
-        self.alertVC.actionButtonArray = @[@"1个月",@"3个月",@"6个月",@"12个月",@"18个月",@"24个月"];
+        
+        NSMutableArray *optionArray = [NSMutableArray array];
+        
+        for (NSDictionary *dic in model.value) {
+            
+            NSString *optionName = dic[@"value"];
+            
+            [optionArray addObject:optionName];
+        }
+//        self.alertVC.actionButtonArray = @[@"1个月",@"3个月",@"6个月",@"12个月",@"18个月",@"24个月"];
+        
+        self.alertVC.actionButtonArray = optionArray;
         self.alertVC.optionName = ChangeFilterElementCycle;
     }
     
@@ -327,7 +403,6 @@
     
     return YES;
 }
-
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
