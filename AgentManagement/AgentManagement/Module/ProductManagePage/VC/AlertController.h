@@ -25,4 +25,6 @@ typedef void(^TapExitButtonBlock)();
 
 @property(nonatomic,copy)TapExitButtonBlock tapExitButtonBlock;
 
+@property(nonatomic,strong)NSArray *alertOptionName;
+
 @end

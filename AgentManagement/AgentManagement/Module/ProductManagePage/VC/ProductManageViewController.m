@@ -10,6 +10,7 @@
 #import "ProductManageTableViewCell.h"
 #import "SearchMenuViewController.h"
 #import "ProductManageViewModel.h"
+#import "ProductDetailViewController.h"
 @interface ProductManageViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *formTabelView;
@@ -83,6 +84,14 @@
             
         cell =[[ProductManageTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
     }
+    
+    cell.tapSeeDetailBlock = ^() {
+      
+        ProductDetailViewController *productDetailVC = [[ProductDetailViewController alloc]init];
+        
+        [self.navigationController pushViewController:productDetailVC animated:YES];
+        
+    };
         
     return cell;
 }

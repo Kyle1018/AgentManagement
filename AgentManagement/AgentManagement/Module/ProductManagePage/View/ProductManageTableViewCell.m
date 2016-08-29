@@ -13,6 +13,19 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(seeDetailAction)];
+    
+    [self.seeDetail addGestureRecognizer:tap];
+}
+
+- (void)seeDetailAction {
+    
+    if (self.tapSeeDetailBlock) {
+        
+        self.tapSeeDetailBlock();
+    }
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

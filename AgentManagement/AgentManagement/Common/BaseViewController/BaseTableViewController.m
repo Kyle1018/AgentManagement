@@ -39,7 +39,7 @@
     __weak typeof(self) weakSelf = self;
     
     self.alertVC = [AlertController alertControllerWithTitle:@"退出此次编辑" message:nil preferredStyle:UIAlertControllerStyleAlert];
-    
+    self.alertVC.alertOptionName = @[@"退出",@"取消"];
     [self presentViewController: self.alertVC animated: YES completion:^{
         
         
