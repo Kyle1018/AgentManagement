@@ -680,7 +680,7 @@
                                 <rect key="frame" x="75" y="64" width="300" height="603"/>
                                 <subviews>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Q13-Ya-DSg">
-                                        <rect key="frame" x="0.0" y="0.0" width="300" height="539"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="553"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="0.0" id="qP8-8T-Iy0">
                                             <size key="itemSize" width="100" height="40"/>
@@ -874,13 +874,71 @@
                                             <outlet property="delegate" destination="nVh-nE-TGy" id="80X-fU-xRW"/>
                                         </connections>
                                     </collectionView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="y4y-oy-VkI">
+                                        <rect key="frame" x="0.0" y="553" width="300" height="0.5"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="0.5" id="pxV-p4-Bot"/>
+                                        </constraints>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="85C-z3-roA">
+                                        <rect key="frame" x="36" y="562" width="80" height="34"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="80" id="jQm-iS-bqb"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="15"/>
+                                        <state key="normal" title="重置">
+                                            <color key="titleColor" red="0.60784313725490191" green="0.60784313725490191" blue="0.60784313725490191" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                                <integer key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColorFromUIColor">
+                                                <color key="value" red="0.60784313725490191" green="0.60784313725490191" blue="0.60784313725490191" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="resetAction:" destination="nVh-nE-TGy" eventType="touchUpInside" id="5DS-z8-tKZ"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SPV-mI-GE1">
+                                        <rect key="frame" x="184" y="562" width="80" height="34"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="80" id="Y0S-dD-0si"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="15"/>
+                                        <state key="normal" title="确定">
+                                            <color key="titleColor" red="0.60784313729999995" green="0.60784313729999995" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                                <integer key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColorFromUIColor">
+                                                <color key="value" red="0.60784313729999995" green="0.60784313729999995" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="confirmAction:" destination="nVh-nE-TGy" eventType="touchUpInside" id="aoW-Gv-tGz"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.57055743140000004" green="0.081747080119999996" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="SPV-mI-GE1" secondAttribute="trailing" constant="36" id="0oX-Sc-xM9"/>
+                                    <constraint firstAttribute="bottom" secondItem="Q13-Ya-DSg" secondAttribute="bottom" constant="50" id="99i-1B-dzs"/>
                                     <constraint firstItem="Q13-Ya-DSg" firstAttribute="leading" secondItem="0kl-8V-R3W" secondAttribute="leading" id="A9V-Ry-rMD"/>
-                                    <constraint firstAttribute="bottom" secondItem="Q13-Ya-DSg" secondAttribute="bottom" constant="64" id="FvD-o3-c6B"/>
+                                    <constraint firstItem="85C-z3-roA" firstAttribute="leading" secondItem="0kl-8V-R3W" secondAttribute="leading" constant="36" id="BCu-MS-nVb"/>
+                                    <constraint firstItem="y4y-oy-VkI" firstAttribute="top" secondItem="Q13-Ya-DSg" secondAttribute="bottom" constant="0.5" id="Dvh-8f-Ojy"/>
+                                    <constraint firstItem="SPV-mI-GE1" firstAttribute="top" secondItem="y4y-oy-VkI" secondAttribute="bottom" constant="8.5" id="VsA-Tz-sCo"/>
+                                    <constraint firstAttribute="trailing" secondItem="y4y-oy-VkI" secondAttribute="trailing" id="fFP-sm-YEf"/>
+                                    <constraint firstAttribute="bottom" secondItem="85C-z3-roA" secondAttribute="bottom" constant="7" id="hpV-hb-uNq"/>
                                     <constraint firstAttribute="trailing" secondItem="Q13-Ya-DSg" secondAttribute="trailing" id="lbQ-4O-WzS"/>
+                                    <constraint firstAttribute="bottom" secondItem="SPV-mI-GE1" secondAttribute="bottom" constant="7" id="pZV-F6-pac"/>
+                                    <constraint firstItem="y4y-oy-VkI" firstAttribute="leading" secondItem="0kl-8V-R3W" secondAttribute="leading" id="uQU-Ae-tDI"/>
                                     <constraint firstItem="Q13-Ya-DSg" firstAttribute="top" secondItem="0kl-8V-R3W" secondAttribute="top" id="xao-sj-LuT"/>
+                                    <constraint firstItem="85C-z3-roA" firstAttribute="top" secondItem="y4y-oy-VkI" secondAttribute="bottom" constant="8.5" id="zaB-Z3-o68"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vPN-48-gNc">

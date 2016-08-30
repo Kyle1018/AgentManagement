@@ -26,18 +26,24 @@
 @property(nonatomic,strong) NSArray *array;
 
 @property(nonatomic,strong)NSMutableArray *isExpland;
+
+@property(nonatomic,strong)NSIndexPath *lastIndexPath;
+
+@property(nonatomic,assign)NSInteger optionLabelTag;
+
 @end
 
 @implementation SearchMenuViewController
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     self.view.backgroundColor=[UIColor clearColor];
     
     self.bgView.originX = ScreenWidth;
-    
 
+    _optionLabelTag = 2000;
     
     [self.cancelView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideMenuView)]];
     
@@ -51,27 +57,13 @@
     /*
      品牌、型号、分类、直接饮用、过滤介质、产品特点、摆放位置、滤芯个数、适用地区、零售价格、换芯周期
      */
-     //  _dataArray= [NSMutableArray array];
-  //  [_dataArray addObjectsFromArray:_array ];
-    
-//
-//    if (_array.count>0 && _array.count <2) {
-//        
-//        
-//        [_dataArray addObject:[_array firstObject]];
-//    }
-//    
-//    else if (_array.count >0 && _array.count>1) {
-//        
-//        [_dataArray addObject:_array[0]];
-//        [_dataArray addObject:_array[1]];
-//    }
-    
-    [self loadData];
+
+    [self requstData];
 
 }
 
-- (void)loadData {
+- (void)requstData {
+    
     if (!self.dataArray) {
         self.dataArray = [NSMutableArray array];
     }
@@ -169,7 +161,6 @@
     if (indexPath.row%3==0) {
         
         cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"CellIDL" forIndexPath:indexPath];
-
     }
     
     else if (indexPath.row%3==1) {
@@ -184,10 +175,23 @@
         
     }
     
+    NSInteger optionLabelTag = indexPath.section + indexPath.row+1000;
+    
     if (indexPath.row == 0) {
         
         cell.optionLabel.text = @"不限";
-        cell.optionLabel.backgroundColor=[UIColor colorWithHex:@"f1f1f1"];
+        
+        if (optionLabelTag == _optionLabelTag) {
+            
+            cell.optionLabel.backgroundColor=[UIColor colorWithHex:@"47b6ff"];
+            cell.optionLabel.textColor=[UIColor colorWithHex:@"ffffff"];
+        }
+        else {
+            
+            cell.optionLabel.backgroundColor=[UIColor colorWithHex:@"f1f1f1"];
+            cell.optionLabel.textColor = [UIColor colorWithHex:@"4a4a4a"];
+        }
+        
     }
 
     else {
@@ -201,10 +205,20 @@
         else {
          
             cell.optionLabel.text = self.dataArray[indexPath.section][indexPath.row-1];
-            cell.optionLabel.backgroundColor=[UIColor colorWithHex:@"f1f1f1"];
-        }        
+            
+            if (optionLabelTag == _optionLabelTag) {
+                
+                cell.optionLabel.backgroundColor=[UIColor colorWithHex:@"47b6ff"];
+                cell.optionLabel.textColor=[UIColor colorWithHex:@"ffffff"];
+            }
+            else {
+                
+                cell.optionLabel.backgroundColor=[UIColor colorWithHex:@"f1f1f1"];
+                 cell.optionLabel.textColor = [UIColor colorWithHex:@"4a4a4a"];
+            }
+        }
     }
-    
+
     return cell;
 }
 
@@ -239,8 +253,78 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
+    _optionLabelTag = indexPath.section + indexPath.row+1000;
     
+    if (_lastIndexPath == nil) {
+        
+        MenuCollectionViewCell *currentCell = (MenuCollectionViewCell*)[collectionView cellForItemAtIndexPath:indexPath];
+        currentCell.optionLabel.tag = _optionLabelTag;
+        currentCell.optionLabel.backgroundColor=[UIColor colorWithHex:@"47b6ff"];
+        currentCell.optionLabel.textColor = [UIColor colorWithHex:@"ffffff"];
+        
+    }
+    
+    else {
+        
+        if (_lastIndexPath.section != indexPath.section) {
+            
+            MenuCollectionViewCell *lastCell = (MenuCollectionViewCell*)[collectionView cellForItemAtIndexPath:_lastIndexPath];
+            lastCell.optionLabel.backgroundColor=[UIColor colorWithHex:@"47b6ff"];
+            lastCell.optionLabel.textColor = [UIColor colorWithHex:@"ffffff"];
+            
+            MenuCollectionViewCell *currentCell = (MenuCollectionViewCell*)[collectionView cellForItemAtIndexPath:indexPath];
+            currentCell.optionLabel.backgroundColor=[UIColor colorWithHex:@"47b6ff"];
+            currentCell.optionLabel.textColor = [UIColor colorWithHex:@"ffffff"];
+        }
+        else {
+            
+            MenuCollectionViewCell *lastCell = (MenuCollectionViewCell*)[collectionView cellForItemAtIndexPath:_lastIndexPath];
+            
+            MenuCollectionViewCell *currentCell = (MenuCollectionViewCell*)[collectionView cellForItemAtIndexPath:indexPath];
+            
+            if (_lastIndexPath.row != indexPath.row) {
+                
+                currentCell.optionLabel.backgroundColor=[UIColor colorWithHex:@"47b6ff"];
+                currentCell.optionLabel.textColor = [UIColor colorWithHex:@"ffffff"];
+                
+                lastCell.optionLabel.backgroundColor=[UIColor colorWithHex:@"f1f1f1"];
+                lastCell.optionLabel.textColor = [UIColor colorWithHex:@"4a4a4a"];
+
+            }
+            
+        }
+    }
+    
+    _lastIndexPath = indexPath;
+
     NSLog(@"点击了第%ld个单元格",(long)indexPath.row);
+}
+
+#pragma mark -Action
+//重置
+- (IBAction)resetAction:(UIButton *)sender {
+    
+    _lastIndexPath = nil;
+    
+    _optionLabelTag = 2000;
+    
+    [self.MenuCollectionView reloadData];
+}
+
+//确定
+- (IBAction)confirmAction:(UIButton *)sender {
+    
+    [UIView animateWithDuration:1 animations:^{
+        
+        self.bgView.originX = ScreenWidth;
+        
+    } completion:^(BOOL finished) {
+        
+        [self.bgView removeFromSuperview];
+        [self.cancelView removeFromSuperview];
+        [self.view removeFromSuperview];
+    }];
+    
 }
 
 @end
