@@ -43,36 +43,51 @@
     
     self.flowLaout.itemSize = CGSizeMake((ScreenWidth-75)/3, 48);
     
-    _heaerDataArray = @[@"品牌",@"型号",@"直接饮用",@"过滤介质",@"产品特点",@"摆放位置",@"滤芯个数",@"适用地区",@"零售价格",@"换芯周期"];
-//    
-   _array  = @[@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9",@"10",@"11",@"12",@"13",@"14",@"15"];
+//    _heaerDataArray = @[@"品牌",@"型号",@"直接饮用",@"过滤介质",@"产品特点",@"摆放位置",@"滤芯个数",@"适用地区",@"零售价格",@"换芯周期"];
+////    
+//   _array  = @[@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9",@"10",@"11",@"12",@"13",@"14",@"15"];
     // Do any additional setup after loading the view.
     
     /*
      品牌、型号、分类、直接饮用、过滤介质、产品特点、摆放位置、滤芯个数、适用地区、零售价格、换芯周期
      */
-       _dataArray= [NSMutableArray array];
-    [_dataArray addObjectsFromArray:_array ];
+     //  _dataArray= [NSMutableArray array];
+  //  [_dataArray addObjectsFromArray:_array ];
     
-
-    if (_array.count>0 && _array.count <2) {
-        
-        
-        [_dataArray addObject:[_array firstObject]];
-    }
+//
+//    if (_array.count>0 && _array.count <2) {
+//        
+//        
+//        [_dataArray addObject:[_array firstObject]];
+//    }
+//    
+//    else if (_array.count >0 && _array.count>1) {
+//        
+//        [_dataArray addObject:_array[0]];
+//        [_dataArray addObject:_array[1]];
+//    }
     
-    else if (_array.count >0 && _array.count>1) {
-        
-        [_dataArray addObject:_array[0]];
-        [_dataArray addObject:_array[1]];
-    }
-    
-    
-
+    [self loadData];
 
 }
 
-
+- (void)loadData {
+    if (!self.dataArray) {
+        self.dataArray = [NSMutableArray array];
+    }
+    if (!self.isExpland) {
+        self.isExpland = [NSMutableArray array];
+    }
+    
+    self.heaerDataArray = @[@"品牌",@"型号",@"直接饮用",@"过滤介质",@"产品特点",@"摆放位置",@"滤芯个数",@"适用地区",@"零售价格",@"换芯周期"];
+    self.dataArray = [NSArray arrayWithObjects:@[@"a",@"b",@"c",@"d"],@[@"d",@"e",@"f"],@[@"h",@"i",@"j",@"m",@"n"],@[@"a",@"b",@"c",@"d"],@[@"d",@"e",@"f"],@[@"h",@"i",@"j",@"m",@"n"],@[@"a",@"b",@"c",@"d"],@[@"d",@"e",@"f"],@[@"d",@"e",@"f"],@[@"a",@"b",@"c",@"d"],nil].mutableCopy;
+    //用0代表收起，非0代表展开，默认都是收起的
+    for (int i = 0; i < self.dataArray.count; i++) {
+        [self.isExpland addObject:@0];
+    }
+    
+    [self.MenuCollectionView reloadData];
+}
 
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -114,17 +129,36 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     
-    if (_dataArray.count %3 == 0) {
+    NSArray *array = self.dataArray[section];
+    if ([self.isExpland[section] boolValue]) {
         
-        return _dataArray.count +3;
-    }
-    else if (_dataArray.count %3 == 1) {
-        
-        return _dataArray.count+2;
+        if (array.count%3==0) {
+            
+            return array.count+2+1;
+        }
+        else if (array.count%3==1) {
+            
+            return array.count+1+1;
+        }
+        else if (array.count%3==2) {
+            
+            return array.count+1;
+        }
+        else {
+            
+            return 0;
+        }
     }
     else {
         
-        return _dataArray.count+1;
+        if (array.count > 2) {
+            
+            return 3;
+        }
+        else {
+            
+            return array.count;
+        }
     }
 }
 
@@ -156,19 +190,19 @@
         cell.optionLabel.backgroundColor=[UIColor colorWithHex:@"f1f1f1"];
     }
 
-
-    else if (_dataArray.count <= indexPath.row-1) {
-        
-        
-        
-        cell.optionLabel.text =@"";
-        cell.optionLabel.backgroundColor=[UIColor clearColor];
-    }
-    
     else {
+        NSArray *array = self.dataArray[indexPath.section];
         
-        cell.optionLabel.text = _dataArray[indexPath.row-1];
-        cell.optionLabel.backgroundColor=[UIColor colorWithHex:@"f1f1f1"];
+        if (array.count < indexPath.row) {
+            
+            cell.optionLabel.text =@"";
+            cell.optionLabel.backgroundColor=[UIColor clearColor];
+        }
+        else {
+         
+            cell.optionLabel.text = self.dataArray[indexPath.section][indexPath.row-1];
+            cell.optionLabel.backgroundColor=[UIColor colorWithHex:@"f1f1f1"];
+        }        
     }
     
     return cell;
@@ -186,16 +220,15 @@
         
         headerView.hederTitle.text = _heaerDataArray[indexPath.section];
         
-        __weak typeof(self) weakSelf = self;
-        
         //点击全部按钮回调
         headerView.tapAllButonBlock = ^() {
             
-            NSLog(@"点击了全部按钮");
-            [_dataArray removeAllObjects];
-            [_dataArray addObjectsFromArray:_array];
-      
-            [weakSelf.MenuCollectionView reloadSections:[NSIndexSet indexSetWithIndex:0]];
+            //纪录展开的状态
+            self.isExpland[indexPath.section] = [self.isExpland[indexPath.section] isEqual:@0]?@1:@0;
+            
+            //刷新点击的section
+            NSIndexSet *set = [NSIndexSet indexSetWithIndex:indexPath.section];
+            [self.MenuCollectionView reloadSections:set];
         };
         
         reusableview = headerView;

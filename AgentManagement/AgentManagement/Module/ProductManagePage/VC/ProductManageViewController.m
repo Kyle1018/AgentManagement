@@ -32,12 +32,17 @@
     [super viewDidLoad];
     
 //
-//    _viewModel = [[ProductManageViewModel alloc]init];
+    _viewModel = [[ProductManageViewModel alloc]init];
+    
+    [[_viewModel requstAddProductData:nil]subscribeNext:^(id x) {
+       
+        
+    }];
 //    
 //    [[_viewModel requestProductRelatedInformationData]subscribeNext:^(id x) {
 //        
 //    }];
-//    
+//
 //    [[_viewModel requestProductAndModelListData]subscribeNext:^(id x) {
 //        
 //    }];

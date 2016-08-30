@@ -88,6 +88,7 @@
 		E24BF4731D7442970054DFDC /* AMAddProduct.m in Sources */ = {isa = PBXBuildFile; fileRef = E24BF4721D7442970054DFDC /* AMAddProduct.m */; };
 		E24BF47A1D74706D0054DFDC /* ProductManageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E24BF4791D74706D0054DFDC /* ProductManageTableViewCell.m */; };
 		E24BF4801D7475240054DFDC /* ProductDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E24BF47F1D7475240054DFDC /* ProductDetailViewController.m */; };
+		E24BF4831D755C690054DFDC /* AMAddProductRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = E24BF4821D755C690054DFDC /* AMAddProductRequest.m */; };
 		E27B06291D616A7000ED18D1 /* address.plist in Resources */ = {isa = PBXBuildFile; fileRef = E27B06281D616A7000ED18D1 /* address.plist */; };
 		E2A3F27B1D6F2192006EC120 /* DataCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A3F27A1D6F2192006EC120 /* DataCacheManager.m */; };
 		E2FA0C051D4CFF000094A6FE /* KKBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E2FA0BF11D4CFF000094A6FE /* KKBaseModel.m */; };
@@ -260,6 +261,8 @@
 		E24BF4791D74706D0054DFDC /* ProductManageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductManageTableViewCell.m; sourceTree = "<group>"; };
 		E24BF47E1D7475240054DFDC /* ProductDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductDetailViewController.h; sourceTree = "<group>"; };
 		E24BF47F1D7475240054DFDC /* ProductDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductDetailViewController.m; sourceTree = "<group>"; };
+		E24BF4811D755C690054DFDC /* AMAddProductRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMAddProductRequest.h; sourceTree = "<group>"; };
+		E24BF4821D755C690054DFDC /* AMAddProductRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMAddProductRequest.m; sourceTree = "<group>"; };
 		E27B06281D616A7000ED18D1 /* address.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = address.plist; sourceTree = "<group>"; };
 		E2A3F2791D6F2192006EC120 /* DataCacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataCacheManager.h; sourceTree = "<group>"; };
 		E2A3F27A1D6F2192006EC120 /* DataCacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataCacheManager.m; sourceTree = "<group>"; };
@@ -696,6 +699,8 @@
 				E24BF4691D741AB00054DFDC /* AMProductRelatedInformationRequest.m */,
 				E24BF4711D7442970054DFDC /* AMAddProduct.h */,
 				E24BF4721D7442970054DFDC /* AMAddProduct.m */,
+				E24BF4811D755C690054DFDC /* AMAddProductRequest.h */,
+				E24BF4821D755C690054DFDC /* AMAddProductRequest.m */,
 			);
 			path = ProductManage;
 			sourceTree = "<group>";
@@ -981,6 +986,7 @@
 				27E26B4D1D6B1D360072F26E /* AddProductViewControllerC.m in Sources */,
 				E2FA0C0C1D4CFF000094A6FE /* KKQRCodeScanner.m in Sources */,
 				E2FA0C1E1D4D036F0094A6FE /* BaseViewController.m in Sources */,
+				E24BF4831D755C690054DFDC /* AMAddProductRequest.m in Sources */,
 				27E26B411D6B1D360072F26E /* CustomerManageViewController.m in Sources */,
 				275F32951D717B210033C8FF /* ASICloudFilesContainer.m in Sources */,
 				27E26B3F1D6B1D360072F26E /* AddCustomerViewControllerC.m in Sources */,

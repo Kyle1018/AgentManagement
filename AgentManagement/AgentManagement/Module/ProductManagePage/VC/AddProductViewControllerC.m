@@ -7,15 +7,16 @@
 //
 
 #import "AddProductViewControllerC.h"
-//#import <ReactiveCocoa/ReactiveCocoa.h>
-//#import "ProductManageViewController.h"
-//#import "DataCacheManager.h"
+#import "ProductManageViewModel.h"
+
 @interface AddProductViewControllerC ()
+
 @property (weak, nonatomic) IBOutlet UITextField *price;
 @property (weak, nonatomic) IBOutlet UITextField *count;
 @property(nonatomic,strong)UIView *maskView;
 @property (weak, nonatomic) IBOutlet UIButton *saveButton;
 @property(nonatomic,strong)NSMutableDictionary *optionDic;
+@property(nonatomic,strong)ProductManageViewModel *viewModel;
 @end
 
 @implementation AddProductViewControllerC
@@ -28,6 +29,8 @@
      [self createMaskView];
     
     [self saveButtonIsEnabel];
+    
+    [self requsetData];
 
 }
 
@@ -96,6 +99,17 @@
     RAC(self.saveButton,enabled) = signUpActiveSignal;
 }
 
+- (void)requsetData {
+    
+    _viewModel = [[ProductManageViewModel alloc]init];
+    
+    [[_viewModel requstAddProductData:nil]subscribeNext:^(id x) {
+       
+        
+    }];
+    
+}
+
 - (NSNumber*)isValid:(NSString*)text {
     
     if (text.length > 0) {
@@ -114,7 +128,9 @@
     NSLog(@"%@",self.optionDic);
     
     //插入数据库
-    [[DataCacheManager shareDataCacheManager]setInsertOrDelete:YES withType:PRODUCT_MANAGER andDic:self.optionDic];
+//    [[DataCacheManager shareDataCacheManager]setInsertOrDelete:YES withType:PRODUCT_MANAGER andDic:self.optionDic];
+    
+    
     
     [self.navigationController popToRootViewControllerAnimated:YES];
 
@@ -165,8 +181,5 @@
 
     return YES;
 }
-
-
-
 
 @end

@@ -10,6 +10,7 @@
 #import "AMProductAndModel.h"
 #import "AMProductRelatedInformation.h"
 /*
+ 获取产品和型号列表
  data =     (
  {
  brand = c;
@@ -49,6 +50,7 @@
  */
 
 /*
+ 获取相关信息其它配置
  <__NSArrayM 0x79144cd0>(
  {
  key = cycle;
@@ -98,6 +100,7 @@
     
     return self;
 }
+
 - (RACSignal*)requestProductAndModelListData {
     
     __weak typeof(self) weakSelf = self;
@@ -124,7 +127,6 @@
     }];
 }
 
-
 - (RACSignal*)requestProductRelatedInformationData {
     
     __weak typeof(self) weakSelf = self;
@@ -142,7 +144,6 @@
   
             
             weakSelf.productRelatedInformationArray  = [NSMutableArray arrayWithArray:modelArray];
-           // [_productRelatedInformationArray addObjectsFromArray:modelArray];
 
             if (weakSelf.productRelatedInformationArray.count > 0) {
                 
@@ -165,5 +166,29 @@
     
 }
 
+- (RACSignal*)requstAddProductData:(NSDictionary*)paramt {
+    
+    __weak typeof(self) weakSelf = self;
+    
+    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+       
+        
+        weakSelf.apRequset = [[AMAddProductRequest alloc] init];
+        
+        [weakSelf.apRequset requestWithSuccess:^(KKBaseModel *model, KKRequestError *error) {
+            
+            NSLog(@"%@", model);
+            
+            
+        } failure:^(KKBaseModel *model, KKRequestError *error) {
+            
+            NSLog(@"%@", error);
+            
+            [subscriber sendNext:@(NO)];
+        }];
+        
+        return nil;
+    }];
+}
 
 @end
