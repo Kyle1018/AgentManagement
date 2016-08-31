@@ -8,10 +8,12 @@
 
 #import "CustomerDetailViewController.h"
 #import "AlertController.h"
+
 @interface CustomerDetailViewController ()
 
 @property(nonatomic,strong)AlertController *alertVC;
 
+@property(nonatomic,strong)UIView *maskView;
 @end
 
 @implementation CustomerDetailViewController
@@ -19,9 +21,43 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-
+     [self createMaskView];
 }
 
+- (void)createMaskView {
+    
+    self.maskView = [[UIView alloc] initWithFrame:ScreenFrame];
+    self.maskView.backgroundColor = [UIColor blackColor];
+    self.maskView.alpha = 0;
+    [self.maskView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideMyPicker)]];
+}
+
+- (void)hideMyPicker {
+    
+    UITextField *cutomerNameTextField = [self.tableView viewWithTag:1000];
+    
+    UITextField*phoneNumberTextField = [self.view viewWithTag:1001];
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        
+        if ([cutomerNameTextField isFirstResponder]) {
+            
+            [cutomerNameTextField resignFirstResponder];
+        }
+        else if ([phoneNumberTextField isFirstResponder]) {
+            
+            [phoneNumberTextField resignFirstResponder];
+        }
+        self.maskView.alpha = 0;
+        
+    } completion:^(BOOL finished) {
+        
+        [self.maskView removeFromSuperview];
+        
+    }];
+}
+
+#pragma mark - Action
 //编辑菜单
 - (IBAction)editCutomerAction:(UIButton *)sender {
     
@@ -36,6 +72,15 @@
         if (index == 0) {
             
             NSLog(@"点击了编辑客户");
+            
+            UITextField *customerName=[weakSelf.tableView viewWithTag:1000];
+            UITextField *phoneNumber = [weakSelf.tableView viewWithTag:1001];
+            
+            customerName.enabled = YES;
+            phoneNumber.enabled = YES;
+            
+            [customerName becomeFirstResponder];
+            
         }
         else {
             
@@ -62,4 +107,43 @@
     }];
 }
 
+#pragma mark - UITextFieldDelegate
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+    
+    [self.view addSubview:self.maskView];
+    self.maskView.alpha = 0;
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        self.maskView.alpha = 0.3;
+    }];
+    
+    return YES;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    
+    if (textField.tag == 1000) {
+        
+    }
+    
+    else if (textField.tag == 1001) {
+        
+    }
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        
+        [textField resignFirstResponder];
+        
+        self.maskView.alpha = 0;
+        
+    } completion:^(BOOL finished) {
+        
+        [self.maskView removeFromSuperview];
+        
+    }];
+    
+    
+    
+    return YES;
+}
 @end

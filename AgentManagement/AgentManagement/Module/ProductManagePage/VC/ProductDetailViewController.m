@@ -10,6 +10,7 @@
 #import "AlertController.h"
 @interface ProductDetailViewController ()
 @property(nonatomic,strong)AlertController *alertVC;
+
 @end
 
 @implementation ProductDetailViewController
@@ -17,15 +18,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-   // self.view.backgroundColor=[UIColor redColor];
-    // Do any additional setup after loading the view.
+   
 }
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark- UITabelViewDelegate;UITabelViewDatasource
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     
     if (section == 0) {
@@ -37,6 +40,8 @@
         return 20;
     }
 }
+
+#pragma mark - Action
 - (IBAction)editProductAction:(UIButton *)sender {
     
     self.alertVC = [AlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
@@ -75,6 +80,7 @@
         
     }];
 }
+
 
 
 
