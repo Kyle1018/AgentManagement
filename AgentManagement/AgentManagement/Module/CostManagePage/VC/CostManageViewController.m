@@ -8,7 +8,10 @@
 
 #import "CostManageViewController.h"
 #import "CostManageTableViewCell.h"
+#import "CoSearchMenuViewController.h"
 @interface CostManageViewController ()
+
+@property(nonatomic,strong)CoSearchMenuViewController *coSearchMenuVC;
 
 @end
 
@@ -40,6 +43,12 @@
         cell =[[CostManageTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
     }
     return cell;
+}
+- (IBAction)searchMenuAction:(UIButton *)sender {
+    
+    UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"CostManage" bundle:nil];
+    _coSearchMenuVC = [storyboard instantiateViewControllerWithIdentifier:@"CoSearchMenuViewID"];
+    [[UIApplication sharedApplication].keyWindow addSubview:_coSearchMenuVC.view];
 }
 
 

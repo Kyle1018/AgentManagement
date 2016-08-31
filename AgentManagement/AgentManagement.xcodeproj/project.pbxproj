@@ -75,6 +75,8 @@
 		E21947281D7714E1001C5E5F /* CostManage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E21947271D7714E1001C5E5F /* CostManage.storyboard */; };
 		E219472C1D7714EC001C5E5F /* CostManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E219472B1D7714EC001C5E5F /* CostManageViewController.m */; };
 		E21947301D771525001C5E5F /* CostManageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E219472F1D771525001C5E5F /* CostManageTableViewCell.m */; };
+		E21947391D771B64001C5E5F /* CoSearchMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E21947381D771B64001C5E5F /* CoSearchMenuViewController.m */; };
+		E219473C1D772194001C5E5F /* CostManageDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E219473B1D772194001C5E5F /* CostManageDetailViewController.m */; };
 		E221EEB91D4F8B68005B3417 /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = E221EEB81D4F8B68005B3417 /* BaseNavigationController.m */; };
 		E221EEBD1D4F8B9D005B3417 /* BaseTabbarController.m in Sources */ = {isa = PBXBuildFile; fileRef = E221EEBC1D4F8B9D005B3417 /* BaseTabbarController.m */; };
 		E221EEE81D4F9EFB005B3417 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E221EEE71D4F9EFB005B3417 /* Launch Screen.storyboard */; };
@@ -239,6 +241,10 @@
 		E219472B1D7714EC001C5E5F /* CostManageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CostManageViewController.m; sourceTree = "<group>"; };
 		E219472E1D771525001C5E5F /* CostManageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CostManageTableViewCell.h; sourceTree = "<group>"; };
 		E219472F1D771525001C5E5F /* CostManageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CostManageTableViewCell.m; sourceTree = "<group>"; };
+		E21947371D771B64001C5E5F /* CoSearchMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoSearchMenuViewController.h; sourceTree = "<group>"; };
+		E21947381D771B64001C5E5F /* CoSearchMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoSearchMenuViewController.m; sourceTree = "<group>"; };
+		E219473A1D772194001C5E5F /* CostManageDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CostManageDetailViewController.h; sourceTree = "<group>"; };
+		E219473B1D772194001C5E5F /* CostManageDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CostManageDetailViewController.m; sourceTree = "<group>"; };
 		E221EEB71D4F8B68005B3417 /* BaseNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseNavigationController.h; sourceTree = "<group>"; };
 		E221EEB81D4F8B68005B3417 /* BaseNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseNavigationController.m; sourceTree = "<group>"; };
 		E221EEBB1D4F8B9D005B3417 /* BaseTabbarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTabbarController.h; sourceTree = "<group>"; };
@@ -704,6 +710,10 @@
 			children = (
 				E219472A1D7714EC001C5E5F /* CostManageViewController.h */,
 				E219472B1D7714EC001C5E5F /* CostManageViewController.m */,
+				E21947371D771B64001C5E5F /* CoSearchMenuViewController.h */,
+				E21947381D771B64001C5E5F /* CoSearchMenuViewController.m */,
+				E219473A1D772194001C5E5F /* CostManageDetailViewController.h */,
+				E219473B1D772194001C5E5F /* CostManageDetailViewController.m */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -1038,6 +1048,7 @@
 				34EE98211D76B6AE0040C997 /* AlertController.m in Sources */,
 				275F32951D717B210033C8FF /* ASICloudFilesContainer.m in Sources */,
 				27E26B3F1D6B1D360072F26E /* AddCustomerViewControllerC.m in Sources */,
+				E21947391D771B64001C5E5F /* CoSearchMenuViewController.m in Sources */,
 				E24BF4801D7475240054DFDC /* ProductDetailViewController.m in Sources */,
 				E2FA0C071D4CFF000094A6FE /* KKRequestError.m in Sources */,
 				27CA012F1D6B10E4009F9A25 /* CALayer+Addition.m in Sources */,
@@ -1048,6 +1059,7 @@
 				279C04161D727D2E00663EBA /* AMIdentifyCode.m in Sources */,
 				275F32A01D717B210033C8FF /* ASIS3ServiceRequest.m in Sources */,
 				E221EF8A1D603238005B3417 /* BaseTableViewController.m in Sources */,
+				E219473C1D772194001C5E5F /* CostManageDetailViewController.m in Sources */,
 				275F32961D717B210033C8FF /* ASICloudFilesContainerRequest.m in Sources */,
 				275F32971D717B210033C8FF /* ASICloudFilesContainerXMLParserDelegate.m in Sources */,
 				E24BF4511D7355760054DFDC /* MenuCollectionViewCell.m in Sources */,
