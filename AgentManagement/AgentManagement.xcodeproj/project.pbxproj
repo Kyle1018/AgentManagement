@@ -89,6 +89,7 @@
 		E24BF47A1D74706D0054DFDC /* ProductManageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E24BF4791D74706D0054DFDC /* ProductManageTableViewCell.m */; };
 		E24BF4801D7475240054DFDC /* ProductDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E24BF47F1D7475240054DFDC /* ProductDetailViewController.m */; };
 		E24BF4831D755C690054DFDC /* AMAddProductRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = E24BF4821D755C690054DFDC /* AMAddProductRequest.m */; };
+		E24BF4861D75DDFF0054DFDC /* CustomerManageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E24BF4851D75DDFF0054DFDC /* CustomerManageCell.m */; };
 		E27B06291D616A7000ED18D1 /* address.plist in Resources */ = {isa = PBXBuildFile; fileRef = E27B06281D616A7000ED18D1 /* address.plist */; };
 		E2A3F27B1D6F2192006EC120 /* DataCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A3F27A1D6F2192006EC120 /* DataCacheManager.m */; };
 		E2FA0C051D4CFF000094A6FE /* KKBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E2FA0BF11D4CFF000094A6FE /* KKBaseModel.m */; };
@@ -263,6 +264,8 @@
 		E24BF47F1D7475240054DFDC /* ProductDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductDetailViewController.m; sourceTree = "<group>"; };
 		E24BF4811D755C690054DFDC /* AMAddProductRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMAddProductRequest.h; sourceTree = "<group>"; };
 		E24BF4821D755C690054DFDC /* AMAddProductRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMAddProductRequest.m; sourceTree = "<group>"; };
+		E24BF4841D75DDFF0054DFDC /* CustomerManageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerManageCell.h; sourceTree = "<group>"; };
+		E24BF4851D75DDFF0054DFDC /* CustomerManageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerManageCell.m; sourceTree = "<group>"; };
 		E27B06281D616A7000ED18D1 /* address.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = address.plist; sourceTree = "<group>"; };
 		E2A3F2791D6F2192006EC120 /* DataCacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataCacheManager.h; sourceTree = "<group>"; };
 		E2A3F27A1D6F2192006EC120 /* DataCacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataCacheManager.m; sourceTree = "<group>"; };
@@ -728,6 +731,8 @@
 		E24BF4741D7467D50054DFDC /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E24BF4841D75DDFF0054DFDC /* CustomerManageCell.h */,
+				E24BF4851D75DDFF0054DFDC /* CustomerManageCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1026,6 +1031,7 @@
 				270704BE1D45F9A900633390 /* main.m in Sources */,
 				275F329C1D717B210033C8FF /* ASIS3BucketObject.m in Sources */,
 				27E26B4E1D6B1D360072F26E /* AlertController.m in Sources */,
+				E24BF4861D75DDFF0054DFDC /* CustomerManageCell.m in Sources */,
 				27E26B431D6B1D360072F26E /* DataAnalysisViewController.m in Sources */,
 				E2FA0C0B1D4CFF000094A6FE /* KKAppUtility.m in Sources */,
 				27E26B441D6B1D360072F26E /* ForgetPasswordViewController.m in Sources */,

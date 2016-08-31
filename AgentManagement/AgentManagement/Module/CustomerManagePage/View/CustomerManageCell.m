@@ -1,17 +1,18 @@
 //
-//  ProductManageTableViewCell.m
+//  CustomerManageCell.m
 //  AgentManagement
 //
-//  Created by 郭华滨 on 16/8/29.
+//  Created by 郭华滨 on 16/8/30.
 //  Copyright © 2016年 KK. All rights reserved.
 //
 
-#import "ProductManageTableViewCell.h"
+#import "CustomerManageCell.h"
 
-@implementation ProductManageTableViewCell
+@implementation CustomerManageCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    // Initialization code
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

@@ -88,16 +88,7 @@
     if (!cell) {
             
         cell =[[ProductManageTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-    }
-    
-    cell.tapSeeDetailBlock = ^() {
-      
-        ProductDetailViewController *productDetailVC = [[ProductDetailViewController alloc]init];
-        
-        [self.navigationController pushViewController:productDetailVC animated:YES];
-        
-    };
-        
+    }        
     return cell;
 }
 

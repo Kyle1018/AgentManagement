@@ -7,8 +7,8 @@
 //
 
 #import "CustomerManageViewController.h"
-
 #import "CustomerDetailViewController.h"
+#import "CustomerManageCell.h"
 @interface CustomerManageViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @end
@@ -27,28 +27,17 @@
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    static NSString *cellID = @"CellId";
+    static NSString *cellID = @"CustomerManageCellID";
     
-    return nil;
-//   ProductManagerCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-//    
-//    if (!cell) {
-//        
-//        cell =[[ProductManagerCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-//    }
-//    
-//    
-//    //点击表格查看详情跳转——客户详情页面
-//    __weak typeof(self) weakSelf = self;
-//    UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"CustomerManage" bundle:nil];
-//    CustomerDetailViewController*customerDetailVC = [storyboard instantiateViewControllerWithIdentifier:@"CustomerDetailID"];
-//    //点击了查看详情
-//    cell.tapSeeDetailsBlock = ^() {
-//        
-//        [weakSelf.navigationController pushViewController:customerDetailVC animated:YES];
-//    };
-//    
-//    return cell;
+    CustomerManageCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    
+    if (!cell) {
+        
+        cell= [[CustomerManageCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+    }
+    
+    
+    return cell;
 }
 
 

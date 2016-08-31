@@ -55,15 +55,16 @@
             NSLog(@"点击删除产品");
     
             weakSelf.alertVC = [AlertController alertControllerWithTitle:@"确认删除" message:nil preferredStyle:UIAlertControllerStyleAlert];
-            weakSelf.alertVC.alertOptionName = @[@"取消",@"确定"];
+            weakSelf.alertVC.alertOptionName = @[@"确定",@"取消"];
             [weakSelf presentViewController: weakSelf.alertVC animated: YES completion:^{
                 
                 
             }];
             
             weakSelf.alertVC.tapExitButtonBlock = ^() {
-                
-               
+             
+                [weakSelf.navigationController popViewControllerAnimated:YES];
+        
             };
             
         }

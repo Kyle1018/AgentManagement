@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-typedef void(^TapSeeDetailBlock)();
+
+
 @interface ProductManageTableViewCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UILabel *seeDetail;
-@property (nonatomic,copy)TapSeeDetailBlock tapSeeDetailBlock;
+
 @end

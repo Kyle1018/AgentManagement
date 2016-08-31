@@ -35,7 +35,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-
      [self initView];
     
     [self getPickerData];
@@ -48,12 +47,14 @@
     self.maskView.alpha = 0;
     [self.maskView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideMyPicker)]];
     self.pickerBGView.frame = CGRectMake(0, ScreenHeight, ScreenWidth, 224);
-   // self.pickerBGView.width = ScreenWidth;
+
 }
 
 - (void)hideMyPicker {
     [UIView animateWithDuration:0.3 animations:^{
         self.maskView.alpha = 0;
+        self.pickerBGView.originY = ScreenHeight;
+        
     } completion:^(BOOL finished) {
         [self.maskView removeFromSuperview];
     }];
