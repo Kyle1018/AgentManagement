@@ -19,13 +19,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    backBtn.frame = CGRectMake(0, 0, 44, 44);
-    [backBtn setImage:[UIImage imageNamed:@"Back"] forState:UIControlStateNormal];
-    [backBtn addTarget:self action:@selector(doBack:) forControlEvents:UIControlEventTouchUpInside];
-    [backBtn setImageEdgeInsets:UIEdgeInsetsMake(0,0 , 0, 22)];
-    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
-    self.navigationItem.leftBarButtonItem=backItem;
+   
+    NSArray *viewcontrollers=self.navigationController.viewControllers;
+    if (viewcontrollers.count>1) {
+        
+        UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        backBtn.frame = CGRectMake(0, 0, 44, 44);
+        [backBtn setImage:[UIImage imageNamed:@"Back"] forState:UIControlStateNormal];
+        [backBtn addTarget:self action:@selector(doBack:) forControlEvents:UIControlEventTouchUpInside];
+        [backBtn setImageEdgeInsets:UIEdgeInsetsMake(0,0 , 0, 22)];
+        UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
+        self.navigationItem.leftBarButtonItem=backItem;
+    }
     
 }
 

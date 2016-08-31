@@ -2,12 +2,12 @@
 //  MeViewController.h
 //  AgentManagement
 //
-//  Created by 郭华滨 on 16/8/1.
+//  Created by huabin on 16/8/31.
 //  Copyright © 2016年 KK. All rights reserved.
 //
 
-#import "BaseViewController.h"
+#import "BaseTableViewController.h"
 
-@interface MeViewController : BaseViewController
+@interface MeViewController : BaseTableViewController
 
 @end
