@@ -69,9 +69,9 @@
 		27E26B4B1D6B1D360072F26E /* AddProductViewControllerA.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E26B2A1D6B1D360072F26E /* AddProductViewControllerA.m */; };
 		27E26B4C1D6B1D360072F26E /* AddProductViewControllerB.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E26B2C1D6B1D360072F26E /* AddProductViewControllerB.m */; };
 		27E26B4D1D6B1D360072F26E /* AddProductViewControllerC.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E26B2E1D6B1D360072F26E /* AddProductViewControllerC.m */; };
-		27E26B4E1D6B1D360072F26E /* AlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E26B301D6B1D360072F26E /* AlertController.m */; };
-		27E26B4F1D6B1D360072F26E /* AlertController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27E26B311D6B1D360072F26E /* AlertController.xib */; };
 		27E26B501D6B1D360072F26E /* ProductManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E26B331D6B1D360072F26E /* ProductManageViewController.m */; };
+		34EE98211D76B6AE0040C997 /* AlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EE981F1D76B6AE0040C997 /* AlertController.m */; };
+		34EE98221D76B6AE0040C997 /* AlertController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34EE98201D76B6AE0040C997 /* AlertController.xib */; };
 		BF9F2BB189B26DBF3F73AD65 /* libPods-AgentManagement.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C806F49AB69A45A297CCBD97 /* libPods-AgentManagement.a */; };
 		E221EEB91D4F8B68005B3417 /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = E221EEB81D4F8B68005B3417 /* BaseNavigationController.m */; };
 		E221EEBD1D4F8B9D005B3417 /* BaseTabbarController.m in Sources */ = {isa = PBXBuildFile; fileRef = E221EEBC1D4F8B9D005B3417 /* BaseTabbarController.m */; };
@@ -225,11 +225,11 @@
 		27E26B2C1D6B1D360072F26E /* AddProductViewControllerB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddProductViewControllerB.m; sourceTree = "<group>"; };
 		27E26B2D1D6B1D360072F26E /* AddProductViewControllerC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddProductViewControllerC.h; sourceTree = "<group>"; };
 		27E26B2E1D6B1D360072F26E /* AddProductViewControllerC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddProductViewControllerC.m; sourceTree = "<group>"; };
-		27E26B2F1D6B1D360072F26E /* AlertController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertController.h; sourceTree = "<group>"; };
-		27E26B301D6B1D360072F26E /* AlertController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertController.m; sourceTree = "<group>"; };
-		27E26B311D6B1D360072F26E /* AlertController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlertController.xib; sourceTree = "<group>"; };
 		27E26B321D6B1D360072F26E /* ProductManageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductManageViewController.h; sourceTree = "<group>"; };
 		27E26B331D6B1D360072F26E /* ProductManageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductManageViewController.m; sourceTree = "<group>"; };
+		34EE981E1D76B6AE0040C997 /* AlertController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertController.h; sourceTree = "<group>"; };
+		34EE981F1D76B6AE0040C997 /* AlertController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertController.m; sourceTree = "<group>"; };
+		34EE98201D76B6AE0040C997 /* AlertController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlertController.xib; sourceTree = "<group>"; };
 		478FBB2CEED5387933066CAF /* Pods-AgentManagement.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgentManagement.release.xcconfig"; path = "Pods/Target Support Files/Pods-AgentManagement/Pods-AgentManagement.release.xcconfig"; sourceTree = "<group>"; };
 		A4D39D6814FFFBB4493A8E64 /* Pods-AgentManagement.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgentManagement.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AgentManagement/Pods-AgentManagement.debug.xcconfig"; sourceTree = "<group>"; };
 		C806F49AB69A45A297CCBD97 /* libPods-AgentManagement.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AgentManagement.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -442,13 +442,6 @@
 			path = IdentifyCode;
 			sourceTree = "<group>";
 		};
-		27CA01341D6B1159009F9A25 /* Control */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Control;
-			sourceTree = "<group>";
-		};
 		27CA01351D6B1167009F9A25 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -630,9 +623,6 @@
 				27E26B2C1D6B1D360072F26E /* AddProductViewControllerB.m */,
 				27E26B2D1D6B1D360072F26E /* AddProductViewControllerC.h */,
 				27E26B2E1D6B1D360072F26E /* AddProductViewControllerC.m */,
-				27E26B2F1D6B1D360072F26E /* AlertController.h */,
-				27E26B301D6B1D360072F26E /* AlertController.m */,
-				27E26B311D6B1D360072F26E /* AlertController.xib */,
 				27E26B321D6B1D360072F26E /* ProductManageViewController.h */,
 				27E26B331D6B1D360072F26E /* ProductManageViewController.m */,
 				E24BF4461D734AAD0054DFDC /* SearchMenuViewController.h */,
@@ -654,6 +644,24 @@
 				E24BF4561D73EFC70054DFDC /* MenuHeaderView.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		34EE98171D76B62E0040C997 /* Control:View */ = {
+			isa = PBXGroup;
+			children = (
+				34EE981D1D76B68E0040C997 /* Alert */,
+			);
+			path = "Control:View";
+			sourceTree = "<group>";
+		};
+		34EE981D1D76B68E0040C997 /* Alert */ = {
+			isa = PBXGroup;
+			children = (
+				34EE981E1D76B6AE0040C997 /* AlertController.h */,
+				34EE981F1D76B6AE0040C997 /* AlertController.m */,
+				34EE98201D76B6AE0040C997 /* AlertController.xib */,
+			);
+			path = Alert;
 			sourceTree = "<group>";
 		};
 		9A8A467E971840DF1695F233 /* Pods */ = {
@@ -749,7 +757,7 @@
 		E2FA0BEE1D4CFF000094A6FE /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				27CA01341D6B1159009F9A25 /* Control */,
+				34EE98171D76B62E0040C997 /* Control:View */,
 				E221EEBA1D4F8B84005B3417 /* BaseTabbarController */,
 				E221EEB61D4F8B50005B3417 /* BaseNavigationController */,
 				E2FA0C1B1D4D03550094A6FE /* BaseViewController */,
@@ -910,7 +918,7 @@
 				E27B06291D616A7000ED18D1 /* address.plist in Resources */,
 				27E26B4A1D6B1D360072F26E /* ProductManage.storyboard in Resources */,
 				27E26B3A1D6B1D360072F26E /* CostManage.storyboard in Resources */,
-				27E26B4F1D6B1D360072F26E /* AlertController.xib in Resources */,
+				34EE98221D76B6AE0040C997 /* AlertController.xib in Resources */,
 				270704C91D45F9A900633390 /* Assets.xcassets in Resources */,
 				27E26B481D6B1D360072F26E /* Me.storyboard in Resources */,
 				27E26B451D6B1D360072F26E /* Land.storyboard in Resources */,
@@ -993,6 +1001,7 @@
 				E2FA0C1E1D4D036F0094A6FE /* BaseViewController.m in Sources */,
 				E24BF4831D755C690054DFDC /* AMAddProductRequest.m in Sources */,
 				27E26B411D6B1D360072F26E /* CustomerManageViewController.m in Sources */,
+				34EE98211D76B6AE0040C997 /* AlertController.m in Sources */,
 				275F32951D717B210033C8FF /* ASICloudFilesContainer.m in Sources */,
 				27E26B3F1D6B1D360072F26E /* AddCustomerViewControllerC.m in Sources */,
 				E24BF4801D7475240054DFDC /* ProductDetailViewController.m in Sources */,
@@ -1030,7 +1039,6 @@
 				27E26B491D6B1D360072F26E /* MeViewController.m in Sources */,
 				270704BE1D45F9A900633390 /* main.m in Sources */,
 				275F329C1D717B210033C8FF /* ASIS3BucketObject.m in Sources */,
-				27E26B4E1D6B1D360072F26E /* AlertController.m in Sources */,
 				E24BF4861D75DDFF0054DFDC /* CustomerManageCell.m in Sources */,
 				27E26B431D6B1D360072F26E /* DataAnalysisViewController.m in Sources */,
 				E2FA0C0B1D4CFF000094A6FE /* KKAppUtility.m in Sources */,
