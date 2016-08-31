@@ -49,8 +49,6 @@
 		27CA014A1D6B116F009F9A25 /* AMLoginRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA01411D6B116F009F9A25 /* AMLoginRequest.m */; };
 		27CA014B1D6B116F009F9A25 /* AMLogoutRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA01441D6B116F009F9A25 /* AMLogoutRequest.m */; };
 		27CA014C1D6B116F009F9A25 /* AMRegisterRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA01471D6B116F009F9A25 /* AMRegisterRequest.m */; };
-		27E26B3A1D6B1D360072F26E /* CostManage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27E26B041D6B1D360072F26E /* CostManage.storyboard */; };
-		27E26B3B1D6B1D360072F26E /* CostManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E26B061D6B1D360072F26E /* CostManageViewController.m */; };
 		27E26B3C1D6B1D360072F26E /* CustomerManage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27E26B091D6B1D360072F26E /* CustomerManage.storyboard */; };
 		27E26B3D1D6B1D360072F26E /* AddCustomerViewControllerA.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E26B0C1D6B1D360072F26E /* AddCustomerViewControllerA.m */; };
 		27E26B3E1D6B1D360072F26E /* AddCustomerViewControllerB.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E26B0E1D6B1D360072F26E /* AddCustomerViewControllerB.m */; };
@@ -74,6 +72,9 @@
 		34EE98251D76BAF90040C997 /* CSearchMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EE98241D76BAF90040C997 /* CSearchMenuViewController.m */; };
 		34EE98281D76E0430040C997 /* MeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EE98271D76E0430040C997 /* MeViewController.m */; };
 		BF9F2BB189B26DBF3F73AD65 /* libPods-AgentManagement.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C806F49AB69A45A297CCBD97 /* libPods-AgentManagement.a */; };
+		E21947281D7714E1001C5E5F /* CostManage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E21947271D7714E1001C5E5F /* CostManage.storyboard */; };
+		E219472C1D7714EC001C5E5F /* CostManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E219472B1D7714EC001C5E5F /* CostManageViewController.m */; };
+		E21947301D771525001C5E5F /* CostManageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E219472F1D771525001C5E5F /* CostManageTableViewCell.m */; };
 		E221EEB91D4F8B68005B3417 /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = E221EEB81D4F8B68005B3417 /* BaseNavigationController.m */; };
 		E221EEBD1D4F8B9D005B3417 /* BaseTabbarController.m in Sources */ = {isa = PBXBuildFile; fileRef = E221EEBC1D4F8B9D005B3417 /* BaseTabbarController.m */; };
 		E221EEE81D4F9EFB005B3417 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E221EEE71D4F9EFB005B3417 /* Launch Screen.storyboard */; };
@@ -192,9 +193,6 @@
 		27CA01461D6B116F009F9A25 /* AMRegisterRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMRegisterRequest.h; sourceTree = "<group>"; };
 		27CA01471D6B116F009F9A25 /* AMRegisterRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMRegisterRequest.m; sourceTree = "<group>"; };
 		27CA014D1D6B11E6009F9A25 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
-		27E26B041D6B1D360072F26E /* CostManage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CostManage.storyboard; sourceTree = "<group>"; };
-		27E26B051D6B1D360072F26E /* CostManageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CostManageViewController.h; sourceTree = "<group>"; };
-		27E26B061D6B1D360072F26E /* CostManageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CostManageViewController.m; sourceTree = "<group>"; };
 		27E26B091D6B1D360072F26E /* CustomerManage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CustomerManage.storyboard; sourceTree = "<group>"; };
 		27E26B0B1D6B1D360072F26E /* AddCustomerViewControllerA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddCustomerViewControllerA.h; sourceTree = "<group>"; };
 		27E26B0C1D6B1D360072F26E /* AddCustomerViewControllerA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddCustomerViewControllerA.m; sourceTree = "<group>"; };
@@ -236,6 +234,11 @@
 		478FBB2CEED5387933066CAF /* Pods-AgentManagement.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgentManagement.release.xcconfig"; path = "Pods/Target Support Files/Pods-AgentManagement/Pods-AgentManagement.release.xcconfig"; sourceTree = "<group>"; };
 		A4D39D6814FFFBB4493A8E64 /* Pods-AgentManagement.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgentManagement.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AgentManagement/Pods-AgentManagement.debug.xcconfig"; sourceTree = "<group>"; };
 		C806F49AB69A45A297CCBD97 /* libPods-AgentManagement.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AgentManagement.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E21947271D7714E1001C5E5F /* CostManage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CostManage.storyboard; sourceTree = "<group>"; };
+		E219472A1D7714EC001C5E5F /* CostManageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CostManageViewController.h; sourceTree = "<group>"; };
+		E219472B1D7714EC001C5E5F /* CostManageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CostManageViewController.m; sourceTree = "<group>"; };
+		E219472E1D771525001C5E5F /* CostManageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CostManageTableViewCell.h; sourceTree = "<group>"; };
+		E219472F1D771525001C5E5F /* CostManageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CostManageTableViewCell.m; sourceTree = "<group>"; };
 		E221EEB71D4F8B68005B3417 /* BaseNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseNavigationController.h; sourceTree = "<group>"; };
 		E221EEB81D4F8B68005B3417 /* BaseNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseNavigationController.m; sourceTree = "<group>"; };
 		E221EEBB1D4F8B9D005B3417 /* BaseTabbarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTabbarController.h; sourceTree = "<group>"; };
@@ -522,9 +525,9 @@
 		27E26B031D6B1D360072F26E /* CostManagePage */ = {
 			isa = PBXGroup;
 			children = (
-				27E26B041D6B1D360072F26E /* CostManage.storyboard */,
-				27E26B051D6B1D360072F26E /* CostManageViewController.h */,
-				27E26B061D6B1D360072F26E /* CostManageViewController.m */,
+				E219472D1D7714F3001C5E5F /* View */,
+				E21947291D7714EC001C5E5F /* VC */,
+				E21947261D7714E1001C5E5F /* SB */,
 			);
 			path = CostManagePage;
 			sourceTree = "<group>";
@@ -686,6 +689,32 @@
 				C806F49AB69A45A297CCBD97 /* libPods-AgentManagement.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E21947261D7714E1001C5E5F /* SB */ = {
+			isa = PBXGroup;
+			children = (
+				E21947271D7714E1001C5E5F /* CostManage.storyboard */,
+			);
+			path = SB;
+			sourceTree = "<group>";
+		};
+		E21947291D7714EC001C5E5F /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				E219472A1D7714EC001C5E5F /* CostManageViewController.h */,
+				E219472B1D7714EC001C5E5F /* CostManageViewController.m */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
+		E219472D1D7714F3001C5E5F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E219472E1D771525001C5E5F /* CostManageTableViewCell.h */,
+				E219472F1D771525001C5E5F /* CostManageTableViewCell.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		E221EEB61D4F8B50005B3417 /* BaseNavigationController */ = {
@@ -917,12 +946,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E21947281D7714E1001C5E5F /* CostManage.storyboard in Resources */,
 				27E26B3C1D6B1D360072F26E /* CustomerManage.storyboard in Resources */,
 				E221EEE81D4F9EFB005B3417 /* Launch Screen.storyboard in Resources */,
 				27E26B421D6B1D360072F26E /* DataAnalysis.storyboard in Resources */,
 				E27B06291D616A7000ED18D1 /* address.plist in Resources */,
 				27E26B4A1D6B1D360072F26E /* ProductManage.storyboard in Resources */,
-				27E26B3A1D6B1D360072F26E /* CostManage.storyboard in Resources */,
 				34EE98221D76B6AE0040C997 /* AlertController.xib in Resources */,
 				270704C91D45F9A900633390 /* Assets.xcassets in Resources */,
 				27E26B481D6B1D360072F26E /* Me.storyboard in Resources */,
@@ -1022,6 +1051,7 @@
 				275F32961D717B210033C8FF /* ASICloudFilesContainerRequest.m in Sources */,
 				275F32971D717B210033C8FF /* ASICloudFilesContainerXMLParserDelegate.m in Sources */,
 				E24BF4511D7355760054DFDC /* MenuCollectionViewCell.m in Sources */,
+				E219472C1D7714EC001C5E5F /* CostManageViewController.m in Sources */,
 				275F328B1D717B210033C8FF /* ASIAuthenticationDialog.m in Sources */,
 				27E26B3E1D6B1D360072F26E /* AddCustomerViewControllerB.m in Sources */,
 				275F328D1D717B210033C8FF /* ASIDataDecompressor.m in Sources */,
@@ -1072,8 +1102,8 @@
 				275F32B71D718A8A0033C8FF /* NSData+KKAdditions.m in Sources */,
 				27E26B401D6B1D360072F26E /* CustomerDetailViewController.m in Sources */,
 				27E26B4C1D6B1D360072F26E /* AddProductViewControllerB.m in Sources */,
+				E21947301D771525001C5E5F /* CostManageTableViewCell.m in Sources */,
 				275F32B01D717B210033C8FF /* Reachability.m in Sources */,
-				27E26B3B1D6B1D360072F26E /* CostManageViewController.m in Sources */,
 				275F32981D717B210033C8FF /* ASICloudFilesObject.m in Sources */,
 				275F329B1D717B210033C8FF /* ASIS3Bucket.m in Sources */,
 				275F329F1D717B210033C8FF /* ASIS3Request.m in Sources */,

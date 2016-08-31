@@ -7,7 +7,7 @@
 //
 
 #import "CostManageViewController.h"
-
+#import "CostManageTableViewCell.h"
 @interface CostManageViewController ()
 
 @end
@@ -23,6 +23,25 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
+    return 3;
+}
+
+- (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    static NSString *cellID = @"CostManageCellID";
+    
+    CostManageTableViewCell*cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    
+    if (!cell) {
+        
+        cell =[[CostManageTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+    }
+    return cell;
+}
+
 
 /*
 #pragma mark - Navigation
