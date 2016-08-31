@@ -9,7 +9,10 @@
 #import "CustomerManageViewController.h"
 #import "CustomerDetailViewController.h"
 #import "CustomerManageCell.h"
+#import "CSearchMenuViewController.h"
 @interface CustomerManageViewController ()<UITableViewDelegate,UITableViewDataSource>
+
+@property(nonatomic,strong)CSearchMenuViewController *cSearchMenuVC;
 
 @end
 
@@ -41,5 +44,11 @@
 }
 
 
+- (IBAction)searchMenuAction:(UIButton *)sender {
+    
+    UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"CustomerManage" bundle:nil];
+    _cSearchMenuVC = [storyboard instantiateViewControllerWithIdentifier:@"CSearchMenuID"];
+    [[UIApplication sharedApplication].keyWindow addSubview:_cSearchMenuVC.view];
+}
 
 @end

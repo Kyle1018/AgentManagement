@@ -72,12 +72,13 @@
 		27E26B501D6B1D360072F26E /* ProductManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E26B331D6B1D360072F26E /* ProductManageViewController.m */; };
 		34EE98211D76B6AE0040C997 /* AlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EE981F1D76B6AE0040C997 /* AlertController.m */; };
 		34EE98221D76B6AE0040C997 /* AlertController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34EE98201D76B6AE0040C997 /* AlertController.xib */; };
+		34EE98251D76BAF90040C997 /* CSearchMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EE98241D76BAF90040C997 /* CSearchMenuViewController.m */; };
 		BF9F2BB189B26DBF3F73AD65 /* libPods-AgentManagement.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C806F49AB69A45A297CCBD97 /* libPods-AgentManagement.a */; };
 		E221EEB91D4F8B68005B3417 /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = E221EEB81D4F8B68005B3417 /* BaseNavigationController.m */; };
 		E221EEBD1D4F8B9D005B3417 /* BaseTabbarController.m in Sources */ = {isa = PBXBuildFile; fileRef = E221EEBC1D4F8B9D005B3417 /* BaseTabbarController.m */; };
 		E221EEE81D4F9EFB005B3417 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E221EEE71D4F9EFB005B3417 /* Launch Screen.storyboard */; };
 		E221EF8A1D603238005B3417 /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E221EF891D603238005B3417 /* BaseTableViewController.m */; };
-		E24BF4481D734AAD0054DFDC /* SearchMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E24BF4471D734AAD0054DFDC /* SearchMenuViewController.m */; };
+		E24BF4481D734AAD0054DFDC /* PSearchMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E24BF4471D734AAD0054DFDC /* PSearchMenuViewController.m */; };
 		E24BF4511D7355760054DFDC /* MenuCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E24BF4501D7355760054DFDC /* MenuCollectionViewCell.m */; };
 		E24BF4571D73EFC70054DFDC /* MenuHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = E24BF4561D73EFC70054DFDC /* MenuHeaderView.m */; };
 		E24BF45F1D7414360054DFDC /* AMProductAndModelListRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = E24BF45E1D7414360054DFDC /* AMProductAndModelListRequest.m */; };
@@ -230,6 +231,8 @@
 		34EE981E1D76B6AE0040C997 /* AlertController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertController.h; sourceTree = "<group>"; };
 		34EE981F1D76B6AE0040C997 /* AlertController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertController.m; sourceTree = "<group>"; };
 		34EE98201D76B6AE0040C997 /* AlertController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlertController.xib; sourceTree = "<group>"; };
+		34EE98231D76BAF90040C997 /* CSearchMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSearchMenuViewController.h; sourceTree = "<group>"; };
+		34EE98241D76BAF90040C997 /* CSearchMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSearchMenuViewController.m; sourceTree = "<group>"; };
 		478FBB2CEED5387933066CAF /* Pods-AgentManagement.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgentManagement.release.xcconfig"; path = "Pods/Target Support Files/Pods-AgentManagement/Pods-AgentManagement.release.xcconfig"; sourceTree = "<group>"; };
 		A4D39D6814FFFBB4493A8E64 /* Pods-AgentManagement.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgentManagement.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AgentManagement/Pods-AgentManagement.debug.xcconfig"; sourceTree = "<group>"; };
 		C806F49AB69A45A297CCBD97 /* libPods-AgentManagement.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AgentManagement.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -240,8 +243,8 @@
 		E221EEE71D4F9EFB005B3417 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		E221EF881D603238005B3417 /* BaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewController.h; sourceTree = "<group>"; };
 		E221EF891D603238005B3417 /* BaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewController.m; sourceTree = "<group>"; };
-		E24BF4461D734AAD0054DFDC /* SearchMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchMenuViewController.h; sourceTree = "<group>"; };
-		E24BF4471D734AAD0054DFDC /* SearchMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchMenuViewController.m; sourceTree = "<group>"; };
+		E24BF4461D734AAD0054DFDC /* PSearchMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSearchMenuViewController.h; sourceTree = "<group>"; };
+		E24BF4471D734AAD0054DFDC /* PSearchMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSearchMenuViewController.m; sourceTree = "<group>"; };
 		E24BF44F1D7355760054DFDC /* MenuCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuCollectionViewCell.h; sourceTree = "<group>"; };
 		E24BF4501D7355760054DFDC /* MenuCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuCollectionViewCell.m; sourceTree = "<group>"; };
 		E24BF4551D73EFC70054DFDC /* MenuHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuHeaderView.h; sourceTree = "<group>"; };
@@ -557,6 +560,8 @@
 				27E26B121D6B1D360072F26E /* CustomerDetailViewController.m */,
 				27E26B131D6B1D360072F26E /* CustomerManageViewController.h */,
 				27E26B141D6B1D360072F26E /* CustomerManageViewController.m */,
+				34EE98231D76BAF90040C997 /* CSearchMenuViewController.h */,
+				34EE98241D76BAF90040C997 /* CSearchMenuViewController.m */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -625,8 +630,8 @@
 				27E26B2E1D6B1D360072F26E /* AddProductViewControllerC.m */,
 				27E26B321D6B1D360072F26E /* ProductManageViewController.h */,
 				27E26B331D6B1D360072F26E /* ProductManageViewController.m */,
-				E24BF4461D734AAD0054DFDC /* SearchMenuViewController.h */,
-				E24BF4471D734AAD0054DFDC /* SearchMenuViewController.m */,
+				E24BF4461D734AAD0054DFDC /* PSearchMenuViewController.h */,
+				E24BF4471D734AAD0054DFDC /* PSearchMenuViewController.m */,
 				E24BF47E1D7475240054DFDC /* ProductDetailViewController.h */,
 				E24BF47F1D7475240054DFDC /* ProductDetailViewController.m */,
 			);
@@ -1063,7 +1068,7 @@
 				27CA01331D6B10E4009F9A25 /* UIView+KKAdditions.m in Sources */,
 				275F328E1D717B210033C8FF /* ASIDownloadCache.m in Sources */,
 				E2FA0C061D4CFF000094A6FE /* KKBaseRequest.m in Sources */,
-				E24BF4481D734AAD0054DFDC /* SearchMenuViewController.m in Sources */,
+				E24BF4481D734AAD0054DFDC /* PSearchMenuViewController.m in Sources */,
 				E24BF46A1D741AB00054DFDC /* AMProductRelatedInformationRequest.m in Sources */,
 				275F32B71D718A8A0033C8FF /* NSData+KKAdditions.m in Sources */,
 				27E26B401D6B1D360072F26E /* CustomerDetailViewController.m in Sources */,
@@ -1073,6 +1078,7 @@
 				275F32981D717B210033C8FF /* ASICloudFilesObject.m in Sources */,
 				275F329B1D717B210033C8FF /* ASIS3Bucket.m in Sources */,
 				275F329F1D717B210033C8FF /* ASIS3Request.m in Sources */,
+				34EE98251D76BAF90040C997 /* CSearchMenuViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

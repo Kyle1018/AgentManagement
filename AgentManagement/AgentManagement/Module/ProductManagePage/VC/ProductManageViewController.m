@@ -8,7 +8,7 @@
 
 #import "ProductManageViewController.h"
 #import "ProductManageTableViewCell.h"
-#import "SearchMenuViewController.h"
+#import "PSearchMenuViewController.h"
 #import "ProductManageViewModel.h"
 #import "ProductDetailViewController.h"
 @interface ProductManageViewController ()<UITableViewDelegate,UITableViewDataSource>
@@ -21,8 +21,7 @@
 
 @property(nonatomic,strong)ProductManageViewModel *viewModel;
 
-
-@property(nonatomic,strong)SearchMenuViewController*searchMenuVC;
+@property(nonatomic,strong)PSearchMenuViewController*searchMenuVC;
 @end
 
 @implementation ProductManageViewController

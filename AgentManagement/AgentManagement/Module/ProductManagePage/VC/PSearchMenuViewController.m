@@ -6,10 +6,10 @@
 //  Copyright © 2016年 KK. All rights reserved.
 //
 
-#import "SearchMenuViewController.h"
+#import "PSearchMenuViewController.h"
 #import "MenuCollectionViewCell.h"
 #import "MenuHeaderView.h"
-@interface SearchMenuViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
+@interface PSearchMenuViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *MenuCollectionView;
 
@@ -33,10 +33,11 @@
 
 @end
 
-@implementation SearchMenuViewController
+@implementation PSearchMenuViewController
 
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
 
     self.view.backgroundColor=[UIColor clearColor];

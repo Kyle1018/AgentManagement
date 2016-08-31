@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SearchMenuViewController : UIViewController
+@interface PSearchMenuViewController : UIViewController
 
 @end
