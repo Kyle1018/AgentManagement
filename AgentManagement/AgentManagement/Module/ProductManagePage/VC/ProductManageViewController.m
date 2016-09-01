@@ -79,9 +79,24 @@
 
      __weak typeof(self) weakSelf = self;
     
-    [[[self.viewModel requstProductInformationData]filter:^BOOL(RACTuple* value) {
-        
-        if ([[value first]boolValue] == YES && [[value second]boolValue] == YES) {
+//    [[[self.viewModel requstProductInformationData]filter:^BOOL(RACTuple* value) {
+//        
+//        if ([[value first]boolValue] == YES && [[value second]boolValue] == YES) {
+//            
+//            return YES;
+//        }
+//        else {
+//            
+//            return NO;
+//        }
+//    }]subscribeNext:^(RACTuple* x) {
+//        //刷新表视图
+//        [weakSelf.formTabelView reloadData];
+//    }];
+
+    [[[self.viewModel requstProductInformationData]filter:^BOOL(id value) {
+       
+        if ([value boolValue] == YES) {
             
             return YES;
         }
@@ -89,22 +104,23 @@
             
             return NO;
         }
-    }]subscribeNext:^(RACTuple* x) {
+        
+    }]subscribeNext:^(id x) {
+       
         //刷新表视图
         [weakSelf.formTabelView reloadData];
     }];
-
 }
 
 - (void)observeData {
     
     __weak typeof(self) weakSelf = self;
-
-    [RACObserve(self.viewModel, productAndModelArray)subscribeNext:^(NSMutableArray* x) {
-       
-        weakSelf.brandAndPmodelDataArray = x;
-        NSLog(@"%@",weakSelf.brandAndPmodelDataArray);
-    }];
+//
+//    [RACObserve(self.viewModel, productAndModelArray)subscribeNext:^(NSMutableArray* x) {
+//       
+//        weakSelf.brandAndPmodelDataArray = x;
+//        NSLog(@"%@",weakSelf.brandAndPmodelDataArray);
+//    }];
     
     [RACObserve(self.viewModel, productRelatedInformationArray)subscribeNext:^(NSMutableArray* x) {
         
@@ -137,7 +153,7 @@
 
     UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"ProductManage" bundle:nil];
     _searchMenuVC = [storyboard instantiateViewControllerWithIdentifier:@"SearchMenuViewID"];
-    _searchMenuVC.brandAndModelDataArray = self.brandAndPmodelDataArray;
+  //  _searchMenuVC.brandAndModelDataArray = self.brandAndPmodelDataArray;
     _searchMenuVC.productRelatedInformationArray = self.productRelatedInformationArray;
     [[UIApplication sharedApplication].keyWindow addSubview:_searchMenuVC.view];
 }

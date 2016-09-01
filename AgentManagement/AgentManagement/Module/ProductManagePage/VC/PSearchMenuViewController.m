@@ -81,13 +81,13 @@
     
     NSMutableArray *pmodelArray = [NSMutableArray array];//产品型号
     
-    for (AMProductAndModel *model in self.brandAndModelDataArray) {
-        
-        [brandArray addObject:model.brand];
-        
-        [pmodelArray addObjectsFromArray:model.pmodel];
-        
-    }
+//    for (AMProductAndModel *model in self.brandAndModelDataArray) {
+//        
+//        [brandArray addObject:model.brand];
+//        
+//        [pmodelArray addObjectsFromArray:model.pmodel];
+//        
+//    }
     
     
 //    self.heaerDataArray = @[@"品牌",@"型号",@"直接饮用",@"过滤介质",@"产品特点",@"摆放位置",@"滤芯个数",@"适用地区",@"零售价格",@"换滤芯周期"];

@@ -111,55 +111,55 @@
     
     __weak typeof(self) weakSelf = self;
 
-    RACSignal *productNameAndPmodelSignal = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-        
-        weakSelf.pmRequest = [[AMProductAndModelListRequest alloc] init];
-        
-        [weakSelf.pmRequest requestWithSuccess:^(KKBaseModel *model, KKRequestError *error) {
-            
-            AMBaseModel *baseModel = (AMBaseModel*)model;
-            
-            NSMutableArray *dataArray = [NSMutableArray array];
-            
-            for (NSDictionary *dic in baseModel.data) {
-                
-                AMProductAndModel *productAndModel = [[AMProductAndModel alloc] initWithDictionary:dic error:nil];
-                
-                for (int i = 0; i<productAndModel.pmodel.count; i++) {
-                    
-                    NSDictionary *dic = productAndModel.pmodel[i];
-                    
-                    NSString *pmodel = dic[@"value"];
-                    
-                    [productAndModel.pmodel replaceObjectAtIndex:i withObject:pmodel];
-                }
-                
-                [dataArray addObject:productAndModel];
-            }
-            
-            
-            weakSelf.productAndModelArray = dataArray;
-            
-            if (weakSelf.productAndModelArray.count > 0) {
-                
-                [subscriber sendNext:@(YES)];
-                [subscriber sendCompleted];
-            }
-            else {
-                
-                [subscriber sendNext:@(NO)];
-                [subscriber sendCompleted];
-            }
-            
-            
-        } failure:^(KKBaseModel *model, KKRequestError *error) {
-            NSLog(@"%@", model);
-            
-            [subscriber sendError:error];
-        }];
-        
-        return nil;
-    }];
+//    RACSignal *productNameAndPmodelSignal = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+//        
+//        weakSelf.pmRequest = [[AMProductAndModelListRequest alloc] init];
+//        
+//        [weakSelf.pmRequest requestWithSuccess:^(KKBaseModel *model, KKRequestError *error) {
+//            
+//            AMBaseModel *baseModel = (AMBaseModel*)model;
+//            
+//            NSMutableArray *dataArray = [NSMutableArray array];
+//            
+//            for (NSDictionary *dic in baseModel.data) {
+//                
+//                AMProductAndModel *productAndModel = [[AMProductAndModel alloc] initWithDictionary:dic error:nil];
+//                
+//                for (int i = 0; i<productAndModel.pmodel.count; i++) {
+//                    
+//                    NSDictionary *dic = productAndModel.pmodel[i];
+//                    
+//                    NSString *pmodel = dic[@"value"];
+//                    
+//                    [productAndModel.pmodel replaceObjectAtIndex:i withObject:pmodel];
+//                }
+//                
+//                [dataArray addObject:productAndModel];
+//            }
+//            
+//            
+//            weakSelf.productAndModelArray = dataArray;
+//            
+//            if (weakSelf.productAndModelArray.count > 0) {
+//                
+//                [subscriber sendNext:@(YES)];
+//                [subscriber sendCompleted];
+//            }
+//            else {
+//                
+//                [subscriber sendNext:@(NO)];
+//                [subscriber sendCompleted];
+//            }
+//            
+//            
+//        } failure:^(KKBaseModel *model, KKRequestError *error) {
+//            NSLog(@"%@", model);
+//            
+//            [subscriber sendError:error];
+//        }];
+//        
+//        return nil;
+//    }];
     
     RACSignal *productRelatedSignal = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
         
@@ -207,7 +207,9 @@
         return nil;
     }];
 
-    return [RACSignal combineLatest:@[productNameAndPmodelSignal,productRelatedSignal]];
+    
+    return productRelatedSignal;
+   // return [RACSignal combineLatest:@[productNameAndPmodelSignal,productRelatedSignal]];
 }
 
 - (RACSignal*)requstAddProductData:(NSDictionary*)paramt {

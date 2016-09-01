@@ -61,7 +61,6 @@
 		27E26B451D6B1D360072F26E /* Land.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27E26B1C1D6B1D360072F26E /* Land.storyboard */; };
 		27E26B461D6B1D360072F26E /* LandViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E26B1E1D6B1D360072F26E /* LandViewController.m */; };
 		27E26B471D6B1D360072F26E /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E26B201D6B1D360072F26E /* RegisterViewController.m */; };
-		27E26B481D6B1D360072F26E /* Me.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27E26B221D6B1D360072F26E /* Me.storyboard */; };
 		27E26B4A1D6B1D360072F26E /* ProductManage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27E26B271D6B1D360072F26E /* ProductManage.storyboard */; };
 		27E26B4B1D6B1D360072F26E /* AddProductViewControllerA.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E26B2A1D6B1D360072F26E /* AddProductViewControllerA.m */; };
 		27E26B4C1D6B1D360072F26E /* AddProductViewControllerB.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E26B2C1D6B1D360072F26E /* AddProductViewControllerB.m */; };
@@ -70,13 +69,21 @@
 		34EE98211D76B6AE0040C997 /* AlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EE981F1D76B6AE0040C997 /* AlertController.m */; };
 		34EE98221D76B6AE0040C997 /* AlertController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34EE98201D76B6AE0040C997 /* AlertController.xib */; };
 		34EE98251D76BAF90040C997 /* CSearchMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EE98241D76BAF90040C997 /* CSearchMenuViewController.m */; };
-		34EE98281D76E0430040C997 /* MeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EE98271D76E0430040C997 /* MeViewController.m */; };
 		BF9F2BB189B26DBF3F73AD65 /* libPods-AgentManagement.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C806F49AB69A45A297CCBD97 /* libPods-AgentManagement.a */; };
 		E21947281D7714E1001C5E5F /* CostManage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E21947271D7714E1001C5E5F /* CostManage.storyboard */; };
 		E219472C1D7714EC001C5E5F /* CostManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E219472B1D7714EC001C5E5F /* CostManageViewController.m */; };
 		E21947301D771525001C5E5F /* CostManageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E219472F1D771525001C5E5F /* CostManageTableViewCell.m */; };
 		E21947391D771B64001C5E5F /* CoSearchMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E21947381D771B64001C5E5F /* CoSearchMenuViewController.m */; };
 		E219473C1D772194001C5E5F /* CostManageDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E219473B1D772194001C5E5F /* CostManageDetailViewController.m */; };
+		E21947421D786209001C5E5F /* Me.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E21947411D786209001C5E5F /* Me.storyboard */; };
+		E21947461D786214001C5E5F /* MeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E21947451D786214001C5E5F /* MeViewController.m */; };
+		E219474A1D786230001C5E5F /* AdministratorManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E21947491D786230001C5E5F /* AdministratorManageViewController.m */; };
+		E219474D1D7867DB001C5E5F /* AdministratorManageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E219474C1D7867DB001C5E5F /* AdministratorManageCell.m */; };
+		E21947531D786ECD001C5E5F /* SalerManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E21947521D786ECD001C5E5F /* SalerManageViewController.m */; };
+		E21947561D786F4D001C5E5F /* OperationlogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E21947551D786F4D001C5E5F /* OperationlogViewController.m */; };
+		E21947591D786F78001C5E5F /* SalerManageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E21947581D786F78001C5E5F /* SalerManageCell.m */; };
+		E219475C1D786F8D001C5E5F /* OperationlogCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E219475B1D786F8D001C5E5F /* OperationlogCell.m */; };
+		E219475F1D787459001C5E5F /* AddAdministratorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E219475E1D787459001C5E5F /* AddAdministratorViewController.m */; };
 		E221EEB91D4F8B68005B3417 /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = E221EEB81D4F8B68005B3417 /* BaseNavigationController.m */; };
 		E221EEBD1D4F8B9D005B3417 /* BaseTabbarController.m in Sources */ = {isa = PBXBuildFile; fileRef = E221EEBC1D4F8B9D005B3417 /* BaseTabbarController.m */; };
 		E221EEE81D4F9EFB005B3417 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E221EEE71D4F9EFB005B3417 /* Launch Screen.storyboard */; };
@@ -216,7 +223,6 @@
 		27E26B1E1D6B1D360072F26E /* LandViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LandViewController.m; sourceTree = "<group>"; };
 		27E26B1F1D6B1D360072F26E /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
 		27E26B201D6B1D360072F26E /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
-		27E26B221D6B1D360072F26E /* Me.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Me.storyboard; sourceTree = "<group>"; };
 		27E26B271D6B1D360072F26E /* ProductManage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ProductManage.storyboard; sourceTree = "<group>"; };
 		27E26B291D6B1D360072F26E /* AddProductViewControllerA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddProductViewControllerA.h; sourceTree = "<group>"; };
 		27E26B2A1D6B1D360072F26E /* AddProductViewControllerA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddProductViewControllerA.m; sourceTree = "<group>"; };
@@ -231,8 +237,6 @@
 		34EE98201D76B6AE0040C997 /* AlertController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlertController.xib; sourceTree = "<group>"; };
 		34EE98231D76BAF90040C997 /* CSearchMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSearchMenuViewController.h; sourceTree = "<group>"; };
 		34EE98241D76BAF90040C997 /* CSearchMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSearchMenuViewController.m; sourceTree = "<group>"; };
-		34EE98261D76E0430040C997 /* MeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeViewController.h; sourceTree = "<group>"; };
-		34EE98271D76E0430040C997 /* MeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeViewController.m; sourceTree = "<group>"; };
 		478FBB2CEED5387933066CAF /* Pods-AgentManagement.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgentManagement.release.xcconfig"; path = "Pods/Target Support Files/Pods-AgentManagement/Pods-AgentManagement.release.xcconfig"; sourceTree = "<group>"; };
 		A4D39D6814FFFBB4493A8E64 /* Pods-AgentManagement.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgentManagement.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AgentManagement/Pods-AgentManagement.debug.xcconfig"; sourceTree = "<group>"; };
 		C806F49AB69A45A297CCBD97 /* libPods-AgentManagement.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AgentManagement.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -245,6 +249,23 @@
 		E21947381D771B64001C5E5F /* CoSearchMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoSearchMenuViewController.m; sourceTree = "<group>"; };
 		E219473A1D772194001C5E5F /* CostManageDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CostManageDetailViewController.h; sourceTree = "<group>"; };
 		E219473B1D772194001C5E5F /* CostManageDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CostManageDetailViewController.m; sourceTree = "<group>"; };
+		E21947411D786209001C5E5F /* Me.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Me.storyboard; sourceTree = "<group>"; };
+		E21947441D786214001C5E5F /* MeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeViewController.h; sourceTree = "<group>"; };
+		E21947451D786214001C5E5F /* MeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeViewController.m; sourceTree = "<group>"; };
+		E21947481D786230001C5E5F /* AdministratorManageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdministratorManageViewController.h; sourceTree = "<group>"; };
+		E21947491D786230001C5E5F /* AdministratorManageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdministratorManageViewController.m; sourceTree = "<group>"; };
+		E219474B1D7867DB001C5E5F /* AdministratorManageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdministratorManageCell.h; sourceTree = "<group>"; };
+		E219474C1D7867DB001C5E5F /* AdministratorManageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdministratorManageCell.m; sourceTree = "<group>"; };
+		E21947511D786ECD001C5E5F /* SalerManageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SalerManageViewController.h; sourceTree = "<group>"; };
+		E21947521D786ECD001C5E5F /* SalerManageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SalerManageViewController.m; sourceTree = "<group>"; };
+		E21947541D786F4D001C5E5F /* OperationlogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OperationlogViewController.h; sourceTree = "<group>"; };
+		E21947551D786F4D001C5E5F /* OperationlogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OperationlogViewController.m; sourceTree = "<group>"; };
+		E21947571D786F78001C5E5F /* SalerManageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SalerManageCell.h; sourceTree = "<group>"; };
+		E21947581D786F78001C5E5F /* SalerManageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SalerManageCell.m; sourceTree = "<group>"; };
+		E219475A1D786F8D001C5E5F /* OperationlogCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OperationlogCell.h; sourceTree = "<group>"; };
+		E219475B1D786F8D001C5E5F /* OperationlogCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OperationlogCell.m; sourceTree = "<group>"; };
+		E219475D1D787459001C5E5F /* AddAdministratorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddAdministratorViewController.h; sourceTree = "<group>"; };
+		E219475E1D787459001C5E5F /* AddAdministratorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddAdministratorViewController.m; sourceTree = "<group>"; };
 		E221EEB71D4F8B68005B3417 /* BaseNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseNavigationController.h; sourceTree = "<group>"; };
 		E221EEB81D4F8B68005B3417 /* BaseNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseNavigationController.m; sourceTree = "<group>"; };
 		E221EEBB1D4F8B9D005B3417 /* BaseTabbarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTabbarController.h; sourceTree = "<group>"; };
@@ -602,9 +623,9 @@
 		27E26B211D6B1D360072F26E /* MePage */ = {
 			isa = PBXGroup;
 			children = (
-				27E26B221D6B1D360072F26E /* Me.storyboard */,
-				34EE98261D76E0430040C997 /* MeViewController.h */,
-				34EE98271D76E0430040C997 /* MeViewController.m */,
+				E21947471D78621A001C5E5F /* View */,
+				E21947431D786214001C5E5F /* VC */,
+				E21947401D786209001C5E5F /* SB */,
 			);
 			path = MePage;
 			sourceTree = "<group>";
@@ -723,6 +744,44 @@
 			children = (
 				E219472E1D771525001C5E5F /* CostManageTableViewCell.h */,
 				E219472F1D771525001C5E5F /* CostManageTableViewCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E21947401D786209001C5E5F /* SB */ = {
+			isa = PBXGroup;
+			children = (
+				E21947411D786209001C5E5F /* Me.storyboard */,
+			);
+			path = SB;
+			sourceTree = "<group>";
+		};
+		E21947431D786214001C5E5F /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				E21947441D786214001C5E5F /* MeViewController.h */,
+				E21947451D786214001C5E5F /* MeViewController.m */,
+				E21947481D786230001C5E5F /* AdministratorManageViewController.h */,
+				E21947491D786230001C5E5F /* AdministratorManageViewController.m */,
+				E21947511D786ECD001C5E5F /* SalerManageViewController.h */,
+				E21947521D786ECD001C5E5F /* SalerManageViewController.m */,
+				E21947541D786F4D001C5E5F /* OperationlogViewController.h */,
+				E21947551D786F4D001C5E5F /* OperationlogViewController.m */,
+				E219475D1D787459001C5E5F /* AddAdministratorViewController.h */,
+				E219475E1D787459001C5E5F /* AddAdministratorViewController.m */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
+		E21947471D78621A001C5E5F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E219474B1D7867DB001C5E5F /* AdministratorManageCell.h */,
+				E219474C1D7867DB001C5E5F /* AdministratorManageCell.m */,
+				E21947571D786F78001C5E5F /* SalerManageCell.h */,
+				E21947581D786F78001C5E5F /* SalerManageCell.m */,
+				E219475A1D786F8D001C5E5F /* OperationlogCell.h */,
+				E219475B1D786F8D001C5E5F /* OperationlogCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -958,13 +1017,13 @@
 			files = (
 				E21947281D7714E1001C5E5F /* CostManage.storyboard in Resources */,
 				27E26B3C1D6B1D360072F26E /* CustomerManage.storyboard in Resources */,
+				E21947421D786209001C5E5F /* Me.storyboard in Resources */,
 				E221EEE81D4F9EFB005B3417 /* Launch Screen.storyboard in Resources */,
 				27E26B421D6B1D360072F26E /* DataAnalysis.storyboard in Resources */,
 				E27B06291D616A7000ED18D1 /* address.plist in Resources */,
 				27E26B4A1D6B1D360072F26E /* ProductManage.storyboard in Resources */,
 				34EE98221D76B6AE0040C997 /* AlertController.xib in Resources */,
 				270704C91D45F9A900633390 /* Assets.xcassets in Resources */,
-				27E26B481D6B1D360072F26E /* Me.storyboard in Resources */,
 				27E26B451D6B1D360072F26E /* Land.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1051,12 +1110,15 @@
 				E21947391D771B64001C5E5F /* CoSearchMenuViewController.m in Sources */,
 				E24BF4801D7475240054DFDC /* ProductDetailViewController.m in Sources */,
 				E2FA0C071D4CFF000094A6FE /* KKRequestError.m in Sources */,
+				E21947561D786F4D001C5E5F /* OperationlogViewController.m in Sources */,
 				27CA012F1D6B10E4009F9A25 /* CALayer+Addition.m in Sources */,
 				27E26B501D6B1D360072F26E /* ProductManageViewController.m in Sources */,
 				27CA01381D6B1167009F9A25 /* AMBaseModel.m in Sources */,
 				275F329A1D717B210033C8FF /* ASICloudFilesRequest.m in Sources */,
 				270704C41D45F9A900633390 /* ViewController.m in Sources */,
 				279C04161D727D2E00663EBA /* AMIdentifyCode.m in Sources */,
+				E21947461D786214001C5E5F /* MeViewController.m in Sources */,
+				E219474A1D786230001C5E5F /* AdministratorManageViewController.m in Sources */,
 				275F32A01D717B210033C8FF /* ASIS3ServiceRequest.m in Sources */,
 				E221EF8A1D603238005B3417 /* BaseTableViewController.m in Sources */,
 				E219473C1D772194001C5E5F /* CostManageDetailViewController.m in Sources */,
@@ -1064,8 +1126,10 @@
 				275F32971D717B210033C8FF /* ASICloudFilesContainerXMLParserDelegate.m in Sources */,
 				E24BF4511D7355760054DFDC /* MenuCollectionViewCell.m in Sources */,
 				E219472C1D7714EC001C5E5F /* CostManageViewController.m in Sources */,
+				E219475F1D787459001C5E5F /* AddAdministratorViewController.m in Sources */,
 				275F328B1D717B210033C8FF /* ASIAuthenticationDialog.m in Sources */,
 				27E26B3E1D6B1D360072F26E /* AddCustomerViewControllerB.m in Sources */,
+				E21947591D786F78001C5E5F /* SalerManageCell.m in Sources */,
 				275F328D1D717B210033C8FF /* ASIDataDecompressor.m in Sources */,
 				275F32BF1D71924B0033C8FF /* AMBaseRequest.m in Sources */,
 				270704C11D45F9A900633390 /* AppDelegate.m in Sources */,
@@ -1075,6 +1139,7 @@
 				275F32901D717B210033C8FF /* ASIHTTPRequest.m in Sources */,
 				27CA014A1D6B116F009F9A25 /* AMLoginRequest.m in Sources */,
 				27E26B461D6B1D360072F26E /* LandViewController.m in Sources */,
+				E21947531D786ECD001C5E5F /* SalerManageViewController.m in Sources */,
 				27E26B3D1D6B1D360072F26E /* AddCustomerViewControllerA.m in Sources */,
 				E2A3F27B1D6F2192006EC120 /* DataCacheManager.m in Sources */,
 				27E26B4B1D6B1D360072F26E /* AddProductViewControllerA.m in Sources */,
@@ -1095,8 +1160,10 @@
 				E221EEB91D4F8B68005B3417 /* BaseNavigationController.m in Sources */,
 				275F32991D717B210033C8FF /* ASICloudFilesObjectRequest.m in Sources */,
 				275F329D1D717B210033C8FF /* ASIS3BucketRequest.m in Sources */,
+				E219474D1D7867DB001C5E5F /* AdministratorManageCell.m in Sources */,
 				275F328C1D717B210033C8FF /* ASIDataCompressor.m in Sources */,
 				27CA014C1D6B116F009F9A25 /* AMRegisterRequest.m in Sources */,
+				E219475C1D786F8D001C5E5F /* OperationlogCell.m in Sources */,
 				27E26B471D6B1D360072F26E /* RegisterViewController.m in Sources */,
 				27CA01301D6B10E4009F9A25 /* NSMutableDictionary+KKAdditions.m in Sources */,
 				27CA01491D6B116F009F9A25 /* AMIdentifyCodeRequest.m in Sources */,
@@ -1120,7 +1187,6 @@
 				275F329B1D717B210033C8FF /* ASIS3Bucket.m in Sources */,
 				275F329F1D717B210033C8FF /* ASIS3Request.m in Sources */,
 				34EE98251D76BAF90040C997 /* CSearchMenuViewController.m in Sources */,
-				34EE98281D76E0430040C997 /* MeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
