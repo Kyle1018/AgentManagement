@@ -7,7 +7,7 @@
 //
 
 #import "AMProductAndModelListRequest.h"
-
+#import "AMProductAndModel.h"
 @implementation AMProductAndModelListRequest
 
 
@@ -18,12 +18,7 @@
 
 - (id)buildModelWithJsonDictionary:(NSDictionary *)dictionary
 {
-    
-    
-    NSLog(@"%@",dictionary);
-    
-    return nil;
-    //return [[KKBaseModel alloc] initWithDictionary:dictionary error:nil];
+    return [[AMBaseModel alloc]initWithDictionary:dictionary error:nil];
 }
 
 @end

@@ -17,11 +17,15 @@
 
 @property (weak, nonatomic) IBOutlet UIView *formHeaderView;
 
-@property(nonatomic,strong)   NSMutableArray *array;
+//@property(nonatomic,strong)   NSMutableArray *array;
 
 @property(nonatomic,strong)ProductManageViewModel *viewModel;
 
 @property(nonatomic,strong)PSearchMenuViewController*searchMenuVC;
+
+@property(nonatomic,strong)NSMutableArray *brandAndPmodelDataArray;//产品名称和型号
+
+@property(nonatomic,strong)NSMutableArray *productRelatedInformationArray;//产品相关信息
 @end
 
 @implementation ProductManageViewController
@@ -29,22 +33,22 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+
+    [self requestData];
     
+    [self observeData];
+    
+  //
+//    [[_viewModel requstAddProductData:nil]subscribeNext:^(id x) {
+//       
+//        
+//    }];
 //
-    _viewModel = [[ProductManageViewModel alloc]init];
-    
-    [[_viewModel requstAddProductData:nil]subscribeNext:^(id x) {
-       
-        
-    }];
-//    
 //    [[_viewModel requestProductRelatedInformationData]subscribeNext:^(id x) {
 //        
 //    }];
 //
-//    [[_viewModel requestProductAndModelListData]subscribeNext:^(id x) {
-//        
-//    }];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -62,17 +66,54 @@
 //
     //插入数据库
     
-    NSLog(@"%@",[[DataCacheManager shareDataCacheManager]getOptionResult]);
-    self.array=[[DataCacheManager shareDataCacheManager]getOptionResult];
-    
-    NSLog(@"%@",self.array);
+//    NSLog(@"%@",[[DataCacheManager shareDataCacheManager]getOptionResult]);
+//    self.array=[[DataCacheManager shareDataCacheManager]getOptionResult];
+//    
+//    NSLog(@"%@",self.array);
 }
 
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-//
-//    return 10;
-//}
+#pragma mark - Data
+- (void)requestData {
+  
+    _viewModel = [[ProductManageViewModel alloc]init];
 
+     __weak typeof(self) weakSelf = self;
+    
+    [[[self.viewModel requstProductInformationData]filter:^BOOL(RACTuple* value) {
+        
+        if ([[value first]boolValue] == YES && [[value second]boolValue] == YES) {
+            
+            return YES;
+        }
+        else {
+            
+            return NO;
+        }
+    }]subscribeNext:^(RACTuple* x) {
+        //刷新表视图
+        [weakSelf.formTabelView reloadData];
+    }];
+
+}
+
+- (void)observeData {
+    
+    __weak typeof(self) weakSelf = self;
+
+    [RACObserve(self.viewModel, productAndModelArray)subscribeNext:^(NSMutableArray* x) {
+       
+        weakSelf.brandAndPmodelDataArray = x;
+        NSLog(@"%@",weakSelf.brandAndPmodelDataArray);
+    }];
+    
+    [RACObserve(self.viewModel, productRelatedInformationArray)subscribeNext:^(NSMutableArray* x) {
+        
+        weakSelf.productRelatedInformationArray = x;
+        
+    }];
+}
+
+#pragma mark - UITableViewDelegate/UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
     return 3;
@@ -91,10 +132,13 @@
     return cell;
 }
 
+#pragma mark - Action
 - (IBAction)searchMenuAction:(UIButton *)sender {
 
     UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"ProductManage" bundle:nil];
     _searchMenuVC = [storyboard instantiateViewControllerWithIdentifier:@"SearchMenuViewID"];
+    _searchMenuVC.brandAndModelDataArray = self.brandAndPmodelDataArray;
+    _searchMenuVC.productRelatedInformationArray = self.productRelatedInformationArray;
     [[UIApplication sharedApplication].keyWindow addSubview:_searchMenuVC.view];
 }
 

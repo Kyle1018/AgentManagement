@@ -18,11 +18,11 @@
 
 @property(nonatomic,strong)AMAddProductRequest *apRequset;//添加产品
 
-@property(nonatomic,strong)NSMutableArray *productRelatedInformationArray;
+@property(nonatomic,strong)NSMutableArray *productAndModelArray;//产品和型号模型数组
 
-- (RACSignal*)requestProductAndModelListData;//请求产品和型号列表请求
+@property(nonatomic,strong)NSMutableArray *productRelatedInformationArray;//产品相关信息模型数组
 
-- (RACSignal*)requestProductRelatedInformationData;//请求产品相关信息请求
+- (RACSignal*)requstProductInformationData;
 
 - (RACSignal*)requstAddProductData:(NSDictionary*)paramt;//添加产品请求
 

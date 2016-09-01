@@ -95,75 +95,119 @@
     
     if (self) {
         
-        //_productRelatedInformationArray = [NSMutableArray array];
+        _productRelatedInformationArray = [NSMutableArray array];
+        
+       // _productAndModelArray = [NSMutableArray array];
     }
     
     return self;
 }
 
-- (RACSignal*)requestProductAndModelListData {
+/**
+ *  请求产品相关信息数据：名称、型号、各种产品参数
+ *
+ */
+- (RACSignal*)requstProductInformationData {
     
     __weak typeof(self) weakSelf = self;
-    
-    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-       
+
+    RACSignal *productNameAndPmodelSignal = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        
         weakSelf.pmRequest = [[AMProductAndModelListRequest alloc] init];
         
         [weakSelf.pmRequest requestWithSuccess:^(KKBaseModel *model, KKRequestError *error) {
-            NSLog(@"%@", model);
+            
+            AMBaseModel *baseModel = (AMBaseModel*)model;
+            
+            NSMutableArray *dataArray = [NSMutableArray array];
+            
+            for (NSDictionary *dic in baseModel.data) {
+                
+                AMProductAndModel *productAndModel = [[AMProductAndModel alloc] initWithDictionary:dic error:nil];
+                
+                for (int i = 0; i<productAndModel.pmodel.count; i++) {
+                    
+                    NSDictionary *dic = productAndModel.pmodel[i];
+                    
+                    NSString *pmodel = dic[@"value"];
+                    
+                    [productAndModel.pmodel replaceObjectAtIndex:i withObject:pmodel];
+                }
+                
+                [dataArray addObject:productAndModel];
+            }
             
             
-            AMProductAndModel *productAndModel = (AMProductAndModel*)model;
+            weakSelf.productAndModelArray = dataArray;
             
+            if (weakSelf.productAndModelArray.count > 0) {
+                
+                [subscriber sendNext:@(YES)];
+                [subscriber sendCompleted];
+            }
+            else {
+                
+                [subscriber sendNext:@(NO)];
+                [subscriber sendCompleted];
+            }
             
             
         } failure:^(KKBaseModel *model, KKRequestError *error) {
             NSLog(@"%@", model);
             
-            [subscriber sendNext:@(NO)];
+            [subscriber sendError:error];
         }];
         
         return nil;
     }];
-}
-
-- (RACSignal*)requestProductRelatedInformationData {
     
-    __weak typeof(self) weakSelf = self;
-    
-    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-       
+    RACSignal *productRelatedSignal = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        
         
         weakSelf.priRequest = [[AMProductRelatedInformationRequest alloc] init];
         
         [weakSelf.priRequest requestWithSuccess:^(KKBaseModel *model, KKRequestError *error) {
-
+            
             AMBaseModel *baseModel = (AMBaseModel*)model;
             
             NSArray *modelArray=[AMProductRelatedInformation arrayOfModelsFromDictionaries:baseModel.data error:nil];
-  
+   
+           for (AMProductRelatedInformation *model in modelArray) {
+               
+                for (int i = 0; i < model.value.count; i++) {
+                    
+                    NSDictionary *dic = model.value[i];
+                    
+                    NSString *str = dic[@"value"];
+                    
+                    [model.value replaceObjectAtIndex:i withObject:str];
+                }
+               
+            }
             
-            weakSelf.productRelatedInformationArray  = [NSMutableArray arrayWithArray:modelArray];
-
+            [weakSelf.productRelatedInformationArray addObjectsFromArray:modelArray];
+            
             if (weakSelf.productRelatedInformationArray.count > 0) {
                 
-                [subscriber sendNext:@(RequestSuccess)];
+                [subscriber sendNext:@(YES)];
+                [subscriber sendCompleted];
             }
             else {
                 
-                [subscriber sendNext:@(RequestNoData)];
+                [subscriber sendNext:@(NO)];
+                [subscriber sendCompleted];
+
             }
-     
-        } failure:^(KKBaseModel *model, KKRequestError *error) {
-         
             
-            [subscriber sendNext:@(RequestError)];
+        } failure:^(KKBaseModel *model, KKRequestError *error) {
+            
+            [subscriber sendError:error];
         }];
         
         return nil;
     }];
 
-    
+    return [RACSignal combineLatest:@[productNameAndPmodelSignal,productRelatedSignal]];
 }
 
 - (RACSignal*)requstAddProductData:(NSDictionary*)paramt {

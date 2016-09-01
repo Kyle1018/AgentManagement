@@ -10,4 +10,6 @@
 
 @implementation AMProductAndModel
 
+
+
 @end

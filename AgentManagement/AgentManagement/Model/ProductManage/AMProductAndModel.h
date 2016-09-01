@@ -10,7 +10,8 @@
 
 @interface AMProductAndModel : AMBaseModel
 
-//@property(nonatomic,strong)NSArray *data;
+@property(nonatomic,copy)NSString *brand;
 
+@property(nonatomic,strong)NSMutableArray *pmodel;
 
 @end

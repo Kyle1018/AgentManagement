@@ -43,35 +43,35 @@
     
     _viewModel = [[ProductManageViewModel alloc]init];
     
-    [[[_viewModel requestProductRelatedInformationData]filter:^BOOL(NSNumber* value) {
-        
-        switch ([value integerValue]) {
-            case RequestSuccess:
-                
-                return YES;
-                
-                break;
-            case RequestNoData:
-                
-                return NO;
-                
-                break;
-                
-            case RequestError:
-                
-                return NO;
-                
-                break;
-                
-            default:
-                return NO;
-                break;
-        }
-
-    }]subscribeNext:^(NSNumber* x) {
-        
+//    [[[_viewModel requestProductRelatedInformationData]filter:^BOOL(NSNumber* value) {
+//        
+//        switch ([value integerValue]) {
+//            case RequestSuccess:
+//                
+//                return YES;
+//                
+//                break;
+//            case RequestNoData:
+//                
+//                return NO;
+//                
+//                break;
+//                
+//            case RequestError:
+//                
+//                return NO;
+//                
+//                break;
+//                
+//            default:
+//                return NO;
+//                break;
+//        }
+//
+//    }]subscribeNext:^(NSNumber* x) {
+//        
         //数据请求成功后做的事情
-    }];
+   // }];
 }
 
 - (void)observeData {

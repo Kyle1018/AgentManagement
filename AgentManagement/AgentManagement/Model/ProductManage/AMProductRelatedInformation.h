@@ -10,10 +10,8 @@
 
 @interface AMProductRelatedInformation : AMBaseModel
 
-//@property(nonatomic,strong)NSArray *data;
-
 @property(nonatomic,copy)NSString *key;
 
-@property(nonatomic,strong)NSArray *value;
+@property(nonatomic,strong)NSMutableArray *value;
 
 @end

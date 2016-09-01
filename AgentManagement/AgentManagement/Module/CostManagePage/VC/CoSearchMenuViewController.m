@@ -21,7 +21,7 @@
 
 @property(nonatomic,assign)NSInteger optionLabelTag;
 
-@property(nonatomic,strong)NSArray *heaerDataArray;
+@property(nonatomic,strong)NSMutableArray *heaerDataArray;
 
 @property(nonatomic,strong)NSMutableArray *dataArray;
 
