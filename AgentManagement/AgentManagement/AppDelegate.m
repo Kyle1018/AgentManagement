@@ -9,10 +9,13 @@
 #import "AppDelegate.h"
 #import "ViewController.h"
 #import "AMIdentifyCodeRequest.h"
-
+#import "AMIdentifyCode.h"
+#import "AMRegistRequest.h"
 @interface AppDelegate ()
 
 @property (nonatomic, strong) AMIdentifyCodeRequest *request;
+
+@property(nonatomic,strong)AMRegistRequest *registRequest;
 
 @end
 
@@ -34,13 +37,38 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
-    self.request = [[AMIdentifyCodeRequest alloc] initWithPhone:@"18500326684"];
+   __block NSString *code = @"";
+    
+    __weak typeof(self) weakSelf = self;
+    
+    self.request = [[AMIdentifyCodeRequest alloc] initWithPhone:@"13501167925"];
     [self.request requestWithSuccess:^(KKBaseModel *model, KKRequestError *error) {
         NSLog(@"%@", model);
+        
+        AMIdentifyCode *identifyCodeModel = (AMIdentifyCode*)model;
+        
+        NSLog(@"%@",identifyCodeModel.authCode);
+        code = identifyCodeModel.authCode;
+        
+        weakSelf.registRequest = [[AMRegistRequest alloc]initWithPhone:@"13501167925" Password:@"123456" Code:code];
+        
+        [self.registRequest requestWithSuccess:^(KKBaseModel *model, KKRequestError *error) {
+           
+            NSLog(@"%@",model);
+            
+        } failure:^(KKBaseModel *model, KKRequestError *error) {
+            
+        }];
+        
+        
     } failure:^(KKBaseModel *model, KKRequestError *error) {
         NSLog(@"%@", model);
     }];
+    
+    
+    
 
+    NSLog(@"%@",code);
     
     return YES;
 }
