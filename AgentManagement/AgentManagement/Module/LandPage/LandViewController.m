@@ -13,18 +13,19 @@
 @property (strong, nonatomic) IBOutlet UIView *bgView;
 
 @property (strong, nonatomic) IBOutlet UILabel *tiltleLabel;
-@property (strong, nonatomic) IBOutlet NSLayoutConstraint *bgViewbottomConstraint;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *bgViewTopConstraint;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *titleLabelTopConstraint;
-
+@property(nonatomic,assign)CGFloat bgViewTop;
+@property(nonatomic,assign)CGFloat titleLabelTop;
 @end
 
 @implementation LandViewController
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
     
-   [self notificationRelevant];//通知相关
-    
+   [self keyboradNotification];//通知相关
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -35,41 +36,12 @@
 
 }
 
-#pragma mark - NSNotificationCenter
-- (void)notificationRelevant {
+#pragma mark - KeyboradNotification
+- (void)keyboradNotification {
 
-//    [[[NSNotificationCenter defaultCenter]rac_addObserverForName:UIKeyboardWillShowNotification object:nil]subscribeNext:^(id x) {
-//        
-//        __weak typeof(self) weakSelf = self;
-//        
-//        [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionCurveLinear animations:^{
-//            
-//            weakSelf.bgView.originY = 120;
-//            weakSelf.tiltleLabel.originY = 29;
-//            weakSelf.bgViewTopConstraint.constant = self.bgView.originY;
-//            weakSelf.titleLabelTopConstraint.constant = self.tiltleLabel.originY;
-//            weakSelf.tiltleLabel.text = @"";
-//            weakSelf.tiltleLabel.font = [UIFont fontWithName:@"PingFangSC-Regular"size:17];
-//            weakSelf.tiltleLabel.textColor = [UIColor colorWithHex:@"4a4a4a"];
-//            weakSelf.tiltleLabel.text = @"登陆商库";
-//            
-//        } completion:^(BOOL finished) {
-//            
-//            [weakSelf.view setNeedsLayout]; //更新视图
-//            [weakSelf.view layoutIfNeeded];
-//            
-//            
-//        }];
-//
-//    }];
-//    
-//    [[[NSNotificationCenter defaultCenter]rac_addObserverForName:UIKeyboardWillHideNotification object:nil]subscribeNext:^(id x) {
-//        
-//        NSLog(@"键盘收回");
-//        
-//    
-//    }];
-//    
+    _bgViewTop = self.bgViewTopConstraint.constant;
+    
+    _titleLabelTop = self.titleLabelTopConstraint.constant;
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(changeContentViewPosition:)
@@ -95,83 +67,37 @@
     
     __weak typeof(self) weakSelf = self;
     
-    NSLog(@"____________%f",keyBoardEndY);
-   // NSLog(@"%f",);
-    
     [UIView animateWithDuration:duration.doubleValue delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
         
         [UIView setAnimationBeginsFromCurrentState:YES];
         [UIView setAnimationCurve:[curve intValue]];
         
-        weakSelf.bgView.bottom = keyBoardEndY==self.view.height?keyBoardEndY-276:keyBoardEndY-151;
-        weakSelf.bgViewbottomConstraint.constant =keyBoardEndY==self.view.height?276:367;//修改距离底部的约束
-      //  weakSelf.titleLabelTopConstraint.constant = weakSelf.tiltleLabel.bottom-weakSelf.tiltleLabel.height;
-        weakSelf.tiltleLabel.text = @"";
-        weakSelf.tiltleLabel.font = [UIFont fontWithName:@"PingFangSC-Regular"size:36];
-        weakSelf.tiltleLabel.textColor = [UIColor colorWithHex:@"47b6ff"];
-        weakSelf.tiltleLabel.text = @"欢迎来到商库";
+        weakSelf.bgViewTopConstraint.constant =keyBoardEndY==self.view.height?weakSelf.bgViewTop:120;
+        
+        weakSelf.bgView.originY = weakSelf.bgViewTopConstraint.constant;
+        
+        weakSelf.tiltleLabel.width  = 68;
+        weakSelf.tiltleLabel.height = 19;
+        
+        weakSelf.titleLabelTopConstraint.constant = keyBoardEndY==self.view.height?weakSelf.titleLabelTop:29;
+        
+        weakSelf.tiltleLabel.originY = weakSelf.titleLabelTopConstraint.constant;
+        
+        weakSelf.tiltleLabel.text = keyBoardEndY==self.view.height?@"欢迎来到商库":@"登录商库";
 
+        weakSelf.tiltleLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size: keyBoardEndY==self.view.height?36:17];
+        
+        weakSelf.tiltleLabel.textColor = keyBoardEndY==self.view.height?[UIColor colorWithHex:@"47b6ff"]:[UIColor colorWithHex:@"4a4a4a"];
         
     } completion:^(BOOL finished) {
         
     }];
-    
-    
-//    [UIView animateWithDuration:duration.doubleValue animations:^{
-//        
-////        [UIView setAnimationBeginsFromCurrentState:YES];
-////        [UIView setAnimationCurve:[curve intValue]];
-//        
-//        weakSelf.bgView.bottom = keyBoardEndY-151.0;
-//        weakSelf.tiltleLabel.bottom = keyBoardEndY-403;
-////        weakSelf.bgViewTopConstraint.constant = weakSelf.bgView.originY;//修改距离底部的约束
-////        weakSelf.titleLabelTopConstraint.constant = weakSelf.tiltleLabel.originY;
-//        weakSelf.tiltleLabel.text = @"";
-//        weakSelf.tiltleLabel.font = [UIFont fontWithName:@"PingFangSC-Regular"size:36];
-//        weakSelf.tiltleLabel.textColor = [UIColor colorWithHex:@"47b6ff"];
-//        weakSelf.tiltleLabel.text = @"欢迎来到商库";
-//        
-//    } completion:^(BOOL finished) {
-//        
-//        [weakSelf.view setNeedsLayout]; //更新视图
-//        [weakSelf.view layoutIfNeeded];
-//
-//    }];
-
 }
 
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
-    
-
-
-    
-    return YES;
-}
-
+#pragma mark - UITextFieldDelegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     
-//
-//    __weak typeof(self) weakSelf = self;
-//    
-//    [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionCurveLinear animations:^{
-//        
-//        weakSelf.bgView.originY = 210;
-//        weakSelf.tiltleLabel.originY = 117;
-//        weakSelf.bgViewTopConstraint.constant = weakSelf.bgView.originY;//修改距离底部的约束
-//        weakSelf.titleLabelTopConstraint.constant = weakSelf.tiltleLabel.originY;
-//        weakSelf.tiltleLabel.text = @"";
-//        weakSelf.tiltleLabel.font = [UIFont fontWithName:@"PingFangSC-Regular"size:36];
-//        weakSelf.tiltleLabel.textColor = [UIColor colorWithHex:@"47b6ff"];
-//        weakSelf.tiltleLabel.text = @"欢迎来到商库";
-//        
-//    } completion:^(BOOL finished) {
-//        
-        [textField resignFirstResponder];
-//        
-//        [weakSelf.view setNeedsLayout]; //更新视图
-//        [weakSelf.view layoutIfNeeded];
-//        
-//    }];
+    [textField resignFirstResponder];
 
     return YES;
 }
@@ -180,6 +106,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 - (IBAction)LandSuccessAction:(id)sender {
     
     BaseTabbarController *tabbar = [[BaseTabbarController alloc]init];
