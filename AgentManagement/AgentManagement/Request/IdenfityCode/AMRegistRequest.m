@@ -28,10 +28,12 @@
 
 - (id)buildModelWithJsonDictionary:(NSDictionary *)dictionary
 {
-     NSLog(@"注册信息：－－－－－－－－－－－%@",dictionary);
     
+    NSLog(@"%@",[dictionary[@"resultMessage"]description]);
+     NSLog(@"注册信息：－－－－－－－－－－－%@",dictionary);
+//    
     return nil;
-    //return [[AMIdentifyCode alloc] initWithDictionary:dictionary error:nil];
+   // return [[AMIdentifyCode alloc] initWithDictionary:dictionary error:nil];
 }
 
 

@@ -13,6 +13,7 @@
 #import "UIColor+KKAdditions.h"
 #import "NSMutableDictionary+KKAdditions.h"
 #import "UIImage+KKAdditions.h"
+#import "MBProgressHUD+KKAdditions.h"
 #import "KKCommon.h"
 
 #endif /* KKCategory_h */

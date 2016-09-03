@@ -39,17 +39,6 @@ typedef enum
 }OptionName;
 
 
-////数据请求状态
-//typedef enum
-//{
-//    RequestSuccess  = 1,
-//    
-//    RequestNoData   = 2,
-//    
-//    RequestError    = 3,
-//    
-//}RequsetState;
-
 
 ////插入数据库的数据类型
 //typedef enum FORMTYPE{
