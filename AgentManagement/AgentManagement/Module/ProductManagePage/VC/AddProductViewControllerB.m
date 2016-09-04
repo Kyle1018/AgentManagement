@@ -18,72 +18,72 @@
 @property (weak, nonatomic) IBOutlet UITextField *inputPrice;
 @property(nonatomic,strong)NSMutableSet *set;
 @property(nonatomic,strong)NSMutableDictionary *optionDic;
-@property(nonatomic,strong)NSMutableArray *dataArray;
+@property(nonatomic,strong)NSMutableArray *optionDataArray;
+@property(nonatomic,strong)NSMutableArray *optionTitleDataArray;
 @end
 
 @implementation AddProductViewControllerB
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 
     _set = [NSMutableSet set];
-    
-//    _optionDic = [NSMutableDictionary dictionaryWithDictionary:self.dic];
-    
-    [self requestData];
-    
-    [self observeData];
-    
-    [self createMaskView];
+
+    [self getData];
  
+    [self createMaskView];
 }
 
-- (void)requestData {
+- (void)getData {
     
-    _viewModel = [[ProductManageViewModel alloc]init];
+    _optionTitleDataArray = [NSMutableArray arrayWithObjects:@"直接饮用",@"分类",@"过滤介质",@"产品特点",@"摆放位置",@"滤芯个数",@"使用地区",@"零售价格",@"",@"换芯周期", nil];
+   _optionDataArray = [NSMutableArray arrayWithObjects:
+                             @[@"可以",@"不可以"],
+                             @[@"纯水机",@"家用净水机",@"商用净水器",@"软水机",@"管线机",@"水处理设备",@"龙头净水器",@"净水杯"],
+                             @[@"反渗透",@"超滤",@"活性炭",@"PP棉",@"陶瓷纳滤",@"不锈钢滤网",@"微滤",@"其它"],
+                             @[@"无废水",@"无桶大通量",@"双出水",@"滤芯寿命提示",@"低废水单出水",@"双模双出水",@"紫外线杀菌",@"TDS显示"],
+                             @[@"厨下式",@"龙头式",@"台上式",@"滤芯寿命提示",@"低废水入户过滤",@"壁挂式",@"其它"],
+                             @[@"1级",@"2级",@"3级",@"4级",@"5级",@"6级",@"6级以上"],
+                             @[@"华北",@"华南",@"华东",@"华中",@"其它"],
+                             @[@"0-399",@"400-999",@"1000-2199",@"2200-3799",@"其它"],
+                             @"手动输入价格",@"cycle",nil];
     
-//    [[[_viewModel requestProductRelatedInformationData]filter:^BOOL(NSNumber* value) {
-//        
-//        switch ([value integerValue]) {
-//            case RequestSuccess:
-//                
-//                return YES;
-//                
-//                break;
-//            case RequestNoData:
-//                
-//                return NO;
-//                
-//                break;
-//                
-//            case RequestError:
-//                
-//                return NO;
-//                
-//                break;
-//                
-//            default:
-//                return NO;
-//                break;
-//        }
-//
-//    }]subscribeNext:^(NSNumber* x) {
-//        
-        //数据请求成功后做的事情
-   // }];
-}
-
-- (void)observeData {
+    for (AMProductRelatedInformation *model in self.productRelatedInformationArray) {
+        
+        if ([model.key isEqualToString:@"drinking"]) {
+            
+            [_optionDataArray replaceObjectAtIndex:0 withObject:model.value];
+            
+        }
+        
+        else if ([model.key isEqualToString:@"classification"]) {
+            
+            [_optionDataArray replaceObjectAtIndex:1 withObject:model.value];
+        }
+        else if ([model.key isEqualToString:@"filter"]) {
+            
+            [_optionDataArray replaceObjectAtIndex:2 withObject:model.value];
+        }
+        else if ([model.key isEqualToString:@"features"]) {
+            
+            [_optionDataArray replaceObjectAtIndex:3 withObject:model.value];
+        }
+        else if ([model.key isEqualToString:@"putposition"]) {
+            
+            [_optionDataArray replaceObjectAtIndex:4 withObject:model.value];
+        }
+        else if ([model.key isEqualToString:@"number"]) {
+            
+            [_optionDataArray replaceObjectAtIndex:5 withObject:model.value];
+        }
+        
+        else if ([model.key isEqualToString:@"cycle"]) {
+            
+            [_optionDataArray replaceObjectAtIndex:9 withObject:model.value];
+        }
+    }
     
-      __weak typeof(self) weakSelf = self;
     
-    [RACObserve(self.viewModel, productRelatedInformationArray)subscribeNext:^(NSMutableArray* x) {
-       
-        weakSelf.dataArray = [NSMutableArray arrayWithArray:x];
-     
-     
-    }];
 }
 
 - (void)createMaskView {
@@ -238,115 +238,22 @@
            NSLog(@"%@",weakSelf.optionDic);
     };
     
- 
     
- 
-    
-    /*现有的数据
-     
-     sale __销售员级别
-     
-     admin ——管理员级别
-     
-     cycle ——换滤芯周期
-     */
-    
-    //直接饮用
-    if (indexPath.row == 0) {
+    if (indexPath.row == 8) {
         
-        self.alertVC.title = @"直接饮用";
-        self.alertVC.actionButtonArray = @[@"可以",@"不可以"];
-        self.alertVC.optionName = IsDrinking;
-        
-    }
-    
-    //分类
-    else if (indexPath.row == 1) {
-        
-        self.alertVC.title = @"分类";
-        self.alertVC.actionButtonArray = @[@"纯水机",@"家用净水机",@"商用净水器",@"软水机",@"管线机",@"水处理设备",@"龙头净水器",@"净水杯"];
-        self.alertVC.optionName = Classification;
-    }
-    
-    //过滤介质
-    else if (indexPath.row == 2 ) {
-        
-        self.alertVC.title = @"过滤介质";
-        self.alertVC.actionButtonArray = @[@"反渗透",@"超滤",@"活性炭",@"PP棉",@"陶瓷纳滤",@"不锈钢滤网",@"微滤",@"其它"];
-        self.alertVC.optionName = FilterMedia;
-        
-    }
-    
-    //产品特点
-    else if (indexPath.row == 3) {
-        
-        self.alertVC.title = @"产品特点";
-        self.alertVC.actionButtonArray = @[@"无废水",@"无桶大通量",@"双出水",@"滤芯寿命提示",@"低废水单出水",@"双模双出水",@"紫外线杀菌",@"TDS显示"];
-        self.alertVC.optionName = ProductFeatures;
-    }
-    
-    //摆放位置
-    else if (indexPath.row == 4) {
-        
-        self.alertVC.title = @"摆放位置";
-        self.alertVC.actionButtonArray = @[@"厨下式",@"龙头式",@"台上式",@"滤芯寿命提示",@"低废水入户过滤",@"壁挂式",@"其它"];
-        self.alertVC.optionName = PlacingPosition;
-    }
-    
-    //滤芯个数
-    else if (indexPath.row == 5) {
-        
-        self.alertVC.title = @"滤芯个数";
-        self.alertVC.actionButtonArray = @[@"1级",@"2级",@"3级",@"4级",@"5级",@"6级",@"6级以上"];
-        self.alertVC.optionName = FilterElementCounts;
-    }
-    
-    //适用地区
-    else if (indexPath.row == 6) {
-        
-        self.alertVC.title = @"适用地区";
-        self.alertVC.actionButtonArray = @[@"华北",@"华南",@"华东",@"华中",@"其它"];
-        self.alertVC.optionName = ApplyRegion;
-        
-    }
-    
-    //零售价格
-    else if (indexPath.row == 7) {
-        
-        self.alertVC.title = @"零售价格";
-        self.alertVC.actionButtonArray = @[@"0-399",@"400-999",@"1000-2199",@"2200-3799",@"其它"];
-        self.alertVC.optionName = WholesalePrice;
-    }
-    
-    //手动输入——零售价格
-    else if (indexPath.row == 8) {
-    
         [self.alertVC removeFromParentViewController];
- 
+
     }
-    
-    //换滤芯周期
-    else if (indexPath.row == 9) {
+    else {
         
-        AMProductRelatedInformation *model = _dataArray[0];
+        self.alertVC.title = self.optionTitleDataArray[indexPath.row];
+
+        self.alertVC.actionButtonArray = self.optionDataArray[indexPath.row];
         
-        self.alertVC.title = @"换滤芯周期";
+        //self.alertVC.optionName = IsDrinking;
+
         
-        NSMutableArray *optionArray = [NSMutableArray array];
-        
-        for (NSDictionary *dic in model.value) {
-            
-            NSString *optionName = dic[@"value"];
-            
-            [optionArray addObject:optionName];
-        }
-//        self.alertVC.actionButtonArray = @[@"1个月",@"3个月",@"6个月",@"12个月",@"18个月",@"24个月"];
-        
-        self.alertVC.actionButtonArray = optionArray;
-        self.alertVC.optionName = ChangeFilterElementCycle;
     }
-    
-    
     
     [self presentViewController: self.alertVC animated: YES completion:^{
        

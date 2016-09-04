@@ -165,8 +165,16 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 
+    
+    if([segue.identifier compare:@"AddProductSegueB"]==NO) {
+        
         id page2=segue.destinationViewController;
-        [page2 setValue:_inputContentDic forKey:@"dic"];
+        [page2 setValue:self.productRelatedInformationArray forKey:@"productRelatedInformationArray"];
+        
+    }
+    
+//        id page2=segue.destinationViewController;
+//        [page2 setValue:_inputContentDic forKey:@"dic"];
 }
 
 @end

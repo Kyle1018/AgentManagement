@@ -10,4 +10,6 @@
 
 @interface AddProductViewControllerA : BaseTableViewController
 
+@property(nonatomic,strong)NSArray *productRelatedInformationArray;
+
 @end

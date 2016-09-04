@@ -12,5 +12,5 @@
 
 //@property(nonatomic,strong)NSMutableArray *brandAndModelDataArray;
 
-@property(nonatomic,strong)NSMutableArray *productRelatedInformationArray;
+@property(nonatomic,strong)NSArray *productRelatedInformationArray;
 @end

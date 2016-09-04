@@ -25,7 +25,7 @@
 
 @property(nonatomic,strong)NSMutableArray *brandAndPmodelDataArray;//产品名称和型号
 
-@property(nonatomic,strong)NSMutableArray *productRelatedInformationArray;//产品相关信息
+@property(nonatomic,strong)NSArray *productRelatedInformationArray;//产品相关信息
 @end
 
 @implementation ProductManageViewController
@@ -157,5 +157,18 @@
     _searchMenuVC.productRelatedInformationArray = self.productRelatedInformationArray;
     [[UIApplication sharedApplication].keyWindow addSubview:_searchMenuVC.view];
 }
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    if([segue.identifier compare:@"AddProductSegueA"]==NO) {
+        
+        id page2=segue.destinationViewController;
+        [page2 setValue:self.productRelatedInformationArray forKey:@"productRelatedInformationArray"];
+
+    }
+
+}
+
+
 
 @end
