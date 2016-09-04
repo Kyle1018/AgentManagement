@@ -8,11 +8,11 @@
 
 #import "AppDelegate.h"
 #import "ViewController.h"
-
+#import "AMRegisterRequest.h"
 //#import "AMRegistRequest.h"
 @interface AppDelegate ()
 
-
+@property(nonatomic,strong)AMRegisterRequest *registerRequest;
 //@property(nonatomic,strong)AMRegistRequest *registRequest;
 
 @end
@@ -35,7 +35,25 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
 
-
+//
+//    
+//    self.registerRequest = [[AMRegisterRequest alloc]initWithPhone:@"13426090573" Password:@"abcd1234" Code:@"544713"];
+//    
+//    [self.registerRequest requestWithSuccess:^(KKBaseModel *model, KKRequestError *error) {
+//        
+//        NSLog(@"%@",model);
+//        
+//        NSLog(@"%@",error);
+//        
+//    } failure:^(KKBaseModel *model, KKRequestError *error) {
+//       
+//        
+//        NSLog(@"%@",model);
+//        
+//        NSLog(@"%@",error);
+//    }];
+//    
+    
 
     
     

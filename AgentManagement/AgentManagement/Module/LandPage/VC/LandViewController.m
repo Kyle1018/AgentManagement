@@ -25,6 +25,8 @@
     
     [super viewDidLoad];
     
+    NSLog(@"%@",self.registerModel);
+    
    [self keyboradNotification];//通知相关
 }
 
@@ -33,6 +35,8 @@
     [super viewWillAppear:animated];
     
     [self.navigationController setNavigationBarHidden:YES animated:animated];
+    
+      NSLog(@"%@",self.registerModel);
 
 }
 
@@ -112,6 +116,17 @@
     BaseTabbarController *tabbar = [[BaseTabbarController alloc]init];
     
     [UIApplication sharedApplication].keyWindow.rootViewController = tabbar;
+    /*
+     
+     RootTabBarController *rootVC=[[RootTabBarController alloc]init];
+     rootVC.delegate = self;
+     DDMenuController *menuController = [[DDMenuController alloc] initWithRootViewController:rootVC];
+     PersonInfoLeftViewController *leftController = [[PersonInfoLeftViewController alloc] init];
+     menuController.leftViewController = leftController;
+     [UIApplication sharedApplication].delegate.window.rootViewController = menuController;
+     
+     
+     */
 }
 
 @end

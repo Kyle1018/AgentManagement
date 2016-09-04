@@ -62,7 +62,6 @@
 		27E26B4C1D6B1D360072F26E /* AddProductViewControllerB.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E26B2C1D6B1D360072F26E /* AddProductViewControllerB.m */; };
 		27E26B4D1D6B1D360072F26E /* AddProductViewControllerC.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E26B2E1D6B1D360072F26E /* AddProductViewControllerC.m */; };
 		27E26B501D6B1D360072F26E /* ProductManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E26B331D6B1D360072F26E /* ProductManageViewController.m */; };
-		3422BA5B1D79123B003751F1 /* AMRegistRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3422BA5A1D79123B003751F1 /* AMRegistRequest.m */; };
 		34EE98211D76B6AE0040C997 /* AlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EE981F1D76B6AE0040C997 /* AlertController.m */; };
 		34EE98221D76B6AE0040C997 /* AlertController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34EE98201D76B6AE0040C997 /* AlertController.xib */; };
 		34EE98251D76BAF90040C997 /* CSearchMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EE98241D76BAF90040C997 /* CSearchMenuViewController.m */; };
@@ -99,6 +98,7 @@
 		E24BF4831D755C690054DFDC /* AMAddProductRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = E24BF4821D755C690054DFDC /* AMAddProductRequest.m */; };
 		E24BF4861D75DDFF0054DFDC /* CustomerManageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E24BF4851D75DDFF0054DFDC /* CustomerManageCell.m */; };
 		E27B06291D616A7000ED18D1 /* address.plist in Resources */ = {isa = PBXBuildFile; fileRef = E27B06281D616A7000ED18D1 /* address.plist */; };
+		E29A7B8F1D7C1A7700826744 /* AMRegister.m in Sources */ = {isa = PBXBuildFile; fileRef = E29A7B8E1D7C1A7700826744 /* AMRegister.m */; };
 		E2A3F27B1D6F2192006EC120 /* DataCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A3F27A1D6F2192006EC120 /* DataCacheManager.m */; };
 		E2C14F6A1D7A849D00B0B0B2 /* RegexUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = E2C14F691D7A849D00B0B0B2 /* RegexUtils.m */; };
 		E2C14F701D7A9B6F00B0B0B2 /* MBProgressHUD+KKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = E2C14F6F1D7A9B6F00B0B0B2 /* MBProgressHUD+KKAdditions.m */; };
@@ -232,8 +232,6 @@
 		27E26B2E1D6B1D360072F26E /* AddProductViewControllerC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddProductViewControllerC.m; sourceTree = "<group>"; };
 		27E26B321D6B1D360072F26E /* ProductManageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductManageViewController.h; sourceTree = "<group>"; };
 		27E26B331D6B1D360072F26E /* ProductManageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductManageViewController.m; sourceTree = "<group>"; };
-		3422BA591D79123B003751F1 /* AMRegistRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMRegistRequest.h; sourceTree = "<group>"; };
-		3422BA5A1D79123B003751F1 /* AMRegistRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMRegistRequest.m; sourceTree = "<group>"; };
 		34EE981E1D76B6AE0040C997 /* AlertController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertController.h; sourceTree = "<group>"; };
 		34EE981F1D76B6AE0040C997 /* AlertController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertController.m; sourceTree = "<group>"; };
 		34EE98201D76B6AE0040C997 /* AlertController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlertController.xib; sourceTree = "<group>"; };
@@ -302,6 +300,8 @@
 		E24BF4841D75DDFF0054DFDC /* CustomerManageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerManageCell.h; sourceTree = "<group>"; };
 		E24BF4851D75DDFF0054DFDC /* CustomerManageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerManageCell.m; sourceTree = "<group>"; };
 		E27B06281D616A7000ED18D1 /* address.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = address.plist; sourceTree = "<group>"; };
+		E29A7B8D1D7C1A7700826744 /* AMRegister.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMRegister.h; sourceTree = "<group>"; };
+		E29A7B8E1D7C1A7700826744 /* AMRegister.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMRegister.m; sourceTree = "<group>"; };
 		E2A3F2791D6F2192006EC120 /* DataCacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataCacheManager.h; sourceTree = "<group>"; };
 		E2A3F27A1D6F2192006EC120 /* DataCacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataCacheManager.m; sourceTree = "<group>"; };
 		E2C14F681D7A849D00B0B0B2 /* RegexUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegexUtils.h; sourceTree = "<group>"; };
@@ -499,6 +499,7 @@
 		27CA01351D6B1167009F9A25 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E29A7B8C1D7C1A6200826744 /* Register */,
 				E24BF4641D7416030054DFDC /* ProductManage */,
 				279C04131D727D1600663EBA /* IdentifyCode */,
 				27CA01361D6B1167009F9A25 /* AMBaseModel.h */,
@@ -526,8 +527,6 @@
 			children = (
 				27CA013D1D6B116F009F9A25 /* AMIdentifyCodeRequest.h */,
 				27CA013E1D6B116F009F9A25 /* AMIdentifyCodeRequest.m */,
-				3422BA591D79123B003751F1 /* AMRegistRequest.h */,
-				3422BA5A1D79123B003751F1 /* AMRegistRequest.m */,
 			);
 			path = IdenfityCode;
 			sourceTree = "<group>";
@@ -866,6 +865,15 @@
 				E24BF4851D75DDFF0054DFDC /* CustomerManageCell.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		E29A7B8C1D7C1A6200826744 /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				E29A7B8D1D7C1A7700826744 /* AMRegister.h */,
+				E29A7B8E1D7C1A7700826744 /* AMRegister.m */,
+			);
+			path = Register;
 			sourceTree = "<group>";
 		};
 		E2A3F2781D6F216C006EC120 /* DataCache */ = {
@@ -1225,7 +1233,6 @@
 				E24BF45F1D7414360054DFDC /* AMProductAndModelListRequest.m in Sources */,
 				27CA01321D6B10E4009F9A25 /* UIImage+KKAdditions.m in Sources */,
 				275F32901D717B210033C8FF /* ASIHTTPRequest.m in Sources */,
-				3422BA5B1D79123B003751F1 /* AMRegistRequest.m in Sources */,
 				27CA014A1D6B116F009F9A25 /* AMLoginRequest.m in Sources */,
 				E21947531D786ECD001C5E5F /* SalerManageViewController.m in Sources */,
 				27E26B3D1D6B1D360072F26E /* AddCustomerViewControllerA.m in Sources */,
@@ -1240,6 +1247,7 @@
 				270704BE1D45F9A900633390 /* main.m in Sources */,
 				275F329C1D717B210033C8FF /* ASIS3BucketObject.m in Sources */,
 				E24BF4861D75DDFF0054DFDC /* CustomerManageCell.m in Sources */,
+				E29A7B8F1D7C1A7700826744 /* AMRegister.m in Sources */,
 				27E26B431D6B1D360072F26E /* DataAnalysisViewController.m in Sources */,
 				E2FA0C0B1D4CFF000094A6FE /* KKAppUtility.m in Sources */,
 				275F328F1D717B210033C8FF /* ASIFormDataRequest.m in Sources */,

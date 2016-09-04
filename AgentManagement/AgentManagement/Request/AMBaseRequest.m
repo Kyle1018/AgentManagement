@@ -34,6 +34,8 @@ static NSString *const kAPIBaseURL = @"http://123.56.10.232:81/index.php?r=";
         self.retryCount = 0;
         self.retryTimeInterval = 0.;
         self.isUseCache = NO;
+        self.request.useCookiePersistence = YES;
+     
     }
     return self;
 }
@@ -135,9 +137,12 @@ static NSString *const kAPIBaseURL = @"http://123.56.10.232:81/index.php?r=";
     self.request.allowCompressedResponse = YES;
     self.request.delegate = self;
     if (parametersJSON) {
+        
         [self.request setPostValue:parametersJSON forKey:@"data"];
     }
     [self.request startAsynchronous];
+    
+
 }
 
 - (void)handleResultWithRequest:(ASIHTTPRequest *)request

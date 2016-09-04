@@ -7,7 +7,9 @@
 //
 
 #import "BaseViewController.h"
-
+#import "AMRegister.h"
 @interface LandViewController : BaseViewController
+
+@property(nonatomic,strong)AMRegister *registerModel;
 
 @end

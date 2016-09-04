@@ -28,14 +28,10 @@
 
 //匹配用户密码6-18位数字和字母组合
 +(BOOL)checkPassword:(NSString*)password {
-    
-    NSString*pattern=@"^(?![0-9]+$)(?![a-zA-Z]+$)[a-zA-Z0-9]{6,18}";
-    
-    NSPredicate*pred=[NSPredicate predicateWithFormat:@"SELF MATCHES %@",pattern];
-    
-    BOOL isMatch=[pred evaluateWithObject:password];
-    
-    return isMatch;
+
+    NSString *passWordRegex = @"^[a-zA-Z0-9]{6,20}+$";
+    NSPredicate *passWordPredicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",passWordRegex];
+    return [passWordPredicate evaluateWithObject:password];
 }
 
 

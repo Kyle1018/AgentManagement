@@ -8,14 +8,16 @@
 
 #import <Foundation/Foundation.h>
 #import "AMIdentifyCodeRequest.h"
-#import "AMIdentifyCode.h"
 
+#import "AMRegisterRequest.h"
 @interface LandViewModel : NSObject
 
-@property (nonatomic, strong) AMIdentifyCodeRequest *request;
+@property (nonatomic, strong) AMIdentifyCodeRequest *identifyCodeRequest;
 
-//@property(nonatomic,copy)NSString *identifyCode;
+@property(nonatomic,strong)AMRegisterRequest *registerRequest;
 
-- (RACSignal*)requestIdentifyCode;
+- (RACSignal*)requestIdentifyCode:(NSString*)phone;//请求验证码
+
+- (RACSignal*)requestRegisterWithRegisterInformation:(NSDictionary*)dic;
 
 @end

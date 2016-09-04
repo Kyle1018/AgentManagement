@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Mlr-ws-RDc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Mlr-ws-RDc">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -418,7 +418,7 @@
         <!--设置密码-->
         <scene sceneID="AHV-vT-vHD">
             <objects>
-                <viewController id="4uo-0L-Fel" customClass="SetPasswordViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SetPsswordId" id="4uo-0L-Fel" customClass="SetPasswordViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="QPt-mV-qDe"/>
                         <viewControllerLayoutGuide type="bottom" id="Zrx-0e-ubw"/>
@@ -447,7 +447,7 @@
                                                         <rect key="frame" x="16" y="0.0" width="323" height="45"/>
                                                         <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
                                                         <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                                     </textField>
                                                 </subviews>
                                                 <constraints>
@@ -465,7 +465,7 @@
                                                         <rect key="frame" x="16" y="0.0" width="323" height="45"/>
                                                         <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
                                                         <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                                     </textField>
                                                 </subviews>
                                                 <constraints>
@@ -510,27 +510,15 @@
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DhJ-My-Mr3">
-                                        <rect key="frame" x="62" y="151" width="30" height="30"/>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lKd-6f-AHD">
-                                        <rect key="frame" x="247" y="151" width="30" height="30"/>
-                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="wvd-qb-2BR" secondAttribute="trailing" id="0GF-zn-rYJ"/>
                                     <constraint firstItem="awX-VW-SK9" firstAttribute="leading" secondItem="YJ8-tS-fxj" secondAttribute="leading" id="4HO-a8-IYd"/>
+                                    <constraint firstItem="wvd-qb-2BR" firstAttribute="top" secondItem="YJ8-tS-fxj" secondAttribute="top" constant="7" id="I6b-bA-R37"/>
                                     <constraint firstItem="awX-VW-SK9" firstAttribute="top" secondItem="wvd-qb-2BR" secondAttribute="bottom" constant="10" id="IR0-c2-Fcr"/>
                                     <constraint firstItem="wvd-qb-2BR" firstAttribute="leading" secondItem="YJ8-tS-fxj" secondAttribute="leading" id="N24-DB-nT1"/>
-                                    <constraint firstAttribute="bottom" secondItem="DhJ-My-Mr3" secondAttribute="bottom" id="Tge-Fw-vHh"/>
-                                    <constraint firstAttribute="trailing" secondItem="lKd-6f-AHD" secondAttribute="trailing" constant="62" id="UxK-b1-lAN"/>
                                     <constraint firstAttribute="height" constant="181" id="X4G-p2-zBR"/>
-                                    <constraint firstItem="lKd-6f-AHD" firstAttribute="width" secondItem="DhJ-My-Mr3" secondAttribute="width" id="YfN-mQ-jjh"/>
                                     <constraint firstAttribute="trailing" secondItem="awX-VW-SK9" secondAttribute="trailing" id="bXX-Om-nyE"/>
-                                    <constraint firstItem="DhJ-My-Mr3" firstAttribute="leading" secondItem="YJ8-tS-fxj" secondAttribute="leading" constant="62" id="gS6-Kw-497"/>
-                                    <constraint firstItem="lKd-6f-AHD" firstAttribute="top" secondItem="awX-VW-SK9" secondAttribute="bottom" id="i8D-N3-yFg"/>
-                                    <constraint firstAttribute="bottom" secondItem="lKd-6f-AHD" secondAttribute="bottom" id="nbp-rH-RCo"/>
-                                    <constraint firstItem="DhJ-My-Mr3" firstAttribute="top" secondItem="awX-VW-SK9" secondAttribute="bottom" id="rBq-Yx-yaI"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -542,7 +530,13 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="设置密码" id="VnF-bs-cYf"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="againInputPassword" destination="81q-7F-nYy" id="5Fa-3P-gF7"/>
+                        <outlet property="finishBtn" destination="awX-VW-SK9" id="7o9-6d-XS0"/>
+                        <outlet property="inputPassword" destination="AR3-LJ-cgW" id="GQw-nh-L28"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eNC-Bk-MT3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
