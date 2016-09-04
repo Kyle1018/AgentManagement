@@ -1,5 +1,5 @@
 //
-//  AMRegister.h
+//  AMUser.h
 //  AgentManagement
 //
 //  Created by 郭华滨 on 16/9/4.
@@ -8,27 +8,7 @@
 
 #import "AMBaseModel.h"
 
-/*
- "add_time" = 1472979611;
- address = "<null>";
- "an_id" = 11;
- area = "<null>";
- city = "<null>";
- county = "<null>";
- email = "<null>";
- id = 11;
- img = "<null>";
- level = "<null>";
- nickname = 13426090573;
- password = eabd8ce9404507aa8c22714d3f5eada9;
- pid = "<null>";
- province = "<null>";
- tphone = "<null>";
- "updated_at" = "<null>";
- username = 13426090573;
- */
-
-@interface AMRegister : AMBaseModel
+@interface AMUser : AMBaseModel
 
 @property(nonatomic,assign)NSInteger add_time;
 

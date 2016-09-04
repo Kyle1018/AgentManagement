@@ -7,7 +7,7 @@
 //
 
 #import "AMLoginRequest.h"
-
+#import "AMUser.h"
 @implementation AMLoginRequest
 
 - (instancetype)initWithAccount:(NSString *)account password:(NSString *)password
@@ -27,7 +27,7 @@
 
 - (id)buildModelWithJsonDictionary:(NSDictionary *)dictionary
 {
-    return nil;
+    return [[AMUser alloc] initWithDictionary:dictionary error:nil];;
 }
 
 @end

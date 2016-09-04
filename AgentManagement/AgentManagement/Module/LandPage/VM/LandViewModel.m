@@ -8,9 +8,8 @@
 
 #import "LandViewModel.h"
 #import "AMIdentifyCode.h"
-#import "AMRegister.h"
+#import "AMUser.h"
 @implementation LandViewModel
-
 
 - (RACSignal*)requestIdentifyCode:(NSString*)phone {
     
@@ -54,19 +53,18 @@
     }];
 }
 
-
 - (RACSignal*)requestRegisterWithRegisterInformation:(NSDictionary*)dic {
     
       __weak typeof(self) weakSelf = self;
     
-       __block AMRegister *registerModel = nil;
+       __block AMUser *registerModel = nil;
     return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
         
         weakSelf.registerRequest = [[AMRegisterRequest alloc]initWithPhone:dic[@"phone"] Password:dic[@"password"] Code:dic[@"identifyCode"]];
         
         [weakSelf.registerRequest requestWithSuccess:^(KKBaseModel *model, KKRequestError *error) {
        
-            registerModel = (AMRegister*)model;
+            registerModel = (AMUser*)model;
             
             if (registerModel.an_id==0) {
                 
@@ -85,6 +83,42 @@
             [subscriber sendCompleted];
         }];
         
+        
+        return nil;
+    }];
+}
+
+
+- (RACSignal*)requestSigninWithUserName:(NSString*)userName Password:(NSString*)password {
+    
+    __weak typeof(self) weakSelf = self;
+    
+    __block AMUser *loginModel = nil;
+    
+    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+       
+        weakSelf.loginRequest = [[AMLoginRequest alloc]initWithAccount:userName password:password];
+        
+        [weakSelf.loginRequest requestWithSuccess:^(KKBaseModel *model, KKRequestError *error) {
+            
+            loginModel = (AMUser*)model;
+            
+            if (loginModel.an_id==0) {
+                
+                [subscriber sendNext:@(NO)];
+                [subscriber sendCompleted];
+            }
+            else {
+                
+                [subscriber sendNext:loginModel];
+                [subscriber sendCompleted];
+            }
+            
+        } failure:^(KKBaseModel *model, KKRequestError *error) {
+            
+            [subscriber sendNext:@(NO)];
+            [subscriber sendCompleted];
+        }];
         
         return nil;
     }];

@@ -9,7 +9,7 @@
 #import "SetPasswordViewController.h"
 #import "RegexUtils.h"
 #import "LandViewModel.h"
-#import "AMRegister.h"
+#import "AMUser.h"
 #import "LandViewController.h"
 @interface SetPasswordViewController()
 
@@ -28,14 +28,12 @@
     
     [super viewDidLoad];
     
-    NSLog(@"%@",self.registerInformationDic);
-    
     _viewModel = [[LandViewModel alloc]init];
      __weak typeof(self) weakSelf = self;
     __block NSString *password = @"";
     __block NSString *againPassword = @"";
     
-    //手机号输入框是否有内容
+    //密码输入框是否有内容
     RACSignal *validLenthPasswordSignal = [self.inputPassword.rac_textSignal map:^id(NSString* value) {
         
         password = value;
@@ -43,7 +41,7 @@
         
     }];
     
-    //验证码输入框是否有内容
+    //再次输入密码框是否有内容
     RACSignal *validLenthAgainPasswordSignal = [self.againInputPassword.rac_textSignal map:^id(NSString* value) {
         
         againPassword = value;
@@ -71,6 +69,7 @@
     }];
     
     
+    //完成按钮点击事件
     [[[self.finishBtn rac_signalForControlEvents:UIControlEventTouchUpInside]filter:^BOOL(id value) {
         
         if (![password isEqualToString:againPassword]) {
@@ -101,11 +100,10 @@
         
     }]subscribeNext:^(id x) {
         
-     
         //注册请求
         [[[weakSelf.viewModel requestRegisterWithRegisterInformation:weakSelf.registerInformationDic]filter:^BOOL(id value) {
            
-            if ([value isKindOfClass:[AMRegister class]]) {
+            if ([value isKindOfClass:[AMUser class]]) {
                 
                 [MBProgressHUD showText:@"注册成功"];
 
@@ -119,23 +117,14 @@
             }
             
            
-        }]subscribeNext:^(AMRegister* x) {
+        }]subscribeNext:^(AMUser* x) {
             
          
             dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(4.0/*延迟执行时间*/ * NSEC_PER_SEC));
             
             dispatch_after(delayTime, dispatch_get_main_queue(), ^{
-               
-                for (UIViewController *controller in self.navigationController.viewControllers) {
-                    if ([controller isKindOfClass:[LandViewController class]]) {
-                        
-                        LandViewController *vc = (LandViewController*)controller;
-                        
-                        vc.registerModel = x;
-                        
-                        [self.navigationController popToViewController:controller animated:YES];
-                    }
-                }
+                
+                [self.navigationController popToRootViewControllerAnimated:YES];
 
             });
             
@@ -144,14 +133,6 @@
         
     }];
     
-}
-- (void)popToRootVC:(AMRegister*)x {
-    
-
-    
-    [self.navigationController popToRootViewControllerAnimated:YES];
-    
-     //[self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 @end

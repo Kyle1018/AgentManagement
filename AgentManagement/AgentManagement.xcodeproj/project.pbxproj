@@ -98,7 +98,7 @@
 		E24BF4831D755C690054DFDC /* AMAddProductRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = E24BF4821D755C690054DFDC /* AMAddProductRequest.m */; };
 		E24BF4861D75DDFF0054DFDC /* CustomerManageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E24BF4851D75DDFF0054DFDC /* CustomerManageCell.m */; };
 		E27B06291D616A7000ED18D1 /* address.plist in Resources */ = {isa = PBXBuildFile; fileRef = E27B06281D616A7000ED18D1 /* address.plist */; };
-		E29A7B8F1D7C1A7700826744 /* AMRegister.m in Sources */ = {isa = PBXBuildFile; fileRef = E29A7B8E1D7C1A7700826744 /* AMRegister.m */; };
+		E29A7B931D7C443800826744 /* AMUser.m in Sources */ = {isa = PBXBuildFile; fileRef = E29A7B921D7C443800826744 /* AMUser.m */; };
 		E2A3F27B1D6F2192006EC120 /* DataCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A3F27A1D6F2192006EC120 /* DataCacheManager.m */; };
 		E2C14F6A1D7A849D00B0B0B2 /* RegexUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = E2C14F691D7A849D00B0B0B2 /* RegexUtils.m */; };
 		E2C14F701D7A9B6F00B0B0B2 /* MBProgressHUD+KKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = E2C14F6F1D7A9B6F00B0B0B2 /* MBProgressHUD+KKAdditions.m */; };
@@ -300,8 +300,8 @@
 		E24BF4841D75DDFF0054DFDC /* CustomerManageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerManageCell.h; sourceTree = "<group>"; };
 		E24BF4851D75DDFF0054DFDC /* CustomerManageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerManageCell.m; sourceTree = "<group>"; };
 		E27B06281D616A7000ED18D1 /* address.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = address.plist; sourceTree = "<group>"; };
-		E29A7B8D1D7C1A7700826744 /* AMRegister.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMRegister.h; sourceTree = "<group>"; };
-		E29A7B8E1D7C1A7700826744 /* AMRegister.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMRegister.m; sourceTree = "<group>"; };
+		E29A7B911D7C443800826744 /* AMUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMUser.h; sourceTree = "<group>"; };
+		E29A7B921D7C443800826744 /* AMUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMUser.m; sourceTree = "<group>"; };
 		E2A3F2791D6F2192006EC120 /* DataCacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataCacheManager.h; sourceTree = "<group>"; };
 		E2A3F27A1D6F2192006EC120 /* DataCacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataCacheManager.m; sourceTree = "<group>"; };
 		E2C14F681D7A849D00B0B0B2 /* RegexUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegexUtils.h; sourceTree = "<group>"; };
@@ -499,7 +499,7 @@
 		27CA01351D6B1167009F9A25 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				E29A7B8C1D7C1A6200826744 /* Register */,
+				E29A7B901D7C442000826744 /* User */,
 				E24BF4641D7416030054DFDC /* ProductManage */,
 				279C04131D727D1600663EBA /* IdentifyCode */,
 				27CA01361D6B1167009F9A25 /* AMBaseModel.h */,
@@ -867,13 +867,13 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		E29A7B8C1D7C1A6200826744 /* Register */ = {
+		E29A7B901D7C442000826744 /* User */ = {
 			isa = PBXGroup;
 			children = (
-				E29A7B8D1D7C1A7700826744 /* AMRegister.h */,
-				E29A7B8E1D7C1A7700826744 /* AMRegister.m */,
+				E29A7B911D7C443800826744 /* AMUser.h */,
+				E29A7B921D7C443800826744 /* AMUser.m */,
 			);
-			path = Register;
+			path = User;
 			sourceTree = "<group>";
 		};
 		E2A3F2781D6F216C006EC120 /* DataCache */ = {
@@ -1234,6 +1234,7 @@
 				27CA01321D6B10E4009F9A25 /* UIImage+KKAdditions.m in Sources */,
 				275F32901D717B210033C8FF /* ASIHTTPRequest.m in Sources */,
 				27CA014A1D6B116F009F9A25 /* AMLoginRequest.m in Sources */,
+				E29A7B931D7C443800826744 /* AMUser.m in Sources */,
 				E21947531D786ECD001C5E5F /* SalerManageViewController.m in Sources */,
 				27E26B3D1D6B1D360072F26E /* AddCustomerViewControllerA.m in Sources */,
 				E2A3F27B1D6F2192006EC120 /* DataCacheManager.m in Sources */,
@@ -1247,7 +1248,6 @@
 				270704BE1D45F9A900633390 /* main.m in Sources */,
 				275F329C1D717B210033C8FF /* ASIS3BucketObject.m in Sources */,
 				E24BF4861D75DDFF0054DFDC /* CustomerManageCell.m in Sources */,
-				E29A7B8F1D7C1A7700826744 /* AMRegister.m in Sources */,
 				27E26B431D6B1D360072F26E /* DataAnalysisViewController.m in Sources */,
 				E2FA0C0B1D4CFF000094A6FE /* KKAppUtility.m in Sources */,
 				275F328F1D717B210033C8FF /* ASIFormDataRequest.m in Sources */,

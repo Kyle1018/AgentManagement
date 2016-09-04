@@ -1,14 +1,15 @@
 //
-//  AMRegister.m
+//  AMUser.m
 //  AgentManagement
 //
 //  Created by 郭华滨 on 16/9/4.
 //  Copyright © 2016年 KK. All rights reserved.
 //
 
-#import "AMRegister.h"
+#import "AMUser.h"
 
-@implementation AMRegister
+@implementation AMUser
+
 
 +(JSONKeyMapper*)keyMapper
 {

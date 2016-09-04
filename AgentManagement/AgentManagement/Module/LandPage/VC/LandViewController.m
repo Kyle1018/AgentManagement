@@ -8,13 +8,18 @@
 
 #import "LandViewController.h"
 #import "BaseTabbarController.h"
+#import "LandViewModel.h"
+#import "AMUser.h"
 @interface LandViewController ()
 
+@property(nonatomic,strong)LandViewModel *viewModel;
 @property (strong, nonatomic) IBOutlet UIView *bgView;
-
 @property (strong, nonatomic) IBOutlet UILabel *tiltleLabel;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *bgViewTopConstraint;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *titleLabelTopConstraint;
+@property (weak, nonatomic) IBOutlet UITextField *inputUserName;
+@property (weak, nonatomic) IBOutlet UITextField *inputPassWord;
+@property (weak, nonatomic) IBOutlet UIButton *signinBtn;
 @property(nonatomic,assign)CGFloat bgViewTop;
 @property(nonatomic,assign)CGFloat titleLabelTop;
 @end
@@ -24,10 +29,10 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    
-    NSLog(@"%@",self.registerModel);
-    
+
    [self keyboradNotification];//通知相关
+    
+    [self racSignal];//信号相关
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -35,8 +40,6 @@
     [super viewWillAppear:animated];
     
     [self.navigationController setNavigationBarHidden:YES animated:animated];
-    
-      NSLog(@"%@",self.registerModel);
 
 }
 
@@ -98,6 +101,75 @@
     }];
 }
 
+#pragma mark -Signal
+- (void)racSignal {
+    
+    _viewModel = [[LandViewModel alloc]init];
+    __weak typeof(self) weakSelf = self;
+    __block NSString *userName =@"";//用户名
+    __block NSString*password = @"";//密码
+    
+     RACSignal *validLenthUserNameSignal = [self.inputUserName.rac_textSignal map:^id(NSString* value) {
+         
+         userName = value;
+         return @(value.length>0);
+     }];
+
+    
+    //密码输入框是否有内容
+    RACSignal *validLenthPasswordSignal = [self.inputPassWord.rac_textSignal map:^id(NSString* value) {
+        
+        password = value;
+        return @(value.length>0);
+    }];
+
+    //账户输入框与密码输入框是否有内容
+    RACSignal *signUpActiveSignal = [RACSignal combineLatest:@[validLenthUserNameSignal,validLenthPasswordSignal] reduce:^id(NSNumber *userNameLenthValid,NSNumber*passwordLenthValid){
+        
+        return @([userNameLenthValid boolValue] && [passwordLenthValid boolValue]);
+    }];
+    
+    //根据俩个输入框是否都有内容——决定登录按钮是否可以点击
+    RAC(self.signinBtn,enabled) = [signUpActiveSignal map:^id(NSNumber* value) {
+        
+        return value;
+    }];
+    
+    //根据俩个输入框是否都有内容——决定登录按钮的文字颜色
+    RAC(self.signinBtn,backgroundColor) = [signUpActiveSignal map:^id(NSNumber* value) {
+        
+        return [value boolValue]?[UIColor colorWithHex:@"47b6ff"]:[UIColor colorWithHex:@"b3b3b3"];
+    }];
+    
+    
+    [[self.signinBtn rac_signalForControlEvents:UIControlEventTouchUpInside]subscribeNext:^(id x) {
+        
+        //登录请求
+        [[[weakSelf.viewModel requestSigninWithUserName:userName Password:password]filter:^BOOL(id value) {
+            
+            if ([value isKindOfClass:[NSNumber class]]) {
+                
+                [MBProgressHUD showText:@"手机号或密码错误"];
+                
+                return NO;
+            }
+            else {
+                
+                return YES;
+            }
+            
+        }]subscribeNext:^(AMUser * x) {
+            
+            BaseTabbarController *rootVC=[[BaseTabbarController alloc]init];
+            
+            [self presentViewController:rootVC animated:YES completion:nil];
+
+        }];
+    }];
+    
+    
+}
+
 #pragma mark - UITextFieldDelegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     
@@ -111,22 +183,21 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)LandSuccessAction:(id)sender {
+#pragma mark Action
+- (IBAction)textFieldDidChange:(UITextField *)sender {
     
-    BaseTabbarController *tabbar = [[BaseTabbarController alloc]init];
+    if (sender == self.inputUserName) {
+        if (sender.text.length > 11) {
+            sender.text = [sender.text substringToIndex:11];
+        }
+    }
     
-    [UIApplication sharedApplication].keyWindow.rootViewController = tabbar;
-    /*
-     
-     RootTabBarController *rootVC=[[RootTabBarController alloc]init];
-     rootVC.delegate = self;
-     DDMenuController *menuController = [[DDMenuController alloc] initWithRootViewController:rootVC];
-     PersonInfoLeftViewController *leftController = [[PersonInfoLeftViewController alloc] init];
-     menuController.leftViewController = leftController;
-     [UIApplication sharedApplication].delegate.window.rootViewController = menuController;
-     
-     
-     */
+    else if (sender == self.inputPassWord) {
+        
+        if (sender.text.length > 12) {
+            sender.text = [sender.text substringToIndex:12];
+        }
+    }
 }
 
 @end

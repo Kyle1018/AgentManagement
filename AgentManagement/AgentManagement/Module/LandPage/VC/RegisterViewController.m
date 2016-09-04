@@ -12,18 +12,11 @@
 #import "IdentifyCodeButton.h"
 #import "SetPasswordViewController.h"
 @interface RegisterViewController ()
-
 @property(nonatomic,strong)LandViewModel *viewModel;
-
 @property (weak, nonatomic) IBOutlet UITextField *inputPhone;
-
 @property (weak, nonatomic) IBOutlet UITextField *inputIdentifyCode;
-
 @property (weak, nonatomic) IBOutlet IdentifyCodeButton *identifyCodeBtn;
-
 @property (weak, nonatomic) IBOutlet UIButton *nextBtn;
-
-//@property(nonatomic,strong)NSDictionary *registerInformationDic;
 @end
 
 @implementation RegisterViewController
@@ -31,7 +24,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    
     _viewModel = [[LandViewModel alloc]init];
     __weak typeof(self) weakSelf = self;
     __block NSString *phoneText = @"";//手机号
@@ -39,8 +31,6 @@
     __block NSString *requestIdentifyCode = @"";//请求获得的验证码
     __block NSMutableDictionary *registerInformationDic = [NSMutableDictionary dictionary];
  
-    //如果手机号输入框有内容，则获取验证码按钮可点击，并且颜色为蓝色
-    
     //手机号输入框是否有内容
     RACSignal *validLenthPhoneSignal = [self.inputPhone.rac_textSignal map:^id(NSString* value) {
         
@@ -56,7 +46,6 @@
         return @(value.length>0);
         
     }];
-    
     
     //根据手机输入框是否有内容——决定获取验证码按钮是否可以点击
     RAC(self.identifyCodeBtn,enabled) =  [validLenthPhoneSignal map:^id(NSNumber* passwordValid) {
@@ -177,10 +166,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-//- (void)setProperty {
-//    
-//}
 
 #pragma mark - UITextFieldDelegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {

@@ -7,7 +7,7 @@
 //
 
 #import "AMRegisterRequest.h"
-#import "AMRegister.h"
+#import "AMUser.h"
 @implementation AMRegisterRequest
 
 
@@ -36,7 +36,7 @@
 //    NSLog(@"注册信息：－－－－－－－－－－－%@",dictionary);
 //    //
 //    return nil;
-     return [[AMRegister alloc] initWithDictionary:dictionary error:nil];
+     return [[AMUser alloc] initWithDictionary:dictionary error:nil];
 }
 
 @end
