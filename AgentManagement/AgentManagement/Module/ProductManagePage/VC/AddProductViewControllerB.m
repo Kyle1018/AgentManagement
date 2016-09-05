@@ -82,8 +82,7 @@
             [_optionDataArray replaceObjectAtIndex:9 withObject:model.value];
         }
     }
-    
-    
+
 }
 
 - (void)createMaskView {
@@ -200,17 +199,19 @@
     __weak typeof(self) weakSelf = self;
 
     self.alertVC = [AlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-
-    //点击了选项回调
-    self.alertVC.tapActionButtonBlock = ^(OptionName optionName,NSString* keyName,NSInteger index) {
-        
-        UILabel *label = [tableView viewWithTag:optionName];
-        label.text = weakSelf.alertVC.actionButtonArray[index];
-        
     
+    //点击了选项回调
+    self.alertVC.tapActionButtonBlock = ^(NSInteger alertTag,NSString* keyName,NSInteger index) {
+        
+        UILabel *label = [tableView viewWithTag:alertTag];
+        
+        label.text = weakSelf.alertVC.actionButtonArray[index];
         
         [weakSelf.optionDic setObject:label.text forKey:keyName];
         
+        /**
+         *  对于零售价格选项特殊处理下
+         */
         if (label.tag == 307) {
             
             weakSelf.inputPrice.text = nil;
@@ -222,8 +223,7 @@
             }
         }
         
-        [weakSelf.set addObject:@(optionName)];
-        
+        [weakSelf.set addObject:keyName];
         
         if (weakSelf.set.count == 9) {
             
@@ -233,10 +233,7 @@
             
              weakSelf.nextButton.enabled = NO;
         }
-        
-        
-           NSLog(@"%@",weakSelf.optionDic);
-    };
+     };
     
     
     if (indexPath.row == 8) {
@@ -250,11 +247,10 @@
 
         self.alertVC.actionButtonArray = self.optionDataArray[indexPath.row];
         
-        //self.alertVC.optionName = IsDrinking;
+        self.alertVC.alertTag = indexPath.row + 300;
 
         
     }
-    
     [self presentViewController: self.alertVC animated: YES completion:^{
        
         

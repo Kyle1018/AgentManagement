@@ -11,7 +11,7 @@
 
 
 
-typedef void(^TapActionButtonBlock)(OptionName optionName,NSString* keyName,NSInteger index);//选项点击
+typedef void(^TapActionButtonBlock)(NSInteger alertTag,NSString* keyName,NSInteger index);//选项点击
 
 typedef void(^TapExitButtonBlock)();
 
@@ -21,10 +21,10 @@ typedef void(^TapExitButtonBlock)();
 
 @property(nonatomic,copy)TapActionButtonBlock tapActionButtonBlock;
 
-@property(nonatomic,assign)OptionName optionName;
-
 @property(nonatomic,copy)TapExitButtonBlock tapExitButtonBlock;
 
 @property(nonatomic,strong)NSArray *alertOptionName;
+
+@property(nonatomic,assign)NSInteger alertTag;
 
 @end

@@ -49,7 +49,7 @@
     
     __weak typeof(self) weakSelf = self;
     
-    self.alertVC.tapActionButtonBlock = ^(OptionName optionName,NSString* keyName,NSInteger index) {
+    self.alertVC.tapActionButtonBlock = ^(NSInteger alertTag,NSString* keyName,NSInteger index) {
       
         if (index == 0) {
             

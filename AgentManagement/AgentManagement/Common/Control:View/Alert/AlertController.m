@@ -16,9 +16,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     if (self.preferredStyle == UIAlertControllerStyleActionSheet) {
-        
+
         if (self.title !=nil) {
             
             NSMutableAttributedString *hogan = [[NSMutableAttributedString alloc] initWithString:self.title];
@@ -34,13 +34,15 @@
             
             NSString *msg = self.actionButtonArray[i];
             
+          
+                       
             [self addAction:[UIAlertAction actionWithTitle:msg style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                
-                if (self.optionName !=0) {
+
+                if (weakSelf.alertTag !=0) {
 
                     if (weakSelf.tapActionButtonBlock) {
                         
-                        weakSelf.tapActionButtonBlock(self.optionName,[self keyName],i);
+                        weakSelf.tapActionButtonBlock(weakSelf.alertTag,[self keyName],i);
                     }
                     
                 }
@@ -93,59 +95,65 @@
     
 }
 
+
+
 - (NSString*)keyName {
     
-    switch (self.optionName) {
-        case IsDrinking:
+    switch (self.alertTag) {
+        case 300:
             
-            return @"isDrinking";
+            return @"drinking";
             
             break;
             
-        case Classification:
+        case 301:
             
             return @"classification";
             
             break;
-        case FilterMedia:
+        case 302:
             
-            return @"filterMedia";
-            
-            break;
-        case ProductFeatures:
-            
-            return @"productFeatures";
+            return @"filter";
             
             break;
-        case FilterElementCounts:
+        case 303:
             
-            return @"filterElementCounts";
-            
-            break;
-        case PlacingPosition:
-            
-            return @"placingPosition";
+            return @"features";
             
             break;
-        case ApplyRegion:
+        case 304:
             
-            return @"applyRegion";
-            
-            break;
-        case WholesalePrice:
-            
-            return @"wholesalePrice";
+            return @"number";
             
             break;
-        case ChangeFilterElementCycle:
+        case 305:
             
-            return @"changeFilterElementCycle";
+            return @"putposition";
+            
+            break;
+        case 306:
+            
+            return @"area";
+            
+            break;
+        case 307:
+            
+            return @"price";
+            
+            break;
+        case 309:
+            
+            return @"cycle";
             
             break;
             
         default:
+            
+            return nil;
             break;
     }
 }
+
+
 
 @end
