@@ -10,6 +10,6 @@
 
 @interface AddProductViewControllerC : BaseTableViewController
 
-@property(nonatomic,strong)NSDictionary *dic;
+@property(nonatomic,strong)NSDictionary *inputContentDic;
 
 @end

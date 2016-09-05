@@ -161,8 +161,10 @@
         }]subscribeNext:^(AMUser * x) {
             
             BaseTabbarController *rootVC=[[BaseTabbarController alloc]init];
-            
-            [self presentViewController:rootVC animated:YES completion:nil];
+          
+            [self presentViewController:rootVC animated:YES completion:^{
+                
+            }];
 
         }];
     }];

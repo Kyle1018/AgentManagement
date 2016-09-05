@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -14,7 +14,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="cVd-BG-fC0" kind="custom" id="7dj-3E-py3"/>
+                        <segue destination="cVd-BG-fC0" kind="relationship" relationship="rootViewController" id="jS1-kr-CKa"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gtk-Mg-Fat" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -32,8 +32,9 @@
                     <view key="view" contentMode="scaleToFill" id="IaN-F3-ooN">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.98823535439999999" green="0.086274512110000007" blue="0.47450983520000001" alpha="1" colorSpace="deviceRGB"/>
                     </view>
+                    <navigationItem key="navigationItem" id="tRd-vV-XOY"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sfr-nU-NsL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

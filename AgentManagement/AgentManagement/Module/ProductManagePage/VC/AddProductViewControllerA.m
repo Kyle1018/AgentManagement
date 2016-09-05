@@ -59,6 +59,8 @@
     
     
     RAC(weakSelf.nextButton,enabled) = signUpActiveSignal;
+    
+    
 }
 
 - (NSNumber*)isValid:(NSString*)text {
@@ -112,15 +114,6 @@
     }];
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 2;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 1;
-}
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
     
@@ -165,16 +158,13 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 
-    
     if([segue.identifier compare:@"AddProductSegueB"]==NO) {
         
         id page2=segue.destinationViewController;
         [page2 setValue:self.productRelatedInformationArray forKey:@"productRelatedInformationArray"];
+        [page2 setValue:self.inputContentDic forKey:@"inputContentDic"];
         
     }
-    
-//        id page2=segue.destinationViewController;
-//        [page2 setValue:_inputContentDic forKey:@"dic"];
 }
 
 @end

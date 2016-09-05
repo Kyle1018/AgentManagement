@@ -24,7 +24,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _optionDic = [NSMutableDictionary dictionaryWithDictionary:self.dic];
+    _optionDic = [NSMutableDictionary dictionaryWithDictionary:self.inputContentDic];
     
      [self createMaskView];
     
@@ -73,17 +73,16 @@
 }
 
 - (void)saveButtonIsEnabel {
-    
-    __weak typeof(self) weakSelf = self;
+
     RACSignal *priceInputSignal = [[self.price rac_textSignal]map:^id(NSString* value) {
         
-        return [weakSelf isValid:value];
+        return @(value.length>0);
         
     }];
     
     RACSignal *countInputSignal = [[self.count rac_textSignal]map:^id(NSString* value) {
         
-        return [weakSelf isValid:value];
+        return @(value.length>0);
         
     }];
     
@@ -101,36 +100,29 @@
 
 - (void)requsetData {
     
+    
+  
+    
     _viewModel = [[ProductManageViewModel alloc]init];
     
-    [[_viewModel requstAddProductData:nil]subscribeNext:^(id x) {
-       
-        
-    }];
+    //请求当前登录信息
+//    [[self.viewModel requstCurrenUserInformation]subscribeNext:^(id x) {
+//       
+//        NSLog(@"%@",x);
+//    }];
+//
+//    [[_viewModel requstAddProductData:nil]subscribeNext:^(id x) {
+//       
+//        
+//    }];
     
 }
 
-- (NSNumber*)isValid:(NSString*)text {
-    
-    if (text.length > 0) {
-        
-        return @(YES);
-    }
-    else {
-        
-        return @(NO);
-    }
-    
-}
+
 
 - (IBAction)saveAction:(UIButton *)sender {
     
     NSLog(@"%@",self.optionDic);
-    
-    //插入数据库
-//    [[DataCacheManager shareDataCacheManager]setInsertOrDelete:YES withType:PRODUCT_MANAGER andDic:self.optionDic];
-    
-    
     
     [self.navigationController popToRootViewControllerAnimated:YES];
 
@@ -152,12 +144,12 @@
     
     if (textField.tag == 101) {
         
-        [_optionDic setObject:textField.text forKey:@"purchasePrice"];
+        [_optionDic setObject:textField.text forKey:@"stock_price"];
     }
     
     else if (textField.tag == 102) {
         
-        [_optionDic setObject:textField.text forKey:@"purchaseCount"];
+        [_optionDic setObject:textField.text forKey:@"stock_number"];
     }
     
     [UIView animateWithDuration:0.3 animations:^{

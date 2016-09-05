@@ -9,6 +9,7 @@
 #import "ProductManageViewModel.h"
 #import "AMProductAndModel.h"
 #import "AMProductRelatedInformation.h"
+#import "AMUser.h"
 /*
  获取产品和型号列表
  data =     (
@@ -110,56 +111,6 @@
 - (RACSignal*)requstProductInformationData {
     
     __weak typeof(self) weakSelf = self;
-
-//    RACSignal *productNameAndPmodelSignal = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-//        
-//        weakSelf.pmRequest = [[AMProductAndModelListRequest alloc] init];
-//        
-//        [weakSelf.pmRequest requestWithSuccess:^(KKBaseModel *model, KKRequestError *error) {
-//            
-//            AMBaseModel *baseModel = (AMBaseModel*)model;
-//            
-//            NSMutableArray *dataArray = [NSMutableArray array];
-//            
-//            for (NSDictionary *dic in baseModel.data) {
-//                
-//                AMProductAndModel *productAndModel = [[AMProductAndModel alloc] initWithDictionary:dic error:nil];
-//                
-//                for (int i = 0; i<productAndModel.pmodel.count; i++) {
-//                    
-//                    NSDictionary *dic = productAndModel.pmodel[i];
-//                    
-//                    NSString *pmodel = dic[@"value"];
-//                    
-//                    [productAndModel.pmodel replaceObjectAtIndex:i withObject:pmodel];
-//                }
-//                
-//                [dataArray addObject:productAndModel];
-//            }
-//            
-//            
-//            weakSelf.productAndModelArray = dataArray;
-//            
-//            if (weakSelf.productAndModelArray.count > 0) {
-//                
-//                [subscriber sendNext:@(YES)];
-//                [subscriber sendCompleted];
-//            }
-//            else {
-//                
-//                [subscriber sendNext:@(NO)];
-//                [subscriber sendCompleted];
-//            }
-//            
-//            
-//        } failure:^(KKBaseModel *model, KKRequestError *error) {
-//            NSLog(@"%@", model);
-//            
-//            [subscriber sendError:error];
-//        }];
-//        
-//        return nil;
-//    }];
     
     RACSignal *productRelatedSignal = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
         
@@ -223,6 +174,7 @@
         
         [weakSelf.apRequset requestWithSuccess:^(KKBaseModel *model, KKRequestError *error) {
             
+            
             NSLog(@"%@", model);
             
             
@@ -231,6 +183,33 @@
             NSLog(@"%@", error);
             
             [subscriber sendNext:@(NO)];
+        }];
+        
+        return nil;
+    }];
+}
+
+
+- (RACSignal*)requstCurrenUserInformation {
+    
+    __weak typeof(self) weakSelf = self;
+
+      __block AMUser *userModel = nil;
+    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+       
+        weakSelf.userRequest = [[AMUserInformationRequest alloc]init];
+        
+        [weakSelf.userRequest requestWithSuccess:^(KKBaseModel *model, KKRequestError *error) {
+            
+            userModel = (AMUser*)model;
+            NSLog(@"%@",model);
+            NSLog(@"%@",error);
+            
+        } failure:^(KKBaseModel *model, KKRequestError *error) {
+            
+            
+            NSLog(@"%@",model);
+            NSLog(@"%@",error);
         }];
         
         return nil;

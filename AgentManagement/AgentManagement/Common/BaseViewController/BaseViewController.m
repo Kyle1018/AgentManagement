@@ -7,9 +7,9 @@
 //
 
 #import "BaseViewController.h"
-
+#import "AMUserInformationRequest.h"
 @interface BaseViewController ()
-
+@property(nonatomic,strong) AMUserInformationRequest *requst;
 @end
 
 @implementation BaseViewController
@@ -35,11 +35,37 @@
         self.navigationItem.leftBarButtonItem=backItem;
     }
     
+    
+    //请求当前登录用户信息
+    
+//    static dispatch_once_t disOnce;
+//    dispatch_once(&disOnce,  ^ {
+ 
+         [self requestUserInfo];
+   // });
+   
+    
 }
 
 -(void)doBack:(id)sender {
     
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)requestUserInfo {
+    
+    __weak typeof(self) weakSelf = self;
+    
+   self.requst = [[AMUserInformationRequest alloc]init];
+    
+    [ self.requst requestWithSuccess:^(KKBaseModel *model, KKRequestError *error) {
+        
+        weakSelf.userModel = (AMUser*)model;
+ 
+        
+    } failure:^(KKBaseModel *model, KKRequestError *error) {
+        
+    }];
 }
 
 @end

@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "AMUser.h"
 @interface BaseViewController : UIViewController
 
-
+@property(nonatomic,strong)AMUser *userModel;
 
 @end

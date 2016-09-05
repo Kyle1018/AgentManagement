@@ -10,7 +10,7 @@
 
 @interface AddProductViewControllerB : BaseTableViewController
 
-@property(nonatomic,strong)NSDictionary *dic;
+@property(nonatomic,strong)NSMutableDictionary *inputContentDic;
 
 @property(nonatomic,strong)NSArray *productRelatedInformationArray;
 @end

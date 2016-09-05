@@ -99,6 +99,7 @@
 		E24BF4861D75DDFF0054DFDC /* CustomerManageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E24BF4851D75DDFF0054DFDC /* CustomerManageCell.m */; };
 		E27B06291D616A7000ED18D1 /* address.plist in Resources */ = {isa = PBXBuildFile; fileRef = E27B06281D616A7000ED18D1 /* address.plist */; };
 		E29A7B931D7C443800826744 /* AMUser.m in Sources */ = {isa = PBXBuildFile; fileRef = E29A7B921D7C443800826744 /* AMUser.m */; };
+		E29A7B971D7DBD4500826744 /* AMUserInformationRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = E29A7B961D7DBD4500826744 /* AMUserInformationRequest.m */; };
 		E2A3F27B1D6F2192006EC120 /* DataCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A3F27A1D6F2192006EC120 /* DataCacheManager.m */; };
 		E2C14F6A1D7A849D00B0B0B2 /* RegexUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = E2C14F691D7A849D00B0B0B2 /* RegexUtils.m */; };
 		E2C14F701D7A9B6F00B0B0B2 /* MBProgressHUD+KKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = E2C14F6F1D7A9B6F00B0B0B2 /* MBProgressHUD+KKAdditions.m */; };
@@ -302,6 +303,8 @@
 		E27B06281D616A7000ED18D1 /* address.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = address.plist; sourceTree = "<group>"; };
 		E29A7B911D7C443800826744 /* AMUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMUser.h; sourceTree = "<group>"; };
 		E29A7B921D7C443800826744 /* AMUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMUser.m; sourceTree = "<group>"; };
+		E29A7B951D7DBD4500826744 /* AMUserInformationRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMUserInformationRequest.h; sourceTree = "<group>"; };
+		E29A7B961D7DBD4500826744 /* AMUserInformationRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMUserInformationRequest.m; sourceTree = "<group>"; };
 		E2A3F2791D6F2192006EC120 /* DataCacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataCacheManager.h; sourceTree = "<group>"; };
 		E2A3F27A1D6F2192006EC120 /* DataCacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataCacheManager.m; sourceTree = "<group>"; };
 		E2C14F681D7A849D00B0B0B2 /* RegexUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegexUtils.h; sourceTree = "<group>"; };
@@ -511,6 +514,7 @@
 		27CA01391D6B116F009F9A25 /* Request */ = {
 			isa = PBXGroup;
 			children = (
+				E29A7B941D7DBD2000826744 /* User */,
 				E24BF4581D7413D50054DFDC /* ProductManage */,
 				27CA013A1D6B116F009F9A25 /* AMBaseRequest.h */,
 				275F32BE1D71924B0033C8FF /* AMBaseRequest.m */,
@@ -876,6 +880,15 @@
 			path = User;
 			sourceTree = "<group>";
 		};
+		E29A7B941D7DBD2000826744 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				E29A7B951D7DBD4500826744 /* AMUserInformationRequest.h */,
+				E29A7B961D7DBD4500826744 /* AMUserInformationRequest.m */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
 		E2A3F2781D6F216C006EC120 /* DataCache */ = {
 			isa = PBXGroup;
 			children = (
@@ -1220,6 +1233,7 @@
 				E24BF4511D7355760054DFDC /* MenuCollectionViewCell.m in Sources */,
 				E219472C1D7714EC001C5E5F /* CostManageViewController.m in Sources */,
 				E219475F1D787459001C5E5F /* AddAdministratorViewController.m in Sources */,
+				E29A7B971D7DBD4500826744 /* AMUserInformationRequest.m in Sources */,
 				275F328B1D717B210033C8FF /* ASIAuthenticationDialog.m in Sources */,
 				27E26B3E1D6B1D360072F26E /* AddCustomerViewControllerB.m in Sources */,
 				E21947591D786F78001C5E5F /* SalerManageCell.m in Sources */,

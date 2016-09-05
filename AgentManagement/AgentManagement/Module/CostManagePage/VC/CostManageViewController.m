@@ -19,6 +19,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [RACObserve(self, userModel)subscribeNext:^(id x) {
+       
+        NSLog(@"%@",x);
+    }];
     // Do any additional setup after loading the view.
 }
 

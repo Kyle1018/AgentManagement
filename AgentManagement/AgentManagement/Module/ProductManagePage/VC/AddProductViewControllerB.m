@@ -28,6 +28,9 @@
     [super viewDidLoad];
 
     _set = [NSMutableSet set];
+    
+    
+    _optionDic = [NSMutableDictionary dictionaryWithDictionary:self.inputContentDic];
 
     [self getData];
  
@@ -104,13 +107,13 @@
             [self.optionDic removeObjectForKey:@(307)];
         }
         
-        [self.optionDic setObject:self.inputPrice.text forKey:@"inputPrice"];
+        [self.optionDic setObject:self.inputPrice.text forKey:@"price"];
         
     }
     
     else {
         
-        [self.optionDic removeObjectForKey:@"inputPrice"];
+        [self.optionDic removeObjectForKey:@"price"];
     }
     
       UILabel *label = [self.view viewWithTag:307];
@@ -121,13 +124,13 @@
             
             [self.optionDic removeObjectForKey:@(307)];
             
-            [self.optionDic setObject:self.inputPrice.text forKey:@"inputPrice"];
+            [self.optionDic setObject:self.inputPrice.text forKey:@"price"];
             
         }
         
         else {
             
-               [self.optionDic setObject:self.inputPrice.text forKey:@"inputPrice"];
+               [self.optionDic setObject:self.inputPrice.text forKey:@"price"];
         }
     }
     
@@ -150,14 +153,27 @@
 
 - (BOOL)buttonIsEnabel {
     
+    //首先取出零售价格选项label
     UILabel *label = [self.view viewWithTag:307];
     
+    //判断零售价格输入框有内容
     if (self.inputPrice.text.length > 0) {
         
+        //如果有内容，则将零售价格选项label内容置为nil
         label.text = nil;
         
-        [self.set addObject:@(label.tag)];
+        //如果set集合中已经有了inputPrice，则不会插入，如果没有，则会插入
+        [self.set addObject:@"price"];
         
+        if ([self.optionDic objectForKey:@"price"]) {
+            
+            [self.optionDic removeObjectForKey:@"price"];
+            
+        }
+        
+        [self.optionDic setValue:self.inputPrice.text forKey:@"price"];
+        
+        //如果set集合元素等于9，则下一步按钮可以点击，否则将不能点击
         if (self.set.count == 9) {
             
             return YES;
@@ -170,16 +186,18 @@
         
     }
     
+    
+    //如果零售价格输入框没有内容
     else {
         
-        
-        if (!label) {
+        if (label.text.length > 0) {
             
-            if (label.text.length > 0) {
+            //如果set集合元素等于9，则下一步按钮可以点击，否则将不能点击
+            if (self.set.count == 9) {
                 
                 return YES;
+                
             }
-            
             else {
                 
                 return NO;
@@ -203,26 +221,36 @@
     //点击了选项回调
     self.alertVC.tapActionButtonBlock = ^(NSInteger alertTag,NSString* keyName,NSInteger index) {
         
+        //根据tag取出对应的label
         UILabel *label = [tableView viewWithTag:alertTag];
         
+        //根据点击的下标获取label的内容
         label.text = weakSelf.alertVC.actionButtonArray[index];
-        
-        [weakSelf.optionDic setObject:label.text forKey:keyName];
+    
         
         /**
-         *  对于零售价格选项特殊处理下
+         *  如果点击的了零售价格选项
+         *
+         *  1.不管零售价格输入框是否有内容，都将其置为nil
+         *
+         *  2.判断存储的字典中是否有inputPrice字段，如果有，则将其置移除
+         *
          */
         if (label.tag == 307) {
             
             weakSelf.inputPrice.text = nil;
             
-            if ([weakSelf.optionDic objectForKey:@"inputPrice"]) {
+            if ([weakSelf.optionDic objectForKey:@"price"]) {
                 
-                [weakSelf.optionDic removeObjectForKey:@"inputPrice"];
+                [weakSelf.optionDic removeObjectForKey:@"price"];
                 
             }
         }
         
+        //将取出的label内容及key存入字典，用于之后的添加产品请求参数
+        [weakSelf.optionDic setObject:label.text forKey:keyName];
+        
+        //将key存入set集合，用于判断下一步按钮是否可以点击
         [weakSelf.set addObject:keyName];
         
         if (weakSelf.set.count == 9) {
@@ -273,6 +301,7 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
 
+    //当点击了零售价格输入框按钮确认时，判断set集合是否等于9个，如果等于9个则下一步按钮可点击
     self.nextButton.enabled = [self buttonIsEnabel];
     
     if (self.inputPrice.text.length > 0) {
@@ -282,13 +311,13 @@
             [self.optionDic removeObjectForKey:@(307)];
         }
         
-        [self.optionDic setObject:self.inputPrice.text forKey:@"inputPrice"];
+        [self.optionDic setObject:self.inputPrice.text forKey:@"price"];
             
     }
     
     else {
         
-        [self.optionDic removeObjectForKey:@"inputPrice"];
+        [self.optionDic removeObjectForKey:@"price"];
     }
     
     [UIView animateWithDuration:0.3 animations:^{
@@ -310,7 +339,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
     id page2=segue.destinationViewController;
-    [page2 setValue:self.optionDic forKey:@"dic"];
+    [page2 setValue:self.optionDic forKey:@"inputContentDic"];
 }
 
 @end

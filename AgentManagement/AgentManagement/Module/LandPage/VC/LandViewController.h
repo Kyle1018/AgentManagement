@@ -6,8 +6,8 @@
 //  Copyright © 2016年 KK. All rights reserved.
 //
 
-#import "BaseViewController.h"
+#import <UIKit/UIKit.h>
 
-@interface LandViewController : BaseViewController
+@interface LandViewController : UIViewController
 
 @end

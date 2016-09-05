@@ -8,7 +8,7 @@
 
 #import "BaseTabbarController.h"
 #import "BaseNavigationController.h"
-
+#import "BaseViewController.h"
 #define kClassKey        @"rootVCClassString"
 #define kTitleKey        @"title"
 #define kStoryboardKey   @"storyboard"
@@ -24,6 +24,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    
     NSArray *childItemsArray = @[
                                  @{kClassKey      : @"ProductManageViewController",
                                    kTitleKey      : @"产品管理",
@@ -60,7 +62,6 @@
         
         UIStoryboard * storyboard = [UIStoryboard storyboardWithName:dict[kStoryboardKey] bundle:nil];
          BaseNavigationController*nav = [storyboard instantiateViewControllerWithIdentifier:@"Nav"];
-      
         
         UITabBarItem *item = nav.tabBarItem;
         

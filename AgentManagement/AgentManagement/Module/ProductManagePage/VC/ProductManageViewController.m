@@ -48,12 +48,15 @@
 //        
 //    }];
 //
+ 
     
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     
     [super viewWillAppear:animated];
+    
+
     
     //如果点击了保存按钮
 //    if (self.optionResultDic.count > 0) {
@@ -122,10 +125,17 @@
 //        NSLog(@"%@",weakSelf.brandAndPmodelDataArray);
 //    }];
     
+    NSLog(@"%@",self.userModel);
+    
     [RACObserve(self.viewModel, productRelatedInformationArray)subscribeNext:^(NSMutableArray* x) {
         
         weakSelf.productRelatedInformationArray = x;
         
+    }];
+    
+    [RACObserve(self, userModel)subscribeNext:^(id x) {
+       
+        NSLog(@"%@",x);
     }];
 }
 
