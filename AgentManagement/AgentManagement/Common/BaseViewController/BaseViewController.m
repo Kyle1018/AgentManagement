@@ -35,16 +35,8 @@
         self.navigationItem.leftBarButtonItem=backItem;
     }
     
-    
     //请求当前登录用户信息
-    
-//    static dispatch_once_t disOnce;
-//    dispatch_once(&disOnce,  ^ {
- 
-         [self requestUserInfo];
-   // });
-   
-    
+    [self requestUserInfo];
 }
 
 -(void)doBack:(id)sender {
@@ -62,7 +54,6 @@
         
         weakSelf.userModel = (AMUser*)model;
  
-        
     } failure:^(KKBaseModel *model, KKRequestError *error) {
         
     }];

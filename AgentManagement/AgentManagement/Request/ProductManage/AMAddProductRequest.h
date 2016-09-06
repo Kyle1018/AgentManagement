@@ -10,4 +10,6 @@
 
 @interface AMAddProductRequest : AMBaseRequest
 
+- (instancetype)initWithAddProductInfo:(NSDictionary*)productInfo;
+
 @end

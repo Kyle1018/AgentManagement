@@ -9,7 +9,8 @@
 #import "ProductManageViewModel.h"
 #import "AMProductAndModel.h"
 #import "AMProductRelatedInformation.h"
-#import "AMUser.h"
+#import "AMProductInfo.h"
+
 /*
  获取产品和型号列表
  data =     (
@@ -98,8 +99,9 @@
         
         _productRelatedInformationArray = [NSMutableArray array];
         
-       // _productAndModelArray = [NSMutableArray array];
-    }
+        _productInfoDataArray = [NSMutableArray array];
+        
+     }
     
     return self;
 }
@@ -167,15 +169,21 @@
     
     __weak typeof(self) weakSelf = self;
     
+    __block AMProductInfo *addProductInfoModel = nil;
+    
     return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
        
         
-        weakSelf.apRequset = [[AMAddProductRequest alloc] init];
+        weakSelf.apRequset = [[AMAddProductRequest alloc] initWithAddProductInfo:paramt];
         
         [weakSelf.apRequset requestWithSuccess:^(KKBaseModel *model, KKRequestError *error) {
             
-            
+            addProductInfoModel = (AMProductInfo*)model;
             NSLog(@"%@", model);
+            
+            [subscriber sendNext:addProductInfoModel];
+            [subscriber sendCompleted];
+
             
             
         } failure:^(KKBaseModel *model, KKRequestError *error) {
@@ -183,6 +191,7 @@
             NSLog(@"%@", error);
             
             [subscriber sendNext:@(NO)];
+            [subscriber sendCompleted];
         }];
         
         return nil;
@@ -190,30 +199,49 @@
 }
 
 
-- (RACSignal*)requstCurrenUserInformation {
+- (RACSignal*)requestProductListDataOrSearchProductDataWithPage:(NSInteger)page Size:(NSInteger)size Search:(NSArray*)searchArray {
     
     __weak typeof(self) weakSelf = self;
-
-      __block AMUser *userModel = nil;
+    
+     __block AMProductInfo *productInfoModel = nil;
+    
     return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
        
-        weakSelf.userRequest = [[AMUserInformationRequest alloc]init];
+        NSString *pageStr = [NSString stringWithFormat:@"%ld",page];
         
-        [weakSelf.userRequest requestWithSuccess:^(KKBaseModel *model, KKRequestError *error) {
+        NSString *sizeStr = [NSString stringWithFormat:@"%ld",size];
+        
+        weakSelf.plOrSearchRequest = [[AMProductListOrSearchRequest alloc]initWithPage:pageStr Size:sizeStr Search:searchArray];
+        
+        [weakSelf.plOrSearchRequest requestWithSuccess:^(KKBaseModel *model, KKRequestError *error) {
             
-            userModel = (AMUser*)model;
-            NSLog(@"%@",model);
-            NSLog(@"%@",error);
+             productInfoModel = (AMProductInfo*)model;
+            
+            NSArray *dataArray = [AMProductInfo arrayOfModelsFromDictionaries:productInfoModel.data];
+            
+            NSMutableArray *array = (NSMutableArray *)[[dataArray reverseObjectEnumerator] allObjects];
+            
+            [weakSelf.productInfoDataArray addObjectsFromArray:array];
+
+            if (weakSelf.productInfoDataArray.count > 0) {
+                
+                [subscriber sendNext:@(YES)];
+                [subscriber sendCompleted];
+            }
+            else {
+                
+                [subscriber sendNext:@(NO)];
+                [subscriber sendCompleted];
+                
+            }
             
         } failure:^(KKBaseModel *model, KKRequestError *error) {
             
-            
-            NSLog(@"%@",model);
-            NSLog(@"%@",error);
+            [subscriber sendNext:@(NO)];
+            [subscriber sendCompleted];
         }];
         
         return nil;
     }];
 }
-
 @end

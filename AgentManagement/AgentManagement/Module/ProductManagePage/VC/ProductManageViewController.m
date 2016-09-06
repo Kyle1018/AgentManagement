@@ -26,6 +26,12 @@
 @property(nonatomic,strong)NSMutableArray *brandAndPmodelDataArray;//产品名称和型号
 
 @property(nonatomic,strong)NSArray *productRelatedInformationArray;//产品相关信息
+
+@property(nonatomic,strong)NSMutableArray *productInfoDataArray;//产品列表数据数组
+
+@property(nonatomic,strong)NSMutableDictionary *userInfoDic;
+
+@property(nonatomic,strong)AMProductInfo *addProductInfo;
 @end
 
 @implementation ProductManageViewController
@@ -33,46 +39,36 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-
+    
+    _userInfoDic = [NSMutableDictionary dictionary];
+    
     [self requestData];
     
     [self observeData];
-    
-  //
-//    [[_viewModel requstAddProductData:nil]subscribeNext:^(id x) {
-//       
-//        
-//    }];
-//
-//    [[_viewModel requestProductRelatedInformationData]subscribeNext:^(id x) {
-//        
-//    }];
-//
- 
-    
+
 }
+
 
 - (void)viewWillAppear:(BOOL)animated {
     
     [super viewWillAppear:animated];
     
-
-    
-    //如果点击了保存按钮
-//    if (self.optionResultDic.count > 0) {
-//        
-//        self.formTabelView.hidden = NO;
-//        
-//        self.formHeaderView.hidden = NO;
-//        
-//    }
-//
-    //插入数据库
-    
-//    NSLog(@"%@",[[DataCacheManager shareDataCacheManager]getOptionResult]);
-//    self.array=[[DataCacheManager shareDataCacheManager]getOptionResult];
-//    
-//    NSLog(@"%@",self.array);
+    if (self.addProductInfo != self.productInfo) {
+        
+        self.addProductInfo = self.productInfo;
+        
+        if (self.productInfo !=nil) {
+            
+            [self.productInfoDataArray insertObject:self.productInfo atIndex:0];
+            
+            self.formTabelView.hidden = NO;
+            
+            self.formHeaderView.hidden = NO;
+            
+            [self.formTabelView reloadData];
+        }
+        
+    }
 }
 
 #pragma mark - Data
@@ -81,21 +77,6 @@
     _viewModel = [[ProductManageViewModel alloc]init];
 
      __weak typeof(self) weakSelf = self;
-    
-//    [[[self.viewModel requstProductInformationData]filter:^BOOL(RACTuple* value) {
-//        
-//        if ([[value first]boolValue] == YES && [[value second]boolValue] == YES) {
-//            
-//            return YES;
-//        }
-//        else {
-//            
-//            return NO;
-//        }
-//    }]subscribeNext:^(RACTuple* x) {
-//        //刷新表视图
-//        [weakSelf.formTabelView reloadData];
-//    }];
 
     [[[self.viewModel requstProductInformationData]filter:^BOOL(id value) {
        
@@ -113,36 +94,65 @@
         //刷新表视图
         [weakSelf.formTabelView reloadData];
     }];
+    
+    
+    [[[self.viewModel requestProductListDataOrSearchProductDataWithPage:0 Size:0 Search:nil]filter:^BOOL(id value) {
+        
+        if ([value boolValue]==YES) {
+            
+            return YES;
+        }
+        else {
+            
+            return NO;
+        }
+    }]subscribeNext:^(id x) {
+       
+        weakSelf.formTabelView.hidden = NO;
+        weakSelf.formHeaderView.hidden = NO;
+        
+        [weakSelf.formTabelView reloadData];
+    }];
+
 }
 
 - (void)observeData {
     
     __weak typeof(self) weakSelf = self;
-//
-//    [RACObserve(self.viewModel, productAndModelArray)subscribeNext:^(NSMutableArray* x) {
-//       
-//        weakSelf.brandAndPmodelDataArray = x;
-//        NSLog(@"%@",weakSelf.brandAndPmodelDataArray);
-//    }];
-    
-    NSLog(@"%@",self.userModel);
-    
+
     [RACObserve(self.viewModel, productRelatedInformationArray)subscribeNext:^(NSMutableArray* x) {
         
         weakSelf.productRelatedInformationArray = x;
         
     }];
     
-    [RACObserve(self, userModel)subscribeNext:^(id x) {
+    
+    //当前登录用户信息model
+    [RACObserve(self, userModel)subscribeNext:^(AMUser* x) {
        
         NSLog(@"%@",x);
+        if (x != nil) {
+            
+            //[weakSelf.userInfoDic setObject:x.user_id forKey:@"u_id"];
+//            [weakSelf.userInfoDic setObject:x.add_time forKey:@"add_time"];
+//            [weakSelf.userInfoDic setObject:x.an_id forKey:@"an_id"];
+            //[weakSelf.userInfoDic setObject:@"ID" forKey:@"id"];
+        }
+        
+    }];
+    
+    
+    //列表数据
+    [RACObserve(self.viewModel, productInfoDataArray)subscribeNext:^(NSMutableArray* x) {
+       
+        weakSelf.productInfoDataArray = x;
     }];
 }
 
 #pragma mark - UITableViewDelegate/UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return 3;
+    return self.productInfoDataArray.count;
 }
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -154,7 +164,10 @@
     if (!cell) {
             
         cell =[[ProductManageTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-    }        
+    }
+    
+    cell.model = self.productInfoDataArray[indexPath.row];
+    
     return cell;
 }
 
@@ -163,7 +176,6 @@
 
     UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"ProductManage" bundle:nil];
     _searchMenuVC = [storyboard instantiateViewControllerWithIdentifier:@"SearchMenuViewID"];
-  //  _searchMenuVC.brandAndModelDataArray = self.brandAndPmodelDataArray;
     _searchMenuVC.productRelatedInformationArray = self.productRelatedInformationArray;
     [[UIApplication sharedApplication].keyWindow addSubview:_searchMenuVC.view];
 }
@@ -174,7 +186,8 @@
         
         id page2=segue.destinationViewController;
         [page2 setValue:self.productRelatedInformationArray forKey:@"productRelatedInformationArray"];
-
+        [page2 setValue:self.userInfoDic forKey:@"userDic"];
+   
     }
 
 }

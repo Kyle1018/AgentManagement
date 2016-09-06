@@ -7,7 +7,7 @@
 //
 
 #import "ProductManageTableViewCell.h"
-
+#import "AMProductInfo.h"
 @implementation ProductManageTableViewCell
 
 - (void)awakeFromNib {
@@ -18,6 +18,15 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+
+- (void)setModel:(AMProductInfo *)model {
+    
+    self.brand.text = model.brand;
+    
+    self.pModel.text = model.pmodel;
+    
+    self.price.text = model.price;
 }
 
 @end

@@ -7,8 +7,31 @@
 //
 
 #import "AMAddProductRequest.h"
-
+#import "AMProductInfo.h"
 @implementation AMAddProductRequest
+
+- (instancetype)initWithAddProductInfo:(NSDictionary*)productInfo
+{
+    self = [super init];
+    if (self) {
+        
+        if (self != nil) {
+
+            [self.requestParameters safeAddEntriesFromDictionary:productInfo];
+            
+            NSLog(@"%@",self.requestParameters);
+//            [self.requestParameters addEntriesFromDictionary:productInfo];
+//           [self.requestParameters  safeSetObject:search forKey:@"search"];
+//            [self.requestParameters safeSetObject:page forKey:@"page"];
+//            [self.requestParameters safeSetObject:size forKey:@"size"];
+        }
+        
+        
+        
+    }
+    return self;
+}
+
 
 - (NSString *)urlPath
 {
@@ -17,11 +40,10 @@
 
 - (id)buildModelWithJsonDictionary:(NSDictionary *)dictionary
 {
-    
     NSLog(@"%@",dictionary);
     
-    return [[AMBaseModel alloc]initWithDictionary:dictionary error:nil];
-    // return [[AMProductAndModel alloc] initWithDictionary:dictionary error:nil];
+    return [[AMProductInfo alloc]initWithDictionary:dictionary error:nil];
+   
 }
 
 @end

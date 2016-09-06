@@ -8,7 +8,8 @@
 
 #import "AddProductViewControllerC.h"
 #import "ProductManageViewModel.h"
-
+#import "AMProductInfo.h"
+#import "ProductManageViewController.h"
 @interface AddProductViewControllerC ()
 
 @property (weak, nonatomic) IBOutlet UITextField *price;
@@ -100,17 +101,8 @@
 
 - (void)requsetData {
     
-    
-  
-    
     _viewModel = [[ProductManageViewModel alloc]init];
     
-    //请求当前登录信息
-//    [[self.viewModel requstCurrenUserInformation]subscribeNext:^(id x) {
-//       
-//        NSLog(@"%@",x);
-//    }];
-//
 //    [[_viewModel requstAddProductData:nil]subscribeNext:^(id x) {
 //       
 //        
@@ -124,8 +116,37 @@
     
     NSLog(@"%@",self.optionDic);
     
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    __weak typeof(self) weakSelf = self;
 
+    //添加产品请求
+    [[[self.viewModel requstAddProductData:self.optionDic]filter:^BOOL(id value) {
+        
+        if ([value isKindOfClass:[AMProductInfo class]]) {
+            
+            return YES;
+        }
+        else {
+            
+            [MBProgressHUD showText:@"添加产品失败"];
+            return NO;
+        }
+        
+    }]subscribeNext:^(AMProductInfo* x) {
+        
+        NSLog(@"%@",self.navigationController.viewControllers);
+        
+        for(UIViewController*vc in self.navigationController.viewControllers){
+            
+            if([vc isKindOfClass:[ProductManageViewController class]]){
+                
+              ProductManageViewController*oneVC =(ProductManageViewController*)vc;
+                
+                oneVC.productInfo=x;
+                
+                [weakSelf.navigationController popToViewController:oneVC animated:YES];}
+        }
+        
+    }];
 }
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {

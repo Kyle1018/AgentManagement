@@ -12,4 +12,5 @@
 
 - (void)safeSetObject:(nonnull id)object forKey:(nonnull id<NSCopying>)key;
 
+- (void)safeAddEntriesFromDictionary:(NSDictionary*)dic;
 @end
