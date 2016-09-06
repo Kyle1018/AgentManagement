@@ -7,7 +7,9 @@
 //
 
 #import "BaseTableViewController.h"
-
+#import "AMProductInfo.h"
 @interface ProductDetailViewController : BaseTableViewController
+
+@property(nonatomic,strong)AMProductInfo *productInfo;
 
 @end

@@ -49,7 +49,7 @@
                              @[@"1级",@"2级",@"3级",@"4级",@"5级",@"6级",@"6级以上"],
                              @[@"华北",@"华南",@"华东",@"华中",@"其它"],
                              @[@"0-399",@"400-999",@"1000-2199",@"2200-3799",@"其它"],
-                             @"手动输入价格",@"cycle",nil];
+                             @[@"手动输入价格"],@[@"cycle"],nil];
     
     for (AMProductRelatedInformation *model in self.productRelatedInformationArray) {
         
@@ -86,6 +86,7 @@
         }
     }
 
+    
 }
 
 - (void)createMaskView {

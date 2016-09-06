@@ -11,6 +11,7 @@
 #import "PSearchMenuViewController.h"
 #import "ProductManageViewModel.h"
 #import "ProductDetailViewController.h"
+
 @interface ProductManageViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *formTabelView;
@@ -166,7 +167,19 @@
         cell =[[ProductManageTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
     }
     
-    cell.model = self.productInfoDataArray[indexPath.row];
+    [cell setData:self.productInfoDataArray[indexPath.row] index:indexPath.row];
+  
+     __weak typeof(self) weakSelf = self;
+    
+    cell.tapSeeDetailBlock = ^(NSInteger index) {
+        
+        UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"ProductManage" bundle:nil];
+        ProductDetailViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"ProductDetailID"];
+        vc.productInfo = self.productInfoDataArray[index];
+       
+        [weakSelf.navigationController pushViewController:vc animated:YES];
+        
+    };
     
     return cell;
 }

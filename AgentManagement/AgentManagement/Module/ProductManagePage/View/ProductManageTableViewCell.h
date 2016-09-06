@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void(^TapSeeDetailBlock)(NSInteger index);
+
 @class AMProductInfo;
 
 @interface ProductManageTableViewCell : UITableViewCell
@@ -16,5 +18,9 @@
 @property (strong, nonatomic) IBOutlet UILabel *brand;
 @property (strong, nonatomic) IBOutlet UILabel *pModel;
 @property (strong, nonatomic) IBOutlet UILabel *price;
+@property(nonatomic,assign)NSInteger index;
 
+@property(nonatomic,copy)TapSeeDetailBlock tapSeeDetailBlock;
+
+- (void)setData:(AMProductInfo*)productInfo index:(NSInteger)index;
 @end

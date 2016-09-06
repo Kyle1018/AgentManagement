@@ -23,6 +23,8 @@
     
     [super viewDidLoad];
     
+    
+    
     _inputContentDic = [NSMutableDictionary dictionaryWithDictionary:self.userDic];
 
     //下一步按钮是否允许点击处理

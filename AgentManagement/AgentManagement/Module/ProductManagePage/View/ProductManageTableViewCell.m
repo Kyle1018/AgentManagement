@@ -12,6 +12,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -20,13 +21,24 @@
     // Configure the view for the selected state
 }
 
-- (void)setModel:(AMProductInfo *)model {
+- (void)setData:(AMProductInfo*)productInfo index:(NSInteger)index {
     
-    self.brand.text = model.brand;
+    self.brand.text = productInfo.brand;
     
-    self.pModel.text = model.pmodel;
+    self.pModel.text = productInfo.pmodel;
     
-    self.price.text = model.price;
+    self.price.text = productInfo.price;
+    
+    _index = index;
 }
 
+
+
+- (IBAction)seeDetailAction:(UIButton *)sender {
+    
+    if (self.tapSeeDetailBlock) {
+        
+        self.tapSeeDetailBlock(_index);
+    }
+}
 @end

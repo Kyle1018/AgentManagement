@@ -11,6 +11,12 @@
 @interface ProductDetailViewController ()
 @property(nonatomic,strong)AlertController *alertVC;
 
+@property (strong, nonatomic) IBOutlet UILabel *brand;//品牌
+
+@property (strong, nonatomic) IBOutlet UILabel *pmodel;//型号
+
+
+
 @end
 
 @implementation ProductDetailViewController
@@ -18,6 +24,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    NSLog(@"%@",self.productInfo);
+    
+//    self.label.text = @"hehe";
    
 }
 
