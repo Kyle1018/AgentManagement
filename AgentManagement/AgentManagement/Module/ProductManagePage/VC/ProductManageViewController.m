@@ -175,8 +175,8 @@
         
         UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"ProductManage" bundle:nil];
         ProductDetailViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"ProductDetailID"];
-        vc.productInfo = self.productInfoDataArray[index];
-       
+        vc.productInfo = weakSelf.productInfoDataArray[index];
+        vc.productRelatedInformationArray = weakSelf.productRelatedInformationArray;
         [weakSelf.navigationController pushViewController:vc animated:YES];
         
     };

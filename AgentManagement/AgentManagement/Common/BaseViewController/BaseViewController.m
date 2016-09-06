@@ -36,7 +36,7 @@
     }
     
     //请求当前登录用户信息
-    [self requestUserInfo];
+//    [self requestUserInfo];
 }
 
 -(void)doBack:(id)sender {

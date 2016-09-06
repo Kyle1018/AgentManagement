@@ -12,4 +12,6 @@
 
 @property(nonatomic,strong)AMProductInfo *productInfo;
 
+@property(nonatomic,strong)NSArray *productRelatedInformationArray;
+
 @end
