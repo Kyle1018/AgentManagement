@@ -118,6 +118,11 @@
     return (self.frame.origin.y + self.frame.size.height);
 }
 
+- (CGFloat)right
+{
+    return (self.frame.origin.x + self.frame.size.width);
+}
+
 - (void)removeAllSubviews
 {
     for (UIView *subview in self.subviews) {

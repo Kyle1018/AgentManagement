@@ -237,12 +237,19 @@
             
             addProductInfoModel = (AMProductInfo*)model;
             NSLog(@"%@", model);
+            if (addProductInfoModel.resultCode == 0) {
+                
+                [subscriber sendNext:addProductInfoModel];
+                [subscriber sendCompleted];
+            }
             
-            [subscriber sendNext:addProductInfoModel];
-            [subscriber sendCompleted];
+            else {
+                
+                [subscriber sendNext:@(NO)];
+                [subscriber sendCompleted];
+            }
+            
 
-            
-            
         } failure:^(KKBaseModel *model, KKRequestError *error) {
             
             NSLog(@"%@", error);
@@ -264,9 +271,9 @@
     
     return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
        
-        NSString *pageStr = [NSString stringWithFormat:@"%ld",page];
+        NSString *pageStr = [NSString stringWithFormat:@"%ld",(long)page];
         
-        NSString *sizeStr = [NSString stringWithFormat:@"%ld",size];
+        NSString *sizeStr = [NSString stringWithFormat:@"%ld",(long)size];
         
         weakSelf.plOrSearchRequest = [[AMProductListOrSearchRequest alloc]initWithPage:pageStr Size:sizeStr Search:searchArray];
         

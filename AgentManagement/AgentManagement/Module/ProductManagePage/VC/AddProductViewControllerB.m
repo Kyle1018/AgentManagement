@@ -31,20 +31,10 @@
     
     __weak typeof(self) weakSelf = self;
     
-    [[self.inputPrice rac_textSignal]subscribeNext:^(NSString* x) {
-        
-        if (x.length > 0) {
+    [[[self.inputPrice rac_textSignal]distinctUntilChanged]subscribeNext:^(NSString* x) {
+
+        [weakSelf.optionDic setObject:x forKey:@"price"];
             
-            [weakSelf.optionDic setObject:x forKey:@"price"];
-            
-        }
-        else {
-            
-            if ([weakSelf.optionDic objectForKey:@"price"]) {
-                
-                [weakSelf.optionDic removeObjectForKey:@"price"];
-            }
-        }
     }];
     
     [[[self.nextButton rac_signalForControlEvents:UIControlEventTouchUpInside]filter:^BOOL(id value) {
@@ -100,6 +90,8 @@
     }
     else {
         
+        [self.inputPrice resignFirstResponder];
+        
         self.alertVC.title = [[self.productRelatedInformationArray firstObject]objectAtIndex:indexPath.row];
 
         self.alertVC.actionButtonArray = [[self.productRelatedInformationArray lastObject]objectAtIndex:indexPath.row];
@@ -111,24 +103,10 @@
     
 }
 
-#pragma mark - UITextFieldDelegate
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
-    
-    MaskView *maskView=[MaskView showAddTo:self.view];
-    
-    maskView.hideMaskViewBlock = ^() {
-        
-        [textField resignFirstResponder];
-    };
-    
-    return YES;
-}
-
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     
     [textField resignFirstResponder];
-    [MaskView hideRemoveTo:self.view];
-
+    
     return YES;
 }
 

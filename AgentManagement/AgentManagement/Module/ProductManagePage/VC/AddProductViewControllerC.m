@@ -26,11 +26,15 @@
     
     _optionDic = [NSMutableDictionary dictionaryWithDictionary:self.inputContentDic];
 
+    _viewModel =[[ProductManageViewModel alloc]init];
+    
     [self signal];
 }
 
 - (void)signal {
 
+    __weak typeof(self) weakSelf = self;
+    
     RACSignal *priceInputSignal = [[self.price rac_textSignal]map:^id(NSString* value) {
         
         return @(value.length>0);
@@ -53,6 +57,16 @@
     
     
     RAC(self.saveButton,enabled) = signUpActiveSignal;
+    
+    [[[self.price rac_textSignal]distinctUntilChanged]subscribeNext:^(NSString* x) {
+        
+          [weakSelf.optionDic setObject:x forKey:@"stock_price"];
+    }];
+    
+    [[[self.count rac_textSignal]distinctUntilChanged]subscribeNext:^(NSString* x) {
+        
+          [weakSelf.optionDic setObject:x forKey:@"stock_number"];
+    }];
 }
 
 - (IBAction)saveAction:(UIButton *)sender {
@@ -82,43 +96,18 @@
                 
                 oneVC.productInfo=x;
                 
+                oneVC.optionDic = weakSelf.optionDic;
+                
                 [weakSelf.navigationController popToViewController:oneVC animated:YES];}
         }
         
     }];
 }
 
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
-    
-    __weak typeof(self) weakSelf = self;
-    
-    MaskView *maskView=[MaskView showAddTo:self.view];
-    
-    maskView.hideMaskViewBlock = ^() {
-        
-        [weakSelf.optionDic setObject:weakSelf.price.text forKey:@"stock_price"];
-        [weakSelf.optionDic setObject:weakSelf.count.text forKey:@"stock_number"];
-        
-        [textField resignFirstResponder];
-    };
-    return YES;
-}
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     
-    if (textField.tag == 101) {
-        
-        [_optionDic setObject:textField.text forKey:@"stock_price"];
-    }
-    
-    else if (textField.tag == 102) {
-        
-        [_optionDic setObject:textField.text forKey:@"stock_number"];
-    }
-    
-    
     [textField resignFirstResponder];
-    [MaskView hideRemoveTo:self.view];
 
     return YES;
 }

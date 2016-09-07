@@ -38,22 +38,11 @@
                        
             [self addAction:[UIAlertAction actionWithTitle:msg style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
 
-//                if (weakSelf.alertTag !=0) {
-//
+
                     if (weakSelf.tapActionButtonBlock) {
                         
                         weakSelf.tapActionButtonBlock(weakSelf.alertTag,[self keyName],i);
                     }
-//
-//                }
-//                
-//                else {
-//                    
-//                    if (weakSelf.tapActionButtonBlock) {
-//                        
-//                        weakSelf.tapActionButtonBlock(0,nil,i);
-//                    }
-//                }
 
             }]];
             

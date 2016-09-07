@@ -25,6 +25,8 @@
 @property (nonatomic, assign) CGFloat top;
 @property (nonatomic, assign) CGFloat bottom;
 
+@property(nonatomic,assign)CGFloat right;
+
 - (void)removeAllSubviews;
 
 @end

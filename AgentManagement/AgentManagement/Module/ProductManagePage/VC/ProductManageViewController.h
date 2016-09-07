@@ -13,4 +13,6 @@
 
 @property(nonatomic,strong)AMProductInfo *productInfo;
 
+@property(nonatomic,strong)NSMutableDictionary *optionDic;
+
 @end

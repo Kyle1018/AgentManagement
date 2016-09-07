@@ -12,9 +12,12 @@
 @interface ProductDetailViewController ()
 
 @property(nonatomic,strong)AlertController *alertVC;
-@property (weak, nonatomic) IBOutlet UITextField *brandTextFiled;//品牌
-@property (weak, nonatomic) IBOutlet UITextField *pmodelTextField;//型号
-@property (weak, nonatomic) IBOutlet UILabel *price;//价格
+@property (weak, nonatomic) IBOutlet UITextField *brandTextFiled;
+@property (weak, nonatomic) IBOutlet UITextField *pmodelTextField;
+@property (weak, nonatomic) IBOutlet UITextField *priceTextFiled;
+@property (weak, nonatomic) IBOutlet UITextField *stock_priceTextFiled;
+@property (weak, nonatomic) IBOutlet UITextField *stock_numberTextFiled;
+
 @property (weak, nonatomic) IBOutlet UILabel *drinking;//是否可以直接饮用
 @property (weak, nonatomic) IBOutlet UILabel *classification;//分类
 @property (weak, nonatomic) IBOutlet UILabel *filter;//过滤介质
@@ -22,11 +25,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *putposition;//摆放位置
 @property (weak, nonatomic) IBOutlet UILabel *number;//滤芯个数
 @property (weak, nonatomic) IBOutlet UILabel *area;//适用地区
-@property (weak, nonatomic) IBOutlet UITextField *priceTextFiled;
 @property (weak, nonatomic) IBOutlet UILabel *cycle;//换滤芯周期
-@property (weak, nonatomic) IBOutlet UITextField *stock_priceTextFiled;//进货价格
-@property (weak, nonatomic) IBOutlet UITextField *stock_numberTextFiled;//进货数量
 @property(nonatomic,strong)NSMutableDictionary *inputOptionDic;
+
+
 @end
 
 @implementation ProductDetailViewController
@@ -35,9 +37,7 @@
     [super viewDidLoad];
     
     NSLog(@"%@",self.productInfo);
-    
-    
-    
+
     //设置数据
     [self setData];
     
@@ -48,12 +48,12 @@
 
 - (void)setData {
     
-    _inputOptionDic = [NSMutableDictionary dictionary];
+    _inputOptionDic = [NSMutableDictionary dictionaryWithDictionary:[self.productInfo toDictionary]];
     
     self.brandTextFiled.text = self.productInfo.brand;
     
     self.pmodelTextField.text = self.productInfo.pmodel;
-    
+
     self.drinking.text = self.productInfo.drinking;
     
     self.classification.text = self.productInfo.classification;
@@ -81,9 +81,11 @@
 
 - (void)signal {
     
-    [[[self.brandTextFiled rac_textSignal]distinctUntilChanged]subscribeNext:^(id x) {
+     __weak typeof(self) weakSelf = self;
+    
+    [[[self.brandTextFiled rac_textSignal]distinctUntilChanged]subscribeNext:^(NSString* x) {
        
-        NSLog(@"%@",x);
+        
     }];
 }
 
@@ -111,26 +113,7 @@
     self.alertVC.tapActionButtonBlock = ^(NSInteger alertTag,NSString* keyName,NSInteger index) {
       
         if (index == 0) {
-
-            //设置单元格accessory
-            NSLog(@"%ld",weakSelf.tableView.numberOfSections);
-            NSLog(@"%@",weakSelf.tableView.indexPathsForVisibleRows);
-            
-            for (NSIndexPath *indexPaht in weakSelf.tableView.indexPathsForVisibleRows) {
-                
-                if (indexPaht.section == 1 && indexPaht.row != 7) {
-                    
-                    UITableViewCell*cell=[weakSelf.tableView cellForRowAtIndexPath:indexPaht];
-                     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-                }
-                else {
-                    
-                    UITableViewCell*cell=[weakSelf.tableView cellForRowAtIndexPath:indexPaht];
-                    cell.accessoryType = UITableViewCellAccessoryNone;
-                    
-                    
-                }
-            }
+    
             
             //设置单元格可以点击
             weakSelf.tableView.allowsSelection = YES;
@@ -140,7 +123,8 @@
             weakSelf.priceTextFiled.enabled = YES;
             weakSelf.stock_priceTextFiled.enabled = YES;
             weakSelf.stock_numberTextFiled.enabled = YES;
-            
+            [weakSelf.priceTextFiled becomeFirstResponder];
+
             NSLog(@"点击了编辑产品");
         }
         else {
@@ -148,14 +132,14 @@
             NSLog(@"点击删除产品");
     
             weakSelf.alertVC = [AlertController alertControllerWithTitle:@"确认删除" message:nil preferredStyle:UIAlertControllerStyleAlert];
-            weakSelf.alertVC.alertOptionName = @[@"确定",@"取消"];
-            [weakSelf presentViewController: weakSelf.alertVC animated: YES completion:^{
-                
-                
-            }];
+            weakSelf.alertVC.alertOptionName = @[@"删除",@"取消"];
+            [weakSelf presentViewController: weakSelf.alertVC animated: YES completion:nil];
             
+            //点击了删除产品
             weakSelf.alertVC.tapExitButtonBlock = ^() {
              
+                //删除请求
+                
                 [weakSelf.navigationController popViewControllerAnimated:YES];
         
             };
@@ -174,7 +158,7 @@
     __weak typeof(self) weakSelf = self;
     
     if (indexPath.section == 1) {
-        
+
         self.alertVC = [AlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
         
         // 点击了选项回调
@@ -199,7 +183,12 @@
             
         }
         else {
-            
+            [self.brandTextFiled resignFirstResponder];
+            [self.pmodelTextField resignFirstResponder];
+            [self.priceTextFiled resignFirstResponder];
+            [self.stock_priceTextFiled resignFirstResponder];
+            [self.stock_numberTextFiled resignFirstResponder];
+        
             self.alertVC.title = [[self.productRelatedInformationArray firstObject]objectAtIndex:indexPath.row];
             
             self.alertVC.actionButtonArray = [[self.productRelatedInformationArray lastObject]objectAtIndex:indexPath.row];
@@ -210,9 +199,32 @@
         }
         
     }
-    
-    
 }
 
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    
+    [textField resignFirstResponder];
+    
+    return YES;
+}
+
+//
+-(void)doBack:(id)sender {
+    
+    NSLog(@"点击了返回");
+    __weak typeof(self) weakSelf = self;
+    
+    self.alertVC = [AlertController alertControllerWithTitle:@"退出此次编辑" message:nil preferredStyle:UIAlertControllerStyleAlert];
+    self.alertVC.alertOptionName = @[@"退出",@"取消"];
+    [self presentViewController: self.alertVC animated: YES completion:^{
+        
+        
+    }];
+    
+    self.alertVC.tapExitButtonBlock = ^() {
+        
+        [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+    };
+}
 
 @end

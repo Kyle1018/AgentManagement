@@ -16,6 +16,7 @@
 #import "KKCategory.h"
 #import "DataCacheManager.h"
 #import "Common/Control:View/CommonControl.h"
+#import <SDAutoLayout/UIView+SDAutoLayout.h>
 #endif /* PrefixHeader_pch */
 
 #ifdef DEBUG

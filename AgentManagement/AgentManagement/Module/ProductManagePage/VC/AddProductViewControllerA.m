@@ -53,43 +53,24 @@
                           return @([brandInputValid boolValue]&&[modelInputValid boolValue]);
                       }];
     
+    [[[self.brandTextField rac_textSignal]distinctUntilChanged]subscribeNext:^(NSString* x) {
+       
+        [weakSelf.inputContentDic setObject:x forKey:@"brand"];
+    }];
+    
+    [[[self.modelTextField rac_textSignal]distinctUntilChanged]subscribeNext:^(NSString* x) {
+        
+        [weakSelf.inputContentDic setObject:x forKey:@"model"];
+
+    }];
     
     RAC(weakSelf.nextButton,enabled) = signUpActiveSignal;
 }
 
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
-    
-    __weak typeof(self) weakSelf = self;
-    
-    MaskView *maskView=[MaskView showAddTo:self.view];
-    
-    maskView.hideMaskViewBlock = ^() {
-        
-        [weakSelf.inputContentDic setObject:self.brandTextField.text forKey:@"brand"];
-        [weakSelf.inputContentDic setObject:self.modelTextField.text forKey:@"model"];
-        
-        [textField resignFirstResponder];
-    };
-
-    
-    return YES;
-}
-
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     
-    if (textField.tag == 101) {
-        
-        [_inputContentDic setObject:textField.text forKey:@"brand"];
-    }
-    
-    else if (textField.tag == 102) {
-        
-        [_inputContentDic setObject:textField.text forKey:@"model"];
-    }
-    
     [textField resignFirstResponder];
-    [MaskView hideRemoveTo:self.view];
-
+  
     return YES;
 }
 

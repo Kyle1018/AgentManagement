@@ -45,6 +45,8 @@
         [maskView removeFromSuperview];
     }];
 
+
+
     [view addSubview:maskView];
     
     return maskView;
