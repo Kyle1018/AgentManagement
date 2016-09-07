@@ -7,38 +7,26 @@
 //
 
 #import "ProductDetailViewController.h"
-#import "AlertController.h"
 #import "AMProductRelatedInformation.h"
+
 @interface ProductDetailViewController ()
+
 @property(nonatomic,strong)AlertController *alertVC;
-
 @property (weak, nonatomic) IBOutlet UITextField *brandTextFiled;//品牌
-
 @property (weak, nonatomic) IBOutlet UITextField *pmodelTextField;//型号
-
 @property (weak, nonatomic) IBOutlet UILabel *price;//价格
-
 @property (weak, nonatomic) IBOutlet UILabel *drinking;//是否可以直接饮用
-
 @property (weak, nonatomic) IBOutlet UILabel *classification;//分类
 @property (weak, nonatomic) IBOutlet UILabel *filter;//过滤介质
-
 @property (weak, nonatomic) IBOutlet UILabel *features;//产品特点
-
 @property (weak, nonatomic) IBOutlet UILabel *putposition;//摆放位置
-
 @property (weak, nonatomic) IBOutlet UILabel *number;//滤芯个数
-
-
 @property (weak, nonatomic) IBOutlet UILabel *area;//适用地区
-
 @property (weak, nonatomic) IBOutlet UITextField *priceTextFiled;
-
 @property (weak, nonatomic) IBOutlet UILabel *cycle;//换滤芯周期
-
-@property(nonatomic,strong)NSMutableArray *optionDataArray;
-@property(nonatomic,strong)NSMutableArray *optionTitleDataArray;
-
+@property (weak, nonatomic) IBOutlet UITextField *stock_priceTextFiled;//进货价格
+@property (weak, nonatomic) IBOutlet UITextField *stock_numberTextFiled;//进货数量
+@property(nonatomic,strong)NSMutableDictionary *inputOptionDic;
 @end
 
 @implementation ProductDetailViewController
@@ -48,12 +36,19 @@
     
     NSLog(@"%@",self.productInfo);
     
+    
+    
     //设置数据
     [self setData];
+    
+    
+    [self signal];
     
 }
 
 - (void)setData {
+    
+    _inputOptionDic = [NSMutableDictionary dictionary];
     
     self.brandTextFiled.text = self.productInfo.brand;
     
@@ -75,60 +70,21 @@
     
     self.cycle.text = self.productInfo.cycle;
     
+    self.priceTextFiled.text = self.productInfo.price;
     
-    _optionTitleDataArray = [NSMutableArray arrayWithObjects:@"直接饮用",@"分类",@"过滤介质",@"产品特点",@"摆放位置",@"滤芯个数",@"使用地区",@"",@"换芯周期", nil];
-    _optionDataArray = [NSMutableArray arrayWithObjects:
-                        @[@"可以",@"不可以"],
-                        @[@"纯水机",@"家用净水机",@"商用净水器",@"软水机",@"管线机",@"水处理设备",@"龙头净水器",@"净水杯"],
-                        @[@"反渗透",@"超滤",@"活性炭",@"PP棉",@"陶瓷纳滤",@"不锈钢滤网",@"微滤",@"其它"],
-                        @[@"无废水",@"无桶大通量",@"双出水",@"滤芯寿命提示",@"低废水单出水",@"双模双出水",@"紫外线杀菌",@"TDS显示"],
-                        @[@"厨下式",@"龙头式",@"台上式",@"滤芯寿命提示",@"低废水入户过滤",@"壁挂式",@"其它"],
-                        @[@"1级",@"2级",@"3级",@"4级",@"5级",@"6级",@"6级以上"],
-                        @[@"华北",@"华南",@"华东",@"华中",@"其它"],
-                        @[@"cycle"],nil];
+    self.stock_priceTextFiled.text = self.productInfo.stock_price;
     
-    for (AMProductRelatedInformation *model in self.productRelatedInformationArray) {
-        
-        if ([model.key isEqualToString:@"drinking"]) {
-            
-            [_optionDataArray replaceObjectAtIndex:0 withObject:model.value];
-            
-        }
-        
-        else if ([model.key isEqualToString:@"classification"]) {
-            
-            [_optionDataArray replaceObjectAtIndex:1 withObject:model.value];
-        }
-        else if ([model.key isEqualToString:@"filter"]) {
-            
-            [_optionDataArray replaceObjectAtIndex:2 withObject:model.value];
-        }
-        else if ([model.key isEqualToString:@"features"]) {
-            
-            [_optionDataArray replaceObjectAtIndex:3 withObject:model.value];
-        }
-        else if ([model.key isEqualToString:@"putposition"]) {
-            
-            [_optionDataArray replaceObjectAtIndex:4 withObject:model.value];
-        }
-        else if ([model.key isEqualToString:@"number"]) {
-            
-            [_optionDataArray replaceObjectAtIndex:5 withObject:model.value];
-        }
-        
-        else if ([model.key isEqualToString:@"cycle"]) {
-            
-            [_optionDataArray replaceObjectAtIndex:7 withObject:model.value];
-        }
-    }
-    
+    self.stock_numberTextFiled.text = self.productInfo.stock_number;
     
     
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)signal {
+    
+    [[[self.brandTextFiled rac_textSignal]distinctUntilChanged]subscribeNext:^(id x) {
+       
+        NSLog(@"%@",x);
+    }];
 }
 
 #pragma mark- UITabelViewDelegate;UITabelViewDatasource
@@ -157,15 +113,33 @@
         if (index == 0) {
 
             //设置单元格accessory
-            for (UITableViewCell*cell in weakSelf.tableView.visibleCells) {
+            NSLog(@"%ld",weakSelf.tableView.numberOfSections);
+            NSLog(@"%@",weakSelf.tableView.indexPathsForVisibleRows);
+            
+            for (NSIndexPath *indexPaht in weakSelf.tableView.indexPathsForVisibleRows) {
                 
-                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+                if (indexPaht.section == 1 && indexPaht.row != 7) {
+                    
+                    UITableViewCell*cell=[weakSelf.tableView cellForRowAtIndexPath:indexPaht];
+                     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+                }
+                else {
+                    
+                    UITableViewCell*cell=[weakSelf.tableView cellForRowAtIndexPath:indexPaht];
+                    cell.accessoryType = UITableViewCellAccessoryNone;
+                    
+                    
+                }
             }
             
             //设置单元格可以点击
             weakSelf.tableView.allowsSelection = YES;
-            
-            
+            //设置可以输入
+            weakSelf.brandTextFiled.enabled = YES;
+            weakSelf.pmodelTextField.enabled = YES;
+            weakSelf.priceTextFiled.enabled = YES;
+            weakSelf.stock_priceTextFiled.enabled = YES;
+            weakSelf.stock_numberTextFiled.enabled = YES;
             
             NSLog(@"点击了编辑产品");
         }
@@ -197,7 +171,45 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    NSLog(@"点击了单元格");
+    __weak typeof(self) weakSelf = self;
+    
+    if (indexPath.section == 1) {
+        
+        self.alertVC = [AlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+        
+        // 点击了选项回调
+        self.alertVC.tapActionButtonBlock = ^(NSInteger alertTag,NSString* keyName,NSInteger index) {
+            
+            //根据tag取出对应的label
+            UILabel *label = [tableView viewWithTag:alertTag];
+            
+            //根据点击的下标获取label的内容
+            label.text = weakSelf.alertVC.actionButtonArray[index];
+            
+            //将取出的label内容及key存入字典，用于之后的添加产品请求参数
+             [weakSelf.inputOptionDic setObject:label.text forKey:keyName];
+            
+        };
+        
+        
+        //如果是手动输入零售价格单元格，则不显示alert
+        if (indexPath.row == 7) {
+            
+            [self.alertVC removeFromParentViewController];
+            
+        }
+        else {
+            
+            self.alertVC.title = [[self.productRelatedInformationArray firstObject]objectAtIndex:indexPath.row];
+            
+            self.alertVC.actionButtonArray = [[self.productRelatedInformationArray lastObject]objectAtIndex:indexPath.row];
+            
+            self.alertVC.alertTag = indexPath.row + 300;
+            
+            [self presentViewController: self.alertVC animated: YES completion:nil];
+        }
+        
+    }
     
     
 }

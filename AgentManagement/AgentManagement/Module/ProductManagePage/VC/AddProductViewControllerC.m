@@ -14,7 +14,6 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *price;
 @property (weak, nonatomic) IBOutlet UITextField *count;
-@property(nonatomic,strong)UIView *maskView;
 @property (weak, nonatomic) IBOutlet UIButton *saveButton;
 @property(nonatomic,strong)NSMutableDictionary *optionDic;
 @property(nonatomic,strong)ProductManageViewModel *viewModel;
@@ -26,54 +25,11 @@
     [super viewDidLoad];
     
     _optionDic = [NSMutableDictionary dictionaryWithDictionary:self.inputContentDic];
-    
-     [self createMaskView];
-    
-    [self saveButtonIsEnabel];
-    
-    [self requsetData];
 
+    [self signal];
 }
 
-- (void)createMaskView {
-    
-    self.maskView = [[UIView alloc] initWithFrame:ScreenFrame];
-    self.maskView.backgroundColor = [UIColor blackColor];
-    self.maskView.alpha = 0;
-    [self.maskView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideMyPicker)]];
-}
-
-- (void)hideMyPicker {
-    
-    UITextField *brandTextField = [self.view viewWithTag:101];
-    
-    UITextField*modelTextField = [self.view viewWithTag:102];
-    
-    [_optionDic setObject:brandTextField.text forKey:@"purchasePrice"];
-    [_optionDic setObject:modelTextField.text forKey:@"purchaseCount"];
-
-    
-    [UIView animateWithDuration:0.3 animations:^{
-        
-        if ([self.price isFirstResponder]) {
-            
-            [self.price resignFirstResponder];
-        }
-        else if ([self.count isFirstResponder]) {
-            
-            [self.count resignFirstResponder];
-        }
-        
-        self.maskView.alpha = 0;
-        
-    } completion:^(BOOL finished) {
-        
-        [self.maskView removeFromSuperview];
-        
-    }];
-}
-
-- (void)saveButtonIsEnabel {
+- (void)signal {
 
     RACSignal *priceInputSignal = [[self.price rac_textSignal]map:^id(NSString* value) {
         
@@ -99,22 +55,7 @@
     RAC(self.saveButton,enabled) = signUpActiveSignal;
 }
 
-- (void)requsetData {
-    
-    _viewModel = [[ProductManageViewModel alloc]init];
-    
-//    [[_viewModel requstAddProductData:nil]subscribeNext:^(id x) {
-//       
-//        
-//    }];
-    
-}
-
-
-
 - (IBAction)saveAction:(UIButton *)sender {
-    
-    NSLog(@"%@",self.optionDic);
     
     __weak typeof(self) weakSelf = self;
 
@@ -132,9 +73,7 @@
         }
         
     }]subscribeNext:^(AMProductInfo* x) {
-        
-        NSLog(@"%@",self.navigationController.viewControllers);
-        
+   
         for(UIViewController*vc in self.navigationController.viewControllers){
             
             if([vc isKindOfClass:[ProductManageViewController class]]){
@@ -151,13 +90,17 @@
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
     
-    [self.view addSubview:self.maskView];
-    self.maskView.alpha = 0;
+    __weak typeof(self) weakSelf = self;
     
-    [UIView animateWithDuration:0.3 animations:^{
-        self.maskView.alpha = 0.3;
-    }];
+    MaskView *maskView=[MaskView showAddTo:self.view];
     
+    maskView.hideMaskViewBlock = ^() {
+        
+        [weakSelf.optionDic setObject:weakSelf.price.text forKey:@"stock_price"];
+        [weakSelf.optionDic setObject:weakSelf.count.text forKey:@"stock_number"];
+        
+        [textField resignFirstResponder];
+    };
     return YES;
 }
 
@@ -173,24 +116,9 @@
         [_optionDic setObject:textField.text forKey:@"stock_number"];
     }
     
-    [UIView animateWithDuration:0.3 animations:^{
-        
-        if ([self.price isFirstResponder]) {
-            
-            [self.price resignFirstResponder];
-        }
-        else if ([self.count isFirstResponder]) {
-            
-            [self.count resignFirstResponder];
-        }
-        
-        self.maskView.alpha = 0;
-        
-    } completion:^(BOOL finished) {
-        
-        [self.maskView removeFromSuperview];
-        
-    }];
+    
+    [textField resignFirstResponder];
+    [MaskView hideRemoveTo:self.view];
 
     return YES;
 }

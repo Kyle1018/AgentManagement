@@ -101,6 +101,7 @@
 		E27B06291D616A7000ED18D1 /* address.plist in Resources */ = {isa = PBXBuildFile; fileRef = E27B06281D616A7000ED18D1 /* address.plist */; };
 		E29A7B931D7C443800826744 /* AMUser.m in Sources */ = {isa = PBXBuildFile; fileRef = E29A7B921D7C443800826744 /* AMUser.m */; };
 		E29A7B971D7DBD4500826744 /* AMUserInformationRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = E29A7B961D7DBD4500826744 /* AMUserInformationRequest.m */; };
+		E29A7B9E1D8007AF00826744 /* MaskView.m in Sources */ = {isa = PBXBuildFile; fileRef = E29A7B9D1D8007AF00826744 /* MaskView.m */; };
 		E2A3F27B1D6F2192006EC120 /* DataCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A3F27A1D6F2192006EC120 /* DataCacheManager.m */; };
 		E2C14F6A1D7A849D00B0B0B2 /* RegexUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = E2C14F691D7A849D00B0B0B2 /* RegexUtils.m */; };
 		E2C14F701D7A9B6F00B0B0B2 /* MBProgressHUD+KKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = E2C14F6F1D7A9B6F00B0B0B2 /* MBProgressHUD+KKAdditions.m */; };
@@ -308,6 +309,9 @@
 		E29A7B921D7C443800826744 /* AMUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMUser.m; sourceTree = "<group>"; };
 		E29A7B951D7DBD4500826744 /* AMUserInformationRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMUserInformationRequest.h; sourceTree = "<group>"; };
 		E29A7B961D7DBD4500826744 /* AMUserInformationRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMUserInformationRequest.m; sourceTree = "<group>"; };
+		E29A7B9C1D8007AF00826744 /* MaskView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MaskView.h; sourceTree = "<group>"; };
+		E29A7B9D1D8007AF00826744 /* MaskView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MaskView.m; sourceTree = "<group>"; };
+		E29A7B9F1D8012E200826744 /* CommonControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonControl.h; sourceTree = "<group>"; };
 		E2A3F2791D6F2192006EC120 /* DataCacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataCacheManager.h; sourceTree = "<group>"; };
 		E2A3F27A1D6F2192006EC120 /* DataCacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataCacheManager.m; sourceTree = "<group>"; };
 		E2C14F681D7A849D00B0B0B2 /* RegexUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegexUtils.h; sourceTree = "<group>"; };
@@ -710,6 +714,8 @@
 		34EE98171D76B62E0040C997 /* Control:View */ = {
 			isa = PBXGroup;
 			children = (
+				E29A7B9F1D8012E200826744 /* CommonControl.h */,
+				E29A7B9B1D80077200826744 /* MaskView */,
 				34EE981D1D76B68E0040C997 /* Alert */,
 			);
 			path = "Control:View";
@@ -892,6 +898,15 @@
 				E29A7B961D7DBD4500826744 /* AMUserInformationRequest.m */,
 			);
 			path = User;
+			sourceTree = "<group>";
+		};
+		E29A7B9B1D80077200826744 /* MaskView */ = {
+			isa = PBXGroup;
+			children = (
+				E29A7B9C1D8007AF00826744 /* MaskView.h */,
+				E29A7B9D1D8007AF00826744 /* MaskView.m */,
+			);
+			path = MaskView;
 			sourceTree = "<group>";
 		};
 		E2A3F2781D6F216C006EC120 /* DataCache */ = {
@@ -1286,6 +1301,7 @@
 				27CA014B1D6B116F009F9A25 /* AMLogoutRequest.m in Sources */,
 				E221EEBD1D4F8B9D005B3417 /* BaseTabbarController.m in Sources */,
 				E24BF4571D73EFC70054DFDC /* MenuHeaderView.m in Sources */,
+				E29A7B9E1D8007AF00826744 /* MaskView.m in Sources */,
 				27CA01311D6B10E4009F9A25 /* UIColor+KKAdditions.m in Sources */,
 				275F32911D717B210033C8FF /* ASIInputStream.m in Sources */,
 				E24BF4631D7414B60054DFDC /* ProductManageViewModel.m in Sources */,

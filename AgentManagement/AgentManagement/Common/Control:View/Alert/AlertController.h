@@ -7,9 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <ReactiveCocoa/ReactiveCocoa.h>
-
-
 
 typedef void(^TapActionButtonBlock)(NSInteger alertTag,NSString* keyName,NSInteger index);//选项点击
 

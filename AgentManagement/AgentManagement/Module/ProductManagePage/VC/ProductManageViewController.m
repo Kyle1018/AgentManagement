@@ -47,6 +47,7 @@
     
     [super viewWillAppear:animated];
     
+    //获取添加后的数据模型
     if (self.addProductInfo != self.productInfo && self.productInfo !=nil) {
         
         self.addProductInfo = self.productInfo;
@@ -102,7 +103,6 @@
        
         weakSelf.formTabelView.hidden = NO;
         weakSelf.formHeaderView.hidden = NO;
-        
         [weakSelf.formTabelView reloadData];
     }];
 }
@@ -114,11 +114,9 @@
     //产品相关信息
     [RACObserve(self.viewModel, productRelatedInformationArray)subscribeNext:^(NSMutableArray* x) {
         
-        NSLog(@"%@",x);
         weakSelf.productRelatedInformationArray = x;
         
     }];
-    
     
     //列表数据
     [RACObserve(self.viewModel, productInfoDataArray)subscribeNext:^(NSMutableArray* x) {
@@ -179,7 +177,6 @@
         
         id page2=segue.destinationViewController;
         [page2 setValue:self.productRelatedInformationArray forKey:@"productRelatedInformationArray"];
-   
     }
 
 }

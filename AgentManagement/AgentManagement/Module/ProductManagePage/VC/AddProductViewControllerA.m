@@ -7,13 +7,12 @@
 //
 
 #import "AddProductViewControllerA.h"
-#import <ReactiveCocoa/ReactiveCocoa.h>
-@interface AddProductViewControllerA ()<UITextFieldDelegate>
+
+@interface AddProductViewControllerA ()
 
 @property (weak, nonatomic) IBOutlet UITextField *brandTextField;//品牌输入
 @property (weak, nonatomic) IBOutlet UITextField *modelTextField;//型号输入
 @property (weak, nonatomic) IBOutlet UIButton *nextButton;//下一步按钮
-@property(nonatomic,strong)UIView *maskView;//遮罩视图
 @property(nonatomic,strong)NSMutableDictionary *inputContentDic;
 @end
 
@@ -23,14 +22,14 @@
     
     [super viewDidLoad];
 
-    //下一步按钮是否允许点击处理
-    [self nextButtonIsEnabel];
+    _inputContentDic = [NSMutableDictionary dictionary];
     
-    //阴影视图
-    [self createMaskView];
+    //下一步按钮是否允许点击处理
+    [self signal];
+
 }
 
-- (void)nextButtonIsEnabel {
+- (void)signal {
     
     __weak typeof(self) weakSelf = self;
     
@@ -58,45 +57,20 @@
     RAC(weakSelf.nextButton,enabled) = signUpActiveSignal;
 }
 
-- (void)createMaskView {
-    
-    self.maskView = [[UIView alloc] initWithFrame:ScreenFrame];
-    self.maskView.backgroundColor = [UIColor blackColor];
-    self.maskView.alpha = 0;
-    [self.maskView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideMyPicker)]];
-}
-
-- (void)hideMyPicker {
-    
-    [_inputContentDic setObject:self.brandTextField.text forKey:@"brand"];
-    [_inputContentDic setObject:self.modelTextField.text forKey:@"model"];
-
-    [UIView animateWithDuration:0.3 animations:^{
-        
-        if ([self.brandTextField isFirstResponder]) {
-            
-            [self.brandTextField resignFirstResponder];
-        }
-        else if ([self.modelTextField isFirstResponder]) {
-            
-            [self.modelTextField resignFirstResponder];
-        }
-        self.maskView.alpha = 0;
-       
-    } completion:^(BOOL finished) {
-        
-        [self.maskView removeFromSuperview];
-        
-    }];
-}
-
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
     
-    [self.view addSubview:self.maskView];
+    __weak typeof(self) weakSelf = self;
+    
+    MaskView *maskView=[MaskView showAddTo:self.view];
+    
+    maskView.hideMaskViewBlock = ^() {
+        
+        [weakSelf.inputContentDic setObject:self.brandTextField.text forKey:@"brand"];
+        [weakSelf.inputContentDic setObject:self.modelTextField.text forKey:@"model"];
+        
+        [textField resignFirstResponder];
+    };
 
-    [UIView animateWithDuration:0.3 animations:^{
-        self.maskView.alpha = 0.3;
-    }];
     
     return YES;
 }
@@ -113,20 +87,9 @@
         [_inputContentDic setObject:textField.text forKey:@"model"];
     }
     
-    [UIView animateWithDuration:0.3 animations:^{
-        
-        [textField resignFirstResponder];
-        
-        self.maskView.alpha = 0;
-        
-    } completion:^(BOOL finished) {
-        
-        [self.maskView removeFromSuperview];
-        
-    }];
+    [textField resignFirstResponder];
+    [MaskView hideRemoveTo:self.view];
 
-
-    
     return YES;
 }
 

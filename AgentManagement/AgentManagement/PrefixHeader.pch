@@ -15,6 +15,7 @@
 #import <CocoaLumberjack/CocoaLumberjack.h>
 #import "KKCategory.h"
 #import "DataCacheManager.h"
+#import "Common/Control:View/CommonControl.h"
 #endif /* PrefixHeader_pch */
 
 #ifdef DEBUG

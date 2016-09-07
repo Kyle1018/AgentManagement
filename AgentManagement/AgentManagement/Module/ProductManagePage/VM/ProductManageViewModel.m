@@ -97,7 +97,7 @@
     
     if (self) {
         
-        _productRelatedInformationArray = [NSMutableArray array];
+      
         
         _productInfoDataArray = [NSMutableArray array];
         
@@ -125,8 +125,29 @@
             
             NSArray *modelArray=[AMProductRelatedInformation arrayOfModelsFromDictionaries:baseModel.data error:nil];
    
-           for (AMProductRelatedInformation *model in modelArray) {
-               
+//           for (AMProductRelatedInformation *model in modelArray) {
+//               
+//      
+//               
+//            }
+            
+//
+           
+            NSMutableArray*optionTitleDataArray = [NSMutableArray arrayWithObjects:@"直接饮用",@"分类",@"过滤介质",@"产品特点",@"摆放位置",@"滤芯个数",@"使用地区",@"零售价格",@"换芯周期", nil];
+            NSMutableArray*optionDataArray = [NSMutableArray arrayWithObjects:
+                                @[@"可以",@"不可以"],
+                                @[@"纯水机",@"家用净水机",@"商用净水器",@"软水机",@"管线机",@"水处理设备",@"龙头净水器",@"净水杯"],
+                                @[@"反渗透",@"超滤",@"活性炭",@"PP棉",@"陶瓷纳滤",@"不锈钢滤网",@"微滤",@"其它"],
+                                @[@"无废水",@"无桶大通量",@"双出水",@"滤芯寿命提示",@"低废水单出水",@"双模双出水",@"紫外线杀菌",@"TDS显示"],
+                                @[@"厨下式",@"龙头式",@"台上式",@"滤芯寿命提示",@"低废水入户过滤",@"壁挂式",@"其它"],
+                                @[@"1级",@"2级",@"3级",@"4级",@"5级",@"6级",@"6级以上"],
+                                @[@"华北",@"华南",@"华东",@"华中",@"其它"],
+                                @[@"手动输入价格"],
+                                @[@"1个月",@"3个月",@"6个月",@"12个月",@"18个月",@"24个月"],nil];
+            
+            weakSelf.productRelatedInformationArray = [NSMutableArray arrayWithObject:optionTitleDataArray];
+            for (AMProductRelatedInformation *model in modelArray) {
+                
                 for (int i = 0; i < model.value.count; i++) {
                     
                     NSDictionary *dic = model.value[i];
@@ -135,10 +156,46 @@
                     
                     [model.value replaceObjectAtIndex:i withObject:str];
                 }
-               
+                
+                if ([model.key isEqualToString:@"drinking"]) {
+                    
+                    [optionDataArray replaceObjectAtIndex:0 withObject:model.value];
+                }
+                
+                else if ([model.key isEqualToString:@"classification"]) {
+                    
+                    [optionDataArray replaceObjectAtIndex:1 withObject:model.value];
+                }
+                else if ([model.key isEqualToString:@"filter"]) {
+                    
+                    [optionDataArray replaceObjectAtIndex:2 withObject:model.value];
+                }
+                else if ([model.key isEqualToString:@"features"]) {
+                    
+                    [optionDataArray replaceObjectAtIndex:3 withObject:model.value];
+                }
+                else if ([model.key isEqualToString:@"putposition"]) {
+                    
+                    [optionDataArray replaceObjectAtIndex:4 withObject:model.value];
+                }
+                else if ([model.key isEqualToString:@"number"]) {
+                    
+                    [optionDataArray replaceObjectAtIndex:5 withObject:model.value];
+                }
+                else if ([model.key isEqualToString:@"area"]) {
+                    
+                    [optionDataArray replaceObjectAtIndex:6 withObject:model.value];
+                }
+                
+                else if ([model.key isEqualToString:@"cycle"]) {
+                    
+                    [optionDataArray replaceObjectAtIndex:8 withObject:model.value];
+                }
+                
+          
             }
             
-            [weakSelf.productRelatedInformationArray addObjectsFromArray:modelArray];
+            [weakSelf.productRelatedInformationArray addObject:optionDataArray];
             
             if (weakSelf.productRelatedInformationArray.count > 0) {
                 
