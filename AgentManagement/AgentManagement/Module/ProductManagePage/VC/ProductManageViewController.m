@@ -18,21 +18,18 @@
 
 @property (weak, nonatomic) IBOutlet UIView *formHeaderView;
 
-//@property(nonatomic,strong)   NSMutableArray *array;
-
 @property(nonatomic,strong)ProductManageViewModel *viewModel;
 
 @property(nonatomic,strong)PSearchMenuViewController*searchMenuVC;
 
-@property(nonatomic,strong)NSMutableArray *brandAndPmodelDataArray;//产品名称和型号
+//@property(nonatomic,strong)NSMutableArray *brandAndPmodelDataArray;//产品名称和型号
 
 @property(nonatomic,strong)NSArray *productRelatedInformationArray;//产品相关信息
 
 @property(nonatomic,strong)NSMutableArray *productInfoDataArray;//产品列表数据数组
 
-@property(nonatomic,strong)NSMutableDictionary *userInfoDic;
-
 @property(nonatomic,strong)AMProductInfo *addProductInfo;
+
 @end
 
 @implementation ProductManageViewController
@@ -41,34 +38,27 @@
     
     [super viewDidLoad];
     
-    _userInfoDic = [NSMutableDictionary dictionary];
-    
     [self requestData];
     
     [self observeData];
-
 }
-
 
 - (void)viewWillAppear:(BOOL)animated {
     
     [super viewWillAppear:animated];
     
-    if (self.addProductInfo != self.productInfo) {
+    if (self.addProductInfo != self.productInfo && self.productInfo !=nil) {
         
         self.addProductInfo = self.productInfo;
         
-        if (self.productInfo !=nil) {
+        [self.productInfoDataArray insertObject:self.productInfo atIndex:0];
             
-            [self.productInfoDataArray insertObject:self.productInfo atIndex:0];
+        self.formTabelView.hidden = NO;
             
-            self.formTabelView.hidden = NO;
+        self.formHeaderView.hidden = NO;
             
-            self.formHeaderView.hidden = NO;
-            
-            [self.formTabelView reloadData];
-        }
-        
+        [self.formTabelView reloadData];
+
     }
 }
 
@@ -79,6 +69,7 @@
 
      __weak typeof(self) weakSelf = self;
 
+    //请求产品相关信息
     [[[self.viewModel requstProductInformationData]filter:^BOOL(id value) {
        
         if ([value boolValue] == YES) {
@@ -96,7 +87,7 @@
         [weakSelf.formTabelView reloadData];
     }];
     
-    
+    //请求产品列表数据
     [[[self.viewModel requestProductListDataOrSearchProductDataWithPage:0 Size:0 Search:nil]filter:^BOOL(id value) {
         
         if ([value boolValue]==YES) {
@@ -114,31 +105,17 @@
         
         [weakSelf.formTabelView reloadData];
     }];
-
 }
 
 - (void)observeData {
     
     __weak typeof(self) weakSelf = self;
 
+    //产品相关信息
     [RACObserve(self.viewModel, productRelatedInformationArray)subscribeNext:^(NSMutableArray* x) {
         
-        weakSelf.productRelatedInformationArray = x;
-        
-    }];
-    
-    
-    //当前登录用户信息model
-    [RACObserve(self, userModel)subscribeNext:^(AMUser* x) {
-       
         NSLog(@"%@",x);
-        if (x != nil) {
-            
-            //[weakSelf.userInfoDic setObject:x.user_id forKey:@"u_id"];
-//            [weakSelf.userInfoDic setObject:x.add_time forKey:@"add_time"];
-//            [weakSelf.userInfoDic setObject:x.an_id forKey:@"an_id"];
-            //[weakSelf.userInfoDic setObject:@"ID" forKey:@"id"];
-        }
+        weakSelf.productRelatedInformationArray = x;
         
     }];
     
@@ -171,6 +148,7 @@
   
      __weak typeof(self) weakSelf = self;
     
+    //进入产品详情
     cell.tapSeeDetailBlock = ^(NSInteger index) {
         
         UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"ProductManage" bundle:nil];
@@ -185,6 +163,7 @@
 }
 
 #pragma mark - Action
+//进入搜索产品页面
 - (IBAction)searchMenuAction:(UIButton *)sender {
 
     UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"ProductManage" bundle:nil];
@@ -193,18 +172,16 @@
     [[UIApplication sharedApplication].keyWindow addSubview:_searchMenuVC.view];
 }
 
+//进入添加产品页面
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
     if([segue.identifier compare:@"AddProductSegueA"]==NO) {
         
         id page2=segue.destinationViewController;
         [page2 setValue:self.productRelatedInformationArray forKey:@"productRelatedInformationArray"];
-        [page2 setValue:self.userInfoDic forKey:@"userDic"];
    
     }
 
 }
-
-
 
 @end

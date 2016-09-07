@@ -22,32 +22,27 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    
-    
-    
-    _inputContentDic = [NSMutableDictionary dictionaryWithDictionary:self.userDic];
 
     //下一步按钮是否允许点击处理
     [self nextButtonIsEnabel];
     
     //阴影视图
     [self createMaskView];
-    
-
 }
 
 - (void)nextButtonIsEnabel {
     
     __weak typeof(self) weakSelf = self;
+    
     RACSignal *brandInputSignal = [[self.brandTextField rac_textSignal]map:^id(NSString* value) {
         
-        return [weakSelf isValid:value];
+        return @(value.length>0);
         
     }];
                                    
     RACSignal *modelInputSignal = [[self.modelTextField rac_textSignal]map:^id(NSString* value) {
         
-        return [weakSelf isValid:value];
+        return @(value.length>0);
         
     }];
     
@@ -61,21 +56,6 @@
     
     
     RAC(weakSelf.nextButton,enabled) = signUpActiveSignal;
-    
-    
-}
-
-- (NSNumber*)isValid:(NSString*)text {
-    
-    if (text.length > 0) {
-        
-        return @(YES);
-    }
-    else {
-        
-        return @(NO);
-    }
-    
 }
 
 - (void)createMaskView {
@@ -88,14 +68,8 @@
 
 - (void)hideMyPicker {
     
-    
-    UITextField *brandTextField = [self.view viewWithTag:101];
-    
-    UITextField*modelTextField = [self.view viewWithTag:102];
-    
-    [_inputContentDic setObject:brandTextField.text forKey:@"brand"];
-    [_inputContentDic setObject:modelTextField.text forKey:@"model"];
-
+    [_inputContentDic setObject:self.brandTextField.text forKey:@"brand"];
+    [_inputContentDic setObject:self.modelTextField.text forKey:@"model"];
 
     [UIView animateWithDuration:0.3 animations:^{
         
@@ -116,12 +90,10 @@
     }];
 }
 
-
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
     
     [self.view addSubview:self.maskView];
-    self.maskView.alpha = 0;
-    
+
     [UIView animateWithDuration:0.3 animations:^{
         self.maskView.alpha = 0.3;
     }];

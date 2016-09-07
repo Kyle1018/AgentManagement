@@ -29,7 +29,6 @@
 
     _set = [NSMutableSet set];
     
-    
     _optionDic = [NSMutableDictionary dictionaryWithDictionary:self.inputContentDic];
 
     [self getData];
@@ -39,7 +38,7 @@
 
 - (void)getData {
     
-    _optionTitleDataArray = [NSMutableArray arrayWithObjects:@"直接饮用",@"分类",@"过滤介质",@"产品特点",@"摆放位置",@"滤芯个数",@"使用地区",@"零售价格",@"",@"换芯周期", nil];
+    _optionTitleDataArray = [NSMutableArray arrayWithObjects:@"直接饮用",@"分类",@"过滤介质",@"产品特点",@"摆放位置",@"滤芯个数",@"使用地区",@"零售价格",@"换芯周期", nil];
    _optionDataArray = [NSMutableArray arrayWithObjects:
                              @[@"可以",@"不可以"],
                              @[@"纯水机",@"家用净水机",@"商用净水器",@"软水机",@"管线机",@"水处理设备",@"龙头净水器",@"净水杯"],
@@ -48,15 +47,14 @@
                              @[@"厨下式",@"龙头式",@"台上式",@"滤芯寿命提示",@"低废水入户过滤",@"壁挂式",@"其它"],
                              @[@"1级",@"2级",@"3级",@"4级",@"5级",@"6级",@"6级以上"],
                              @[@"华北",@"华南",@"华东",@"华中",@"其它"],
-                             @[@"0-399",@"400-999",@"1000-2199",@"2200-3799",@"其它"],
-                             @[@"手动输入价格"],@[@"cycle"],nil];
+                             @[@"手动输入价格"],
+                             @[@"1个月",@"3个月",@"6个月",@"12个月",@"18个月",@"24个月"],nil];
     
     for (AMProductRelatedInformation *model in self.productRelatedInformationArray) {
         
         if ([model.key isEqualToString:@"drinking"]) {
             
             [_optionDataArray replaceObjectAtIndex:0 withObject:model.value];
-            
         }
         
         else if ([model.key isEqualToString:@"classification"]) {
@@ -79,10 +77,14 @@
             
             [_optionDataArray replaceObjectAtIndex:5 withObject:model.value];
         }
+        else if ([model.key isEqualToString:@"area"]) {
+            
+            [_optionDataArray replaceObjectAtIndex:6 withObject:model.value];
+        }
         
         else if ([model.key isEqualToString:@"cycle"]) {
             
-            [_optionDataArray replaceObjectAtIndex:9 withObject:model.value];
+            [_optionDataArray replaceObjectAtIndex:8 withObject:model.value];
         }
     }
 
@@ -99,50 +101,38 @@
 
 - (void)hideMyPicker {
     
-    self.nextButton.enabled = [self buttonIsEnabel];
     
     if (self.inputPrice.text.length > 0) {
         
-        if ([self.optionDic objectForKey:@(307)]) {
-            
-            [self.optionDic removeObjectForKey:@(307)];
-        }
+        [self.set addObject:@"price"];
         
         [self.optionDic setObject:self.inputPrice.text forKey:@"price"];
         
+        
     }
-    
     else {
         
-        [self.optionDic removeObjectForKey:@"price"];
-    }
-    
-      UILabel *label = [self.view viewWithTag:307];
-    
-    if (self.inputPrice.text.length > 0) {
-        
-        if (label.text.length > 0) {
+        if ([self.set containsObject:@"price"]) {
             
-            [self.optionDic removeObjectForKey:@(307)];
+            [self.set removeObject:@"price"];
             
-            [self.optionDic setObject:self.inputPrice.text forKey:@"price"];
-            
-        }
-        
-        else {
-            
-               [self.optionDic setObject:self.inputPrice.text forKey:@"price"];
+            [self.optionDic removeObjectForKey:@"price"];
         }
     }
     
-    
+    if (self.set.count == 8) {
+        
+        self.nextButton.enabled = YES;
+    }
+    else {
+        
+        self.nextButton.enabled = NO;
+    }
+
     [UIView animateWithDuration:0.3 animations:^{
         
-        if ([self.inputPrice isFirstResponder]) {
-            
-            [self.inputPrice resignFirstResponder];
-        }
-   
+        [self.inputPrice resignFirstResponder];
+
         self.maskView.alpha = 0;
         
     } completion:^(BOOL finished) {
@@ -152,65 +142,6 @@
     }];
 }
 
-- (BOOL)buttonIsEnabel {
-    
-    //首先取出零售价格选项label
-    UILabel *label = [self.view viewWithTag:307];
-    
-    //判断零售价格输入框有内容
-    if (self.inputPrice.text.length > 0) {
-        
-        //如果有内容，则将零售价格选项label内容置为nil
-        label.text = nil;
-        
-        //如果set集合中已经有了inputPrice，则不会插入，如果没有，则会插入
-        [self.set addObject:@"price"];
-        
-        if ([self.optionDic objectForKey:@"price"]) {
-            
-            [self.optionDic removeObjectForKey:@"price"];
-            
-        }
-        
-        [self.optionDic setValue:self.inputPrice.text forKey:@"price"];
-        
-        //如果set集合元素等于9，则下一步按钮可以点击，否则将不能点击
-        if (self.set.count == 9) {
-            
-            return YES;
-            
-        }
-        else {
-            
-            return NO;
-        }
-        
-    }
-    
-    
-    //如果零售价格输入框没有内容
-    else {
-        
-        if (label.text.length > 0) {
-            
-            //如果set集合元素等于9，则下一步按钮可以点击，否则将不能点击
-            if (self.set.count == 9) {
-                
-                return YES;
-                
-            }
-            else {
-                
-                return NO;
-            }
-        }
-        
-        else {
-            
-            return NO;
-        }
-    }
-}
 
 #pragma mark -TabelViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -219,7 +150,7 @@
 
     self.alertVC = [AlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     
-    //点击了选项回调
+   // 点击了选项回调
     self.alertVC.tapActionButtonBlock = ^(NSInteger alertTag,NSString* keyName,NSInteger index) {
         
         //根据tag取出对应的label
@@ -228,33 +159,13 @@
         //根据点击的下标获取label的内容
         label.text = weakSelf.alertVC.actionButtonArray[index];
     
-        
-        /**
-         *  如果点击的了零售价格选项
-         *
-         *  1.不管零售价格输入框是否有内容，都将其置为nil
-         *
-         *  2.判断存储的字典中是否有inputPrice字段，如果有，则将其置移除
-         *
-         */
-        if (label.tag == 307) {
-            
-            weakSelf.inputPrice.text = nil;
-            
-            if ([weakSelf.optionDic objectForKey:@"price"]) {
-                
-                [weakSelf.optionDic removeObjectForKey:@"price"];
-                
-            }
-        }
-        
         //将取出的label内容及key存入字典，用于之后的添加产品请求参数
         [weakSelf.optionDic setObject:label.text forKey:keyName];
         
         //将key存入set集合，用于判断下一步按钮是否可以点击
         [weakSelf.set addObject:keyName];
         
-        if (weakSelf.set.count == 9) {
+        if (weakSelf.set.count == 8) {
             
             weakSelf.nextButton.enabled = YES;
         }
@@ -265,7 +176,8 @@
      };
     
     
-    if (indexPath.row == 8) {
+    //如果是手动输入零售价格单元格，则不显示alert
+    if (indexPath.row == 7) {
         
         [self.alertVC removeFromParentViewController];
 
@@ -278,7 +190,6 @@
         
         self.alertVC.alertTag = indexPath.row + 300;
 
-        
     }
     [self presentViewController: self.alertVC animated: YES completion:^{
        
@@ -302,25 +213,34 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
 
-    //当点击了零售价格输入框按钮确认时，判断set集合是否等于9个，如果等于9个则下一步按钮可点击
-    self.nextButton.enabled = [self buttonIsEnabel];
-    
-    if (self.inputPrice.text.length > 0) {
+    if (textField.text.length > 0) {
         
-        if ([self.optionDic objectForKey:@(307)]) {
-            
-            [self.optionDic removeObjectForKey:@(307)];
-        }
-        
-        [self.optionDic setObject:self.inputPrice.text forKey:@"price"];
-            
+        [self.set addObject:@"price"];
+      
+        [self.optionDic setObject:textField.text forKey:@"price"];
+
+
     }
-    
     else {
         
-        [self.optionDic removeObjectForKey:@"price"];
+        if ([self.set containsObject:@"price"]) {
+            
+            [self.set removeObject:@"price"];
+            
+            [self.optionDic removeObjectForKey:@"price"];
+        }
     }
     
+    if (self.set.count == 8) {
+        
+        self.nextButton.enabled = YES;
+    }
+    else {
+        
+        self.nextButton.enabled = NO;
+    }
+
+
     [UIView animateWithDuration:0.3 animations:^{
         
         [textField resignFirstResponder];

@@ -8,6 +8,7 @@
 
 #import "BaseViewController.h"
 #import "AMProductInfo.h"
+
 @interface ProductManageViewController : BaseViewController
 
 @property(nonatomic,strong)AMProductInfo *productInfo;

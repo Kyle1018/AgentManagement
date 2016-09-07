@@ -18,7 +18,7 @@
     [super viewDidLoad];
 
     if (self.preferredStyle == UIAlertControllerStyleActionSheet) {
-
+        
         if (self.title !=nil) {
             
             NSMutableAttributedString *hogan = [[NSMutableAttributedString alloc] initWithString:self.title];
@@ -34,27 +34,27 @@
             
             NSString *msg = self.actionButtonArray[i];
             
-          
+      
                        
             [self addAction:[UIAlertAction actionWithTitle:msg style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
 
-                if (weakSelf.alertTag !=0) {
-
+//                if (weakSelf.alertTag !=0) {
+//
                     if (weakSelf.tapActionButtonBlock) {
                         
                         weakSelf.tapActionButtonBlock(weakSelf.alertTag,[self keyName],i);
                     }
-                    
-                }
-                
-                else {
-                    
-                    if (weakSelf.tapActionButtonBlock) {
-                        
-                        weakSelf.tapActionButtonBlock(0,nil,i);
-                    }
-                }
-                
+//
+//                }
+//                
+//                else {
+//                    
+//                    if (weakSelf.tapActionButtonBlock) {
+//                        
+//                        weakSelf.tapActionButtonBlock(0,nil,i);
+//                    }
+//                }
+
             }]];
             
         }
@@ -136,12 +136,7 @@
             return @"area";
             
             break;
-        case 307:
-            
-            return @"price";
-            
-            break;
-        case 309:
+        case 308:
             
             return @"cycle";
             

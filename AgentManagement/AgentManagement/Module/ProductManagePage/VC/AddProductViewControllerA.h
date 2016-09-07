@@ -12,6 +12,4 @@
 
 @property(nonatomic,strong)NSArray *productRelatedInformationArray;
 
-@property(nonatomic,strong)NSDictionary *userDic;
-
 @end
