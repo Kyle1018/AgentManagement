@@ -11,84 +11,6 @@
 #import "AMProductRelatedInformation.h"
 #import "AMProductInfo.h"
 
-/*
- 获取产品和型号列表
- data =     (
- {
- brand = c;
- pmodel =             (
- {
- value = 3;
- }
- );
- },
- {
- brand = "\U7f8e\U7684";
- pmodel =             (
- {
- value = "900\Uff0dw0x";
- },
- {
- value = "900\Uff0dw0x";
- }
- );
- },
- {
- brand = "\U4eec";
- pmodel =             (
- {
- value = "\U884c\U5417";
- },
- {
- value = "\U884c\U5417";
- }
- );
- }
- );
- resultCode = 0;
- resultMessage = ok;
- }
- 
- */
-
-/*
- 获取相关信息其它配置
- <__NSArrayM 0x79144cd0>(
- {
- key = cycle;
- value =     (
- {
- value = "1\U4e2a\U6708";
- },
- {
- value = "2\U4e2a\U6708";
- },
- {
- value = "3\U4e2a\U6708";
- }
- );
- },
- {
- key = sale;
- value =     (
- {
- value = 1;
- }
- );
- },
- {
- key = admin;
- value =     (
- {
- value = 1;
- }
- );
- }
- )
- */
-
-
-
 @implementation ProductManageViewModel
 
 - (instancetype)init {
@@ -96,9 +18,7 @@
     self = [super init];
     
     if (self) {
-        
-      
-        
+
         _productInfoDataArray = [NSMutableArray array];
         
      }
@@ -106,10 +26,66 @@
     return self;
 }
 
-/**
- *  请求产品相关信息数据：名称、型号、各种产品参数
- *
- */
+- (RACSignal*)requestProductBrandAndPmodelData {
+    
+    __weak typeof(self) weakSelf = self;
+    
+    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+       
+        self.pmRequest = [[AMProductAndModelListRequest alloc]init];
+        
+        [self.pmRequest requestWithSuccess:^(KKBaseModel *model, KKRequestError *error) {
+            
+            AMBaseModel *baseModel = (AMBaseModel*)model;
+            
+            NSArray *modelArray=[AMProductAndModel arrayOfModelsFromDictionaries:baseModel.data error:nil];
+
+            NSMutableArray *brandArray = [NSMutableArray array];//品牌数组
+            
+            NSMutableArray *pmodelArray = [NSMutableArray array];//型号数组
+            
+            for (AMProductAndModel *model in modelArray) {
+                
+                [brandArray addObject:model.brand];
+                
+                for (NSDictionary *dic in model.pmodel) {
+                    
+                    NSString *pmodel = dic[@"value"];
+                    
+                    [pmodelArray addObject:pmodel];
+                }
+            
+                
+            }
+            
+            weakSelf.productAndModelArray = [NSMutableArray arrayWithObjects:brandArray,pmodelArray, nil];
+            
+            if (modelArray.count > 0) {
+                
+                [subscriber sendNext:@(YES)];
+                
+                [subscriber sendCompleted];
+            }
+            
+            else {
+                
+                [subscriber sendNext:@(NO)];
+                
+                [subscriber sendCompleted];
+            }
+            
+            
+        } failure:^(KKBaseModel *model, KKRequestError *error) {
+            
+            [subscriber sendNext:@(NO)];
+            
+            [subscriber sendCompleted];
+        }];
+        
+        return nil;
+    }];
+}
+
 - (RACSignal*)requstProductInformationData {
     
     __weak typeof(self) weakSelf = self;
@@ -125,14 +101,6 @@
             
             NSArray *modelArray=[AMProductRelatedInformation arrayOfModelsFromDictionaries:baseModel.data error:nil];
    
-//           for (AMProductRelatedInformation *model in modelArray) {
-//               
-//      
-//               
-//            }
-            
-//
-           
             NSMutableArray*optionTitleDataArray = [NSMutableArray arrayWithObjects:@"直接饮用",@"分类",@"过滤介质",@"产品特点",@"摆放位置",@"滤芯个数",@"使用地区",@"零售价格",@"换芯周期", nil];
             NSMutableArray*optionDataArray = [NSMutableArray arrayWithObjects:
                                 @[@"可以",@"不可以"],
@@ -261,7 +229,6 @@
         return nil;
     }];
 }
-
 
 - (RACSignal*)requestProductListDataOrSearchProductDataWithPage:(NSInteger)page Size:(NSInteger)size Search:(NSArray*)searchArray {
     

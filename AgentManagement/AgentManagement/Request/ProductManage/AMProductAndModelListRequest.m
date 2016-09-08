@@ -19,7 +19,7 @@
 - (id)buildModelWithJsonDictionary:(NSDictionary *)dictionary
 {
     NSLog(@"%@",dictionary);
-    return [[AMBaseModel alloc]initWithDictionary:dictionary error:nil];
+    return [[AMProductAndModel alloc]initWithDictionary:dictionary error:nil];
 }
 
 @end

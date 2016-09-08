@@ -22,7 +22,7 @@
 
 @property(nonatomic,strong)PSearchMenuViewController*searchMenuVC;
 
-//@property(nonatomic,strong)NSMutableArray *brandAndPmodelDataArray;//产品名称和型号
+@property(nonatomic,strong)NSMutableArray *brandAndPmodelDataArray;//产品名称和型号
 
 @property(nonatomic,strong)NSArray *productRelatedInformationArray;//产品相关信息
 
@@ -70,6 +70,15 @@
 
      __weak typeof(self) weakSelf = self;
 
+    //请求产品品牌和型号数据
+    [[[self.viewModel requestProductBrandAndPmodelData]filter:^BOOL(id value) {
+        
+        return YES;
+        
+    }]subscribeNext:^(id x) {
+        
+    }];
+    
     //请求产品属性信息
     [[[self.viewModel requstProductInformationData]filter:^BOOL(id value) {
        
@@ -122,6 +131,12 @@
     [RACObserve(self.viewModel, productInfoDataArray)subscribeNext:^(NSMutableArray* x) {
        
         weakSelf.productInfoDataArray = x;
+    }];
+    
+    //产品品牌型号
+    [RACObserve(self.viewModel, productAndModelArray)subscribeNext:^(NSMutableArray* x) {
+        
+        weakSelf.brandAndPmodelDataArray = x;
     }];
 }
 
@@ -182,8 +197,17 @@
 - (IBAction)searchMenuAction:(UIButton *)sender {
 
     UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"ProductManage" bundle:nil];
+    
     _searchMenuVC = [storyboard instantiateViewControllerWithIdentifier:@"SearchMenuViewID"];
+    
+    NSMutableArray *array = [self.productRelatedInformationArray lastObject];
+    
+    [array insertObject:[self.brandAndPmodelDataArray firstObject] atIndex:0];
+    
+    [array insertObject:[self.brandAndPmodelDataArray lastObject] atIndex:1];
+    
     _searchMenuVC.productRelatedInformationArray = self.productRelatedInformationArray;
+
     [[UIApplication sharedApplication].keyWindow addSubview:_searchMenuVC.view];
 }
 

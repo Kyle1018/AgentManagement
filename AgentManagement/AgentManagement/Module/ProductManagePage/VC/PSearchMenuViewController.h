@@ -10,7 +10,6 @@
 
 @interface PSearchMenuViewController : UIViewController
 
-//@property(nonatomic,strong)NSMutableArray *brandAndModelDataArray;
-
 @property(nonatomic,strong)NSArray *productRelatedInformationArray;
+
 @end

@@ -31,8 +31,12 @@
 
 @property(nonatomic,strong)NSMutableArray *productInfoDataArray;//产品列表或搜索模型数组
 
-
-
+/**
+ *  请求产品品牌和型号数据
+ *
+ *  @return 信号
+ */
+- (RACSignal*)requestProductBrandAndPmodelData;
 
 /**
  *  可以请求产品列表数据或者请求产品搜索数据

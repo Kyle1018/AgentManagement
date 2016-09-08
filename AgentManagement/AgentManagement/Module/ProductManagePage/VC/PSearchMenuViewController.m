@@ -21,7 +21,7 @@
 
 @property (weak, nonatomic) IBOutlet UIView *cancelView;
 
-@property(nonatomic,strong)NSArray *heaerDataArray;
+@property(nonatomic,strong)NSMutableArray *heaerDataArray;
 
 @property(nonatomic,strong)NSMutableArray *dataArray;
 
@@ -42,24 +42,17 @@
     
     [super viewDidLoad];
 
+    NSLog(@"%@",self.productRelatedInformationArray);
+    
     self.view.backgroundColor=[UIColor clearColor];
     
     self.bgView.originX = ScreenWidth;
 
-    _optionLabelTag = 2000;
+   // _optionLabelTag = 2000;
     
     [self.cancelView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideMenuView)]];
     
     self.flowLaout.itemSize = CGSizeMake((ScreenWidth-75)/3, 48);
-    
-//    _heaerDataArray = @[@"品牌",@"型号",@"直接饮用",@"过滤介质",@"产品特点",@"摆放位置",@"滤芯个数",@"适用地区",@"零售价格",@"换芯周期"];
-////    
-//   _array  = @[@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9",@"10",@"11",@"12",@"13",@"14",@"15"];
-    // Do any additional setup after loading the view.
-    
-    /*
-     品牌、型号、分类、直接饮用、过滤介质、产品特点、摆放位置、滤芯个数、适用地区、零售价格、换芯周期
-     */
 
     [self configData];
     
@@ -69,97 +62,22 @@
 
 - (void)configData {
     
-    if (!self.dataArray) {
-        self.dataArray = [NSMutableArray array];
-    }
-    if (!self.isExpland) {
-        self.isExpland = [NSMutableArray array];
-    }
-    
-
-    NSMutableArray *brandArray = [NSMutableArray array];//产品名称
-    
-    NSMutableArray *pmodelArray = [NSMutableArray array];//产品型号
-    
-//    for (AMProductAndModel *model in self.brandAndModelDataArray) {
-//        
-//        [brandArray addObject:model.brand];
-//        
-//        [pmodelArray addObjectsFromArray:model.pmodel];
-//        
+//    if (!self.dataArray) {
+//        self.dataArray = [NSMutableArray array];
 //    }
-    
-    
-//    self.heaerDataArray = @[@"品牌",@"型号",@"直接饮用",@"过滤介质",@"产品特点",@"摆放位置",@"滤芯个数",@"适用地区",@"零售价格",@"换滤芯周期"];
-//    
-//    self.dataArray = [NSMutableArray array];
-//
-//    [self.dataArray addObject:brandArray];
-//    
-//    [self.dataArray addObject:pmodelArray];
-//    
-//    [self.dataArray addObject:@[@"可以",@"不可以"]];
-//    
-//
-//    
-//    for (AMProductRelatedInformation *model in self.productRelatedInformationArray) {
-//        
-////        NSLog(@"%@",model.key);
-////        
-////        NSLog(@"%@",model.value);
-////        
-////        if (model.key) {
-////            <#statements#>
-////        }
-////
-////        if (![model.key isEqualToString:@"filter"]) {
-////            
-////            [self.dataArray addObject:@[@"反渗透",@"超滤",@"活性炭",@"PP棉",@"陶瓷纳滤",@"不锈钢滤网",@"微滤",@"其他"]];
-////        }
-////        else {
-////            
-////            [self.dataArray addObject:model.value];
-////        }
-//        
-//        
-//        
-//        
-//   
-////        else if ([model.key isEqualToString:@"features"]){
-////            
-////            [self.heaerDataArray addObject:@"产品特点"];
-////            [self.dataArray addObject:model.value];
-////        }
-//        
-////        else if ([model.key isEqualToString:@"putposition"]) {
-////            
-////            [self.heaerDataArray addObject:@"摆放位置"];
-////            [self.dataArray addObject:model.value];
-////        }
-////        else if ([model.key isEqualToString:@"number"]) {
-////            
-////            [self.heaerDataArray addObject:@"滤芯个数"];
-////            [self.dataArray addObject:model.value];
-////        }
-////        else if ([model.key isEqualToString:@"cycle"]) {
-////            
-////            [self.heaerDataArray addObject:@"适用地区"];
-////            [self.heaerDataArray addObject:@"零售价格"];
-////            [self.heaerDataArray addObject:@"换滤芯周期"];
-////            [self.dataArray addObject:@[@"华北",@"华南",@"华东",@"华中",@"其他"]];
-////            [self.dataArray addObject:@""];
-////            [self.dataArray addObject:model.value];
-////        }
-//        
+//    if (!self.isExpland) {
+//        self.isExpland = [NSMutableArray array];
 //    }
-//    
-//    NSLog(@"%@",self.heaerDataArray);
-//    NSLog(@"%@",self.dataArray);
-//   
-
+    self.dataArray = [NSMutableArray array];
     
-    self.heaerDataArray = @[@"品牌",@"型号",@"直接饮用",@"过滤介质",@"产品特点",@"摆放位置",@"滤芯个数",@"适用地区",@"零售价格",@"换芯10周期"];
-    self.dataArray = [NSArray arrayWithObjects:brandArray,pmodelArray,@[@"h",@"i",@"j",@"m",@"n"],@[@"a",@"b",@"c",@"d"],@[@"d",@"e",@"f"],@[@"h",@"i",@"j",@"m",@"n"],@[@"a",@"b",@"c",@"d"],@[@"d",@"e",@"f"],@[@"d",@"e",@"f"],@[@"a",@"b",@"c",@"d"],nil].mutableCopy;
+    self.isExpland = [NSMutableArray array];
+    
+    self.heaerDataArray = [NSMutableArray arrayWithObjects:@"品牌",@"型号", nil];
+    
+    [self.heaerDataArray addObjectsFromArray:[self.productRelatedInformationArray firstObject]];
+    
+    [self.dataArray addObjectsFromArray:[self.productRelatedInformationArray lastObject]];
+    
     //用0代表收起，非0代表展开，默认都是收起的
     for (int i = 0; i < self.dataArray.count; i++) {
         [self.isExpland addObject:@0];
@@ -195,10 +113,6 @@
 
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 #pragma mark -UICollectionViewDelegate;UICollectionViewDataSource
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
@@ -209,6 +123,7 @@
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     
     NSArray *array = self.dataArray[section];
+    
     if ([self.isExpland[section] boolValue]) {
         
         if (array.count%3==0) {
@@ -228,9 +143,10 @@
             return 0;
         }
     }
+    
     else {
         
-        if (array.count > 2) {
+        if (array.count >= 2) {
             
             return 3;
         }
@@ -262,26 +178,32 @@
         
     }
     
-    NSInteger optionLabelTag = indexPath.section + indexPath.row+1000;
+    NSString *tt = [NSString stringWithFormat:@"1%ld00",indexPath.section];
+    
+    NSInteger optionLabelTag =  [tt integerValue] +indexPath.row;
+    
+   // cell.optionLabel.tag = optionLabelTag;
     
     if (indexPath.row == 0) {
         
         cell.optionLabel.text = @"不限";
         
-        if (optionLabelTag == _optionLabelTag) {
-            
-            cell.optionLabel.backgroundColor=[UIColor colorWithHex:@"47b6ff"];
-            cell.optionLabel.textColor=[UIColor colorWithHex:@"ffffff"];
-        }
-        else {
-            
-            cell.optionLabel.backgroundColor=[UIColor colorWithHex:@"f1f1f1"];
-            cell.optionLabel.textColor = [UIColor colorWithHex:@"4a4a4a"];
-        }
+//        if (optionLabelTag == _optionLabelTag) {
+//
+//            cell.optionLabel.backgroundColor=[UIColor colorWithHex:@"47b6ff"];
+//            cell.optionLabel.textColor=[UIColor colorWithHex:@"ffffff"];
+//
+//        }
+//        else {
+//            
+//            cell.optionLabel.backgroundColor=[UIColor colorWithHex:@"f1f1f1"];
+//            cell.optionLabel.textColor = [UIColor colorWithHex:@"4a4a4a"];
+//        }
         
     }
 
     else {
+        
         NSArray *array = self.dataArray[indexPath.section];
         
         if (array.count < indexPath.row) {
@@ -293,16 +215,16 @@
          
             cell.optionLabel.text = self.dataArray[indexPath.section][indexPath.row-1];
             
-            if (optionLabelTag == _optionLabelTag) {
-                
-                cell.optionLabel.backgroundColor=[UIColor colorWithHex:@"47b6ff"];
-                cell.optionLabel.textColor=[UIColor colorWithHex:@"ffffff"];
-            }
-            else {
-                
-                cell.optionLabel.backgroundColor=[UIColor colorWithHex:@"f1f1f1"];
-                 cell.optionLabel.textColor = [UIColor colorWithHex:@"4a4a4a"];
-            }
+//            if (optionLabelTag == _optionLabelTag) {
+//                
+//                cell.optionLabel.backgroundColor=[UIColor colorWithHex:@"47b6ff"];
+//                cell.optionLabel.textColor=[UIColor colorWithHex:@"ffffff"];
+//            }
+//            else {
+//                
+//                cell.optionLabel.backgroundColor=[UIColor colorWithHex:@"f1f1f1"];
+//                 cell.optionLabel.textColor = [UIColor colorWithHex:@"4a4a4a"];
+//            }
         }
     }
 
@@ -340,7 +262,9 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    _optionLabelTag = indexPath.section + indexPath.row+1000;
+    NSString *tt = [NSString stringWithFormat:@"1%ld00",indexPath.section];
+    
+     _optionLabelTag =  [tt integerValue] +indexPath.row;
     
     if (_lastIndexPath == nil) {
         
@@ -393,7 +317,7 @@
     
     _lastIndexPath = nil;
     
-    _optionLabelTag = 2000;
+//    _optionLabelTag = 2000;
     
     [self.MenuCollectionView reloadData];
 }
