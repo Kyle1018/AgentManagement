@@ -17,7 +17,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *priceTextFiled;
 @property (weak, nonatomic) IBOutlet UITextField *stock_priceTextFiled;
 @property (weak, nonatomic) IBOutlet UITextField *stock_numberTextFiled;
-
 @property (weak, nonatomic) IBOutlet UILabel *drinking;//是否可以直接饮用
 @property (weak, nonatomic) IBOutlet UILabel *classification;//分类
 @property (weak, nonatomic) IBOutlet UILabel *filter;//过滤介质
@@ -40,7 +39,6 @@
 
     //设置数据
     [self setData];
-    
     
     [self signal];
     
@@ -208,7 +206,7 @@
     return YES;
 }
 
-//
+
 -(void)doBack:(id)sender {
     
     NSLog(@"点击了返回");
