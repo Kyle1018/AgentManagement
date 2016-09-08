@@ -33,6 +33,8 @@
 
 @property(nonatomic,assign)NSInteger optionLabelTag;
 
+@property(nonatomic,strong)NSMutableArray *indexPathArray;
+
 @end
 
 @implementation PSearchMenuViewController
@@ -48,7 +50,7 @@
     
     self.bgView.originX = ScreenWidth;
 
-   // _optionLabelTag = 2000;
+    _optionLabelTag = 2000;
     
     [self.cancelView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideMenuView)]];
     
@@ -57,6 +59,8 @@
     [self configData];
     
     NSLog(@"%@",self.dataArray);
+    
+    _indexPathArray = [NSMutableArray array];
 
 }
 
@@ -178,56 +182,53 @@
         
     }
     
-    NSString *tt = [NSString stringWithFormat:@"1%ld00",indexPath.section];
-    
-    NSInteger optionLabelTag =  [tt integerValue] +indexPath.row;
-    
-   // cell.optionLabel.tag = optionLabelTag;
-    
-    if (indexPath.row == 0) {
-        
-        cell.optionLabel.text = @"不限";
-        
-//        if (optionLabelTag == _optionLabelTag) {
+//    _optionLabelTag++;
+//    
+//    cell.optionLabel.tag = _optionLabelTag;
 //
-//            cell.optionLabel.backgroundColor=[UIColor colorWithHex:@"47b6ff"];
-//            cell.optionLabel.textColor=[UIColor colorWithHex:@"ffffff"];
-//
-//        }
-//        else {
-//            
-//            cell.optionLabel.backgroundColor=[UIColor colorWithHex:@"f1f1f1"];
-//            cell.optionLabel.textColor = [UIColor colorWithHex:@"4a4a4a"];
-//        }
-        
-    }
-
-    else {
-        
-        NSArray *array = self.dataArray[indexPath.section];
-        
-        if (array.count < indexPath.row) {
+//    NSString *tt = [NSString stringWithFormat:@"1%ld00",(long)indexPath.section];
+//    
+//    NSInteger optionLabelTag =  [tt integerValue] +indexPath.row;
+//    
+//    cell.optionLabel.tag = optionLabelTag;
+//    
+    
+ 
+        if (indexPath.row == 0) {
             
-            cell.optionLabel.text =@"";
-            cell.optionLabel.backgroundColor=[UIColor clearColor];
+            cell.optionLabel.text = @"不限";
+            
+        }
+        
+        else {
+            
+            NSArray *array = self.dataArray[indexPath.section];
+            
+            if (array.count < indexPath.row) {
+                
+                cell.optionLabel.text =@"";
+                cell.optionLabel.backgroundColor=[UIColor clearColor];
+            }
+            else {
+                
+                cell.optionLabel.text = self.dataArray[indexPath.section][indexPath.row-1];
+                
+            }
+        }
+        
+        if ([_indexPathArray containsObject:indexPath]) {
+            
+            cell.optionLabel.backgroundColor=[UIColor colorWithHex:@"47b6ff"];
+            cell.optionLabel.textColor = [UIColor colorWithHex:@"ffffff"];
         }
         else {
-         
-            cell.optionLabel.text = self.dataArray[indexPath.section][indexPath.row-1];
             
-//            if (optionLabelTag == _optionLabelTag) {
-//                
-//                cell.optionLabel.backgroundColor=[UIColor colorWithHex:@"47b6ff"];
-//                cell.optionLabel.textColor=[UIColor colorWithHex:@"ffffff"];
-//            }
-//            else {
-//                
-//                cell.optionLabel.backgroundColor=[UIColor colorWithHex:@"f1f1f1"];
-//                 cell.optionLabel.textColor = [UIColor colorWithHex:@"4a4a4a"];
-//            }
+            cell.optionLabel.backgroundColor=[UIColor colorWithHex:@"f1f1f1"];
+            cell.optionLabel.textColor = [UIColor colorWithHex:@"4a4a4a"];
         }
-    }
-
+    
+    
+    
     return cell;
 }
 
@@ -262,17 +263,15 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    NSString *tt = [NSString stringWithFormat:@"1%ld00",indexPath.section];
-    
-     _optionLabelTag =  [tt integerValue] +indexPath.row;
+
     
     if (_lastIndexPath == nil) {
         
         MenuCollectionViewCell *currentCell = (MenuCollectionViewCell*)[collectionView cellForItemAtIndexPath:indexPath];
-        currentCell.optionLabel.tag = _optionLabelTag;
+        //currentCell.optionLabel.tag = _optionLabelTag;
         currentCell.optionLabel.backgroundColor=[UIColor colorWithHex:@"47b6ff"];
         currentCell.optionLabel.textColor = [UIColor colorWithHex:@"ffffff"];
-        
+
     }
     
     else {
@@ -303,12 +302,50 @@
 
             }
             
+            else {
+                
+                currentCell.optionLabel.backgroundColor=[UIColor colorWithHex:@"47b6ff"];
+                currentCell.optionLabel.textColor = [UIColor colorWithHex:@"ffffff"];
+            }
+            
         }
     }
     
-    _lastIndexPath = indexPath;
+    NSLog(@"::::::::::::::%ld",(long)indexPath.section);
+    if (_lastIndexPath == nil) {
+        
+        [_indexPathArray addObject:indexPath];
+    }
+    else {
+        
+        
+        if (_lastIndexPath.section != indexPath.section) {
+            
+            [_indexPathArray addObject:indexPath];
+        }
+        else {
+            
+            if (_lastIndexPath.row != indexPath.row) {
+                
+                [_indexPathArray removeObject:_lastIndexPath];
+                [_indexPathArray addObject:indexPath];
+            }
+            
+            else {
+                
+                [_indexPathArray addObject:indexPath];
+            }
+        }
+    }
+   
+    
+   _lastIndexPath = indexPath;
 
-    NSLog(@"点击了第%ld个单元格",(long)indexPath.row);
+  //  NSLog(@"点击了第%ld个单元格",(long)indexPath.row);
+    
+    NSLog(@"集合：：：：：：：：：：： %@",_indexPathArray);
+    
+    NSLog(@"集合数量？？？？？？？？？？%ld",(unsigned long)_indexPathArray.count);
 }
 
 #pragma mark -Action
@@ -317,7 +354,7 @@
     
     _lastIndexPath = nil;
     
-//    _optionLabelTag = 2000;
+    _optionLabelTag = 2000;
     
     [self.MenuCollectionView reloadData];
 }
