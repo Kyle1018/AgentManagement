@@ -58,6 +58,11 @@
     
     RAC(self.saveButton,enabled) = signUpActiveSignal;
     
+    RAC(self.saveButton.titleLabel,textColor) = [signUpActiveSignal map:^id(id value) {
+        
+        return [value boolValue]?[UIColor colorWithHex:@"47b6ff"]:[UIColor colorWithHex:@"9b9b9b"];
+    }];
+    
     [[[self.price rac_textSignal]distinctUntilChanged]subscribeNext:^(NSString* x) {
         
           [weakSelf.optionDic setObject:x forKey:@"stock_price"];

@@ -31,12 +31,25 @@
     
     __weak typeof(self) weakSelf = self;
     
+    //零售价格输入
     [[[self.inputPrice rac_textSignal]distinctUntilChanged]subscribeNext:^(NSString* x) {
 
         [weakSelf.optionDic setObject:x forKey:@"price"];
             
     }];
     
+    //下一步按钮是否可点击显示的文字颜色
+    RACSignal*validSignal=[[self.inputPrice rac_textSignal]map:^id(NSString* value) {
+        
+        return @(value.length>0 && weakSelf.optionDic.count == 11);
+    }];
+    
+    RAC(self.nextButton.titleLabel,textColor) =[validSignal map:^id(NSNumber* value) {
+        
+        return [value boolValue]?[UIColor colorWithHex:@"47b6ff"]:[UIColor colorWithHex:@"9b9b9b"];
+    }];
+    
+    //下一步按钮点击事件
     [[[self.nextButton rac_signalForControlEvents:UIControlEventTouchUpInside]filter:^BOOL(id value) {
         
         if (weakSelf.optionDic.count == 11) {
@@ -78,7 +91,16 @@
     
         //将取出的label内容及key存入字典，用于之后的添加产品请求参数
         [weakSelf.optionDic setObject:label.text forKey:keyName];
- 
+        
+        if (weakSelf.optionDic.count == 11) {
+            
+            [weakSelf.nextButton setTitleColor:[UIColor colorWithHex:@"47b6ff"] forState:UIControlStateNormal];
+        }
+        else {
+            
+            [weakSelf.nextButton setTitleColor:[UIColor colorWithHex:@"9b9b9b"] forState:UIControlStateNormal];
+        }
+        
      };
     
     

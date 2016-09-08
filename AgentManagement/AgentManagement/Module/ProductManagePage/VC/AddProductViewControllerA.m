@@ -64,7 +64,12 @@
 
     }];
     
-    RAC(weakSelf.nextButton,enabled) = signUpActiveSignal;
+    RAC(self.nextButton,enabled) = signUpActiveSignal;
+    
+    RAC(self.nextButton.titleLabel,textColor) = [signUpActiveSignal map:^id(id value) {
+        
+        return [value boolValue]?[UIColor colorWithHex:@"47b6ff"]:[UIColor colorWithHex:@"9b9b9b"];
+    }];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
@@ -79,8 +84,8 @@
     if([segue.identifier compare:@"AddProductSegueB"]==NO) {
         
         id page2=segue.destinationViewController;
-        [page2 setValue:self.productRelatedInformationArray forKey:@"productRelatedInformationArray"];
-        [page2 setValue:self.inputContentDic forKey:@"inputContentDic"];
+        [page2 setValue:self.productRelatedInformationArray forKey:@"productRelatedInformationArray"];//产品属性信息
+        [page2 setValue:self.inputContentDic forKey:@"inputContentDic"];//用户输入的信息
         
     }
 }

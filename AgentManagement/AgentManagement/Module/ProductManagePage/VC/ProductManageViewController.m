@@ -70,7 +70,7 @@
 
      __weak typeof(self) weakSelf = self;
 
-    //请求产品相关信息
+    //请求产品属性信息
     [[[self.viewModel requstProductInformationData]filter:^BOOL(id value) {
        
         if ([value boolValue] == YES) {
