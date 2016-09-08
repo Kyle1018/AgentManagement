@@ -155,6 +155,23 @@
         vc.productRelatedInformationArray = weakSelf.productRelatedInformationArray;
         [weakSelf.navigationController pushViewController:vc animated:YES];
         
+        //产品详情页点击了删除产品信息回调
+        vc.tapDeleteProductBlock = ^() {
+            
+            [weakSelf.productInfoDataArray removeObjectAtIndex:index];
+            
+            if (weakSelf.productInfoDataArray.count > 0) {
+                
+                 [weakSelf.formTabelView reloadData];
+            }
+            else {
+                
+                weakSelf.formHeaderView.hidden = YES;
+                weakSelf.formTabelView.hidden = YES;
+            }
+            
+        };
+        
     };
     
     return cell;

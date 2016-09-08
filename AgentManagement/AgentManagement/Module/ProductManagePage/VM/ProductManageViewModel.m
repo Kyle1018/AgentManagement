@@ -308,4 +308,27 @@
         return nil;
     }];
 }
+
+- (RACSignal*)deleteProduct:(NSDictionary*)pdInfo; {
+    
+    __weak typeof(self) weakSelf = self;
+    
+    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+      
+        weakSelf.deleteRequest = [[AMDeleteProductRequest alloc]initWithPD_id:pdInfo];
+        
+        [weakSelf.deleteRequest requestWithSuccess:^(KKBaseModel *model, KKRequestError *error) {
+            
+            [subscriber sendNext:@(YES)];
+            [subscriber sendCompleted];
+            
+        } failure:^(KKBaseModel *model, KKRequestError *error) {
+            [subscriber sendNext:@(NO)];
+            [subscriber sendCompleted];
+          
+        }];
+        
+        return nil;
+    }];
+}
 @end

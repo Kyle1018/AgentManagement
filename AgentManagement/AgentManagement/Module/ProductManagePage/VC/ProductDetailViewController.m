@@ -8,7 +8,7 @@
 
 #import "ProductDetailViewController.h"
 #import "AMProductRelatedInformation.h"
-
+#import "ProductManageViewModel.h"
 @interface ProductDetailViewController ()
 
 @property(nonatomic,strong)AlertController *alertVC;
@@ -26,7 +26,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *area;//适用地区
 @property (weak, nonatomic) IBOutlet UILabel *cycle;//换滤芯周期
 @property(nonatomic,strong)NSMutableDictionary *inputOptionDic;
-
+@property(nonatomic,strong)ProductManageViewModel *viewModel;
 
 @end
 
@@ -46,7 +46,29 @@
 
 - (void)setData {
     
+    _viewModel = [[ProductManageViewModel alloc]init];
+    
     _inputOptionDic = [NSMutableDictionary dictionaryWithDictionary:[self.productInfo toDictionary]];
+    
+    /**
+     *  "add_time" = 1473155835;
+     "an_id" = 10;
+     area = "\U534e\U4e1c";
+     brand = "\U6211\U4eec";
+     classification = "\U5546\U7528\U51c0\U6c34\U5668";
+     cycle = "2\U4e2a\U6708";
+     drinking = "\U53ef\U4ee5";
+     features = "\U65e0\U5e9f\U6c34";
+     filter = "\U8d85\U6ee4";
+     id = 30;
+     number = "\U6ee4\U82af\U5bff\U547d\U63d0\U793a";
+     pmodel = "";
+     price = 100;
+     putposition = "4\U7ea7";
+     "stock_number" = 100;
+     "stock_price" = 100;
+     "u_id" = 10;
+     */
     
     self.brandTextFiled.text = self.productInfo.brand;
     
@@ -83,8 +105,34 @@
     
     [[[self.brandTextFiled rac_textSignal]distinctUntilChanged]subscribeNext:^(NSString* x) {
        
+        [weakSelf.inputOptionDic setObject:x forKey:@"brand"];
+
+    }];
+    
+    [[[self.pmodelTextField rac_textSignal]distinctUntilChanged]subscribeNext:^(NSString* x) {
+        
+        [weakSelf.inputOptionDic setObject:x forKey:@"pmodel"];
         
     }];
+    
+    [[[self.priceTextFiled rac_textSignal]distinctUntilChanged]subscribeNext:^(NSString* x) {
+        
+        [weakSelf.inputOptionDic setObject:x forKey:@"price"];
+        
+    }];
+    
+    [[[self.stock_priceTextFiled rac_textSignal]distinctUntilChanged]subscribeNext:^(NSString* x) {
+        
+        [weakSelf.inputOptionDic setObject:x forKey:@"stock_price"];
+        
+    }];
+    
+    [[[self.stock_numberTextFiled rac_textSignal]distinctUntilChanged]subscribeNext:^(NSString* x) {
+        
+        [weakSelf.inputOptionDic setObject:x forKey:@"stock_number"];
+        
+    }];
+
 }
 
 #pragma mark- UITabelViewDelegate;UITabelViewDatasource
@@ -110,8 +158,8 @@
     
     self.alertVC.tapActionButtonBlock = ^(NSInteger alertTag,NSString* keyName,NSInteger index) {
       
+        //点击了编辑产品选项
         if (index == 0) {
-    
             
             //设置单元格可以点击
             weakSelf.tableView.allowsSelection = YES;
@@ -123,12 +171,11 @@
             weakSelf.stock_numberTextFiled.enabled = YES;
             [weakSelf.priceTextFiled becomeFirstResponder];
 
-            NSLog(@"点击了编辑产品");
         }
+        
+        //点击了删除产品选项
         else {
-            
-            NSLog(@"点击删除产品");
-    
+
             weakSelf.alertVC = [AlertController alertControllerWithTitle:@"确认删除" message:nil preferredStyle:UIAlertControllerStyleAlert];
             weakSelf.alertVC.alertOptionName = @[@"删除",@"取消"];
             [weakSelf presentViewController: weakSelf.alertVC animated: YES completion:nil];
@@ -137,9 +184,19 @@
             weakSelf.alertVC.tapExitButtonBlock = ^() {
              
                 //删除请求
+                [[weakSelf.viewModel deleteProduct:weakSelf.inputOptionDic]subscribeNext:^(id x) {
+                   
+                    NSLog(@"%@",x);
+                    
+                    if (weakSelf.tapDeleteProductBlock) {
+                        
+                        weakSelf.tapDeleteProductBlock();
+                    }
+                    
+                    [weakSelf.navigationController popViewControllerAnimated:YES];
                 
-                [weakSelf.navigationController popViewControllerAnimated:YES];
-        
+                }];
+
             };
             
         }

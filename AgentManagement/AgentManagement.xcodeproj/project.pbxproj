@@ -67,6 +67,7 @@
 		34EE98211D76B6AE0040C997 /* AlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EE981F1D76B6AE0040C997 /* AlertController.m */; };
 		34EE98221D76B6AE0040C997 /* AlertController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34EE98201D76B6AE0040C997 /* AlertController.xib */; };
 		34EE98251D76BAF90040C997 /* CSearchMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EE98241D76BAF90040C997 /* CSearchMenuViewController.m */; };
+		34F552A31D81414300CCA537 /* AMDeleteProductRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 34F552A21D81414300CCA537 /* AMDeleteProductRequest.m */; };
 		BF9F2BB189B26DBF3F73AD65 /* libPods-AgentManagement.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C806F49AB69A45A297CCBD97 /* libPods-AgentManagement.a */; };
 		E21947281D7714E1001C5E5F /* CostManage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E21947271D7714E1001C5E5F /* CostManage.storyboard */; };
 		E219472C1D7714EC001C5E5F /* CostManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E219472B1D7714EC001C5E5F /* CostManageViewController.m */; };
@@ -244,6 +245,8 @@
 		34EE98201D76B6AE0040C997 /* AlertController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlertController.xib; sourceTree = "<group>"; };
 		34EE98231D76BAF90040C997 /* CSearchMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSearchMenuViewController.h; sourceTree = "<group>"; };
 		34EE98241D76BAF90040C997 /* CSearchMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSearchMenuViewController.m; sourceTree = "<group>"; };
+		34F552A11D81414300CCA537 /* AMDeleteProductRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMDeleteProductRequest.h; sourceTree = "<group>"; };
+		34F552A21D81414300CCA537 /* AMDeleteProductRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMDeleteProductRequest.m; sourceTree = "<group>"; };
 		478FBB2CEED5387933066CAF /* Pods-AgentManagement.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgentManagement.release.xcconfig"; path = "Pods/Target Support Files/Pods-AgentManagement/Pods-AgentManagement.release.xcconfig"; sourceTree = "<group>"; };
 		A4D39D6814FFFBB4493A8E64 /* Pods-AgentManagement.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgentManagement.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AgentManagement/Pods-AgentManagement.debug.xcconfig"; sourceTree = "<group>"; };
 		C806F49AB69A45A297CCBD97 /* libPods-AgentManagement.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AgentManagement.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -847,6 +850,8 @@
 				E24BF4821D755C690054DFDC /* AMAddProductRequest.m */,
 				3422BA5F1D7EA33E003751F1 /* AMProductListOrSearchRequest.h */,
 				3422BA601D7EA33E003751F1 /* AMProductListOrSearchRequest.m */,
+				34F552A11D81414300CCA537 /* AMDeleteProductRequest.h */,
+				34F552A21D81414300CCA537 /* AMDeleteProductRequest.m */,
 			);
 			path = ProductManage;
 			sourceTree = "<group>";
@@ -1296,6 +1301,7 @@
 				275F328C1D717B210033C8FF /* ASIDataCompressor.m in Sources */,
 				27CA014C1D6B116F009F9A25 /* AMRegisterRequest.m in Sources */,
 				E219475C1D786F8D001C5E5F /* OperationlogCell.m in Sources */,
+				34F552A31D81414300CCA537 /* AMDeleteProductRequest.m in Sources */,
 				27CA01301D6B10E4009F9A25 /* NSMutableDictionary+KKAdditions.m in Sources */,
 				27CA01491D6B116F009F9A25 /* AMIdentifyCodeRequest.m in Sources */,
 				27CA014B1D6B116F009F9A25 /* AMLogoutRequest.m in Sources */,

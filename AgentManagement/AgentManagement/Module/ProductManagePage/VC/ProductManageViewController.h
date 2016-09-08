@@ -16,3 +16,11 @@
 @property(nonatomic,strong)NSMutableDictionary *optionDic;
 
 @end
+
+
+/*
+ 1.产品管理列表中的查看详情，进入查看详情页面，当点击编辑产品选项后，进行产品编辑，编辑完之后保存如何处理？
+ 
+ 2.删除产品时，没有任何返回信息，
+ 
+ */

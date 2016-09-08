@@ -12,6 +12,7 @@
 #import "AMAddProductRequest.h"
 #import "AMUserInformationRequest.h"
 #import "AMProductListOrSearchRequest.h"
+#import "AMDeleteProductRequest.h"
 @interface ProductManageViewModel : NSObject
 
 @property(nonatomic,strong)AMProductAndModelListRequest *pmRequest;//产品和型号
@@ -22,11 +23,15 @@
 
 @property(nonatomic,strong)AMProductListOrSearchRequest *plOrSearchRequest;//产品列表或搜索@
 
+@property(nonatomic,strong)AMDeleteProductRequest *deleteRequest;//删除产品
+
 @property(nonatomic,strong)NSMutableArray *productAndModelArray;//产品和型号模型数组
 
 @property(nonatomic,strong)NSMutableArray *productRelatedInformationArray;//产品相关信息模型数组
 
 @property(nonatomic,strong)NSMutableArray *productInfoDataArray;//产品列表或搜索模型数组
+
+
 
 
 /**
@@ -57,6 +62,9 @@
  */
 - (RACSignal*)requstAddProductData:(NSDictionary*)paramt;
 
-
+/**
+ *  删除产品请求
+ */
+- (RACSignal*)deleteProduct:(NSDictionary*)pdInfo;
 
 @end
