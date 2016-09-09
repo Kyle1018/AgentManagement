@@ -13,7 +13,10 @@ typedef void(^TapAllButonBlock)();
 @interface MenuHeaderView : UICollectionReusableView
 
 @property (weak, nonatomic) IBOutlet UILabel *hederTitle;
+@property (weak, nonatomic) IBOutlet UIControl *allButton;
 
 @property(nonatomic,copy)TapAllButonBlock tapAllButonBlock;
+
+- (void)setTitle:(NSString*)text;
 
 @end

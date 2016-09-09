@@ -150,7 +150,7 @@
     
     else {
         
-        if (array.count >= 2) {
+        if (array.count >= 1) {
             
             return 3;
         }
@@ -182,18 +182,13 @@
         
     }
     
-//    _optionLabelTag++;
-//    
-//    cell.optionLabel.tag = _optionLabelTag;
-//
-//    NSString *tt = [NSString stringWithFormat:@"1%ld00",(long)indexPath.section];
-//    
-//    NSInteger optionLabelTag =  [tt integerValue] +indexPath.row;
-//    
-//    cell.optionLabel.tag = optionLabelTag;
-//    
-    
- 
+    if ([_heaerDataArray[indexPath.section] isEqualToString:@"零售价格"]) {
+        
+        cell.optionLabel.text =@"";
+        cell.optionLabel.backgroundColor=[UIColor clearColor];
+    }
+    else {
+        
         if (indexPath.row == 0) {
             
             cell.optionLabel.text = @"不限";
@@ -226,8 +221,10 @@
             cell.optionLabel.backgroundColor=[UIColor colorWithHex:@"f1f1f1"];
             cell.optionLabel.textColor = [UIColor colorWithHex:@"4a4a4a"];
         }
-    
-    
+        
+        
+    }
+
     
     return cell;
 }
@@ -241,8 +238,7 @@
         
         MenuHeaderView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"CellHeaderID" forIndexPath:indexPath];
         
-        
-        headerView.hederTitle.text = _heaerDataArray[indexPath.section];
+        [headerView setTitle:_heaerDataArray[indexPath.section]];
         
         //点击全部按钮回调
         headerView.tapAllButonBlock = ^() {

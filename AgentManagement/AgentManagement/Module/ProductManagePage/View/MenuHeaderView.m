@@ -18,4 +18,17 @@
     }
 }
 
+- (void)setTitle:(NSString*)text {
+    
+    self.hederTitle.text = text;
+    
+    if ([text isEqualToString:@"零售价格"]) {
+        
+        [self.allButton removeFromSuperview];
+    }
+    else {
+        
+    }
+}
+
 @end
