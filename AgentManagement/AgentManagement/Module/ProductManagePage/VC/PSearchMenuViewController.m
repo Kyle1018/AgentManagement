@@ -35,6 +35,8 @@
 
 @property(nonatomic,strong)NSMutableArray *indexPathArray;
 
+@property(nonatomic,strong)NSMutableSet *set;
+
 @end
 
 @implementation PSearchMenuViewController
@@ -43,6 +45,8 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+    
+    _set = [NSMutableSet set];
 
     NSLog(@"%@",self.productRelatedInformationArray);
     
@@ -73,17 +77,19 @@
     NSLog(@"%@",self.dataArray);
     
     _indexPathArray = [NSMutableArray array];
+    
+    for (int i = 0; i<self.dataArray.count; i++) {
+        
+        NSIndexPath *path = [NSIndexPath indexPathForRow:0 inSection:i];
+        
+        [_indexPathArray addObject:path];
+    }
+    
 
 }
 
 - (void)configData {
-    
-//    if (!self.dataArray) {
-//        self.dataArray = [NSMutableArray array];
-//    }
-//    if (!self.isExpland) {
-//        self.isExpland = [NSMutableArray array];
-//    }
+
     self.dataArray = [NSMutableArray array];
     
     self.isExpland = [NSMutableArray array];
@@ -133,7 +139,7 @@
 #pragma mark -UICollectionViewDelegate;UICollectionViewDataSource
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     
-    return self.dataArray.count;
+    return self.heaerDataArray.count;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
@@ -195,14 +201,16 @@
     
     NSArray *array = self.dataArray[indexPath.section];
     
+    //占位单元格
     if (array.count <= indexPath.row) {
         
         [cell setTitleData:@"" color:[UIColor clearColor]];
     }
 
+    //选项单元格
     else {
-        
-        [cell setTitleData:self.dataArray[indexPath.section][indexPath.row] color:[UIColor blueColor]];
+
+       [cell setTitleData:self.dataArray[indexPath.section][indexPath.row] color:[_indexPathArray containsObject:indexPath]?[UIColor blueColor]:[UIColor grayColor]];
     }
    
     
@@ -239,29 +247,55 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    if (_lastIndexPath == nil) {
+    for (int i = 0; i< _indexPathArray.count; i++) {
         
-        [_indexPathArray addObject:indexPath];
-    }
-    else {
+        NSIndexPath *path = _indexPathArray[i];
         
-        if (_lastIndexPath.section == indexPath.section) {
+        if (path.section == indexPath.section) {
             
-            [_indexPathArray removeObject:_lastIndexPath];
+                [_indexPathArray removeObject:path];
             
-            [_indexPathArray addObject:indexPath];
-        }
-        
-        else {
-            
-            [_indexPathArray addObject:indexPath ];
+                [_indexPathArray addObject:indexPath];
+                        
         }
     }
-
     
+//    for (NSIndexPath *path in _indexPathArray) {
+//    
+//        if (path.section == indexPath.section) {
+//            
+//            [_indexPathArray removeObject:path];
+//            
+//            [_indexPathArray addObject:indexPath];
+//            
+//        }
+//        else {
+//            
+//            
+//        }
+//        
+//    
+//    }
+    
+    
+//    if (_lastIndexPath.section == indexPath.section) {
+//        
+//        
+//        [_indexPathArray removeObject:_lastIndexPath];
+//        
+//        [_indexPathArray addObject:indexPath];
+//    }
+//    else {
+//        
+//        [_indexPathArray addObject:indexPath ];
+//        
+//    }
+// 
     _lastIndexPath = indexPath;
     
-    [self.MenuCollectionView reloadData];
+    NSIndexSet *set = [NSIndexSet indexSetWithIndex:indexPath.section];
+    [self.MenuCollectionView reloadSections:set];
+
 
 }
 
