@@ -24,11 +24,12 @@
     
     if ([text isEqualToString:@"零售价格"]) {
         
-        [self.allButton removeFromSuperview];
+        self.allButton.backgroundColor=[UIColor clearColor];
     }
     else {
         
-        [self addSubview:self.allButton];
+        self.allButton.backgroundColor=[UIColor whiteColor];
+
     }
 }
 
