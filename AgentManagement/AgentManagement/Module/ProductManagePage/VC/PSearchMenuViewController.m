@@ -209,20 +209,31 @@
                 
                 cell.optionLabel.text = self.dataArray[indexPath.section][indexPath.row-1];
                
-                if ([_indexPathArray containsObject:indexPath]) {
-                    
-                    cell.optionLabel.backgroundColor=[UIColor colorWithHex:@"47b6ff"];
-                    cell.optionLabel.textColor = [UIColor colorWithHex:@"ffffff"];
-                }
-                else {
-                    
-                    cell.optionLabel.backgroundColor=[UIColor colorWithHex:@"f1f1f1"];
-                    cell.optionLabel.textColor = [UIColor colorWithHex:@"4a4a4a"];
-                }
+  
+            }
+
+        }
+        
+        
+        if ([_indexPathArray containsObject:indexPath]) {
+            
+            
+            cell.optionLabel.backgroundColor=[UIColor colorWithHex:@"47b6ff"];
+            cell.optionLabel.textColor = [UIColor colorWithHex:@"ffffff"];
+        }
+        else {
+            
+            if ([self.dataArray[indexPath.section] count] < indexPath.row) {
+                
+                cell.optionLabel.backgroundColor=[UIColor clearColor];
             }
             
-            
-            
+            else {
+                
+                cell.optionLabel.backgroundColor=[UIColor colorWithHex:@"f1f1f1"];
+                cell.optionLabel.textColor = [UIColor colorWithHex:@"4a4a4a"];
+                
+            }
         }
         
         
@@ -262,9 +273,7 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    
 
-    
     if (_lastIndexPath == nil) {
         
         MenuCollectionViewCell *currentCell = (MenuCollectionViewCell*)[collectionView cellForItemAtIndexPath:indexPath];

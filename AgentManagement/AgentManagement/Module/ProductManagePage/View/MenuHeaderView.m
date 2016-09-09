@@ -28,6 +28,7 @@
     }
     else {
         
+        [self addSubview:self.allButton];
     }
 }
 
