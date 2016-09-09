@@ -198,29 +198,33 @@
         else {
             
             NSArray *array = self.dataArray[indexPath.section];
-            
+        
             if (array.count < indexPath.row) {
                 
                 cell.optionLabel.text =@"";
                 cell.optionLabel.backgroundColor=[UIColor clearColor];
+           
             }
             else {
                 
                 cell.optionLabel.text = self.dataArray[indexPath.section][indexPath.row-1];
-                
+               
+                if ([_indexPathArray containsObject:indexPath]) {
+                    
+                    cell.optionLabel.backgroundColor=[UIColor colorWithHex:@"47b6ff"];
+                    cell.optionLabel.textColor = [UIColor colorWithHex:@"ffffff"];
+                }
+                else {
+                    
+                    cell.optionLabel.backgroundColor=[UIColor colorWithHex:@"f1f1f1"];
+                    cell.optionLabel.textColor = [UIColor colorWithHex:@"4a4a4a"];
+                }
             }
+            
+            
+            
         }
         
-        if ([_indexPathArray containsObject:indexPath]) {
-            
-            cell.optionLabel.backgroundColor=[UIColor colorWithHex:@"47b6ff"];
-            cell.optionLabel.textColor = [UIColor colorWithHex:@"ffffff"];
-        }
-        else {
-            
-            cell.optionLabel.backgroundColor=[UIColor colorWithHex:@"f1f1f1"];
-            cell.optionLabel.textColor = [UIColor colorWithHex:@"4a4a4a"];
-        }
         
         
     }
