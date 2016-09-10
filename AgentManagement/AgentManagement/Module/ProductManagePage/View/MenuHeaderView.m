@@ -24,11 +24,12 @@
     
     if ([text isEqualToString:@"零售价格"]) {
         
-        self.allButton.backgroundColor=[UIColor clearColor];
+        self.allBtnBgView.hidden = YES;
+ 
     }
     else {
         
-        self.allButton.backgroundColor=[UIColor whiteColor];
+        self.allBtnBgView.hidden = NO;
 
     }
 }

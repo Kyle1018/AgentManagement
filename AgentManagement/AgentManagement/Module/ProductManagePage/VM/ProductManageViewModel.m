@@ -101,7 +101,7 @@
             
             NSArray *modelArray=[AMProductRelatedInformation arrayOfModelsFromDictionaries:baseModel.data error:nil];
    
-            NSMutableArray*optionTitleDataArray = [NSMutableArray arrayWithObjects:@"直接饮用",@"分类",@"过滤介质",@"产品特点",@"摆放位置",@"滤芯个数",@"使用地区",@"零售价格",@"换芯周期", nil];
+            NSMutableArray*optionTitleDataArray = [NSMutableArray arrayWithObjects:@"直接饮用",@"分类",@"过滤介质",@"产品特点",@"摆放位置",@"滤芯个数",@"适用地区",@"零售价格",@"换芯周期", nil];
             NSMutableArray*optionDataArray = [NSMutableArray arrayWithObjects:
                                 @[@"可以",@"不可以"],
                                 @[@"纯水机",@"家用净水机",@"商用净水器",@"软水机",@"管线机",@"水处理设备",@"龙头净水器",@"净水杯"],
@@ -129,7 +129,7 @@
                     
                     [optionDataArray replaceObjectAtIndex:0 withObject:model.value];
                 }
-                
+
                 else if ([model.key isEqualToString:@"classification"]) {
                     
                     [optionDataArray replaceObjectAtIndex:1 withObject:model.value];
@@ -154,7 +154,6 @@
                     
                     [optionDataArray replaceObjectAtIndex:6 withObject:model.value];
                 }
-                
                 else if ([model.key isEqualToString:@"cycle"]) {
                     
                     [optionDataArray replaceObjectAtIndex:8 withObject:model.value];
@@ -230,7 +229,7 @@
     }];
 }
 
-- (RACSignal*)requestProductListDataOrSearchProductDataWithPage:(NSInteger)page Size:(NSInteger)size Search:(NSArray*)searchArray {
+- (RACSignal*)requestProductListDataOrSearchProductDataWithPage:(NSInteger)page Size:(NSInteger)size Search:(NSArray*)searchDic {
     
     __weak typeof(self) weakSelf = self;
     
@@ -242,7 +241,7 @@
         
         NSString *sizeStr = [NSString stringWithFormat:@"%ld",(long)size];
         
-        weakSelf.plOrSearchRequest = [[AMProductListOrSearchRequest alloc]initWithPage:pageStr Size:sizeStr Search:searchArray];
+        weakSelf.plOrSearchRequest = [[AMProductListOrSearchRequest alloc]initWithPage:pageStr Size:sizeStr Search:searchDic];
         
         [weakSelf.plOrSearchRequest requestWithSuccess:^(KKBaseModel *model, KKRequestError *error) {
             
@@ -298,4 +297,53 @@
         return nil;
     }];
 }
+
+- (NSString*)textChangeToKey:(NSString*)text {
+    
+    if ([text isEqualToString:@"品牌"]) {
+        
+        return @"brand";
+    }
+    else if ([text isEqualToString:@"型号"]) {
+        
+        return @"pmodel";
+    }
+    else if ([text isEqualToString:@"直接饮用"]) {
+        
+        return @"drinking";
+    }
+    else if ([text isEqualToString:@"分类"]) {
+        
+        return @"classification";
+    }
+    else if ([text isEqualToString:@"过滤介质"]) {
+     
+        return @"filter";
+    }
+    else if ([text isEqualToString:@"产品特点"]) {
+        
+        return @"features";
+    }
+    else if ([text isEqualToString:@"摆放位置"]) {
+        return @"putposition";
+    }
+    else if ([text isEqualToString:@"滤芯个数"]) {
+        return @"number";
+    }
+    else if ([text isEqualToString:@"适用地区"]) {
+        
+        return @"area";
+    }
+    else if ([text isEqualToString:@"零售价格"]) {
+        
+        return @"price";
+    }
+    else if ([text isEqualToString:@"换芯周期"]) {
+        
+        return @"cycle";
+    }
+    
+    return nil;
+}
+
 @end

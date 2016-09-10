@@ -10,20 +10,18 @@
 #import "AMProductInfo.h"
 @implementation AMProductListOrSearchRequest
 
-- (instancetype)initWithPage:(NSString *)page Size:(NSString*)size Search:(NSArray*)search
+- (instancetype)initWithPage:(NSString *)page Size:(NSString*)size Search:(NSDictionary*)search
 {
     self = [super init];
     if (self) {
-        
-        if (search != nil) {
-            
+//        
+//        if (search != nil) {
+//            
             [self.requestParameters  safeSetObject:search forKey:@"search"];
             [self.requestParameters safeSetObject:page forKey:@"page"];
             [self.requestParameters safeSetObject:size forKey:@"size"];
-        }
-        
-      
-       
+        //}
+
     }
     return self;
 }
@@ -37,6 +35,7 @@
 {
     NSLog(@"%@",dictionary);
     
+   // NSLog(@"%@",dictionary[@"resultMessage"]);
      return [[AMProductInfo alloc]initWithDictionary:dictionary error:nil];
   
     //return [[AMAddProductInfo alloc]initWithDictionary:dictionary error:nil];

@@ -47,7 +47,7 @@
  *
  *  @return 信号
  */
-- (RACSignal*)requestProductListDataOrSearchProductDataWithPage:(NSInteger)page Size:(NSInteger)size Search:(NSArray*)searchArray;
+- (RACSignal*)requestProductListDataOrSearchProductDataWithPage:(NSInteger)page Size:(NSInteger)size Search:(NSDictionary*)searchDic;
 
 /**
  *  请求产品相关参数
@@ -70,5 +70,8 @@
  *  删除产品请求
  */
 - (RACSignal*)deleteProduct:(NSDictionary*)pdInfo;
+
+
+- (NSString*)textChangeToKey:(NSString*)text;
 
 @end

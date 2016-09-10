@@ -196,6 +196,8 @@
 //进入搜索产品页面
 - (IBAction)searchMenuAction:(UIButton *)sender {
 
+    __weak typeof(self) weakSelf = self;
+    
     UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"ProductManage" bundle:nil];
     
     _searchMenuVC = [storyboard instantiateViewControllerWithIdentifier:@"SearchMenuViewID"];
@@ -209,6 +211,33 @@
     _searchMenuVC.productRelatedInformationArray = self.productRelatedInformationArray;
 
     [[UIApplication sharedApplication].keyWindow addSubview:_searchMenuVC.view];
+    
+    
+    //点击了搜索产品回调
+    
+    _searchMenuVC.tapSearchProductBlock = ^(NSMutableArray*searchResutList) {
+        
+        if (searchResutList.count > 0) {
+            
+            [weakSelf.productInfoDataArray removeAllObjects];
+            
+            [weakSelf.productInfoDataArray addObjectsFromArray:searchResutList];
+            
+            weakSelf.formHeaderView.hidden = NO;
+            weakSelf.formTabelView.hidden = NO;
+            
+            [weakSelf.formTabelView reloadData];
+            
+        }
+    
+        else {
+            
+            weakSelf.formHeaderView.hidden = YES;
+            weakSelf.formTabelView.hidden = YES;
+            [weakSelf.formTabelView reloadData];
+        }
+        
+    };
 }
 
 //进入添加产品页面

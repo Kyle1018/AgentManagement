@@ -13,17 +13,21 @@
 - (void)awakeFromNib {
     
     [super awakeFromNib];
-
+    
 }
 
 
-- (void)setTitleData:(NSString*)text color:(UIColor*)color {
+- (void)setTitleData:(NSString*)text backgroundColor:(UIColor*)bgColor titleColor:(UIColor*)titleColor {
     
     self.optionLabel.text = text;
     
-    self.optionLabel.backgroundColor=color;
+    self.optionLabel.backgroundColor = bgColor;
+    
+    self.optionLabel.textColor = titleColor;
     
 }
+
+
 
 
 @end

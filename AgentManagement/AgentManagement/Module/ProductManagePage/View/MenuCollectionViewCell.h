@@ -11,5 +11,7 @@
 @interface MenuCollectionViewCell : UICollectionViewCell
 @property (weak, nonatomic) IBOutlet UILabel *optionLabel;
 
-- (void)setTitleData:(NSString*)text color:(UIColor*)color;
+@property (weak, nonatomic) IBOutlet UITextField *priceTextField;
+
+- (void)setTitleData:(NSString*)text backgroundColor:(UIColor*)bgColor titleColor:(UIColor*)titleColor;
 @end
