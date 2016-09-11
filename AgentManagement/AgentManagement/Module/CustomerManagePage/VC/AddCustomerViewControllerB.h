@@ -10,4 +10,6 @@
 
 @interface AddCustomerViewControllerB : BaseTableViewController
 
+@property(nonatomic,strong)NSMutableDictionary *addProductInfoDic;
+
 @end

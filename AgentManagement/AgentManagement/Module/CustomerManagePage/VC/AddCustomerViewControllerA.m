@@ -7,27 +7,20 @@
 //
 
 #import "AddCustomerViewControllerA.h"
+#import "PickerView.h"
+#import "CustomerManageViewModel.h"
+@interface AddCustomerViewControllerA ()<UITextViewDelegate,UITextFieldDelegate,UIActionSheetDelegate,UIPickerViewDelegate,UIPickerViewDataSource,UITextViewDelegate>
 
-@interface AddCustomerViewControllerA ()<UITextViewDelegate,UITextFieldDelegate,UIActionSheetDelegate,UIPickerViewDelegate,UIPickerViewDataSource>
-{
-    NSMutableArray *array;
-    
-    NSMutableArray *arrayA;
-    
-    NSMutableArray *arrayB;
-    
-    NSMutableArray *arrayC;
-    
-    NSInteger _row;
-}
+//@property (weak, nonatomic) IBOutlet UILabel *provinceLabel;
+//@property (weak, nonatomic) IBOutlet UILabel *cityLabel;
+//@property (weak, nonatomic) IBOutlet UILabel *townLabel;
 
-@property (weak, nonatomic) IBOutlet UIView *pickerBGView;
-@property (weak, nonatomic) IBOutlet UIPickerView *areaPickerView;
-@property (strong, nonatomic) UIView *maskView;
-@property (weak, nonatomic) IBOutlet UILabel *provinceLabel;
-@property (weak, nonatomic) IBOutlet UILabel *cityLabel;
-@property (weak, nonatomic) IBOutlet UILabel *townLabel;
+@property(nonatomic,strong)PickerView *pickerView;
+@property(nonatomic,strong)CustomerManageViewModel *viewModel;
+@property(nonatomic,strong)NSMutableDictionary *areaDic;
+@property(nonatomic,assign)NSInteger lRow;
 
+@property(nonatomic,strong)NSMutableDictionary *addCutomerInfoDic;
 @end
 
 @implementation AddCustomerViewControllerA
@@ -35,86 +28,51 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-     [self initView];
+    [self requestData];
     
-    [self getPickerData];
+    //[self signal];
+    
+    _addCutomerInfoDic = [NSMutableDictionary dictionary];
 }
 
-- (void)initView {
-    [self.pickerBGView removeFromSuperview];
-    self.maskView = [[UIView alloc] initWithFrame:ScreenFrame];
-    self.maskView.backgroundColor = [UIColor blackColor];
-    self.maskView.alpha = 0;
-    [self.maskView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideMyPicker)]];
-    self.pickerBGView.frame = CGRectMake(0, ScreenHeight, ScreenWidth, 224);
-
-}
-
-- (void)hideMyPicker {
-    [UIView animateWithDuration:0.3 animations:^{
-        self.maskView.alpha = 0;
-        self.pickerBGView.originY = ScreenHeight;
+- (void)requestData {
+    
+      __weak typeof(self) weakSelf = self;
+    _viewModel = [[CustomerManageViewModel alloc]init];
+    
+    [[self.viewModel requestAreaListData:0 lIndex:0]subscribeNext:^(NSDictionary* x) {
+       
+        weakSelf.areaDic = [NSMutableDictionary dictionaryWithDictionary:x];
         
-    } completion:^(BOOL finished) {
-        [self.maskView removeFromSuperview];
     }];
+
 }
 
-- (void)getPickerData {
-    
-    NSString* plistPath=[[NSBundle mainBundle] pathForResource:@"address" ofType:@"plist"];
-    NSDictionary*dict=[[NSDictionary alloc] initWithContentsOfFile:plistPath];
-    
-    array = [NSMutableArray arrayWithArray:dict[@"address"]];
-    
-    arrayA = [NSMutableArray array];
-    
-    for (NSDictionary*dic in array) {
-        
-        NSString *name = dic[@"name"];
-        
-        [arrayA addObject:name];
-        
-    }
-    
-    NSDictionary *dicc =array[0];
-    
-    NSArray *a1=dicc[@"sub"];
-    
-    arrayB = [NSMutableArray array ];
-    
-    
-    for (NSDictionary*diccc in a1) {
-        
-        [arrayB addObject:diccc[@"name"]];
-        
-        arrayC = [NSMutableArray arrayWithArray:diccc[@"sub"]];
-    }
-}
 
 #pragma pickerViewDelegate
 -(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
+    
     return 3;
 }
 
 -(NSInteger) pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
     
     if (component == 0) {
-        return arrayA.count;
+        return [self.areaDic[@"province"] count];
     } else if (component == 1) {
-        return arrayB.count;
+        return [self.areaDic[@"city"] count];
     } else {
-        return arrayC.count;
+        return [self.areaDic[@"district"] count];
     }
 }
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
     if (component == 0) {
-        return [arrayA objectAtIndex:row];
+        return [self.areaDic[@"province"]objectAtIndex:row];
     } else if (component == 1) {
-        return [arrayB objectAtIndex:row];
+        return [self.areaDic[@"city"]objectAtIndex:row];
     } else {
-        return [arrayC objectAtIndex:row];
+        return [self.areaDic[@"district"] objectAtIndex:row];
     }
 }
 
@@ -135,75 +93,56 @@
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+      __weak typeof(self) weakSelf = self;
     
-    
-    /*
-     self.pickerDic = [[NSDictionary alloc] initWithContentsOfFile:path];
-     self.provinceArray = [self.pickerDic allKeys];
-     self.selectedArray = [self.pickerDic objectForKey:[[self.pickerDic allKeys] objectAtIndex:0]];
-     
-     if (self.selectedArray.count > 0) {
-     self.cityArray = [[self.selectedArray objectAtIndex:0] allKeys];
-     }
-     
-     if (self.cityArray.count > 0) {
-     self.townArray = [[self.selectedArray objectAtIndex:0] objectForKey:[self.cityArray objectAtIndex:0]];
-     }
-     */
-   
     if (component == 0) {
-        
-        NSDictionary *dicc =array[row];
-        
-        
-        NSArray *a1=dicc[@"sub"];
-        
-        arrayB = [NSMutableArray array ];
-        
-        
-        for (NSDictionary*diccc in a1) {
+      
+        [[self.viewModel requestAreaListData:row lIndex:0]subscribeNext:^(NSDictionary* x) {
+           
+            [weakSelf.areaDic removeAllObjects];
             
-            [arrayB addObject:diccc[@"name"]];
+            [weakSelf.areaDic setDictionary:x];
             
-            arrayC = [NSMutableArray arrayWithArray:diccc[@"sub"]];
-        }
-        
-        _row = row;
-        NSLog(@"-----%ld",row);
+        }];
+
+        _lRow = row;
+
     }
     [pickerView selectedRowInComponent:1];
     [pickerView reloadComponent:1];
     [pickerView selectedRowInComponent:2];
     
     if (component == 1) {
+        
+        [[self.viewModel requestAreaListData:_lRow lIndex:row]subscribeNext:^(id x) {
+            
+            [weakSelf.areaDic removeAllObjects];
+            [weakSelf.areaDic setDictionary:x];
+            [pickerView selectRow:1 inComponent:2 animated:YES];
+            
+        }];
 
-        NSLog(@"%ld",row);
-        NSDictionary *dicc =array[_row];
-        
-        NSArray *a1=dicc[@"sub"];
-       
-        NSDictionary *dict = a1[row];
-      
-        arrayC = [NSMutableArray arrayWithArray:dict[@"sub"]];
-        
-        [pickerView selectRow:1 inComponent:2 animated:YES];
     }
     
     [pickerView reloadComponent:2];
 }
 
 
-#pragma mark -UITabelViewDatasource
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-//#warning Incomplete implementation, return the number of sections
-//    return 2;
-//}
-//
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//#warning Incomplete implementation, return the number of rows
-//    return 4;
-//}
+- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view{
+    UILabel* pickerLabel = (UILabel*)view;
+    if (!pickerLabel){
+        pickerLabel = [[UILabel alloc] init];
+        pickerLabel.textAlignment = NSTextAlignmentCenter;
+        [pickerLabel setBackgroundColor:[UIColor clearColor]];
+        [pickerLabel setFont:[UIFont boldSystemFontOfSize:17]];
+    }
+    
+    pickerLabel.text=[self pickerView:pickerView titleForRow:row forComponent:component];
+    return pickerLabel;
+}
 
+
+#pragma mark -UITabelViewDatasource
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     
     if (section ==0) {
@@ -222,14 +161,29 @@
         
         NSLog(@"点击了客户地址单元格");
         
-        [self.view addSubview:self.maskView];
-        [self.view addSubview:self.pickerBGView];
-        self.maskView.alpha = 0;
-     
-        [UIView animateWithDuration:0.3 animations:^{
-            self.maskView.alpha = 0.3;
-            self.pickerBGView.bottom = ScreenHeight-110;
-        }];
+        __weak typeof(self) weakSelf = self;
+        _pickerView = [PickerView showAddTo:self.view];
+        _pickerView.picker.delegate = self;
+        _pickerView.picker.dataSource = self;
+        
+        _pickerView.tapConfirmBlock = ^() {
+            
+            UILabel *provinceLabel = [weakSelf.view viewWithTag:500];
+            UILabel *cityLabel = [weakSelf.view viewWithTag:501];
+            UILabel *townLabel = [weakSelf.view viewWithTag:502];
+            
+            provinceLabel.text = [weakSelf.areaDic[@"province"]objectAtIndex:[weakSelf.pickerView.picker selectedRowInComponent:0]];
+            
+            cityLabel.text = [weakSelf.areaDic[@"city"]objectAtIndex:[weakSelf.pickerView.picker selectedRowInComponent:1]];
+            
+            townLabel.text = [weakSelf.areaDic[@"district"]objectAtIndex:[weakSelf.pickerView.picker selectedRowInComponent:2]];
+            
+            [weakSelf.addCutomerInfoDic safeSetObject:provinceLabel.text forKey:@"province"];
+            [weakSelf.addCutomerInfoDic safeSetObject:cityLabel.text forKey:@"city"];
+            [weakSelf.addCutomerInfoDic safeSetObject:townLabel.text forKey:@"county"];
+
+        };
+        
     }
     else {
         
@@ -237,61 +191,90 @@
     }
 }
 
-- (IBAction)confirmPickerView:(id)sender {
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
     
-    self.provinceLabel.text = [arrayA objectAtIndex:[self.areaPickerView selectedRowInComponent:0]];
-    
-    self.cityLabel.text = [arrayB objectAtIndex:[self.areaPickerView selectedRowInComponent:1]];
-    
-    self.townLabel.text = [arrayC objectAtIndex:[self.areaPickerView selectedRowInComponent:2]];
+      __weak typeof(self) weakSelf = self;
 
-    [self hideMyPicker];
-
+    UITextField *input = [self.view viewWithTag:textField.tag];
+    
+    [[input rac_textSignal]subscribeNext:^(NSString * x) {
+       
+        if (textField.tag == 101) {//客户姓名
+            
+            [weakSelf.addCutomerInfoDic safeSetObject:x forKey:@"name"];
+        }
+        
+        else if (textField.tag == 102) {//手机号
+            
+            [weakSelf.addCutomerInfoDic safeSetObject:x forKey:@"phone" ];
+        }
+        else if (textField.tag == 103) {//tds
+            
+            [weakSelf.addCutomerInfoDic safeSetObject:x forKey:@"tds"];
+            
+        }
+        else if (textField.tag == 104) {//ph
+            
+            [weakSelf.addCutomerInfoDic safeSetObject:x forKey:@"ph"];
+            
+        }
+        else if (textField.tag == 105) {//硬度
+            
+            [weakSelf.addCutomerInfoDic safeSetObject:x forKey:@"hardness"];
+            
+        }
+        else if (textField.tag == 106) {//余氯值
+            [weakSelf.addCutomerInfoDic safeSetObject:x forKey:@"chlorine"];
+            
+        }
+        NSLog(@"_________________%@",x);
+    }];
+    
+    
+    return YES;
 }
 
-- (IBAction)canclePickerView:(id)sender {
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
     
-      [self hideMyPicker];
+    [textField resignFirstResponder];
+    
+    return YES;
 }
 
-- (IBAction)textFieldChanged:(UITextField *)sender {
+- (BOOL)textViewShouldBeginEditing:(UITextView *)textView {
     
-    //客户姓名
-    if (sender.tag == 101) {
-     
-          NSLog(@"客户姓名-------%@",sender.text);
-    }
+    UITextView *input = [self.view viewWithTag:textView.tag];
+    __weak typeof(self) weakSelf = self;
     
-    //手机号码
-    else if (sender.tag == 102) {
-        
-          NSLog(@"手机号码-------%@",sender.text);
-    }
+    [[input rac_textSignal]subscribeNext:^(id x) {
+       
+        [weakSelf.addCutomerInfoDic safeSetObject:x forKey:@"address"];
+    }];
     
-    //TDS值
-    else if (sender.tag == 103) {
-        
-          NSLog(@"TDS值-------%@",sender.text);
-    }
-    
-    //PH值
-    else if (sender.tag == 104) {
-        
-          NSLog(@"PH值-------%@",sender.text);
-    }
-    
-    //硬度
-    else if (sender.tag == 105) {
-        
-          NSLog(@"硬度-------%@",sender.text);
-    }
-    
-    //余氯值
-    else if (sender.tag == 106) {
-        
-          NSLog(@"余氯值-------%@",sender.text);
-    }
-  
+    return YES;
 }
+
+-(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+    if ([text isEqualToString:@"\n"]) {
+        [textView resignFirstResponder];
+        return NO;
+    }
+    return YES;
+}
+
+//进入添加产品页面
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    if([segue.identifier compare:@"AddCustomerBSegue"]==NO) {
+        
+        id page2=segue.destinationViewController;
+    
+        [page2 setValue:self.addCutomerInfoDic forKey:@"addProductInfoDic"];
+    }
+    
+}
+
+
 
 @end
