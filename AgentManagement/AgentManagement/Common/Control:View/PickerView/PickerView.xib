@@ -85,5 +85,73 @@
             </connections>
             <point key="canvasLocation" x="252.5" y="203.5"/>
         </view>
+        <view contentMode="scaleToFill" id="vdJ-yF-ZPp" customClass="PickerView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Am-zl-YNP">
+                    <rect key="frame" x="0.0" y="359" width="375" height="308"/>
+                    <subviews>
+                        <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="s6K-9M-b8k">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="308"/>
+                            <date key="date" timeIntervalSinceReferenceDate="495297434.57736999">
+                                <!--2016-09-11 14:37:14 +0000-->
+                            </date>
+                        </datePicker>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ciC-9G-gW1">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Rf-kT-GOE">
+                                    <rect key="frame" x="0.0" y="0.0" width="100" height="44"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="100" id="YtD-Fy-tGe"/>
+                                    </constraints>
+                                    <state key="normal" title="取消">
+                                        <color key="titleColor" red="0.24288900173524222" green="0.52032575989447361" blue="0.60784313725490191" alpha="1" colorSpace="calibratedRGB"/>
+                                    </state>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cPx-ng-95M">
+                                    <rect key="frame" x="275" y="0.0" width="100" height="44"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="100" id="4EM-dc-k62"/>
+                                    </constraints>
+                                    <state key="normal" title="Button"/>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="44" id="4vQ-dG-09P"/>
+                                <constraint firstItem="9Rf-kT-GOE" firstAttribute="leading" secondItem="ciC-9G-gW1" secondAttribute="leading" id="M8r-8E-oU5"/>
+                                <constraint firstAttribute="bottom" secondItem="9Rf-kT-GOE" secondAttribute="bottom" id="YeC-1j-nWe"/>
+                                <constraint firstItem="cPx-ng-95M" firstAttribute="top" secondItem="ciC-9G-gW1" secondAttribute="top" id="aMG-5Q-kVL"/>
+                                <constraint firstItem="9Rf-kT-GOE" firstAttribute="top" secondItem="ciC-9G-gW1" secondAttribute="top" id="gE8-Kd-gwI"/>
+                                <constraint firstAttribute="trailing" secondItem="cPx-ng-95M" secondAttribute="trailing" id="h2k-rp-oUu"/>
+                                <constraint firstAttribute="bottom" secondItem="cPx-ng-95M" secondAttribute="bottom" id="smw-xl-Uhg"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="s6K-9M-b8k" secondAttribute="bottom" id="2Nx-A9-xub"/>
+                        <constraint firstItem="ciC-9G-gW1" firstAttribute="top" secondItem="9Am-zl-YNP" secondAttribute="top" id="8Kn-PY-GsX"/>
+                        <constraint firstItem="s6K-9M-b8k" firstAttribute="leading" secondItem="9Am-zl-YNP" secondAttribute="leading" id="Ay2-j4-98L"/>
+                        <constraint firstAttribute="height" constant="308" id="N9z-kT-fg0"/>
+                        <constraint firstItem="ciC-9G-gW1" firstAttribute="leading" secondItem="9Am-zl-YNP" secondAttribute="leading" id="NFn-Sq-8fI"/>
+                        <constraint firstAttribute="trailing" secondItem="ciC-9G-gW1" secondAttribute="trailing" id="iMR-t0-3KQ"/>
+                        <constraint firstAttribute="trailing" secondItem="s6K-9M-b8k" secondAttribute="trailing" id="oGO-x1-lGV"/>
+                        <constraint firstItem="s6K-9M-b8k" firstAttribute="top" secondItem="9Am-zl-YNP" secondAttribute="top" id="rOk-6q-5Nw"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="9Am-zl-YNP" secondAttribute="trailing" id="3Xa-bU-bq3"/>
+                <constraint firstItem="9Am-zl-YNP" firstAttribute="leading" secondItem="vdJ-yF-ZPp" secondAttribute="leading" id="tYV-Uk-W61"/>
+                <constraint firstAttribute="bottom" secondItem="9Am-zl-YNP" secondAttribute="bottom" id="yRH-8V-e3F"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="682.5" y="203.5"/>
+        </view>
     </objects>
 </document>

@@ -28,8 +28,6 @@
 
 - (RACSignal*)requestProductBrandAndPmodelData {
     
-    __weak typeof(self) weakSelf = self;
-    
     return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
        
         self.pmRequest = [[AMProductAndModelListRequest alloc]init];
@@ -44,42 +42,38 @@
             
             NSMutableArray *pmodelArray = [NSMutableArray array];//型号数组
             
+            NSMutableArray*CpmodelArray = [NSMutableArray array];//用于添加用户时，购买机型选项
+            
             for (AMProductAndModel *model in modelArray) {
                 
                 [brandArray addObject:model.brand];
+                
+                NSMutableArray *array = [NSMutableArray array];
                 
                 for (NSDictionary *dic in model.pmodel) {
                     
                     NSString *pmodel = dic[@"value"];
                     
                     [pmodelArray addObject:pmodel];
+                    [array addObject:pmodel];
                 }
+                
+                [CpmodelArray addObject:array];
             
                 
             }
             
-            weakSelf.productAndModelArray = [NSMutableArray arrayWithObjects:brandArray,pmodelArray, nil];
+            NSMutableArray *productAndModelArray =[NSMutableArray arrayWithObjects:brandArray,pmodelArray,CpmodelArray, nil];
             
-            if (modelArray.count > 0) {
-                
-                [subscriber sendNext:@(YES)];
-                
-                [subscriber sendCompleted];
-            }
+            [subscriber sendNext:productAndModelArray];
             
-            else {
-                
-                [subscriber sendNext:@(NO)];
-                
-                [subscriber sendCompleted];
-            }
+            [subscriber sendCompleted];
             
             
         } failure:^(KKBaseModel *model, KKRequestError *error) {
             
-            [subscriber sendNext:@(NO)];
+            [subscriber sendError:error];
             
-            [subscriber sendCompleted];
         }];
         
         return nil;
@@ -113,7 +107,9 @@
                                 @[@"手动输入价格"],
                                 @[@"1个月",@"3个月",@"6个月",@"12个月",@"18个月",@"24个月"],nil];
             
-            weakSelf.productRelatedInformationArray = [NSMutableArray arrayWithObject:optionTitleDataArray];
+            NSMutableArray *productRelatedInformationArray = [NSMutableArray arrayWithObject:optionTitleDataArray];
+            
+//            weakSelf.productRelatedInformationArray = [NSMutableArray arrayWithObject:optionTitleDataArray];
             for (AMProductRelatedInformation *model in modelArray) {
                 
                 for (int i = 0; i < model.value.count; i++) {
@@ -162,19 +158,25 @@
           
             }
             
-            [weakSelf.productRelatedInformationArray addObject:optionDataArray];
+            [productRelatedInformationArray addObject:optionDataArray];
             
-            if (weakSelf.productRelatedInformationArray.count > 0) {
-                
-                [subscriber sendNext:@(YES)];
-                [subscriber sendCompleted];
-            }
-            else {
-                
-                [subscriber sendNext:@(NO)];
-                [subscriber sendCompleted];
-
-            }
+            [subscriber sendNext:productRelatedInformationArray];
+            
+            [subscriber sendCompleted];
+            
+//            [weakSelf.productRelatedInformationArray addObject:optionDataArray];
+//            
+//            if (weakSelf.productRelatedInformationArray.count > 0) {
+//                
+//                [subscriber sendNext:@(YES)];
+//                [subscriber sendCompleted];
+//            }
+//            else {
+//                
+//                [subscriber sendNext:@(NO)];
+//                [subscriber sendCompleted];
+//
+//            }
             
         } failure:^(KKBaseModel *model, KKRequestError *error) {
             
@@ -184,9 +186,7 @@
         return nil;
     }];
 
-    
     return productRelatedSignal;
-   // return [RACSignal combineLatest:@[productNameAndPmodelSignal,productRelatedSignal]];
 }
 
 - (RACSignal*)requstAddProductData:(NSDictionary*)paramt {

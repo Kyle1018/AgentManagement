@@ -7,7 +7,7 @@
 //
 
 #import "CustomerManageViewModel.h"
-
+#import "AMProductAndModel.h"
 @implementation CustomerManageViewModel
 
 - (id)init {
@@ -64,5 +64,7 @@
         return nil;
     }];
 }
+
+
 
 @end

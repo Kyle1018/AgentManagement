@@ -12,6 +12,7 @@
 
 @property(nonatomic,strong)NSArray *areaArray;
 
+//获取地区数据
 - (RACSignal*)requestAreaListData:(NSInteger)index lIndex:(NSInteger)lIndex;
 
 @end

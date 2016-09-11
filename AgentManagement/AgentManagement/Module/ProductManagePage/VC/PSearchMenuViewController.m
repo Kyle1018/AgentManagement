@@ -134,12 +134,6 @@
         
         [self.dataArray replaceObjectAtIndex:i withObject:contentArray];
         
-      //  NSString *str = self.dataArray[i][0];
-        
-        //[_selectedOptionDic safeSetObject:str forKey:@"buxian"];
-        
-        //[_selectedOptionArray addObject:str];
-        
         [self.isExpland addObject:@0]; //用0代表收起，非0代表展开，默认都是收起的
     }
 }
@@ -346,10 +340,7 @@
             
           
             [_selectedOptionDic safeSetObject:str forKey:[self.viewModel textChangeToKey:self.heaerDataArray[indexPath.section]]];
-            
-            //_selectedOptionDic setObject:<#(nonnull id)#> forKey:<#(nonnull id<NSCopying>)#>
-            //[_selectedOptionArray replaceObjectAtIndex:path.section withObject:str];
-            
+
             [_indexPathArray removeObject:path];
             [_indexPathArray addObject:indexPath];
                         

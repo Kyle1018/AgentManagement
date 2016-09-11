@@ -18,14 +18,24 @@
 }
 */
 
-+ (PickerView*)loadFromNib {
++ (PickerView*)loadFromNib:(NSInteger)index addToView:(UIView*)view {
     
-    PickerView *pickerView = [[[NSBundle mainBundle]loadNibNamed:@"PickerView" owner:nil options:nil]lastObject];
-    
-    
+    PickerView *pickerView = [[[NSBundle mainBundle]loadNibNamed:@"PickerView" owner:nil options:nil]objectAtIndex:index];
     pickerView.backgroundColor = [UIColor colorWithHex:@"4a4a4a" alpha:0];
     pickerView.frame = CGRectMake(0, 0, ScreenWidth, ScreenHeight);
     pickerView.pickerBGView.originY = ScreenHeight;
+    
+    [view addSubview:pickerView];
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        
+        pickerView.backgroundColor = [UIColor colorWithHex:@"4a4a4a" alpha:0.3];
+        //pickerView.pickerBGView.originY = ScreenHeight-224;
+        
+        
+    } completion:^(BOOL finished) {
+        
+    }];
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]init];
     [pickerView addGestureRecognizer:tap];
@@ -83,22 +93,18 @@
     return pickerView;
 }
 
-
-
 + (PickerView*)showAddTo:(UIView*)view{
     
-    PickerView *pickerView = [self loadFromNib];
-    [view addSubview:pickerView];
+    PickerView *pickerView = [self loadFromNib:0 addToView:view];
+  
     
-    [UIView animateWithDuration:0.3 animations:^{
-        
-        pickerView.backgroundColor = [UIColor colorWithHex:@"4a4a4a" alpha:0.3];
-        //pickerView.pickerBGView.originY = ScreenHeight-224;
-       
-        
-    } completion:^(BOOL finished) {
-        
-    }];
+    return pickerView;
+}
+
+
++ (PickerView*)showDateAddTo:(UIView*)view {
+    
+    PickerView *pickerView = [self loadFromNib:1 addToView:view];
     
     return pickerView;
 }

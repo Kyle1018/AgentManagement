@@ -71,30 +71,16 @@
      __weak typeof(self) weakSelf = self;
 
     //请求产品品牌和型号数据
-    [[[self.viewModel requestProductBrandAndPmodelData]filter:^BOOL(id value) {
+    [[self.viewModel requestProductBrandAndPmodelData]subscribeNext:^(NSMutableArray* x) {
         
-        return YES;
-        
-    }]subscribeNext:^(id x) {
-        
+        weakSelf.brandAndPmodelDataArray = x;
     }];
     
     //请求产品属性信息
-    [[[self.viewModel requstProductInformationData]filter:^BOOL(id value) {
+    [[self.viewModel requstProductInformationData]subscribeNext:^(id x) {
        
-        if ([value boolValue] == YES) {
-            
-            return YES;
-        }
-        else {
-            
-            return NO;
-        }
-        
-    }]subscribeNext:^(id x) {
-       
-        //刷新表视图
-        [weakSelf.formTabelView reloadData];
+        weakSelf.productRelatedInformationArray = x;
+
     }];
     
     //请求产品列表数据
@@ -119,13 +105,6 @@
 - (void)observeData {
     
     __weak typeof(self) weakSelf = self;
-
-    //产品相关信息
-    [RACObserve(self.viewModel, productRelatedInformationArray)subscribeNext:^(NSMutableArray* x) {
-        
-        weakSelf.productRelatedInformationArray = x;
-        
-    }];
     
     //列表数据
     [RACObserve(self.viewModel, productInfoDataArray)subscribeNext:^(NSMutableArray* x) {
@@ -133,11 +112,6 @@
         weakSelf.productInfoDataArray = x;
     }];
     
-    //产品品牌型号
-    [RACObserve(self.viewModel, productAndModelArray)subscribeNext:^(NSMutableArray* x) {
-        
-        weakSelf.brandAndPmodelDataArray = x;
-    }];
 }
 
 #pragma mark - UITableViewDelegate/UITableViewDataSource
@@ -202,11 +176,11 @@
     
     _searchMenuVC = [storyboard instantiateViewControllerWithIdentifier:@"SearchMenuViewID"];
     
-    NSMutableArray *array = [self.productRelatedInformationArray lastObject];
+    NSMutableArray *array = self.productRelatedInformationArray[1];
     
     [array insertObject:[self.brandAndPmodelDataArray firstObject] atIndex:0];
     
-    [array insertObject:[self.brandAndPmodelDataArray lastObject] atIndex:1];
+    [array insertObject:self.brandAndPmodelDataArray[1] atIndex:1];
     
     _searchMenuVC.productRelatedInformationArray = self.productRelatedInformationArray;
 

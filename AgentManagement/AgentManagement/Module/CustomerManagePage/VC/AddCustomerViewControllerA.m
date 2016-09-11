@@ -9,11 +9,7 @@
 #import "AddCustomerViewControllerA.h"
 #import "PickerView.h"
 #import "CustomerManageViewModel.h"
-@interface AddCustomerViewControllerA ()<UITextViewDelegate,UITextFieldDelegate,UIActionSheetDelegate,UIPickerViewDelegate,UIPickerViewDataSource,UITextViewDelegate>
-
-//@property (weak, nonatomic) IBOutlet UILabel *provinceLabel;
-//@property (weak, nonatomic) IBOutlet UILabel *cityLabel;
-//@property (weak, nonatomic) IBOutlet UILabel *townLabel;
+@interface AddCustomerViewControllerA ()<UIPickerViewDelegate,UIPickerViewDataSource>
 
 @property(nonatomic,strong)PickerView *pickerView;
 @property(nonatomic,strong)CustomerManageViewModel *viewModel;
@@ -83,13 +79,8 @@
 
 
 - (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component {
-    if (component == 0) {
-        return 110;
-    } else if (component == 1) {
-        return 100;
-    } else {
-        return 110;
-    }
+    
+    return ScreenWidth/3;
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
@@ -142,7 +133,7 @@
 }
 
 
-#pragma mark -UITabelViewDatasource
+#pragma mark -UITabelViewDatasource/Delegate
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     
     if (section ==0) {
@@ -191,6 +182,7 @@
     }
 }
 
+#pragma mark -UITextFieldDelegate
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
     
       __weak typeof(self) weakSelf = self;
@@ -241,6 +233,7 @@
     return YES;
 }
 
+#pragma mark -UITextViewDelegate
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView {
     
     UITextView *input = [self.view viewWithTag:textView.tag];
@@ -263,6 +256,7 @@
     return YES;
 }
 
+#pragma mark - Segue
 //进入添加产品页面
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
@@ -274,7 +268,5 @@
     }
     
 }
-
-
 
 @end

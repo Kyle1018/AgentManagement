@@ -18,4 +18,7 @@ typedef void(^TapConfirmBlock)();
 @property (weak, nonatomic) IBOutlet UIButton *confirmBtn;
 
 + (PickerView*)showAddTo:(UIView*)view;
+
++ (PickerView*)showDateAddTo:(UIView*)view;
+
 @end
