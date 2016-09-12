@@ -19,6 +19,19 @@ typedef void(^TapConfirmBlock)();
 
 + (PickerView*)showAddTo:(UIView*)view;
 
-+ (PickerView*)showDateAddTo:(UIView*)view;
+@end
+
+
+@interface PickerDataView : UIView
+@property (weak, nonatomic) IBOutlet UIDatePicker *datePicker;
+@property (weak, nonatomic) IBOutlet UIButton *confirmBtn;
+@property (weak, nonatomic) IBOutlet UIButton *cancleBtn;
+@property (weak, nonatomic) IBOutlet UIView *pickerBGView;
+@property(nonatomic,copy)TapConfirmBlock tapConfirmBlock;
++ (PickerDataView*)showDateAddTo:(UIView*)view;
+- (NSString*)getDateStr:(NSDate*)date;
 
 @end
+//
+//- (NSString*)getDateStr;
+//@end

@@ -74,9 +74,7 @@
     
     NSNumber *duration = [userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
     NSNumber *curve = [userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey];
-    
-    __weak typeof(self) weakSelf = self;
-    
+
     [UIView animateWithDuration:duration.doubleValue delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
         
         [UIView setAnimationBeginsFromCurrentState:YES];

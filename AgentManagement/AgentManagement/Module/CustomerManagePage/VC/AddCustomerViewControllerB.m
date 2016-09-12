@@ -15,21 +15,17 @@
 @property(nonatomic,strong)PickerView *pickerView;
 @property(nonatomic,assign)NSInteger indexRow;
 @property(nonatomic,strong)NSMutableArray *pickerDataArray;
-
+@property(nonatomic,strong)PickerDataView *datePicker;
+@property(nonatomic,copy)NSString *dateStr;
 @end
 
 @implementation AddCustomerViewControllerB
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
 
     _brandAndModelArray = [NSMutableArray array];
-//    _brandArray = [NSMutableArray array];
-//    _pmodelArray = [NSMutableArray array];
-//    _cycle = [NSMutableArray array];
-    
-    
+
     [self requestData];
 
 }
@@ -47,11 +43,11 @@
        
         [x removeObjectAtIndex:1];
         
-        _brandAndModelArray = x;
+        weakSelf.brandAndModelArray = x;
         
         NSMutableArray *array = [NSMutableArray arrayWithObjects:x[0], [x[1]objectAtIndex:0],nil];
         
-        [_pickerDataArray replaceObjectAtIndex:0 withObject:array];
+        [weakSelf.pickerDataArray replaceObjectAtIndex:0 withObject:array];
        
     }];
     
@@ -62,7 +58,7 @@
         
         NSMutableArray *array = [NSMutableArray arrayWithObject:cycleArray];
         
-        [_pickerDataArray replaceObjectAtIndex:3 withObject:array];
+        [weakSelf.pickerDataArray replaceObjectAtIndex:3 withObject:array];
   
     }];
     
@@ -77,50 +73,52 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-//    if (indexPath.section==0 && indexPath.row==2) {
-//        
-//        NSLog(@"点击了客户地址单元格");
-//
+    __weak typeof(self) weakSelf = self;
+    
     if (indexPath.row == 0 || indexPath.row == 3) {
         
-        __weak typeof(self) weakSelf = self;
         _pickerView = [PickerView showAddTo:self.view];
         _pickerView.picker.delegate = self;
         _pickerView.picker.dataSource = self;
-        
         _indexRow = indexPath.row;
+        
+        _pickerView.tapConfirmBlock = ^() {
+            
+            for (int i =0; i<[weakSelf.pickerView.picker numberOfComponents]; i++) {
+                
+                UILabel *label = [tableView viewWithTag:1000+indexPath.row+i];
+                
+                NSString *str = [[weakSelf.pickerDataArray[indexPath.row]objectAtIndex:i]objectAtIndex:[weakSelf.pickerView.picker selectedRowInComponent:i]];
+                
+                label.text = str;
+            }
+            
+        };
     }
     
     else {
         
-        _pickerView = [PickerView showDateAddTo:self.view];
+        _datePicker = [PickerDataView showDateAddTo:self.view];
+      
+        _dateStr = [_datePicker getDateStr:_datePicker.datePicker.date];
         
+        [[_datePicker.datePicker rac_signalForControlEvents:UIControlEventValueChanged]subscribeNext:^(UIDatePicker* x) {
+
+            weakSelf.dateStr=[weakSelf.datePicker getDateStr:x.date];
+            
+        }];
+        
+        _datePicker.tapConfirmBlock = ^() {
+            
+            UILabel *label = [tableView viewWithTag:2000+indexPath.row];
+            
+            label.text =  weakSelf.dateStr;
+            
+            [weakSelf.tableView reloadData];
+            
+        };
     }
     
-//
-//        _pickerView.tapConfirmBlock = ^() {
-//            
-//            UILabel *provinceLabel = [weakSelf.view viewWithTag:500];
-//            UILabel *cityLabel = [weakSelf.view viewWithTag:501];
-//            UILabel *townLabel = [weakSelf.view viewWithTag:502];
-//            
-//            provinceLabel.text = [weakSelf.areaDic[@"province"]objectAtIndex:[weakSelf.pickerView.picker selectedRowInComponent:0]];
-//            
-//            cityLabel.text = [weakSelf.areaDic[@"city"]objectAtIndex:[weakSelf.pickerView.picker selectedRowInComponent:1]];
-//            
-//            townLabel.text = [weakSelf.areaDic[@"district"]objectAtIndex:[weakSelf.pickerView.picker selectedRowInComponent:2]];
-//            
-//            [weakSelf.addCutomerInfoDic safeSetObject:provinceLabel.text forKey:@"province"];
-//            [weakSelf.addCutomerInfoDic safeSetObject:cityLabel.text forKey:@"city"];
-//            [weakSelf.addCutomerInfoDic safeSetObject:townLabel.text forKey:@"county"];
-//            
-//        };
-//        
-//    }
-//    else {
-//        
-//        NSLog(@"点击了其它单元格");
-//    }
 }
 
 #pragma pickerViewDelegate
@@ -132,14 +130,11 @@
 -(NSInteger) pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
     
    return [[self.pickerDataArray[_indexRow] objectAtIndex:component]count];
-
 }
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
 
    return  [[self.pickerDataArray[_indexRow]objectAtIndex:component]objectAtIndex:row];
-    
-    
 }
 
 - (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component {
@@ -154,8 +149,7 @@
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-    __weak typeof(self) weakSelf = self;
-    
+
     if (_indexRow==0) {
         
         if (component==0) {

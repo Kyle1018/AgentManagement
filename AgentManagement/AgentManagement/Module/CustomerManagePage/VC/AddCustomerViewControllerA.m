@@ -157,7 +157,7 @@
         _pickerView.picker.delegate = self;
         _pickerView.picker.dataSource = self;
         
-        _pickerView.tapConfirmBlock = ^() {
+        _pickerView.tapConfirmBlock = ^(NSString*parameter) {
             
             UILabel *provinceLabel = [weakSelf.view viewWithTag:500];
             UILabel *cityLabel = [weakSelf.view viewWithTag:501];

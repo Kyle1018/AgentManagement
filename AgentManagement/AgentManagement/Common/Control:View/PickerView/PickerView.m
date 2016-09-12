@@ -10,14 +10,6 @@
 
 @implementation PickerView
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
-
 + (PickerView*)loadFromNib:(NSInteger)index addToView:(UIView*)view {
     
     PickerView *pickerView = [[[NSBundle mainBundle]loadNibNamed:@"PickerView" owner:nil options:nil]objectAtIndex:index];
@@ -30,9 +22,7 @@
     [UIView animateWithDuration:0.3 animations:^{
         
         pickerView.backgroundColor = [UIColor colorWithHex:@"4a4a4a" alpha:0.3];
-        //pickerView.pickerBGView.originY = ScreenHeight-224;
-        
-        
+
     } completion:^(BOOL finished) {
         
     }];
@@ -53,6 +43,7 @@
         
     }];
     
+    
     [[pickerView.confirmBtn rac_signalForControlEvents:UIControlEventTouchUpInside]subscribeNext:^(id x) {
        
         [UIView animateWithDuration:0.3 animations:^{
@@ -61,13 +52,13 @@
             pickerView.pickerBGView.originY = ScreenHeight;
             
         } completion:^(BOOL finished) {
-            
-            [pickerView removeFromSuperview];
-            
+
             if (pickerView.tapConfirmBlock) {
                 
                 pickerView.tapConfirmBlock();
             }
+            
+            [pickerView removeFromSuperview];
     
         }];
         
@@ -101,12 +92,100 @@
     return pickerView;
 }
 
+@end
 
-+ (PickerView*)showDateAddTo:(UIView*)view {
+@implementation PickerDataView
+
++ (PickerDataView*)showDateAddTo:(UIView*)view {
     
-    PickerView *pickerView = [self loadFromNib:1 addToView:view];
+    PickerDataView *datepickerView = [self loadPickerDataViewFromNibaddToView:view];
     
-    return pickerView;
+    return datepickerView;
+}
+
+
++ (PickerDataView*)loadPickerDataViewFromNibaddToView:(UIView*)view {
+    
+    PickerDataView *pickerDataView = [[[NSBundle mainBundle]loadNibNamed:@"PickerView" owner:nil options:nil]objectAtIndex:1];
+    pickerDataView.backgroundColor = [UIColor colorWithHex:@"4a4a4a" alpha:0];
+    pickerDataView.frame = CGRectMake(0, 0, ScreenWidth, ScreenHeight);
+    pickerDataView.pickerBGView.originY = ScreenHeight;
+    
+    [view addSubview:pickerDataView];
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        
+        pickerDataView.backgroundColor = [UIColor colorWithHex:@"4a4a4a" alpha:0.3];
+        
+    } completion:^(BOOL finished) {
+        
+    }];
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]init];
+    [pickerDataView addGestureRecognizer:tap];
+    [[tap rac_gestureSignal]subscribeNext:^(id x) {
+        
+        [UIView animateWithDuration:0.3 animations:^{
+            
+            pickerDataView.backgroundColor = [UIColor colorWithHex:@"4a4a4a" alpha:0];
+ 
+        } completion:^(BOOL finished) {
+            
+            [pickerDataView removeFromSuperview];
+        }];
+        
+    }];
+
+    [[pickerDataView.confirmBtn rac_signalForControlEvents:UIControlEventTouchUpInside]subscribeNext:^(id x) {
+        
+        [UIView animateWithDuration:0.3 animations:^{
+            
+            pickerDataView.backgroundColor = [UIColor colorWithHex:@"4a4a4a" alpha:0];
+            pickerDataView.pickerBGView.originY = ScreenHeight;
+            
+        } completion:^(BOOL finished) {
+            
+            if (pickerDataView.tapConfirmBlock) {
+                
+                pickerDataView.tapConfirmBlock();
+            }
+            
+            [pickerDataView removeFromSuperview];
+            
+        }];
+        
+    }];
+
+    
+    [[pickerDataView.cancleBtn rac_signalForControlEvents:UIControlEventTouchUpInside]subscribeNext:^(id x) {
+        
+        [UIView animateWithDuration:0.3 animations:^{
+            
+            pickerDataView.backgroundColor = [UIColor colorWithHex:@"4a4a4a" alpha:0];
+            pickerDataView.pickerBGView.originY = ScreenHeight;
+            
+        } completion:^(BOOL finished) {
+            
+            [pickerDataView removeFromSuperview];
+            
+            
+        }];
+    }];
+    
+    
+    return pickerDataView;
+
+}
+
+- (NSString*)getDateStr:(NSDate*)date; {
+    
+    NSDateFormatter *pickerFormatter = [[NSDateFormatter alloc]init];
+    [pickerFormatter setDateFormat:@"yyyy年MM月dd日"];
+    
+    NSString *dateStr = [pickerFormatter stringFromDate:date];
+    
+    return dateStr;
 }
 
 @end
+

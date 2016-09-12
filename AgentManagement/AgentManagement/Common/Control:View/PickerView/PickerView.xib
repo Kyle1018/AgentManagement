@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -21,7 +21,7 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bDL-xX-jB1">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A8a-Dx-i63">
+                                <button opaque="NO" tag="1000" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A8a-Dx-i63">
                                     <rect key="frame" x="0.0" y="0.0" width="100" height="44"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="100" id="eB3-9F-kD9"/>
@@ -32,7 +32,7 @@
                                         <color key="titleColor" red="0.60784313725490191" green="0.60784313725490191" blue="0.60784313725490191" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QQA-hU-Rpf">
+                                <button opaque="NO" tag="1001" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QQA-hU-Rpf">
                                     <rect key="frame" x="275" y="0.0" width="100" height="44"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="100" id="nNL-Gh-oed"/>
@@ -56,7 +56,6 @@
                             </constraints>
                         </view>
                     </subviews>
-                    <color key="backgroundColor" red="0.4549019608" green="0.79215686269999996" blue="0.086274509799999996" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstItem="FE5-WL-aiQ" firstAttribute="top" secondItem="rgD-li-1U1" secondAttribute="top" id="AXU-8v-mq0"/>
                         <constraint firstAttribute="bottom" secondItem="FE5-WL-aiQ" secondAttribute="bottom" id="AcH-I1-dzw"/>
@@ -78,47 +77,53 @@
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="cancleBtn" destination="A8a-Dx-i63" id="mNR-2a-QqY"/>
-                <outlet property="confirmBtn" destination="QQA-hU-Rpf" id="Ggy-5T-I3e"/>
+                <outlet property="cancleBtn" destination="A8a-Dx-i63" id="UpL-no-7rf"/>
+                <outlet property="confirmBtn" destination="QQA-hU-Rpf" id="cwE-uv-mYf"/>
                 <outlet property="picker" destination="FE5-WL-aiQ" id="LTb-eK-FxC"/>
                 <outlet property="pickerBGView" destination="rgD-li-1U1" id="1Vk-om-MMu"/>
             </connections>
             <point key="canvasLocation" x="252.5" y="203.5"/>
         </view>
-        <view contentMode="scaleToFill" id="vdJ-yF-ZPp" customClass="PickerView">
+        <view contentMode="scaleToFill" id="vdJ-yF-ZPp" customClass="PickerDataView">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Am-zl-YNP">
                     <rect key="frame" x="0.0" y="359" width="375" height="308"/>
                     <subviews>
-                        <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="s6K-9M-b8k">
+                        <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="s6K-9M-b8k">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="308"/>
-                            <date key="date" timeIntervalSinceReferenceDate="495297434.57736999">
-                                <!--2016-09-11 14:37:14 +0000-->
+                            <date key="date" timeIntervalSinceReferenceDate="495297420.57736999">
+                                <!--2016-09-11 14:37:00 +0000-->
                             </date>
                         </datePicker>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ciC-9G-gW1">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Rf-kT-GOE">
-                                    <rect key="frame" x="0.0" y="0.0" width="100" height="44"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="100" id="YtD-Fy-tGe"/>
-                                    </constraints>
-                                    <state key="normal" title="取消">
-                                        <color key="titleColor" red="0.24288900173524222" green="0.52032575989447361" blue="0.60784313725490191" alpha="1" colorSpace="calibratedRGB"/>
-                                    </state>
-                                </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cPx-ng-95M">
+                                <button opaque="NO" tag="1003" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cPx-ng-95M">
                                     <rect key="frame" x="275" y="0.0" width="100" height="44"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="100" id="4EM-dc-k62"/>
                                     </constraints>
-                                    <state key="normal" title="Button"/>
+                                    <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="16"/>
+                                    <inset key="contentEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    <state key="normal" title="确定">
+                                        <color key="titleColor" red="0.60784313725490191" green="0.60784313725490191" blue="0.60784313725490191" alpha="1" colorSpace="calibratedRGB"/>
+                                    </state>
+                                </button>
+                                <button opaque="NO" tag="1002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Rf-kT-GOE">
+                                    <rect key="frame" x="0.0" y="0.0" width="100" height="44"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="100" id="YtD-Fy-tGe"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="16"/>
+                                    <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="20" maxY="0.0"/>
+                                    <state key="normal" title="取消">
+                                        <color key="titleColor" red="0.60784313725490191" green="0.60784313725490191" blue="0.60784313725490191" alpha="1" colorSpace="calibratedRGB"/>
+                                    </state>
                                 </button>
                             </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="backgroundColor" red="0.94509803921568625" green="0.94509803921568625" blue="0.94509803921568625" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="44" id="4vQ-dG-09P"/>
                                 <constraint firstItem="9Rf-kT-GOE" firstAttribute="leading" secondItem="ciC-9G-gW1" secondAttribute="leading" id="M8r-8E-oU5"/>
@@ -151,6 +156,12 @@
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="cancleBtn" destination="9Rf-kT-GOE" id="D4f-be-W9f"/>
+                <outlet property="confirmBtn" destination="cPx-ng-95M" id="Lr1-wy-5gz"/>
+                <outlet property="datePicker" destination="s6K-9M-b8k" id="rWf-4C-2Tw"/>
+                <outlet property="pickerBGView" destination="9Am-zl-YNP" id="hhj-th-t49"/>
+            </connections>
             <point key="canvasLocation" x="682.5" y="203.5"/>
         </view>
     </objects>
