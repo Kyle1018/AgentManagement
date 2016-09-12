@@ -17,6 +17,10 @@
 @property(nonatomic,strong)NSMutableArray *pickerDataArray;
 @property(nonatomic,strong)PickerDataView *datePicker;
 @property(nonatomic,copy)NSString *dateStr;
+@property(nonatomic,strong)NSMutableArray *orderArray;//订单数组
+
+@property(nonatomic,strong)NSMutableDictionary *orderDic;//订单模型
+
 @end
 
 @implementation AddCustomerViewControllerB
@@ -25,8 +29,14 @@
     [super viewDidLoad];
 
     _brandAndModelArray = [NSMutableArray array];
+    
+    _orderArray = [NSMutableArray array];
+    
+    _orderDic = [NSMutableDictionary dictionary];
 
     [self requestData];
+    
+    NSLog(@"%@",self.addCutomerInfoDic);
 
 }
 
@@ -89,8 +99,23 @@
                 UILabel *label = [tableView viewWithTag:1000+indexPath.row+i];
                 
                 NSString *str = [[weakSelf.pickerDataArray[indexPath.row]objectAtIndex:i]objectAtIndex:[weakSelf.pickerView.picker selectedRowInComponent:i]];
-                
                 label.text = str;
+                
+                
+                if (label.tag == 1000) {
+                    
+                    [weakSelf.orderDic safeSetObject:str forKey:@"brand"];
+
+                }
+                else if (label.tag == 1001) {
+                    
+                    [weakSelf.orderDic safeSetObject:str forKey:@"pmodel"];
+                }
+                else if (label.tag == 1003) {
+                    
+                    [weakSelf.orderDic safeSetObject:str forKey:@"cycle"];
+                    
+                }
             }
             
         };
@@ -114,7 +139,15 @@
             
             label.text =  weakSelf.dateStr;
             
-            [weakSelf.tableView reloadData];
+            if (label.tag == 2001) {
+                
+                [weakSelf.orderDic safeSetObject:weakSelf.dateStr forKey:@"buy_time"];
+                
+            }
+            else if (label.tag == 2002) {
+                
+                [weakSelf.orderDic safeSetObject:weakSelf.dateStr forKey:@"install_time"];
+            }
             
         };
     }
@@ -184,6 +217,22 @@
     
     pickerLabel.text=[self pickerView:pickerView titleForRow:row forComponent:component];
     return pickerLabel;
+}
+
+//进入添加产品页面
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    if([segue.identifier compare:@"AddCustomerCSegue"]==NO) {
+        
+        id page2=segue.destinationViewController;
+        
+        [self.orderArray addObject:self.orderDic];
+        
+        [self.addCutomerInfoDic safeSetObject:self.orderArray forKey:@"order"];
+        
+        [page2 setValue:self.addCutomerInfoDic forKey:@"addCutomerInfoDic"];
+    }
+    
 }
 
 @end

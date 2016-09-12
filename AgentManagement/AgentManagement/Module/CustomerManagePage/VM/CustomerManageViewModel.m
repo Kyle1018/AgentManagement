@@ -67,4 +67,30 @@
 
 
 
+- (RACSignal*)requestCustomerInfoListDataOrSearchCustomerInfoDataWithPage:(NSInteger)page size:(NSInteger)size search:(NSDictionary*)searchDic {
+    
+    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+       
+        
+        return nil;
+    }];
+}
+
+- (RACSignal*)requstAddCustomerData:(NSDictionary*)paramt {
+    
+    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        
+        self.addCustomerRequest = [[AMAddCustomerRequest alloc]initWithAddCustomerInfo:paramt];
+        
+        [self.addCustomerRequest requestWithSuccess:^(KKBaseModel *model, KKRequestError *error) {
+            
+            
+        } failure:^(KKBaseModel *model, KKRequestError *error) {
+            
+        }];
+        
+        return nil;
+    }];
+}
+
 @end

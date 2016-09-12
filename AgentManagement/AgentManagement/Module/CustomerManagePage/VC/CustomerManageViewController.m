@@ -21,8 +21,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self requestData];
     
-    NSLog(@"%@",self.userModel);
+}
+
+- (void)requestData {
+    
+    
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

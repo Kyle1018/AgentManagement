@@ -19,15 +19,8 @@
 
             [self.requestParameters safeAddEntriesFromDictionary:productInfo];
             
-            NSLog(@"%@",self.requestParameters);
-//            [self.requestParameters addEntriesFromDictionary:productInfo];
-//           [self.requestParameters  safeSetObject:search forKey:@"search"];
-//            [self.requestParameters safeSetObject:page forKey:@"page"];
-//            [self.requestParameters safeSetObject:size forKey:@"size"];
         }
-        
-        
-        
+
     }
     return self;
 }

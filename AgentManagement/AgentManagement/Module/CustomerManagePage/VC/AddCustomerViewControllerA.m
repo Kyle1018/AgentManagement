@@ -15,6 +15,7 @@
 @property(nonatomic,strong)CustomerManageViewModel *viewModel;
 @property(nonatomic,strong)NSMutableDictionary *areaDic;
 @property(nonatomic,assign)NSInteger lRow;
+@property(nonatomic,assign)NSInteger textTag;
 
 @property(nonatomic,strong)NSMutableDictionary *addCutomerInfoDic;
 @end
@@ -25,8 +26,6 @@
     [super viewDidLoad];
 
     [self requestData];
-    
-    //[self signal];
     
     _addCutomerInfoDic = [NSMutableDictionary dictionary];
 }
@@ -150,7 +149,8 @@
     
     if (indexPath.section==0 && indexPath.row==2) {
         
-        NSLog(@"点击了客户地址单元格");
+        
+        [ [self.view viewWithTag:_textTag] resignFirstResponder];
         
         __weak typeof(self) weakSelf = self;
         _pickerView = [PickerView showAddTo:self.view];
@@ -219,6 +219,7 @@
             [weakSelf.addCutomerInfoDic safeSetObject:x forKey:@"chlorine"];
             
         }
+        _textTag = textField.tag;
         NSLog(@"_________________%@",x);
     }];
     
@@ -242,6 +243,8 @@
     [[input rac_textSignal]subscribeNext:^(id x) {
        
         [weakSelf.addCutomerInfoDic safeSetObject:x forKey:@"address"];
+        
+        _textTag = textView.tag;
     }];
     
     return YES;
@@ -257,14 +260,13 @@
 }
 
 #pragma mark - Segue
-//进入添加产品页面
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
     if([segue.identifier compare:@"AddCustomerBSegue"]==NO) {
         
         id page2=segue.destinationViewController;
     
-        [page2 setValue:self.addCutomerInfoDic forKey:@"addProductInfoDic"];
+        [page2 setValue:self.addCutomerInfoDic forKey:@"addCutomerInfoDic"];
     }
     
 }
