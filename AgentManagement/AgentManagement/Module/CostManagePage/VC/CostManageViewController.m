@@ -21,6 +21,7 @@
 @property(nonatomic,strong)NSMutableDictionary *listDataDic;
 @property(nonatomic,strong)NSArray *keysArray;
 @property(nonatomic,copy)NSString* lastDate;
+@property(nonatomic,strong)NSMutableArray *isHaveData;
 @end
 
 @implementation CostManageViewController
@@ -39,6 +40,8 @@
     _listDataDic = [NSMutableDictionary dictionary];
     
     _keysArray = [NSArray array];
+    
+    _isHaveData = [NSMutableArray array];
     
     
 
@@ -135,13 +138,44 @@
         cell.productInfo = [[self.listDataDic objectForKey:key]objectAtIndex:indexPath.row-1];
         
         __weak typeof(self) weakSelf = self;
-        
+
         cell.tapSeeDetailBlock = ^() {
             
             UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"CostManage" bundle:nil];
             CostManageDetailViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"CostManageDetailID"];
             vc.productInfo = [[self.listDataDic objectForKey:key]objectAtIndex:indexPath.row-1];
             [weakSelf.navigationController pushViewController:vc animated:YES];
+            
+            vc.tapDeleteProductBlock = ^() {
+                
+                [[weakSelf.listDataDic objectForKey:key] removeObjectAtIndex:indexPath.row-1];
+                
+                
+                for (NSString *key in self.keysArray) {
+                    
+                    NSMutableArray *array = [NSMutableArray arrayWithObject:[weakSelf.listDataDic objectForKey:key]];
+                    
+                    if (array.count>0) {
+                        
+                        [weakSelf.isHaveData addObject:@(YES)];
+                    }
+                    
+                    else {
+                        
+                        [weakSelf.isHaveData addObject:@(NO)];
+                    }
+                    
+                }
+                
+                if ([weakSelf.isHaveData containsObject:@(YES)]) {
+                    
+                    [weakSelf.formTabelView reloadData];
+                }
+                else {
+                     weakSelf.formTabelView.hidden = YES;
+                }
+      
+            };
         };
     }
     

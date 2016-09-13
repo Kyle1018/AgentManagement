@@ -128,7 +128,7 @@
      __weak typeof(self) weakSelf = self;
     
     //进入产品详情
-    cell.tapSeeDetailBlock = ^(NSInteger index) {
+    cell.tapSeeDetailBlock = ^() {
         
         UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"ProductManage" bundle:nil];
         ProductDetailViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"ProductDetailID"];
@@ -139,7 +139,7 @@
         //产品详情页点击了删除产品信息回调
         vc.tapDeleteProductBlock = ^() {
             
-            [weakSelf.productInfoDataArray removeObjectAtIndex:index];
+            [weakSelf.productInfoDataArray removeObjectAtIndex:indexPath.row];
             
             if (weakSelf.productInfoDataArray.count > 0) {
                 
