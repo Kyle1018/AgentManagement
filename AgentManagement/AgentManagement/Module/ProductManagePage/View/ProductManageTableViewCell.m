@@ -21,15 +21,13 @@
     // Configure the view for the selected state
 }
 
-- (void)setData:(AMProductInfo*)productInfo index:(NSInteger)index {
+- (void)setModel:(AMProductInfo *)model {
     
-    self.brand.text = productInfo.brand;
+    self.brand.text = model.brand;
     
-    self.pModel.text = productInfo.pmodel;
+    self.pModel.text = model.pmodel;
     
-    self.price.text = productInfo.price;
-    
-    _index = index;
+    self.price.text = model.price;
 }
 
 
@@ -38,7 +36,7 @@
     
     if (self.tapSeeDetailBlock) {
         
-        self.tapSeeDetailBlock(_index);
+        self.tapSeeDetailBlock();
     }
 }
 @end

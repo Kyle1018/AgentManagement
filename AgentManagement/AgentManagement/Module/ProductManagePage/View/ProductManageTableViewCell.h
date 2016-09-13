@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-typedef void(^TapSeeDetailBlock)(NSInteger index);
+typedef void(^TapSeeDetailBlock)();
 
 @class AMProductInfo;
 
@@ -18,9 +18,6 @@ typedef void(^TapSeeDetailBlock)(NSInteger index);
 @property (strong, nonatomic) IBOutlet UILabel *brand;
 @property (strong, nonatomic) IBOutlet UILabel *pModel;
 @property (strong, nonatomic) IBOutlet UILabel *price;
-@property(nonatomic,assign)NSInteger index;
-
 @property(nonatomic,copy)TapSeeDetailBlock tapSeeDetailBlock;
 
-- (void)setData:(AMProductInfo*)productInfo index:(NSInteger)index;
 @end

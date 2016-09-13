@@ -40,7 +40,7 @@
     
     [self requestData];
     
-    [self observeData];
+   // [self observeData];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -84,35 +84,27 @@
     }];
     
     //请求产品列表数据
-    [[[self.viewModel requestProductListDataOrSearchProductDataWithPage:0 Size:0 Search:nil]filter:^BOOL(id value) {
-        
-        if ([value boolValue]==YES) {
-            
-            return YES;
-        }
-        else {
-            
-            return NO;
-        }
-    }]subscribeNext:^(id x) {
+    [[self.viewModel requestProductListDataOrSearchProductDataWithPage:0 Size:0 Search:nil]subscribeNext:^(NSMutableArray* x) {
        
+        weakSelf.productInfoDataArray = x;
+        
         weakSelf.formTabelView.hidden = NO;
         weakSelf.formHeaderView.hidden = NO;
         [weakSelf.formTabelView reloadData];
     }];
 }
-
-- (void)observeData {
-    
-    __weak typeof(self) weakSelf = self;
-    
-    //列表数据
-    [RACObserve(self.viewModel, productInfoDataArray)subscribeNext:^(NSMutableArray* x) {
-       
-        weakSelf.productInfoDataArray = x;
-    }];
-    
-}
+//
+//- (void)observeData {
+//    
+//    __weak typeof(self) weakSelf = self;
+//    
+//    //列表数据
+//    [RACObserve(self.viewModel, productInfoDataArray)subscribeNext:^(NSMutableArray* x) {
+//       
+//        weakSelf.productInfoDataArray = x;
+//    }];
+//    
+//}
 
 #pragma mark - UITableViewDelegate/UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -131,7 +123,7 @@
         cell =[[ProductManageTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
     }
     
-    [cell setData:self.productInfoDataArray[indexPath.row] index:indexPath.row];
+    cell.model = self.productInfoDataArray[indexPath.row];
   
      __weak typeof(self) weakSelf = self;
     
@@ -140,7 +132,7 @@
         
         UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"ProductManage" bundle:nil];
         ProductDetailViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"ProductDetailID"];
-        vc.productInfo = weakSelf.productInfoDataArray[index];
+        vc.productInfo = weakSelf.productInfoDataArray[indexPath.row];
         vc.productRelatedInformationArray = weakSelf.productRelatedInformationArray;
         [weakSelf.navigationController pushViewController:vc animated:YES];
         

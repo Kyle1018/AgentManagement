@@ -34,7 +34,7 @@
 
 @property(nonatomic,strong)ProductManageViewModel *viewModel;
 
-@property(nonatomic,strong)NSMutableArray *searchResultArray;
+//@property(nonatomic,strong)NSMutableArray *searchResultArray;
 
 @end
 
@@ -51,7 +51,7 @@
     
     [self keyboradNotification];
 
-    [self observeData];
+   // [self observeData];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -150,15 +150,15 @@
     
 }
 
-- (void)observeData {
-    
-    __weak typeof(self) weakSelf = self;
-    //列表数据
-    [RACObserve(self.viewModel, productInfoDataArray)subscribeNext:^(NSMutableArray* x) {
-        
-        weakSelf.searchResultArray = x;
-    }];
-}
+//- (void)observeData {
+//    
+//    __weak typeof(self) weakSelf = self;
+//    //列表数据
+//    [RACObserve(self.viewModel, productInfoDataArray)subscribeNext:^(NSMutableArray* x) {
+//        
+//        weakSelf.searchResultArray = x;
+//    }];
+//}
 
 - (void)hideMenuView {
     
@@ -394,11 +394,13 @@
 
     __weak typeof(self) weakSelf = self;
     //发起查询产品数据请求
-    [[self.viewModel requestProductListDataOrSearchProductDataWithPage:0 Size:0 Search:_selectedOptionDic]subscribeNext:^(id x) {
+    [[self.viewModel requestProductListDataOrSearchProductDataWithPage:0 Size:0 Search:_selectedOptionDic]subscribeNext:^(NSMutableArray* x) {
+        
+         //weakSelf.searchResultArray = x;
         
         if (weakSelf.tapSearchProductBlock) {
             
-            weakSelf.tapSearchProductBlock(weakSelf.searchResultArray);
+            weakSelf.tapSearchProductBlock(x);
         }
 
     }];

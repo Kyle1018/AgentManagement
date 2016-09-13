@@ -25,7 +25,7 @@
 
 @property(nonatomic,strong)AMDeleteProductRequest *deleteRequest;//删除产品
 
-@property(nonatomic,strong)NSMutableArray *productInfoDataArray;//产品列表或搜索模型数组
+//@property(nonatomic,strong)NSMutableArray *productInfoDataArray;//产品列表或搜索模型数组
 
 /**
  *  请求产品品牌和型号数据

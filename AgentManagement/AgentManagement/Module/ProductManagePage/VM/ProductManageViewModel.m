@@ -13,18 +13,18 @@
 
 @implementation ProductManageViewModel
 
-- (instancetype)init {
-    
-    self = [super init];
-    
-    if (self) {
-
-        _productInfoDataArray = [NSMutableArray array];
-        
-     }
-    
-    return self;
-}
+//- (instancetype)init {
+//    
+//    self = [super init];
+//    
+//    if (self) {
+//
+//        //_productInfoDataArray = [NSMutableArray array];
+//        
+//     }
+//    
+//    return self;
+//}
 
 - (RACSignal*)requestProductBrandAndPmodelData {
     
@@ -251,19 +251,22 @@
             
             NSMutableArray *array = (NSMutableArray *)[[dataArray reverseObjectEnumerator] allObjects];
             
-            [weakSelf.productInfoDataArray addObjectsFromArray:array];
+         //   [weakSelf.productInfoDataArray addObjectsFromArray:array];
+            
+            [subscriber sendNext:array];
+            [subscriber sendCompleted];
 
-            if (weakSelf.productInfoDataArray.count > 0) {
-                
-                [subscriber sendNext:@(YES)];
-                [subscriber sendCompleted];
-            }
-            else {
-                
-                [subscriber sendNext:@(NO)];
-                [subscriber sendCompleted];
-                
-            }
+//            if (weakSelf.productInfoDataArray.count > 0) {
+//                
+//                [subscriber sendNext:@(YES)];
+//                [subscriber sendCompleted];
+//            }
+//            else {
+//                
+//                [subscriber sendNext:@(NO)];
+//                [subscriber sendCompleted];
+//                
+//            }
             
         } failure:^(KKBaseModel *model, KKRequestError *error) {
             

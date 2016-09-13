@@ -16,6 +16,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    NSLog(@"%@",self.productInfo);
     // Do any additional setup after loading the view.
 }
 
