@@ -8,12 +8,11 @@
 
 #import "AppDelegate.h"
 #import "ViewController.h"
-#import "AMRegisterRequest.h"
-//#import "AMRegistRequest.h"
+#import "Reachability.h"
+
 @interface AppDelegate ()
 
-@property(nonatomic,strong)AMRegisterRequest *registerRequest;
-//@property(nonatomic,strong)AMRegistRequest *registRequest;
+@property (nonatomic, retain) Reachability *notifyReachability;
 
 @end
 
@@ -34,34 +33,81 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
-
-//
-//    
-//    self.registerRequest = [[AMRegisterRequest alloc]initWithPhone:@"13426090573" Password:@"abcd1234" Code:@"544713"];
-//    
-//    [self.registerRequest requestWithSuccess:^(KKBaseModel *model, KKRequestError *error) {
-//        
-//        NSLog(@"%@",model);
-//        
-//        NSLog(@"%@",error);
-//        
-//    } failure:^(KKBaseModel *model, KKRequestError *error) {
-//       
-//        
-//        NSLog(@"%@",model);
-//        
-//        NSLog(@"%@",error);
-//    }];
-//    
     
-
-    
-    
-    
-
-   // NSLog(@"%@",code);
+    // 联网监听
+    [self startNetworkNotify];
     
     return YES;
+}
+
+- (void)startNetworkNotify {
+    
+    if (!self.notifyReachability) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityChangedNotification:) name:kReachabilityChangedNotification object:nil];
+        
+        self.notifyReachability = [Reachability reachabilityForInternetConnection];
+        [self.notifyReachability startNotifier];
+    }
+}
+
+- (void)reachabilityChangedNotification:(NSNotification *)notification {
+    
+    Reachability *notifyReachability = [notification object];
+    
+    if (notifyReachability) {
+        NetworkStatus status = [notifyReachability currentReachabilityStatus];
+        
+        switch (status) {
+            case NotReachable: {
+                
+                [MBProgressHUD showText:@"当前没有网络"];
+               // ToastViewMessage(NSLocalizedString(@"Network unreachable string", nil));
+                break;
+            } case ReachableViaWWAN: {
+                
+                [MBProgressHUD showText:@"当前处于wifi"];
+//                _isChangeToWWAN = YES;
+//        //        [[VideoDownloader downloader] resumeCurrentDownloadQueue];
+//                
+//                if ([VideoDownloader downloader].downloadingCount>0) {
+//                    // 暂停所有下载
+//                    [[VideoDownloader downloader] pauseAllDownload];
+//                    //                    if (!self.netWarn) {
+//                    //                        NetWarnView * newWarnView=[[NetWarnView alloc]initWithNibName:nil Frame:[UIApplication sharedApplication].keyWindow.frame];
+//                    NetWarnView * newWarnView = [NetWarnView loadFromXibWithNibName:nil Frame:[UIApplication sharedApplication].keyWindow.frame];
+//                    self.netWarn=newWarnView;
+//                    //                    }
+//                    
+//                    [[UIApplication sharedApplication].keyWindow addSubview:self.netWarn];
+//                    self.netWarn.isShowNetWarn = YES;
+                
+               // }
+                
+               // [self promotWWAN];
+                break;
+            }
+            
+            case ReachableViaWiFi: {
+                
+                
+//                if (self.netWarn && self.netWarn.isShowNetWarn) {
+//                    [self.netWarn cancel];
+//                }
+//                
+//                NSArray *arry=[NSArray arrayWithArray:[Config getVideoFromWifiDownLoadForKey:@"kWifiVideoArray"]];
+//                
+//                if (arry) {
+//                    
+//                    for (NSNumber  *videoId in arry) {
+//                        [[VideoDownloader downloader] resumeDownloadVideo:[videoId intValue]];
+//                    }
+//                }
+//                
+                break;
+            } default:
+                break;
+        }
+    }
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

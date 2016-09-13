@@ -10,6 +10,7 @@
 #import "BaseTabbarController.h"
 #import "LandViewModel.h"
 #import "AMUser.h"
+#import "Reachability.h"
 @interface LandViewController ()
 
 @property(nonatomic,strong)LandViewModel *viewModel;
@@ -168,8 +169,7 @@
 
         }];
     }];
-    
-    
+
 }
 
 #pragma mark - UITextFieldDelegate

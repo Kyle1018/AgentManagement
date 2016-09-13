@@ -13,20 +13,9 @@
 
 @implementation ProductManageViewModel
 
-//- (instancetype)init {
-//    
-//    self = [super init];
-//    
-//    if (self) {
-//
-//        //_productInfoDataArray = [NSMutableArray array];
-//        
-//     }
-//    
-//    return self;
-//}
-
 - (RACSignal*)requestProductBrandAndPmodelData {
+    
+    __weak typeof(self) weakSelf = self;
     
     return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
        
@@ -63,16 +52,32 @@
                 
             }
             
-            NSMutableArray *productAndModelArray =[NSMutableArray arrayWithObjects:brandArray,pmodelArray,CpmodelArray, nil];
+        
+            weakSelf.productAndModelArray = [NSMutableArray arrayWithObjects:brandArray,pmodelArray,CpmodelArray, nil];
+
+            if (brandArray.count > 0 && pmodelArray.count>0) {
+                
+                [subscriber sendNext:@(YES)];
+                
+                [subscriber sendCompleted];
+                
+            }
+            else {
+                
+                [subscriber sendNext:@(NO)];
+                
+                [subscriber sendCompleted];
+            }
             
-            [subscriber sendNext:productAndModelArray];
             
-            [subscriber sendCompleted];
+          
             
             
         } failure:^(KKBaseModel *model, KKRequestError *error) {
             
-            [subscriber sendError:error];
+            [subscriber sendNext:@(NO)];
+            
+            [subscriber sendCompleted];
             
         }];
         
@@ -107,7 +112,7 @@
                                 @[@"手动输入价格"],
                                 @[@"1个月",@"3个月",@"6个月",@"12个月",@"18个月",@"24个月"],nil];
             
-            NSMutableArray *productRelatedInformationArray = [NSMutableArray arrayWithObject:optionTitleDataArray];
+//            NSMutableArray *productRelatedInformationArray = [NSMutableArray arrayWithObject:optionTitleDataArray];
             
 //            weakSelf.productRelatedInformationArray = [NSMutableArray arrayWithObject:optionTitleDataArray];
             for (AMProductRelatedInformation *model in modelArray) {
@@ -158,29 +163,29 @@
           
             }
             
-            [productRelatedInformationArray addObject:optionDataArray];
             
-            [subscriber sendNext:productRelatedInformationArray];
+            weakSelf.productRelatedInformationArray = [NSMutableArray arrayWithObjects:optionTitleDataArray,optionDataArray, nil];
             
-            [subscriber sendCompleted];
+            if (optionTitleDataArray.count>0 && optionDataArray.count>0) {
+                
+                [subscriber sendNext:@(YES)];
+                
+                [subscriber sendCompleted];
+            }
             
-//            [weakSelf.productRelatedInformationArray addObject:optionDataArray];
-//            
-//            if (weakSelf.productRelatedInformationArray.count > 0) {
-//                
-//                [subscriber sendNext:@(YES)];
-//                [subscriber sendCompleted];
-//            }
-//            else {
-//                
-//                [subscriber sendNext:@(NO)];
-//                [subscriber sendCompleted];
-//
-//            }
+            else {
+                
+                [subscriber sendNext:@(NO)];
+                
+                [subscriber sendCompleted];
+            }
+
             
         } failure:^(KKBaseModel *model, KKRequestError *error) {
             
-            [subscriber sendError:error];
+            [subscriber sendNext:@(NO)];
+            
+            [subscriber sendCompleted];
         }];
         
         return nil;
@@ -251,22 +256,19 @@
             
             NSMutableArray *array = (NSMutableArray *)[[dataArray reverseObjectEnumerator] allObjects];
             
-         //   [weakSelf.productInfoDataArray addObjectsFromArray:array];
-            
-            [subscriber sendNext:array];
-            [subscriber sendCompleted];
+            weakSelf.productInfoDataArray =[NSMutableArray arrayWithArray:array];
 
-//            if (weakSelf.productInfoDataArray.count > 0) {
-//                
-//                [subscriber sendNext:@(YES)];
-//                [subscriber sendCompleted];
-//            }
-//            else {
-//                
-//                [subscriber sendNext:@(NO)];
-//                [subscriber sendCompleted];
-//                
-//            }
+            if (weakSelf.productInfoDataArray.count > 0) {
+                
+                [subscriber sendNext:@(YES)];
+                [subscriber sendCompleted];
+            }
+            else {
+                
+                [subscriber sendNext:@(NO)];
+                [subscriber sendCompleted];
+                
+            }
             
         } failure:^(KKBaseModel *model, KKRequestError *error) {
             

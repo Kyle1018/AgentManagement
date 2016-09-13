@@ -10,7 +10,7 @@
 #import "ASIFormDataRequest.h"
 #import "NSDictionary+KKAdditions.h"
 #import "NSData+KKAdditions.h"
-
+#import "Reachability.h"
 static NSString *const kAPIBaseURL = @"http://123.56.10.232:81/index.php?r=";
 
 @interface AMBaseRequest ()<ASIHTTPRequestDelegate>
@@ -78,18 +78,20 @@ static NSString *const kAPIBaseURL = @"http://123.56.10.232:81/index.php?r=";
     self.requestSuccess = success;
     self.requestFailure = failure;
     self.receiveData = [NSMutableData data];
-    switch ([self httpMethodType]) {
-        case KKHttpMethodType_GET: {
-            [self makeGetRequest];
-            
-            break;
-        } case KKHttpMethodType_POST: {
-            [self makePostRequest];
-            
-            break;
-        } default:
-            break;
-    }
+    
+        switch ([self httpMethodType]) {
+            case KKHttpMethodType_GET: {
+                [self makeGetRequest];
+                
+                break;
+            } case KKHttpMethodType_POST: {
+                [self makePostRequest];
+                
+                break;
+            } default:
+                break;
+        }
+
 }
 
 - (NSDictionary *)buildParameters
@@ -183,8 +185,19 @@ static NSString *const kAPIBaseURL = @"http://123.56.10.232:81/index.php?r=";
     }
     
     if (self.requestFailure) {
-        self.requestFailure(nil, [[KKRequestError alloc] initWithError:request.error]);
-        self.requestFailure = nil;
+        
+        if (![self reachablityToInternet]) {
+            
+            [MBProgressHUD showText:@"当前没有网络"];
+            
+            self.requestFailure(nil,nil);
+        }
+        else {
+            
+            self.requestFailure(nil, [[KKRequestError alloc] initWithError:request.error]);
+            self.requestFailure = nil;
+            
+        }
     }
 }
 
@@ -250,6 +263,12 @@ static NSString *const kAPIBaseURL = @"http://123.56.10.232:81/index.php?r=";
 - (void)requestFailed:(ASIHTTPRequest *)request
 {
     [self handleResultWithRequest:request];
+}
+
+
+- (BOOL)reachablityToInternet
+{
+    return [Reachability reachabilityForInternetConnection].isReachable;
 }
 
 @end

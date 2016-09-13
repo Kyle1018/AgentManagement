@@ -12,6 +12,7 @@
 #import "ProductManageViewModel.h"
 #import "CostManagerListHeaderView.h"
 #import "CostManageDetailViewController.h"
+#import "MJRefreshHeader+Util.h"
 @interface CostManageViewController ()
 
 @property(nonatomic,strong)CoSearchMenuViewController *coSearchMenuVC;
@@ -22,20 +23,25 @@
 @property(nonatomic,strong)NSArray *keysArray;
 @property(nonatomic,copy)NSString* lastDate;
 @property(nonatomic,strong)NSMutableArray *isHaveData;
+@property(nonatomic,strong) MJRefreshHeader*header;
 @end
 
 @implementation CostManageViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    [self initProperty];
+    
     [self requestData];
+    
+    [self observeData];
+    
+    [self pullRefresh];
+
 }
 
-- (void)requestData {
-    
-    _viewModel = [[ProductManageViewModel alloc]init];
-    
-     __weak typeof(self) weakSelf = self;
+- (void)initProperty {
     
     _listDataDic = [NSMutableDictionary dictionary];
     
@@ -43,20 +49,16 @@
     
     _isHaveData = [NSMutableArray array];
     
+    _viewModel = [[ProductManageViewModel alloc]init];
+}
+
+- (void)observeData {
     
+    __weak typeof(self) weakSelf = self;
 
-    //“成本管理列表”调用“产品管理列表”中的数据进行显示。
-    [[[self.viewModel requestProductListDataOrSearchProductDataWithPage:0 Size:0 Search:nil]filter:^BOOL(NSMutableArray* value) {
-
-        weakSelf.formTabelView.hidden = YES;
-
-        return value.count>0?YES:NO;
+    //列表数据
+    [RACObserve(self.viewModel, productInfoDataArray)subscribeNext:^(NSMutableArray* x) {
         
-    }]subscribeNext:^(NSMutableArray* x) {
-        
-        weakSelf.formTabelView.hidden = NO;
-        
-
         NSMutableArray *dataArray = [NSMutableArray array];
         
         for (AMProductInfo *productInfo in x) {
@@ -73,32 +75,63 @@
             
             NSLog(@"日期时间%@",currentDateStr);
             
-            if ([currentDateStr isEqualToString:_lastDate]) {
+            if ([currentDateStr isEqualToString:weakSelf.lastDate]) {
                 
                 [dataArray addObject:productInfo];
                 
-                [_listDataDic safeSetObject:dataArray forKey:currentDateStr];
+                [weakSelf.listDataDic safeSetObject:dataArray forKey:currentDateStr];
             }
             else {
                 
                 NSMutableArray *dd = [NSMutableArray array];
-
+                
                 [dd addObject:productInfo];
                 
-                [_listDataDic safeSetObject:dd forKey:currentDateStr];
-              
+                [weakSelf.listDataDic safeSetObject:dd forKey:currentDateStr];
+                
                 dataArray =dd;
             }
- 
-            _lastDate = currentDateStr;
- 
+            
+            weakSelf.lastDate = currentDateStr;
+            
         }
         
-        _keysArray = [self.listDataDic allKeys];
+        weakSelf.keysArray = [weakSelf.listDataDic allKeys];
+    }];
+}
 
-        [weakSelf.formTabelView reloadData];
+- (void)requestData {
+    
+     __weak typeof(self) weakSelf = self;
+
+    //“成本管理列表”调用“产品管理列表”中的数据进行显示。
+    [[self.viewModel requestProductListDataOrSearchProductDataWithPage:0 Size:0 Search:nil]
+
+      subscribeNext:^(NSNumber* x) {
+          
+          if ([x boolValue]==YES) {
+              
+              
+          }
+          
+          else {
+              
+              //请求数据失败，
+          }
+          [weakSelf.formTabelView.mj_header endRefreshing];
+          [weakSelf.formTabelView reloadData];
         
     }];
+}
+
+- (void)pullRefresh {
+    
+    self.formTabelView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        
+        [self requestData];
+        
+    }];
+    
 }
 
 #pragma mark - UITableViewDelegate/UITableViewDataSource

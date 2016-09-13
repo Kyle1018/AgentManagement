@@ -40,7 +40,7 @@
     
     [self requestData];
     
-   // [self observeData];
+    [self observeData];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -71,40 +71,72 @@
      __weak typeof(self) weakSelf = self;
 
     //请求产品品牌和型号数据
-    [[self.viewModel requestProductBrandAndPmodelData]subscribeNext:^(NSMutableArray* x) {
+    [[self.viewModel requestProductBrandAndPmodelData]subscribeNext:^(NSNumber* x) {
         
-        weakSelf.brandAndPmodelDataArray = x;
+        if ([x boolValue]==NO) {
+            
+            //请求数据失败
+        }
+        
+        
     }];
     
     //请求产品属性信息
-    [[self.viewModel requstProductInformationData]subscribeNext:^(id x) {
+    [[self.viewModel requstProductInformationData]subscribeNext:^(NSNumber* x) {
        
-        weakSelf.productRelatedInformationArray = x;
-
+        if ([x boolValue]==NO) {
+            
+            //请求数据失败
+        }
+        
     }];
     
     //请求产品列表数据
-    [[self.viewModel requestProductListDataOrSearchProductDataWithPage:0 Size:0 Search:nil]subscribeNext:^(NSMutableArray* x) {
-       
-        weakSelf.productInfoDataArray = x;
+    [[[self.viewModel requestProductListDataOrSearchProductDataWithPage:0 Size:0 Search:nil]filter:^BOOL(NSNumber* value) {
         
+        if ([value boolValue]==YES) {
+            
+            return YES;
+        }
+        
+        else {
+            
+            //请求数据失败
+            
+            return NO;
+        }
+        
+    }]subscribeNext:^(NSNumber* x) {
+
         weakSelf.formTabelView.hidden = NO;
         weakSelf.formHeaderView.hidden = NO;
         [weakSelf.formTabelView reloadData];
     }];
 }
-//
-//- (void)observeData {
-//    
-//    __weak typeof(self) weakSelf = self;
-//    
-//    //列表数据
-//    [RACObserve(self.viewModel, productInfoDataArray)subscribeNext:^(NSMutableArray* x) {
-//       
-//        weakSelf.productInfoDataArray = x;
-//    }];
-//    
-//}
+
+- (void)observeData {
+    
+    __weak typeof(self) weakSelf = self;
+    
+    //列表数据
+    [RACObserve(self.viewModel, productInfoDataArray)subscribeNext:^(NSMutableArray* x) {
+       
+        weakSelf.productInfoDataArray = x;
+    }];
+    
+    
+    [RACObserve(self.viewModel, productAndModelArray)subscribeNext:^(NSMutableArray* x) {
+        
+         weakSelf.brandAndPmodelDataArray = x;
+    }];
+    
+    
+    [RACObserve(self.viewModel, productRelatedInformationArray)subscribeNext:^(NSMutableArray* x) {
+        
+        weakSelf.productRelatedInformationArray = x;
+
+    }];
+}
 
 #pragma mark - UITableViewDelegate/UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
