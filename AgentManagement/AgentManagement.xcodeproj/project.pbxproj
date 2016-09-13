@@ -94,6 +94,7 @@
 		E24819CE1D85038100F885EE /* CustomerManageViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E24819CD1D85038100F885EE /* CustomerManageViewModel.m */; };
 		E24819D51D86FEC700F885EE /* AMCustomerOrSearchRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = E24819D41D86FEC700F885EE /* AMCustomerOrSearchRequest.m */; };
 		E24819D81D87020900F885EE /* AMAddCustomerRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = E24819D71D87020900F885EE /* AMAddCustomerRequest.m */; };
+		E24819DB1D88306A00F885EE /* MJRefreshHeader+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = E24819DA1D88306A00F885EE /* MJRefreshHeader+Util.m */; };
 		E24BF4481D734AAD0054DFDC /* PSearchMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E24BF4471D734AAD0054DFDC /* PSearchMenuViewController.m */; };
 		E24BF4511D7355760054DFDC /* MenuCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E24BF4501D7355760054DFDC /* MenuCollectionViewCell.m */; };
 		E24BF4571D73EFC70054DFDC /* MenuHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = E24BF4561D73EFC70054DFDC /* MenuHeaderView.m */; };
@@ -302,6 +303,8 @@
 		E24819D41D86FEC700F885EE /* AMCustomerOrSearchRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMCustomerOrSearchRequest.m; sourceTree = "<group>"; };
 		E24819D61D87020900F885EE /* AMAddCustomerRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMAddCustomerRequest.h; sourceTree = "<group>"; };
 		E24819D71D87020900F885EE /* AMAddCustomerRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMAddCustomerRequest.m; sourceTree = "<group>"; };
+		E24819D91D88306A00F885EE /* MJRefreshHeader+Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MJRefreshHeader+Util.h"; sourceTree = "<group>"; };
+		E24819DA1D88306A00F885EE /* MJRefreshHeader+Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MJRefreshHeader+Util.m"; sourceTree = "<group>"; };
 		E24BF4461D734AAD0054DFDC /* PSearchMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSearchMenuViewController.h; sourceTree = "<group>"; };
 		E24BF4471D734AAD0054DFDC /* PSearchMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSearchMenuViewController.m; sourceTree = "<group>"; };
 		E24BF44F1D7355760054DFDC /* MenuCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuCollectionViewCell.h; sourceTree = "<group>"; };
@@ -1093,6 +1096,8 @@
 				275F32BC1D71916A0033C8FF /* NSDictionary+KKAdditions.m */,
 				E2C14F6E1D7A9B6F00B0B0B2 /* MBProgressHUD+KKAdditions.h */,
 				E2C14F6F1D7A9B6F00B0B0B2 /* MBProgressHUD+KKAdditions.m */,
+				E24819D91D88306A00F885EE /* MJRefreshHeader+Util.h */,
+				E24819DA1D88306A00F885EE /* MJRefreshHeader+Util.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -1341,6 +1346,7 @@
 				27E26B4B1D6B1D360072F26E /* AddProductViewControllerA.m in Sources */,
 				E24BF4671D7416280054DFDC /* AMProductAndModel.m in Sources */,
 				E2C14F851D7AF73100B0B0B2 /* SetPasswordViewController.m in Sources */,
+				E24819DB1D88306A00F885EE /* MJRefreshHeader+Util.m in Sources */,
 				E24BF46D1D741CAB0054DFDC /* AMProductRelatedInformation.m in Sources */,
 				E2FA0C051D4CFF000094A6FE /* KKBaseModel.m in Sources */,
 				275F32BD1D71916A0033C8FF /* NSDictionary+KKAdditions.m in Sources */,
