@@ -21,8 +21,7 @@
        
         weakSelf.identifyCodeRequest = [[AMIdentifyCodeRequest alloc] initWithPhone:phone];
         [weakSelf.identifyCodeRequest requestWithSuccess:^(KKBaseModel *model, KKRequestError *error) {
-            NSLog(@"%@", model);
-            
+  
             identifyCodeModel = (AMIdentifyCode*)model;
             
             if (identifyCodeModel.authCode) {
@@ -33,7 +32,7 @@
             }
             else {
                 
-                [subscriber sendNext:identifyCodeModel.resultMessage];
+                [subscriber sendNext:@"获取验证码失败"];
                 [subscriber sendCompleted];
             }
             
@@ -41,11 +40,10 @@
 
     
         } failure:^(KKBaseModel *model, KKRequestError *error) {
-            NSLog(@"%@", model);
-            
+       
             identifyCodeModel = (AMIdentifyCode*)model;
             
-            [subscriber sendNext:identifyCodeModel.resultMessage];
+            [subscriber sendNext:@"获取验证码失败"];
             [subscriber sendCompleted];
         }];
         
