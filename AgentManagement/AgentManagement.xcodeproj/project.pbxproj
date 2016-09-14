@@ -64,6 +64,7 @@
 		27E26B501D6B1D360072F26E /* ProductManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E26B331D6B1D360072F26E /* ProductManageViewController.m */; };
 		3422BA5E1D7E5C51003751F1 /* AMProductInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3422BA5D1D7E5C51003751F1 /* AMProductInfo.m */; };
 		3422BA611D7EA33E003751F1 /* AMProductListOrSearchRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3422BA601D7EA33E003751F1 /* AMProductListOrSearchRequest.m */; };
+		344FF63D1D88F9BE009911EB /* LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 344FF63C1D88F9BE009911EB /* LoadingView.m */; };
 		34EB45E41D87C87A00522B22 /* CostManagerListHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EB45E31D87C87A00522B22 /* CostManagerListHeaderView.m */; };
 		34EB45E61D87C88A00522B22 /* CostManagerListHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34EB45E51D87C88A00522B22 /* CostManagerListHeaderView.xib */; };
 		34EE98211D76B6AE0040C997 /* AlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EE981F1D76B6AE0040C997 /* AlertController.m */; };
@@ -247,6 +248,8 @@
 		3422BA5D1D7E5C51003751F1 /* AMProductInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMProductInfo.m; sourceTree = "<group>"; };
 		3422BA5F1D7EA33E003751F1 /* AMProductListOrSearchRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMProductListOrSearchRequest.h; sourceTree = "<group>"; };
 		3422BA601D7EA33E003751F1 /* AMProductListOrSearchRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMProductListOrSearchRequest.m; sourceTree = "<group>"; };
+		344FF63B1D88F9BE009911EB /* LoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingView.h; sourceTree = "<group>"; };
+		344FF63C1D88F9BE009911EB /* LoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingView.m; sourceTree = "<group>"; };
 		34EB45E21D87C87A00522B22 /* CostManagerListHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CostManagerListHeaderView.h; sourceTree = "<group>"; };
 		34EB45E31D87C87A00522B22 /* CostManagerListHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CostManagerListHeaderView.m; sourceTree = "<group>"; };
 		34EB45E51D87C88A00522B22 /* CostManagerListHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CostManagerListHeaderView.xib; sourceTree = "<group>"; };
@@ -735,9 +738,19 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		344FF63A1D88F9A3009911EB /* LoadingView */ = {
+			isa = PBXGroup;
+			children = (
+				344FF63B1D88F9BE009911EB /* LoadingView.h */,
+				344FF63C1D88F9BE009911EB /* LoadingView.m */,
+			);
+			path = LoadingView;
+			sourceTree = "<group>";
+		};
 		34EE98171D76B62E0040C997 /* Control:View */ = {
 			isa = PBXGroup;
 			children = (
+				344FF63A1D88F9A3009911EB /* LoadingView */,
 				E29A7B9F1D8012E200826744 /* CommonControl.h */,
 				E24819C51D84541600F885EE /* PickerView */,
 				E29A7B9B1D80077200826744 /* MaskView */,
@@ -1297,6 +1310,7 @@
 				27E26B3F1D6B1D360072F26E /* AddCustomerViewControllerC.m in Sources */,
 				E21947391D771B64001C5E5F /* CoSearchMenuViewController.m in Sources */,
 				E2C14F7F1D7AA46000B0B0B2 /* RegisterViewController.m in Sources */,
+				344FF63D1D88F9BE009911EB /* LoadingView.m in Sources */,
 				E24BF4801D7475240054DFDC /* ProductDetailViewController.m in Sources */,
 				E2FA0C071D4CFF000094A6FE /* KKRequestError.m in Sources */,
 				E21947561D786F4D001C5E5F /* OperationlogViewController.m in Sources */,

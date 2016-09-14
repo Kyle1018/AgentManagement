@@ -23,7 +23,7 @@
 @property(nonatomic,strong)NSArray *keysArray;
 @property(nonatomic,copy)NSString* lastDate;
 @property(nonatomic,strong)NSMutableArray *isHaveData;
-
+@property(nonatomic,strong)LoadingView *loadingView;
 @end
 
 @implementation CostManageViewController
@@ -38,7 +38,7 @@
     [self observeData];
     
     [self pullRefresh];
-
+    
 }
 
 - (void)initProperty {
@@ -55,7 +55,6 @@
 - (void)observeData {
     
     __weak typeof(self) weakSelf = self;
-
     //列表数据
     [RACObserve(self.viewModel, productInfoDataArray)subscribeNext:^(NSMutableArray* x) {
         
@@ -102,33 +101,60 @@
 
 - (void)requestData {
     
-     __weak typeof(self) weakSelf = self;
+    WeakObj(self);
 
+    [LoadingView ShowLoadingAddToView:self.view];
+    
     //“成本管理列表”调用“产品管理列表”中的数据进行显示。
-    [[self.viewModel requestProductListDataOrSearchProductDataWithPage:0 Size:0 Search:nil]
+    [[[self.viewModel requestProductListDataOrSearchProductDataWithPage:0 Size:0 Search:nil]delay:1]
 
       subscribeNext:^(NSNumber* x) {
           
           if ([x boolValue]==YES) {
               
-              
+              [LoadingView hideLoadingViewRemoveView:self.view];
+              [selfWeak.formTabelView reloadData];
           }
           
           else {
+
+             selfWeak.loadingView =[LoadingView ShowRetryAddToView:self.view];
+            
+              selfWeak.loadingView.tapRefreshButtonBlcok = ^() {
+  
+                  //再次请求数据
+                  [selfWeak requestData];
+              };
               
               //请求数据失败，
           }
-          [weakSelf.formTabelView.mj_header endRefreshing];
-          [weakSelf.formTabelView reloadData];
-        
     }];
 }
 
 - (void)pullRefresh {
     
+     WeakObj(self);
+    
     self.formTabelView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         
-        [self requestData];
+        [[[selfWeak.viewModel requestProductListDataOrSearchProductDataWithPage:0 Size:0 Search:nil]delay:1]
+         
+         subscribeNext:^(NSNumber* x) {
+             
+             if ([x boolValue]==YES) {
+                 
+                 [selfWeak.formTabelView reloadData];
+             }
+             
+             else {
+
+                 [MBProgressHUD showText:@"下拉刷新失败"];
+                 
+                 //请求数据失败，
+             }
+             
+            [selfWeak.formTabelView.mj_header endRefreshing];
+         }];
         
     }];
     

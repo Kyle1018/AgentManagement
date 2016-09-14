@@ -186,18 +186,8 @@ static NSString *const kAPIBaseURL = @"http://123.56.10.232:81/index.php?r=";
     
     if (self.requestFailure) {
         
-        if (![self reachablityToInternet]) {
-            
-            [MBProgressHUD showText:@"当前没有网络"];
-            
-            self.requestFailure(nil,nil);
-        }
-        else {
-            
-            self.requestFailure(nil, [[KKRequestError alloc] initWithError:request.error]);
-            self.requestFailure = nil;
-            
-        }
+        self.requestFailure(nil, [[KKRequestError alloc] initWithError:request.error]);
+        self.requestFailure = nil;
     }
 }
 
@@ -265,10 +255,5 @@ static NSString *const kAPIBaseURL = @"http://123.56.10.232:81/index.php?r=";
     [self handleResultWithRequest:request];
 }
 
-
-- (BOOL)reachablityToInternet
-{
-    return [Reachability reachabilityForInternetConnection].isReachable;
-}
 
 @end
