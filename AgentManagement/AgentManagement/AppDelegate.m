@@ -65,7 +65,7 @@
                 break;
             } case ReachableViaWWAN: {
                 
-                [MBProgressHUD showText:@"当前处于wifi"];
+              
 //                _isChangeToWWAN = YES;
 //        //        [[VideoDownloader downloader] resumeCurrentDownloadQueue];
 //                
@@ -89,6 +89,7 @@
             
             case ReachableViaWiFi: {
                 
+                  [MBProgressHUD showText:@"当前处于wifi"];
                 
 //                if (self.netWarn && self.netWarn.isShowNetWarn) {
 //                    [self.netWarn cancel];

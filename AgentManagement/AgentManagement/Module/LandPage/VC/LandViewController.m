@@ -148,12 +148,13 @@
         //登录请求
         [[[weakSelf.viewModel requestSigninWithUserName:userName Password:password]filter:^BOOL(id value) {
             
-            if ([value isKindOfClass:[NSNumber class]]) {
+            if ([value isKindOfClass:[NSString class]]) {
                 
-                [MBProgressHUD showText:@"手机号或密码错误"];
+                [MBProgressHUD showText:value];
                 
-                return NO;
+                 return NO;
             }
+            
             else {
                 
                 return YES;

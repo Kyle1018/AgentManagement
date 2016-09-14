@@ -17,6 +17,7 @@
 #import "DataCacheManager.h"
 #import "Common/Control:View/CommonControl.h"
 #import <SDAutoLayout/UIView+SDAutoLayout.h>
+#import <MJRefresh/MJRefresh.h>
 #endif /* PrefixHeader_pch */
 
 #ifdef DEBUG

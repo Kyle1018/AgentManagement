@@ -100,12 +100,12 @@
         weakSelf.loginRequest = [[AMLoginRequest alloc]initWithAccount:userName password:password];
         
         [weakSelf.loginRequest requestWithSuccess:^(KKBaseModel *model, KKRequestError *error) {
-            
+
             loginModel = (AMUser*)model;
             
             if (loginModel.an_id==0) {
                 
-                [subscriber sendNext:@(NO)];
+                [subscriber sendNext:@"手机号或密码错误"];
                 [subscriber sendCompleted];
             }
             else {
@@ -115,8 +115,8 @@
             }
             
         } failure:^(KKBaseModel *model, KKRequestError *error) {
-            
-            [subscriber sendNext:@(NO)];
+         
+            [subscriber sendNext:@"登录失败"];
             [subscriber sendCompleted];
         }];
         

@@ -12,7 +12,7 @@
 #import "ProductManageViewModel.h"
 #import "CostManagerListHeaderView.h"
 #import "CostManageDetailViewController.h"
-#import "MJRefreshHeader+Util.h"
+
 @interface CostManageViewController ()
 
 @property(nonatomic,strong)CoSearchMenuViewController *coSearchMenuVC;
@@ -23,7 +23,7 @@
 @property(nonatomic,strong)NSArray *keysArray;
 @property(nonatomic,copy)NSString* lastDate;
 @property(nonatomic,strong)NSMutableArray *isHaveData;
-@property(nonatomic,strong) MJRefreshHeader*header;
+
 @end
 
 @implementation CostManageViewController
@@ -238,7 +238,6 @@
     _coSearchMenuVC = [storyboard instantiateViewControllerWithIdentifier:@"CoSearchMenuViewID"];
     [[UIApplication sharedApplication].keyWindow addSubview:_coSearchMenuVC.view];
 }
-
 
 /*
 #pragma mark - Navigation
