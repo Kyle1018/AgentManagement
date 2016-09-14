@@ -158,10 +158,10 @@
     
     WeakObj(self);
 
-    [LoadingView ShowLoadingAddToView:self.view];
+    [LoadingView showLoadingAddToView:self.view];
     
     //“成本管理列表”调用“产品管理列表”中的数据进行显示。
-    [[[self.viewModel requestProductListDataOrSearchProductDataWithPage:0 Size:0 Search:nil]delay:1]
+    [[[self.viewModel requestProductListDataOrSearchProductDataWithPage:0 Size:0 Search:nil]delay:0.5]
 
       subscribeNext:^(NSNumber* x) {
           
@@ -172,13 +172,13 @@
           }
           else if ( [x integerValue]==2) {
               
-            [LoadingView hideLoadingViewRemoveView:self.view];
+              [LoadingView showNoDataAddToView:self.view];
               selfWeak.formTabelView.hidden = YES;
           }
           
           else {
 
-             selfWeak.loadingView =[LoadingView ShowRetryAddToView:self.view];
+             selfWeak.loadingView =[LoadingView showRetryAddToView:self.view];
             
               selfWeak.loadingView.tapRefreshButtonBlcok = ^() {
   
@@ -201,16 +201,13 @@
          
          subscribeNext:^(NSNumber* x) {
              
-             if ([x boolValue]==YES) {
+             if ([x integerValue] == 1) {
                  
                  [selfWeak.formTabelView reloadData];
              }
-             
              else {
-
-                 [MBProgressHUD showText:@"下拉刷新数据加载失败"];
                  
-                 //请求数据失败，
+                [MBProgressHUD showText:@"数据刷新失败"];
              }
              
             [selfWeak.formTabelView.mj_header endRefreshing];

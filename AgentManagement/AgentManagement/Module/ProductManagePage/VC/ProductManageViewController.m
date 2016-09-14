@@ -16,8 +16,6 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *formTabelView;
 
-@property (weak, nonatomic) IBOutlet UIView *formHeaderView;
-
 @property(nonatomic,strong)ProductManageViewModel *viewModel;
 
 @property(nonatomic,strong)PSearchMenuViewController*searchMenuVC;
@@ -30,6 +28,7 @@
 
 @property(nonatomic,strong)AMProductInfo *addProductInfo;
 
+@property(nonatomic,strong)LoadingView *loadingView;
 @end
 
 @implementation ProductManageViewController
@@ -38,7 +37,11 @@
     
     [super viewDidLoad];
     
-    [self requestData];
+    _viewModel = [[ProductManageViewModel alloc]init];
+    
+    [self requestListData];
+    
+    [self requestInfoData];
     
     [self observeData];
     
@@ -65,17 +68,8 @@
 - (void)viewWillAppear:(BOOL)animated {
     
     [super viewWillAppear:animated];
-        
-    if (self.productInfoDataArray.count>0) {
-        
-        [self.formTabelView reloadData];
-    }
-    else {
-        
-        self.formTabelView.hidden = YES;
-        
-        self.formHeaderView.hidden = YES;
-    }
+    
+    [self.formTabelView reloadData];
     
     //获取添加后的数据模型
     if (self.addProductInfo != self.productInfo && self.productInfo !=nil) {
@@ -85,9 +79,7 @@
         [self.productInfoDataArray insertObject:self.productInfo atIndex:0];
             
         self.formTabelView.hidden = NO;
-            
-        self.formHeaderView.hidden = NO;
-            
+        
         [self.formTabelView reloadData];
 
     }
@@ -95,12 +87,41 @@
 }
 
 #pragma mark - Data
-- (void)requestData {
+- (void)requestListData {
   
-    _viewModel = [[ProductManageViewModel alloc]init];
+    WeakObj(self);
+    
+    [LoadingView showLoadingAddToView:self.view];
 
-     __weak typeof(self) weakSelf = self;
+    //请求产品列表数据
+    [[[self.viewModel requestProductListDataOrSearchProductDataWithPage:0 Size:0 Search:nil]delay:0.5]subscribeNext:^(NSNumber* value) {
+        
+        if ([value integerValue]==1) {
+            
+            [LoadingView hideLoadingViewRemoveView:self.view];
+            [selfWeak.formTabelView reloadData];
+        }
+        else if ([value integerValue] == 2) {
+            
+            [LoadingView showNoDataAddToView:self.view];
+            selfWeak.formTabelView.hidden = YES;
+        }
+        else {
+            
+            selfWeak.loadingView =[LoadingView showRetryAddToView:self.view];
+            
+            selfWeak.loadingView.tapRefreshButtonBlcok = ^() {
+                
+                //再次请求数据
+                [selfWeak requestListData];
+            };
+        }
+    }];
+        
+}
 
+- (void)requestInfoData {
+    
     //请求产品品牌和型号数据
     [[self.viewModel requestProductBrandAndPmodelData]subscribeNext:^(NSNumber* x) {
         
@@ -114,34 +135,12 @@
     
     //请求产品属性信息
     [[self.viewModel requstProductInformationData]subscribeNext:^(NSNumber* x) {
-       
+        
         if ([x boolValue]==NO) {
             
             //请求数据失败
         }
         
-    }];
-    
-    //请求产品列表数据
-    [[[self.viewModel requestProductListDataOrSearchProductDataWithPage:0 Size:0 Search:nil]filter:^BOOL(NSNumber* value) {
-        
-        if ([value boolValue]==YES) {
-            
-            return YES;
-        }
-        
-        else {
-            
-            //请求数据失败
-            
-            return NO;
-        }
-        
-    }]subscribeNext:^(NSNumber* x) {
-
-        weakSelf.formTabelView.hidden = NO;
-        weakSelf.formHeaderView.hidden = NO;
-        [weakSelf.formTabelView reloadData];
     }];
 }
 
@@ -175,23 +174,21 @@
     
     self.formTabelView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         
-        [[[selfWeak.viewModel requestProductListDataOrSearchProductDataWithPage:0 Size:0 Search:nil]delay:1]
+        [[selfWeak.viewModel requestProductListDataOrSearchProductDataWithPage:0 Size:0 Search:nil]
          
          subscribeNext:^(NSNumber* x) {
              
-             if ([x boolValue]==YES) {
+             if ([x integerValue] == 1) {
                  
                  [selfWeak.formTabelView reloadData];
              }
-             
              else {
                  
-                 [MBProgressHUD showText:@"数据加载失败"];
-                 
-                 //请求数据失败，
+                 [MBProgressHUD showText:@"数据刷新失败"];
              }
              
              [selfWeak.formTabelView.mj_header endRefreshing];
+   
          }];
         
     }];
@@ -201,7 +198,14 @@
 #pragma mark - UITableViewDelegate/UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return self.productInfoDataArray.count+1;
+    if (self.productInfoDataArray.count>0) {
+        
+        return self.productInfoDataArray.count+1;
+    }
+    else {
+        
+        return 0;
+    }
 }
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -270,7 +274,8 @@
     headerView.backgroundColor=[UIColor clearColor];
     
     UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0,19, self.formTabelView.width, 1)];
-    lineView.backgroundColor=[UIColor colorWithHex:@"b8b8b8"];
+    
+    lineView.backgroundColor=self.productInfoDataArray.count>0?[UIColor colorWithHex:@"b8b8b8"]:[UIColor clearColor];
     
     [headerView addSubview:lineView];
     
@@ -308,7 +313,6 @@
             
             [weakSelf.productInfoDataArray addObjectsFromArray:searchResutList];
             
-            weakSelf.formHeaderView.hidden = NO;
             weakSelf.formTabelView.hidden = NO;
             
             [weakSelf.formTabelView reloadData];
@@ -317,7 +321,6 @@
     
         else {
             
-            weakSelf.formHeaderView.hidden = YES;
             weakSelf.formTabelView.hidden = YES;
             [weakSelf.formTabelView reloadData];
         }

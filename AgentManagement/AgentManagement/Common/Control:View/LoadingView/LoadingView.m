@@ -34,7 +34,7 @@
     return self;
 }
 
-+(void)ShowLoadingAddToView:(UIView*)view{
++(void)showLoadingAddToView:(UIView*)view{
     
     for (UIView *subView in view.subviews) {
         
@@ -49,13 +49,13 @@
 
     [view addSubview:loadingView];
     
-    [loadingView ShowLoadingMessage:@"内容获取中..."];
+    [loadingView showLoadingMessage:@"内容获取中..."];
     
     
 }//显示loading页面，默认显示文字为"内容获取中..."
 
 
-+ (LoadingView*)ShowRetryAddToView:(UIView*)view {
++ (LoadingView*)showRetryAddToView:(UIView*)view {
     
     for (UIView *subView in view.subviews) {
         
@@ -69,7 +69,7 @@
     
     [view addSubview:loadingView];
     
-    [loadingView ShowRetryMessage:@"加载失败，点击这里重新试试"];
+    [loadingView showRetryMessage:@"加载失败，点击这里重新试试"];
  
     return loadingView;
 }
@@ -85,12 +85,26 @@
     }
 
 }
-//-(void)ShowRetry{
-//    
-//     [self ShowRetryMessage:@"加载失败，点击这里重新试试"];
-//}//显示重试页面，默认显示文字为""加载失败，点击这里重新试试""
 
--(void)ShowRetryMessage:(NSString *)message {
++ (void)showNoDataAddToView:(UIView*)view {
+    
+    for (UIView *subView in view.subviews) {
+        
+        if ([subView isKindOfClass:[LoadingView class]]) {
+            
+            [subView removeFromSuperview];
+        }
+    }
+    
+    LoadingView *loadingView = [[LoadingView alloc]initWithFrame:view.bounds];
+    
+    [view addSubview:loadingView];
+    
+    [loadingView showLoadingMessage:@"暂无内容"];
+    
+}
+
+-(void)showRetryMessage:(NSString *)message {
     
     _tipLabel.text = message;
     if (!_refreshButton) {
@@ -103,7 +117,7 @@
     //[self startLoading];
 }
 
--(void)ShowLoadingMessage:(NSString *)message
+-(void)showLoadingMessage:(NSString *)message
 {
     if (self.refreshButton) {
         [self.refreshButton removeFromSuperview];
