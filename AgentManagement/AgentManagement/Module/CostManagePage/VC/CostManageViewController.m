@@ -16,11 +16,10 @@
 @interface CostManageViewController ()
 
 @property(nonatomic,strong)CoSearchMenuViewController *coSearchMenuVC;
-
 @property(nonatomic,strong)ProductManageViewModel *viewModel;
 @property (weak, nonatomic) IBOutlet UITableView *formTabelView;
 @property(nonatomic,strong)NSMutableDictionary *listDataDic;
-@property(nonatomic,strong)NSArray *keysArray;
+@property(nonatomic,strong)NSMutableArray *keysArray;
 @property(nonatomic,copy)NSString* lastDate;
 @property(nonatomic,strong)NSMutableArray *isHaveData;
 @property(nonatomic,strong)LoadingView *loadingView;
@@ -39,17 +38,72 @@
     
     [self pullRefresh];
     
+    [[[NSNotificationCenter defaultCenter]rac_addObserverForName:KDeletaProductInfoNofi object:nil]subscribeNext:^(NSNotification* notifi) {
+        
+        NSLog(@"%@",notifi.userInfo);
+         AMProductInfo *deleteProductInfo=notifi.userInfo[@"productInfo"];
+        
+        for (NSString *key in self.keysArray) {
+            
+            NSMutableArray *array = [NSMutableArray arrayWithObject:[self.listDataDic objectForKey:key]];
+            
+            
+            for (NSMutableArray *productArray in array) {
+                
+                for (AMProductInfo *productInfo in productArray) {
+                    
+                    if ([productInfo.pd_id isEqualToString:deleteProductInfo.pd_id]) {
+                        
+                        [productArray removeObject:productInfo];
+                    }
+                }
+                
+                
+                if (productArray.count>0) {
+                    
+                    [_isHaveData addObject:@(YES)];
+                }
+                else {
+                    
+                    [self.listDataDic removeObjectForKey:key];
+                  
+                    [_isHaveData addObject:@(NO)];
+                }
+            }
+
+        }
+        
+    }];
+    
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    
+    [super viewWillAppear:animated];
+    
+    if (self.isHaveData.count>0) {
+        
+        if ([self.isHaveData containsObject:@(YES)]) {
+            
+            [self.formTabelView reloadData];
+        }
+        else {
+            
+             [self.formTabelView reloadData];
+           // self.formTabelView.hidden = YES;
+        }
+    }
 }
 
 - (void)initProperty {
     
     _listDataDic = [NSMutableDictionary dictionary];
     
-    _keysArray = [NSArray array];
-    
     _isHaveData = [NSMutableArray array];
     
     _viewModel = [[ProductManageViewModel alloc]init];
+    
+    _keysArray = [NSMutableArray array];
 }
 
 - (void)observeData {
@@ -95,7 +149,8 @@
             
         }
         
-        weakSelf.keysArray = [weakSelf.listDataDic allKeys];
+        [weakSelf.keysArray addObjectsFromArray:[weakSelf.listDataDic allKeys]];
+     
     }];
 }
 
@@ -110,10 +165,15 @@
 
       subscribeNext:^(NSNumber* x) {
           
-          if ([x boolValue]==YES) {
+          if ( [x integerValue]==1) {
               
               [LoadingView hideLoadingViewRemoveView:self.view];
               [selfWeak.formTabelView reloadData];
+          }
+          else if ( [x integerValue]==2) {
+              
+            [LoadingView hideLoadingViewRemoveView:self.view];
+              selfWeak.formTabelView.hidden = YES;
           }
           
           else {
@@ -148,7 +208,7 @@
              
              else {
 
-                 [MBProgressHUD showText:@"下拉刷新失败"];
+                 [MBProgressHUD showText:@"下拉刷新数据加载失败"];
                  
                  //请求数据失败，
              }
@@ -170,7 +230,15 @@
 
     NSString *key = self.keysArray[section];
     
-    return [[self.listDataDic objectForKey:key] count]+1;
+    if ([[self.listDataDic objectForKey:key] count]>0) {
+        
+        return [[self.listDataDic objectForKey:key] count]+1;
+        
+    }
+    else {
+        
+        return 0;
+    }
 }
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -205,36 +273,38 @@
             vc.productInfo = [[self.listDataDic objectForKey:key]objectAtIndex:indexPath.row-1];
             [weakSelf.navigationController pushViewController:vc animated:YES];
             
-            vc.tapDeleteProductBlock = ^() {
-                
-                [[weakSelf.listDataDic objectForKey:key] removeObjectAtIndex:indexPath.row-1];
-                
-                
-                for (NSString *key in self.keysArray) {
-                    
-                    NSMutableArray *array = [NSMutableArray arrayWithObject:[weakSelf.listDataDic objectForKey:key]];
-                    
-                    if (array.count>0) {
-                        
-                        [weakSelf.isHaveData addObject:@(YES)];
-                    }
-                    
-                    else {
-                        
-                        [weakSelf.isHaveData addObject:@(NO)];
-                    }
-                    
-                }
-                
-                if ([weakSelf.isHaveData containsObject:@(YES)]) {
-                    
-                    [weakSelf.formTabelView reloadData];
-                }
-                else {
-                     weakSelf.formTabelView.hidden = YES;
-                }
-      
-            };
+//            vc.tapDeleteProductBlock = ^() {
+//                
+//                NSMutableArray *array = [NSMutableArray arrayWithArray:[weakSelf.listDataDic objectForKey:key]];
+//                
+//                [array removeObjectAtIndex:indexPath.row-1];
+//                
+//                for (NSString *key in self.keysArray) {
+//                    
+//                    NSMutableArray *array = [NSMutableArray arrayWithObject:[weakSelf.listDataDic objectForKey:key]];
+//                    
+//                    if (array.count>0) {
+//                        
+//                        [weakSelf.isHaveData addObject:@(YES)];
+//                    }
+//                    
+//                    else {
+//                        
+//                        [weakSelf.isHaveData addObject:@(NO)];
+//                    }
+//                    
+//                }
+//                
+//                if ([weakSelf.isHaveData containsObject:@(YES)]) {
+//                    
+//                    [weakSelf.formTabelView reloadData];
+//                }
+//                
+//                else {
+//                     weakSelf.formTabelView.hidden = YES;
+//                }
+//      
+//            };
         };
     }
     
@@ -264,15 +334,5 @@
     _coSearchMenuVC = [storyboard instantiateViewControllerWithIdentifier:@"CoSearchMenuViewID"];
     [[UIApplication sharedApplication].keyWindow addSubview:_coSearchMenuVC.view];
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

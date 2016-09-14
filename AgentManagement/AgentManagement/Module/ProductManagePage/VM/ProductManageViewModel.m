@@ -112,9 +112,6 @@
                                 @[@"手动输入价格"],
                                 @[@"1个月",@"3个月",@"6个月",@"12个月",@"18个月",@"24个月"],nil];
             
-//            NSMutableArray *productRelatedInformationArray = [NSMutableArray arrayWithObject:optionTitleDataArray];
-            
-//            weakSelf.productRelatedInformationArray = [NSMutableArray arrayWithObject:optionTitleDataArray];
             for (AMProductRelatedInformation *model in modelArray) {
                 
                 for (int i = 0; i < model.value.count; i++) {
@@ -209,7 +206,7 @@
             
             addProductInfoModel = (AMProductInfo*)model;
             NSLog(@"%@", model);
-            if (addProductInfoModel.resultCode == 0) {
+            if ([addProductInfoModel.resultCode integerValue]== 0) {
                 
                 [subscriber sendNext:addProductInfoModel];
                 [subscriber sendCompleted];
@@ -260,19 +257,19 @@
 
             if (weakSelf.productInfoDataArray.count > 0) {
                 
-                [subscriber sendNext:@(YES)];
+                [subscriber sendNext:@(1)];
                 [subscriber sendCompleted];
             }
             else {
                 
-                [subscriber sendNext:@(NO)];
+                [subscriber sendNext:@(2)];
                 [subscriber sendCompleted];
                 
             }
             
         } failure:^(KKBaseModel *model, KKRequestError *error) {
             
-            [subscriber sendNext:@(NO)];
+            [subscriber sendNext:@(3)];
             [subscriber sendCompleted];
         }];
         
@@ -294,6 +291,8 @@
             [subscriber sendCompleted];
             
         } failure:^(KKBaseModel *model, KKRequestError *error) {
+            
+           
             [subscriber sendNext:@(NO)];
             [subscriber sendCompleted];
           

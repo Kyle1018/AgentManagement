@@ -35,11 +35,14 @@
     
     RACSignal *brandInputSignal = [[self.brandTextField rac_textSignal]map:^id(NSString* value) {
         
+        NSLog(@"____________%ld",value.length);
         return @(value.length>0);
         
     }];
                                    
     RACSignal *modelInputSignal = [[self.modelTextField rac_textSignal]map:^id(NSString* value) {
+        
+        NSLog(@"++++++++++++++%ld",value.length);
         
         return @(value.length>0);
         
@@ -60,7 +63,7 @@
     
     [[[self.modelTextField rac_textSignal]distinctUntilChanged]subscribeNext:^(NSString* x) {
         
-        [weakSelf.inputContentDic setObject:x forKey:@"model"];
+        [weakSelf.inputContentDic setObject:x forKey:@"pmodel"];
 
     }];
     

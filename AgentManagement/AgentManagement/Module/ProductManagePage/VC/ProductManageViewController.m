@@ -41,11 +41,39 @@
     [self requestData];
     
     [self observeData];
+    
+    
+    [[[NSNotificationCenter defaultCenter]rac_addObserverForName:KDeletaProductInfoNofi object:nil]subscribeNext:^(NSNotification* notifi){
+       
+        NSLog(@"获取了删除产品通知");
+        
+        AMProductInfo *deletProductInfo = notifi.userInfo[@"productInfo"];
+        
+        for (AMProductInfo *productInfo in self.productInfoDataArray) {
+            
+            if ([productInfo.pd_id isEqualToString:deletProductInfo.pd_id]) {
+                
+                [self.productInfoDataArray removeObject:productInfo];
+            }
+        }
+        
+    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     
     [super viewWillAppear:animated];
+        
+    if (self.productInfoDataArray.count>0) {
+        
+        [self.formTabelView reloadData];
+    }
+    else {
+        
+        self.formTabelView.hidden = YES;
+        
+        self.formHeaderView.hidden = YES;
+    }
     
     //获取添加后的数据模型
     if (self.addProductInfo != self.productInfo && self.productInfo !=nil) {
@@ -61,6 +89,7 @@
         [self.formTabelView reloadData];
 
     }
+
 }
 
 #pragma mark - Data
@@ -169,21 +198,21 @@
         [weakSelf.navigationController pushViewController:vc animated:YES];
         
         //产品详情页点击了删除产品信息回调
-        vc.tapDeleteProductBlock = ^() {
-            
-            [weakSelf.productInfoDataArray removeObjectAtIndex:indexPath.row];
-            
-            if (weakSelf.productInfoDataArray.count > 0) {
-                
-                 [weakSelf.formTabelView reloadData];
-            }
-            else {
-                
-                weakSelf.formHeaderView.hidden = YES;
-                weakSelf.formTabelView.hidden = YES;
-            }
-            
-        };
+//        vc.tapDeleteProductBlock = ^() {
+//            
+//            [weakSelf.productInfoDataArray removeObjectAtIndex:indexPath.row];
+//            
+//            if (weakSelf.productInfoDataArray.count > 0) {
+//                
+//                 [weakSelf.formTabelView reloadData];
+//            }
+//            else {
+//                
+//                weakSelf.formHeaderView.hidden = YES;
+//                weakSelf.formTabelView.hidden = YES;
+//            }
+//            
+//        };
         
     };
     
@@ -200,11 +229,11 @@
     
     _searchMenuVC = [storyboard instantiateViewControllerWithIdentifier:@"SearchMenuViewID"];
     
-    NSMutableArray *array = self.productRelatedInformationArray[1];
+    NSMutableArray *productRelatedInformationArray = self.productRelatedInformationArray[1];
     
-    [array insertObject:[self.brandAndPmodelDataArray firstObject] atIndex:0];
+    [productRelatedInformationArray insertObject:[self.brandAndPmodelDataArray firstObject] atIndex:0];
     
-    [array insertObject:self.brandAndPmodelDataArray[1] atIndex:1];
+    [productRelatedInformationArray insertObject:self.brandAndPmodelDataArray[1] atIndex:1];
     
     _searchMenuVC.productRelatedInformationArray = self.productRelatedInformationArray;
 

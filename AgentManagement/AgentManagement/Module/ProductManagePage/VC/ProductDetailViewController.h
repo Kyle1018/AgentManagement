@@ -9,7 +9,7 @@
 #import "BaseTableViewController.h"
 #import "AMProductInfo.h"
 
-typedef void(^TapDeleteProductBlock)();
+//typedef void(^TapDeleteProductBlock)();
 
 @interface ProductDetailViewController : BaseTableViewController
 
@@ -17,6 +17,6 @@ typedef void(^TapDeleteProductBlock)();
 
 @property(nonatomic,strong)NSArray *productRelatedInformationArray;
 
-@property(nonatomic,copy)TapDeleteProductBlock tapDeleteProductBlock;
+//@property(nonatomic,copy)TapDeleteProductBlock tapDeleteProductBlock;
 
 @end

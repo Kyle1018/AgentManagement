@@ -28,6 +28,8 @@ static const int ddLogLevel = DDLogLevelWarning;
 
 #define WeakObj(o) __weak typeof(o) o##Weak = o;
 
+#define KDeletaProductInfoNofi @"deleteProductInfo"
+
 typedef enum 
 {
     IsDrinking                 =300,//是否能直接饮用

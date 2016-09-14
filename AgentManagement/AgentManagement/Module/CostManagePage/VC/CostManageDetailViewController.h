@@ -9,11 +9,8 @@
 #import "BaseTableViewController.h"
 #import "AMProductInfo.h"
 
-typedef void(^TapDeleteProductBlock)();
-
 @interface CostManageDetailViewController : BaseTableViewController
 
 @property(nonatomic,strong)AMProductInfo *productInfo;
 
-@property(nonatomic,copy)TapDeleteProductBlock tapDeleteProductBlock;
 @end

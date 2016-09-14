@@ -98,14 +98,19 @@
       
         NSDictionary *dic = [weakSelf.productInfo toDictionary];
         //删除请求
-        [[weakSelf.viewModel deleteProduct:dic]subscribeNext:^(id x) {
+        [[weakSelf.viewModel deleteProduct:dic]subscribeNext:^(NSNumber* x) {
             
-            if (weakSelf.tapDeleteProductBlock) {
+         //   if ([x boolValue]== YES) {
+
+                [[NSNotificationCenter defaultCenter]postNotificationName:KDeletaProductInfoNofi object:nil userInfo:@{@"productInfo":weakSelf.productInfo}];
                 
-                weakSelf.tapDeleteProductBlock();
-            }
-            
-            [weakSelf.navigationController popViewControllerAnimated:YES];
+                [weakSelf.navigationController popViewControllerAnimated:YES];
+//                
+//            }
+//            else {
+//                
+//                [MBProgressHUD showText:@"删除失败"];
+//            }
             
         }];
         

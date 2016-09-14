@@ -188,10 +188,12 @@
                    
                     NSLog(@"%@",x);
                     
-                    if (weakSelf.tapDeleteProductBlock) {
-                        
-                        weakSelf.tapDeleteProductBlock();
-                    }
+//                    if (weakSelf.tapDeleteProductBlock) {
+//                        
+//                        weakSelf.tapDeleteProductBlock();
+//                    }
+                    
+                    [[NSNotificationCenter defaultCenter]postNotificationName:KDeletaProductInfoNofi object:nil userInfo:@{@"productInfo":weakSelf.productInfo}];
                     
                     [weakSelf.navigationController popViewControllerAnimated:YES];
                 
