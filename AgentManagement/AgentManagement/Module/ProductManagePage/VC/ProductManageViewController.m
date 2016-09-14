@@ -42,6 +42,8 @@
     
     [self observeData];
     
+    [self pullRefresh];
+    
     
     [[[NSNotificationCenter defaultCenter]rac_addObserverForName:KDeletaProductInfoNofi object:nil]subscribeNext:^(NSNotification* notifi){
        
@@ -167,16 +169,45 @@
     }];
 }
 
+- (void)pullRefresh {
+    
+    WeakObj(self);
+    
+    self.formTabelView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        
+        [[[selfWeak.viewModel requestProductListDataOrSearchProductDataWithPage:0 Size:0 Search:nil]delay:1]
+         
+         subscribeNext:^(NSNumber* x) {
+             
+             if ([x boolValue]==YES) {
+                 
+                 [selfWeak.formTabelView reloadData];
+             }
+             
+             else {
+                 
+                 [MBProgressHUD showText:@"数据加载失败"];
+                 
+                 //请求数据失败，
+             }
+             
+             [selfWeak.formTabelView.mj_header endRefreshing];
+         }];
+        
+    }];
+    
+}
+
 #pragma mark - UITableViewDelegate/UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return self.productInfoDataArray.count;
+    return self.productInfoDataArray.count+1;
 }
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 
     static NSString *cellID = @"ProductManageCellId";
-        
+    
     ProductManageTableViewCell*cell = [tableView dequeueReusableCellWithIdentifier:cellID];
         
     if (!cell) {
@@ -184,39 +215,66 @@
         cell =[[ProductManageTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
     }
     
-    cell.model = self.productInfoDataArray[indexPath.row];
-  
-     __weak typeof(self) weakSelf = self;
-    
-    //进入产品详情
-    cell.tapSeeDetailBlock = ^() {
+    if (indexPath.row==0) {
         
-        UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"ProductManage" bundle:nil];
-        ProductDetailViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"ProductDetailID"];
-        vc.productInfo = weakSelf.productInfoDataArray[indexPath.row];
-        vc.productRelatedInformationArray = weakSelf.productRelatedInformationArray;
-        [weakSelf.navigationController pushViewController:vc animated:YES];
         
-        //产品详情页点击了删除产品信息回调
-//        vc.tapDeleteProductBlock = ^() {
-//            
-//            [weakSelf.productInfoDataArray removeObjectAtIndex:indexPath.row];
-//            
-//            if (weakSelf.productInfoDataArray.count > 0) {
-//                
-//                 [weakSelf.formTabelView reloadData];
-//            }
-//            else {
-//                
-//                weakSelf.formHeaderView.hidden = YES;
-//                weakSelf.formTabelView.hidden = YES;
-//            }
-//            
-//        };
+    }
+    else {
         
-    };
+        cell.model = self.productInfoDataArray[indexPath.row-1];
+        
+        __weak typeof(self) weakSelf = self;
+        
+        //进入产品详情
+        cell.tapSeeDetailBlock = ^() {
+            
+            UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"ProductManage" bundle:nil];
+            ProductDetailViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"ProductDetailID"];
+            vc.productInfo = weakSelf.productInfoDataArray[indexPath.row];
+            vc.productRelatedInformationArray = weakSelf.productRelatedInformationArray;
+            [weakSelf.navigationController pushViewController:vc animated:YES];
+            
+            //产品详情页点击了删除产品信息回调
+            //        vc.tapDeleteProductBlock = ^() {
+            //
+            //            [weakSelf.productInfoDataArray removeObjectAtIndex:indexPath.row];
+            //
+            //            if (weakSelf.productInfoDataArray.count > 0) {
+            //
+            //                 [weakSelf.formTabelView reloadData];
+            //            }
+            //            else {
+            //
+            //                weakSelf.formHeaderView.hidden = YES;
+            //                weakSelf.formTabelView.hidden = YES;
+            //            }
+            //
+            //        };
+            
+        };
+        
+    }
     
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    
+    return 20;
+}
+
+- (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    
+    UIView *headerView = [[UIView alloc]init];
+    
+    headerView.backgroundColor=[UIColor clearColor];
+    
+    UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0,19, self.formTabelView.width, 1)];
+    lineView.backgroundColor=[UIColor colorWithHex:@"b8b8b8"];
+    
+    [headerView addSubview:lineView];
+    
+    return headerView;
 }
 
 #pragma mark - Action
