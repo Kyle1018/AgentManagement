@@ -74,32 +74,33 @@
     NSNumber *curve = [userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey];
     
     __weak typeof(self) weakSelf = self;
-    
-    [UIView animateWithDuration:duration.doubleValue delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
+ 
         
-        [UIView setAnimationBeginsFromCurrentState:YES];
-        [UIView setAnimationCurve:[curve intValue]];
-        
-        weakSelf.bgViewTopConstraint.constant =keyBoardEndY==self.view.height?weakSelf.bgViewTop:120;
-        
-        weakSelf.bgView.originY = weakSelf.bgViewTopConstraint.constant;
-        
-        weakSelf.tiltleLabel.width  = 68;
-        weakSelf.tiltleLabel.height = 19;
-        
-        weakSelf.titleLabelTopConstraint.constant = keyBoardEndY==self.view.height?weakSelf.titleLabelTop:29;
-        
-        weakSelf.tiltleLabel.originY = weakSelf.titleLabelTopConstraint.constant;
-        
-        weakSelf.tiltleLabel.text = keyBoardEndY==self.view.height?@"欢迎来到商库":@"登录商库";
-
-        weakSelf.tiltleLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size: keyBoardEndY==self.view.height?36:17];
-        
-        weakSelf.tiltleLabel.textColor = keyBoardEndY==self.view.height?[UIColor colorWithHex:@"47b6ff"]:[UIColor colorWithHex:@"4a4a4a"];
-        
-    } completion:^(BOOL finished) {
-        
-    }];
+        [UIView animateWithDuration:duration.doubleValue delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
+            
+            [UIView setAnimationBeginsFromCurrentState:YES];
+            [UIView setAnimationCurve:[curve intValue]];
+            
+            weakSelf.bgViewTopConstraint.constant =keyBoardEndY==self.view.height?weakSelf.bgViewTop:120;
+            
+            weakSelf.bgView.originY = weakSelf.bgViewTopConstraint.constant;
+            
+            weakSelf.tiltleLabel.width  = 68;
+            weakSelf.tiltleLabel.height = 19;
+            
+            weakSelf.titleLabelTopConstraint.constant = keyBoardEndY==self.view.height?weakSelf.titleLabelTop:29;
+            
+            weakSelf.tiltleLabel.originY = weakSelf.titleLabelTopConstraint.constant;
+            
+            weakSelf.tiltleLabel.text = keyBoardEndY==self.view.height?@"欢迎来到商库":@"登录商库";
+            
+            weakSelf.tiltleLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size: keyBoardEndY==self.view.height?36:17];
+            
+            weakSelf.tiltleLabel.textColor = keyBoardEndY==self.view.height?[UIColor colorWithHex:@"47b6ff"]:[UIColor colorWithHex:@"4a4a4a"];
+            
+        } completion:^(BOOL finished) {
+            
+        }];
 }
 
 #pragma mark -Signal

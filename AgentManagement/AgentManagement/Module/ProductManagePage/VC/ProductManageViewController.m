@@ -77,18 +77,7 @@
     //请求产品列表数据
     [[[self.viewModel requestProductListDataOrSearchProductDataWithPage:0 Size:0 Search:self.selectedOptionDic]delay:0.5]subscribeNext:^(NSNumber* value) {
         
-        if ([value integerValue]==1) {
-            
-            [LoadingView hideLoadingViewRemoveView:self.view];
-            selfWeak.formTabelView.hidden = NO;
-            [selfWeak.formTabelView reloadData];
-        }
-        else if ([value integerValue] == 2) {
-            
-            [LoadingView hideLoadingViewRemoveView:self.view];
-            selfWeak.formTabelView.hidden = NO;
-        }
-        else {
+        if ([value integerValue]==3) {
             
             selfWeak.loadingView =[LoadingView showRetryAddToView:self.view];
             selfWeak.formTabelView.hidden = YES;
@@ -97,6 +86,12 @@
                 //再次请求数据
                 [selfWeak requestListData];
             };
+        }
+        else {
+            
+            [LoadingView hideLoadingViewRemoveView:self.view];
+            selfWeak.formTabelView.hidden = NO;
+            [selfWeak.formTabelView reloadData];
         }
     }];
         
@@ -161,13 +156,13 @@
          
          subscribeNext:^(NSNumber* x) {
              
-             if ([x integerValue] == 1) {
+             if ([x integerValue]==3) {
                  
-                 [selfWeak.formTabelView reloadData];
+                  [MBProgressHUD showText:@"数据刷新失败"];
              }
              else {
                  
-                 [MBProgressHUD showText:@"数据刷新失败"];
+                 [selfWeak.formTabelView reloadData];
              }
              
              [selfWeak.formTabelView.mj_header endRefreshing];

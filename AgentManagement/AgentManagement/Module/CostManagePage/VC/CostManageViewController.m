@@ -21,7 +21,7 @@
 @property(nonatomic,strong)NSMutableDictionary *listDataDic;
 @property(nonatomic,strong)NSMutableArray *keysArray;
 @property(nonatomic,copy)NSString* lastDate;
-@property(nonatomic,strong)NSMutableArray *isHaveData;
+//@property(nonatomic,strong)NSMutableArray *isHaveData;
 @property(nonatomic,strong)LoadingView *loadingView;
 @end
 
@@ -38,62 +38,7 @@
     
     [self pullRefresh];
     
-    [[[NSNotificationCenter defaultCenter]rac_addObserverForName:KDeletaProductInfoNotifi object:nil]subscribeNext:^(NSNotification* notifi) {
-        
-        NSLog(@"%@",notifi.userInfo);
-         AMProductInfo *deleteProductInfo=notifi.userInfo[@"productInfo"];
-        
-        for (NSString *key in self.keysArray) {
-            
-            NSMutableArray *array = [NSMutableArray arrayWithObject:[self.listDataDic objectForKey:key]];
-            
-            
-            for (NSMutableArray *productArray in array) {
-                
-                for (AMProductInfo *productInfo in productArray) {
-                    
-                    if ([productInfo.pd_id isEqualToString:deleteProductInfo.pd_id]) {
-                        
-                        [productArray removeObject:productInfo];
-                    }
-                }
-                
-                
-                if (productArray.count>0) {
-                    
-                    [_isHaveData addObject:@(YES)];
-                }
-                else {
-                    
-                    [self.listDataDic removeObjectForKey:key];
-                  
-                    [_isHaveData addObject:@(NO)];
-                }
-            }
-
-        }
-        
-    }];
-    
-    
-    
-    [[[NSNotificationCenter defaultCenter]rac_addObserverForName:KAddProductInfoNotifi object:nil]subscribeNext:^(NSNotification* notifi){
-        
-        AMProductInfo *addProductInfo = notifi.userInfo[@"productInfo"];
-
-        NSString *curentDateStr = [NSString timeTransformString:addProductInfo.add_time];
-        
-        for (NSString *key in self.keysArray) {
-            
-            if ([key isEqualToString:curentDateStr]) {
-                
-                NSMutableArray *array=[self.listDataDic objectForKey:key];
-                
-                [array insertObject:addProductInfo atIndex:0];
-            }
-        }
-    }];
-    
+    [self addOrDeleteProductInfoNotifi];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -107,7 +52,7 @@
     
     _listDataDic = [NSMutableDictionary dictionary];
     
-    _isHaveData = [NSMutableArray array];
+   // _isHaveData = [NSMutableArray array];
     
     _viewModel = [[ProductManageViewModel alloc]init];
     
@@ -141,7 +86,7 @@
                 
                 [selfWeak.listDataDic safeSetObject:dd forKey:currentDateStr];
                 
-                dataArray =dd;
+               //dataArray =dd;
             }
             
             selfWeak.lastDate = currentDateStr;
@@ -164,27 +109,22 @@
 
       subscribeNext:^(NSNumber* x) {
           
-          if ( [x integerValue]==1) {
+          if ([x integerValue]==3) {
               
-              [LoadingView hideLoadingViewRemoveView:self.view];
-              [selfWeak.formTabelView reloadData];
-          }
-          else if ( [x integerValue]==2) {
-              
-              [LoadingView showNoDataAddToView:self.view];
+              selfWeak.loadingView =[LoadingView showRetryAddToView:self.view];
               selfWeak.formTabelView.hidden = YES;
-          }
-          
-          else {
-
-             selfWeak.loadingView =[LoadingView showRetryAddToView:self.view];
-            
               selfWeak.loadingView.tapRefreshButtonBlcok = ^() {
-  
+                  
                   //再次请求数据
                   [selfWeak requestData];
               };
 
+          }
+          else {
+              
+              [LoadingView hideLoadingViewRemoveView:self.view];
+              selfWeak.formTabelView.hidden = NO;
+              [selfWeak.formTabelView reloadData];
           }
     }];
 }
@@ -199,13 +139,14 @@
          
          subscribeNext:^(NSNumber* x) {
              
-             if ([x integerValue] == 1) {
+             if ([x integerValue] == 3) {
                  
-                 [selfWeak.formTabelView reloadData];
+                [MBProgressHUD showText:@"数据刷新失败"];
+                
              }
              else {
                  
-                [MBProgressHUD showText:@"数据刷新失败"];
+                  [selfWeak.formTabelView reloadData];
              }
              
             [selfWeak.formTabelView.mj_header endRefreshing];
@@ -213,6 +154,104 @@
         
     }];
     
+}
+
+- (void)addOrDeleteProductInfoNotifi {
+    
+
+    [[[NSNotificationCenter defaultCenter]rac_addObserverForName:KDeletaProductInfoNotifi object:nil]subscribeNext:^(NSNotification* notifi) {
+        
+        NSLog(@"%@",notifi.userInfo);
+        AMProductInfo *deleteProductInfo=notifi.userInfo[@"productInfo"];
+        
+        for (NSString *key in self.keysArray) {
+            
+            NSMutableArray *array = [NSMutableArray arrayWithObject:[self.listDataDic objectForKey:key]];
+            
+            
+            
+            for (NSMutableArray *productArray in array) {
+                
+                NSMutableArray *array = [NSMutableArray arrayWithArray:productArray];
+                
+                [array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                   
+                    AMProductInfo *productInfo = obj;
+                    
+                    if ([productInfo.pd_id isEqualToString:deleteProductInfo.pd_id]) {
+                        
+                        [productArray removeObject:productInfo];
+                    }
+                }];
+                
+//                for (AMProductInfo *productInfo in productArray) {
+//                    
+//                    if ([productInfo.pd_id isEqualToString:deleteProductInfo.pd_id]) {
+//                        
+//                        [productArray removeObject:productInfo];
+//                    }
+//                }
+//                
+                
+//                if (productArray.count>0) {
+//                    
+//                    [_isHaveData addObject:@(YES)];
+//                }
+//                else {
+//                    
+//                    [self.listDataDic removeObjectForKey:key];
+//                    
+//                    [_isHaveData addObject:@(NO)];
+//                }
+            }
+            
+        }
+        
+    }];
+    
+
+    [[[NSNotificationCenter defaultCenter]rac_addObserverForName:KAddProductInfoNotifi object:nil]subscribeNext:^(NSNotification* notifi){
+        
+        AMProductInfo *addProductInfo = notifi.userInfo[@"productInfo"];
+        
+        //如果列表没有数据时——
+        NSString *currentDateStr = [NSString timeTransformString:addProductInfo.add_time];
+        
+        if (self.keysArray.count == 0) {
+            
+            NSMutableArray *dd = [NSMutableArray array];
+            
+            [dd addObject:addProductInfo];
+            
+            [self.listDataDic safeSetObject:dd forKey:currentDateStr];
+ 
+        }
+        //如果列表已经有数据了
+        else {
+            
+            for (NSString *key in self.keysArray) {
+                
+                if ([key isEqualToString:currentDateStr]) {
+                    
+                    NSMutableArray *array=[self.listDataDic objectForKey:key];
+                    
+                    [array insertObject:addProductInfo atIndex:0];
+                }
+                else {
+                    
+                    NSMutableArray *dd = [NSMutableArray array];
+                    
+                    [dd addObject:addProductInfo];
+                    
+                    [self.listDataDic safeSetObject:dd forKey:currentDateStr];
+                }
+            }
+        }
+        
+        [self.keysArray removeAllObjects];
+        [self.keysArray addObjectsFromArray:[self.listDataDic allKeys]];
+        
+    }];
 }
 
 #pragma mark - UITableViewDelegate/UITableViewDataSource
@@ -279,8 +318,22 @@
     
     CostManagerListHeaderView *headerView =[[[NSBundle mainBundle]loadNibNamed:@"CostManagerListHeaderView" owner:nil options:nil]lastObject];
     
+    
+    NSString *key = self.keysArray[section];
+    
+    if ([[self.listDataDic objectForKey:key] count]>0) {
+        
+         headerView.hidden = NO;
+        
+    }
+    else {
+        
+        headerView.hidden = YES;
+    }
+    
     headerView.date = self.keysArray[section];
 
+    
     return headerView;
 }
 
