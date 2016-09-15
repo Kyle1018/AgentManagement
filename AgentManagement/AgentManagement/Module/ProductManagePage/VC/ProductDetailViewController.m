@@ -185,15 +185,8 @@
              
                 //删除请求
                 [[weakSelf.viewModel deleteProduct:weakSelf.inputOptionDic]subscribeNext:^(id x) {
-                   
-                    NSLog(@"%@",x);
-                    
-//                    if (weakSelf.tapDeleteProductBlock) {
-//                        
-//                        weakSelf.tapDeleteProductBlock();
-//                    }
-                    
-                    [[NSNotificationCenter defaultCenter]postNotificationName:KDeletaProductInfoNofi object:nil userInfo:@{@"productInfo":weakSelf.productInfo}];
+
+                    [[NSNotificationCenter defaultCenter]postNotificationName:KDeletaProductInfoNotifi object:nil userInfo:@{@"productInfo":weakSelf.productInfo}];
                     
                     [weakSelf.navigationController popViewControllerAnimated:YES];
                 

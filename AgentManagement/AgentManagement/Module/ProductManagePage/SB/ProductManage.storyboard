@@ -161,6 +161,7 @@
                                             <outlet property="brand" destination="U5J-yx-SCR" id="EVH-R3-9Wn"/>
                                             <outlet property="pModel" destination="wM4-UE-wqW" id="lMS-ml-nuT"/>
                                             <outlet property="price" destination="LYU-ax-i75" id="JoG-cc-Y1B"/>
+                                            <outlet property="seeDetailBtn" destination="Lyg-GH-sHn" id="4Yj-rm-rj0"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

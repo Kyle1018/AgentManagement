@@ -38,7 +38,7 @@
     
     [self pullRefresh];
     
-    [[[NSNotificationCenter defaultCenter]rac_addObserverForName:KDeletaProductInfoNofi object:nil]subscribeNext:^(NSNotification* notifi) {
+    [[[NSNotificationCenter defaultCenter]rac_addObserverForName:KDeletaProductInfoNotifi object:nil]subscribeNext:^(NSNotification* notifi) {
         
         NSLog(@"%@",notifi.userInfo);
          AMProductInfo *deleteProductInfo=notifi.userInfo[@"productInfo"];
@@ -75,24 +75,32 @@
         
     }];
     
+    
+    
+    [[[NSNotificationCenter defaultCenter]rac_addObserverForName:KAddProductInfoNotifi object:nil]subscribeNext:^(NSNotification* notifi){
+        
+        AMProductInfo *addProductInfo = notifi.userInfo[@"productInfo"];
+
+        NSString *curentDateStr = [NSString timeTransformString:addProductInfo.add_time];
+        
+        for (NSString *key in self.keysArray) {
+            
+            if ([key isEqualToString:curentDateStr]) {
+                
+                NSMutableArray *array=[self.listDataDic objectForKey:key];
+                
+                [array insertObject:addProductInfo atIndex:0];
+            }
+        }
+    }];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     
     [super viewWillAppear:animated];
     
-    if (self.isHaveData.count>0) {
-        
-        if ([self.isHaveData containsObject:@(YES)]) {
-            
-            [self.formTabelView reloadData];
-        }
-        else {
-            
-             [self.formTabelView reloadData];
-           // self.formTabelView.hidden = YES;
-        }
-    }
+    [self.formTabelView reloadData];
 }
 
 - (void)initProperty {
@@ -108,7 +116,7 @@
 
 - (void)observeData {
     
-    __weak typeof(self) weakSelf = self;
+   WeakObj(self)
     //列表数据
     [RACObserve(self.viewModel, productInfoDataArray)subscribeNext:^(NSMutableArray* x) {
         
@@ -116,23 +124,14 @@
         
         for (AMProductInfo *productInfo in x) {
             
-            NSTimeInterval time=[productInfo.add_time doubleValue]+28800;//因为时差问题要加8小时 == 28800 sec
-            NSDate *detaildate=[NSDate dateWithTimeIntervalSince1970:time];
-            NSLog(@"date:%@",[detaildate description]);
-            //实例化一个NSDateFormatter对象
-            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-            //设定时间格式,这里可以设置成自己需要的格式
-            //[dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-            [dateFormatter setDateFormat:@"yyyy-MM"];
-            NSString *currentDateStr = [dateFormatter stringFromDate: detaildate];
+            NSString *currentDateStr = [NSString timeTransformString:productInfo.add_time];
             
-            NSLog(@"日期时间%@",currentDateStr);
-            
-            if ([currentDateStr isEqualToString:weakSelf.lastDate]) {
+            if ([currentDateStr isEqualToString:selfWeak.lastDate]) {
+                
                 
                 [dataArray addObject:productInfo];
                 
-                [weakSelf.listDataDic safeSetObject:dataArray forKey:currentDateStr];
+                [selfWeak.listDataDic safeSetObject:dataArray forKey:currentDateStr];
             }
             else {
                 
@@ -140,16 +139,16 @@
                 
                 [dd addObject:productInfo];
                 
-                [weakSelf.listDataDic safeSetObject:dd forKey:currentDateStr];
+                [selfWeak.listDataDic safeSetObject:dd forKey:currentDateStr];
                 
                 dataArray =dd;
             }
             
-            weakSelf.lastDate = currentDateStr;
+            selfWeak.lastDate = currentDateStr;
             
         }
         
-        [weakSelf.keysArray addObjectsFromArray:[weakSelf.listDataDic allKeys]];
+        [selfWeak.keysArray addObjectsFromArray:[selfWeak.listDataDic allKeys]];
      
     }];
 }
@@ -185,8 +184,7 @@
                   //再次请求数据
                   [selfWeak requestData];
               };
-              
-              //请求数据失败，
+
           }
     }];
 }
@@ -270,38 +268,6 @@
             vc.productInfo = [[self.listDataDic objectForKey:key]objectAtIndex:indexPath.row-1];
             [weakSelf.navigationController pushViewController:vc animated:YES];
             
-//            vc.tapDeleteProductBlock = ^() {
-//                
-//                NSMutableArray *array = [NSMutableArray arrayWithArray:[weakSelf.listDataDic objectForKey:key]];
-//                
-//                [array removeObjectAtIndex:indexPath.row-1];
-//                
-//                for (NSString *key in self.keysArray) {
-//                    
-//                    NSMutableArray *array = [NSMutableArray arrayWithObject:[weakSelf.listDataDic objectForKey:key]];
-//                    
-//                    if (array.count>0) {
-//                        
-//                        [weakSelf.isHaveData addObject:@(YES)];
-//                    }
-//                    
-//                    else {
-//                        
-//                        [weakSelf.isHaveData addObject:@(NO)];
-//                    }
-//                    
-//                }
-//                
-//                if ([weakSelf.isHaveData containsObject:@(YES)]) {
-//                    
-//                    [weakSelf.formTabelView reloadData];
-//                }
-//                
-//                else {
-//                     weakSelf.formTabelView.hidden = YES;
-//                }
-//      
-//            };
         };
     }
     

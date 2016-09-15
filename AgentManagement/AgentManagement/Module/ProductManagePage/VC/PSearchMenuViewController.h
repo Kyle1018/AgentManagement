@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-typedef void(^TapSearchProductBlock)(NSMutableArray*listArray);
+typedef void(^TapSearchProductBlock)(NSMutableDictionary*selectedOptionDic);
 
 @interface PSearchMenuViewController : UIViewController
 

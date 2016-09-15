@@ -7,13 +7,11 @@
 //
 
 #import "BaseViewController.h"
-#import "AMProductInfo.h"
+//#import "AMProductInfo.h"
 
 @interface ProductManageViewController : BaseViewController
 
-@property(nonatomic,strong)AMProductInfo *productInfo;
-
-@property(nonatomic,strong)NSMutableDictionary *optionDic;
+//@property(nonatomic,strong)AMProductInfo *productInfo;
 
 @end
 
@@ -26,4 +24,6 @@
  3.成本管理页面中，成本管理详情中的备注如何存储
  
  4.登录页面如果输入了已经注册过的手机号，无论输入任何密码，服务器都能够返回登录成功的数据
+ 
+ 5.如果产品列表中没有数据，那么产品搜索页面的选项显示问题
  */

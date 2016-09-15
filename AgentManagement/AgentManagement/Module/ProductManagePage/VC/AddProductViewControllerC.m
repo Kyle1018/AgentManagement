@@ -76,7 +76,7 @@
 
 - (IBAction)saveAction:(UIButton *)sender {
     
-    __weak typeof(self) weakSelf = self;
+    WeakObj(self);
 
     //添加产品请求
     [[[self.viewModel requstAddProductData:self.optionDic]filter:^BOOL(id value) {
@@ -92,19 +92,11 @@
         }
         
     }]subscribeNext:^(AMProductInfo* x) {
-   
-        for(UIViewController*vc in self.navigationController.viewControllers){
-            
-            if([vc isKindOfClass:[ProductManageViewController class]]){
-                
-              ProductManageViewController*oneVC =(ProductManageViewController*)vc;
-                
-                oneVC.productInfo=x;
-                
-                oneVC.optionDic = weakSelf.optionDic;
-                
-                [weakSelf.navigationController popToViewController:oneVC animated:YES];}
-        }
+        
+        
+        [[NSNotificationCenter defaultCenter]postNotificationName:KAddProductInfoNotifi object:nil userInfo:@{@"productInfo":x}];
+        
+        [selfWeak.navigationController popToRootViewControllerAnimated:YES];
         
     }];
 }

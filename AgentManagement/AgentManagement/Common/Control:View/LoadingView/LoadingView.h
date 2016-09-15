@@ -16,6 +16,8 @@ typedef void(^TapRefreshButtonBlcok)();
 
 +(void)showLoadingAddToView:(UIView*)view; //显示loading页面，默认显示文字为"内容获取中..."
 
++(void)showLoadingAddToView:(UIView*)view message:(NSString*)text;
+
 + (LoadingView*)showRetryAddToView:(UIView*)view;
 
 + (void)hideLoadingViewRemoveView:(UIView*)view;

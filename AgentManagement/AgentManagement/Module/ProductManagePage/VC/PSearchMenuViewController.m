@@ -108,15 +108,18 @@
     //默认将每组第0个indexpath插入数组，用于开始时默认显示选中不限
     _indexPathArray = [NSMutableArray array];
     
-    self.dataArray = [NSMutableArray array];//选项内容数组
+   // self.dataArray = [NSMutableArray array];//选项内容数组
     
     self.isExpland = [NSMutableArray array];//单元格收起与展开开关
     
-    self.heaerDataArray = [NSMutableArray arrayWithObjects:@"品牌",@"型号", nil];//每组头的内容
+   // self.heaerDataArray = [NSMutableArray arrayWithObjects:@"品牌",@"型号", nil];//每组头的内容
     
-    [self.heaerDataArray addObjectsFromArray:[self.productRelatedInformationArray firstObject]];
+    self.heaerDataArray = [NSMutableArray arrayWithArray:[self.productRelatedInformationArray firstObject]];
     
-    [self.dataArray addObjectsFromArray:[self.productRelatedInformationArray lastObject]];
+    self.dataArray = [NSMutableArray arrayWithArray:[self.productRelatedInformationArray lastObject]];
+//    [self.heaerDataArray addObjectsFromArray:[self.productRelatedInformationArray firstObject]];
+//    
+//    [self.dataArray addObjectsFromArray:[self.productRelatedInformationArray lastObject]];
     
     for (int i = 0; i < self.dataArray.count; i++) {
         
@@ -150,15 +153,6 @@
     
 }
 
-//- (void)observeData {
-//    
-//    __weak typeof(self) weakSelf = self;
-//    //列表数据
-//    [RACObserve(self.viewModel, productInfoDataArray)subscribeNext:^(NSMutableArray* x) {
-//        
-//        weakSelf.searchResultArray = x;
-//    }];
-//}
 
 - (void)hideMenuView {
     
@@ -390,20 +384,28 @@
 //确定
 - (IBAction)confirmAction:(UIButton *)sender {
     
-    NSLog(@"%@",_selectedOptionDic);
-
-    __weak typeof(self) weakSelf = self;
-    //发起查询产品数据请求
-    [[self.viewModel requestProductListDataOrSearchProductDataWithPage:0 Size:0 Search:_selectedOptionDic]subscribeNext:^(NSMutableArray* x) {
-        
+//    NSLog(@"%@",_selectedOptionDic);
+//
+//    __weak typeof(self) weakSelf = self;
+//    //发起查询产品数据请求
+//    [[self.viewModel requestProductListDataOrSearchProductDataWithPage:0 Size:0 Search:_selectedOptionDic]subscribeNext:^(NSNumber* x) {
+//        
+//        if ([x integerValue] == 1) {
+//            
+//            
+//        }
+//        else {
+//            
+//            
+//        }
          //weakSelf.searchResultArray = x;
         
-        if (weakSelf.tapSearchProductBlock) {
+        if (self.tapSearchProductBlock) {
             
-            weakSelf.tapSearchProductBlock(x);
+            self.tapSearchProductBlock(self.selectedOptionDic);
         }
 
-    }];
+   // }];
     
     
     [UIView animateWithDuration:1 animations:^{

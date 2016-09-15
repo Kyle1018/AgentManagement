@@ -18,6 +18,7 @@ typedef void(^TapSeeDetailBlock)();
 @property (strong, nonatomic) IBOutlet UILabel *brand;
 @property (strong, nonatomic) IBOutlet UILabel *pModel;
 @property (strong, nonatomic) IBOutlet UILabel *price;
+@property (weak, nonatomic) IBOutlet UIButton *seeDetailBtn;
 @property(nonatomic,copy)TapSeeDetailBlock tapSeeDetailBlock;
 
 @end

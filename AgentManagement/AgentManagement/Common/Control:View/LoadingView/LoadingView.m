@@ -54,6 +54,23 @@
     
 }//显示loading页面，默认显示文字为"内容获取中..."
 
++(void)showLoadingAddToView:(UIView*)view message:(NSString*)text {
+    
+    for (UIView *subView in view.subviews) {
+        
+        if ([subView isKindOfClass:[LoadingView class]]) {
+            
+            [subView removeFromSuperview];
+        }
+    }
+    
+    
+    LoadingView *loadingView = [[LoadingView alloc]initWithFrame:view.bounds];
+    
+    [view addSubview:loadingView];
+    
+    [loadingView showLoadingMessage:text];
+}
 
 + (LoadingView*)showRetryAddToView:(UIView*)view {
     
@@ -100,7 +117,7 @@
     
     [view addSubview:loadingView];
     
-    [loadingView showLoadingMessage:@"暂无内容"];
+    [loadingView showLoadingMessage:@"无内容"];
     
 }
 

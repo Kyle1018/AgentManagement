@@ -114,9 +114,9 @@
         
         [self.inputPrice resignFirstResponder];
         
-        self.alertVC.title = [[self.productRelatedInformationArray firstObject]objectAtIndex:indexPath.row];
+        self.alertVC.title = [[self.productRelatedInformationArray firstObject]objectAtIndex:indexPath.row+2];
 
-        self.alertVC.actionButtonArray = [[self.productRelatedInformationArray lastObject]objectAtIndex:indexPath.row];
+        self.alertVC.actionButtonArray = [[self.productRelatedInformationArray lastObject]objectAtIndex:indexPath.row+2];
         
         self.alertVC.alertTag = indexPath.row + 300;
 

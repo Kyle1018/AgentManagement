@@ -28,6 +28,8 @@
     self.pModel.text = model.pmodel;
     
     self.price.text = model.price;
+    
+    [self.seeDetailBtn setTitle:@"查看详情" forState:UIControlStateNormal];
 }
 
 

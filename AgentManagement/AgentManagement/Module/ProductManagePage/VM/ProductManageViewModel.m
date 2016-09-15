@@ -24,7 +24,18 @@
         [self.pmRequest requestWithSuccess:^(KKBaseModel *model, KKRequestError *error) {
             
             AMBaseModel *baseModel = (AMBaseModel*)model;
-            
+            /*
+             <__NSArrayM 0x7f9daa4bbcb0>(
+             {
+             brand = "\U7d22\U5c3c";
+             pmodel =     (
+             {
+             value = sss;
+             }
+             );
+             }
+             )
+             */
             NSArray *modelArray=[AMProductAndModel arrayOfModelsFromDictionaries:baseModel.data error:nil];
 
             NSMutableArray *brandArray = [NSMutableArray array];//品牌数组
@@ -97,20 +108,55 @@
         [weakSelf.priRequest requestWithSuccess:^(KKBaseModel *model, KKRequestError *error) {
             
             AMBaseModel *baseModel = (AMBaseModel*)model;
+            /*
+             <__NSArrayM 0x7fea737e49c0>(
+             {
+             key = cycle;
+             value =     (
+             {
+             value = "1\U4e2a\U6708";
+             },
+             {
+             value = "2\U4e2a\U6708";
+             },
+             {
+             value = "3\U4e2a\U6708";
+             }
+             );
+             },
+             {
+             key = sale;
+             value =     (
+             {
+             value = 1;
+             }
+             );
+             },
+             {
+             key = admin;
+             value =     (
+             {
+             value = 1;
+             }
+             );
+             }
+             */
             
             NSArray *modelArray=[AMProductRelatedInformation arrayOfModelsFromDictionaries:baseModel.data error:nil];
    
-            NSMutableArray*optionTitleDataArray = [NSMutableArray arrayWithObjects:@"直接饮用",@"分类",@"过滤介质",@"产品特点",@"摆放位置",@"滤芯个数",@"适用地区",@"零售价格",@"换芯周期", nil];
+            NSMutableArray*optionTitleDataArray = [NSMutableArray arrayWithObjects:@"品牌",@"型号",@"直接饮用",@"分类",@"过滤介质",@"产品特点",@"摆放位置",@"滤芯个数",@"适用地区",@"零售价格",@"换芯周期", nil];
             NSMutableArray*optionDataArray = [NSMutableArray arrayWithObjects:
-                                @[@"可以",@"不可以"],
-                                @[@"纯水机",@"家用净水机",@"商用净水器",@"软水机",@"管线机",@"水处理设备",@"龙头净水器",@"净水杯"],
-                                @[@"反渗透",@"超滤",@"活性炭",@"PP棉",@"陶瓷纳滤",@"不锈钢滤网",@"微滤",@"其它"],
-                                @[@"无废水",@"无桶大通量",@"双出水",@"滤芯寿命提示",@"低废水单出水",@"双模双出水",@"紫外线杀菌",@"TDS显示"],
-                                @[@"厨下式",@"龙头式",@"台上式",@"滤芯寿命提示",@"低废水入户过滤",@"壁挂式",@"其它"],
-                                @[@"1级",@"2级",@"3级",@"4级",@"5级",@"6级",@"6级以上"],
-                                @[@"华北",@"华南",@"华东",@"华中",@"其它"],
+                                @[@"美的",@"格力",@"飞利浦",@"LG",@"索尼",@"夏普"],//品牌
+                                @[@"CJ100",@"HB200",@"KK304",@"LE909",@"PP208"],//型号
+                                @[@"可以",@"不可以"],//直接饮用
+                                @[@"纯水机",@"家用净水机",@"商用净水器",@"软水机",@"管线机",@"水处理设备",@"龙头净水器",@"净水杯"],//分类
+                                @[@"反渗透",@"超滤",@"活性炭",@"PP棉",@"陶瓷纳滤",@"不锈钢滤网",@"微滤",@"其它"],//过滤介质
+                                @[@"无废水",@"无桶大通量",@"双出水",@"滤芯寿命提示",@"低废水单出水",@"双模双出水",@"紫外线杀菌",@"TDS显示"],//产品特点
+                                @[@"厨下式",@"龙头式",@"台上式",@"滤芯寿命提示",@"低废水入户过滤",@"壁挂式",@"其它"],//摆放位置
+                                @[@"1级",@"2级",@"3级",@"4级",@"5级",@"6级",@"6级以上"],//滤芯个数
+                                @[@"华北",@"华南",@"华东",@"华中",@"其它"],//适用地区
                                 @[@"手动输入价格"],
-                                @[@"1个月",@"3个月",@"6个月",@"12个月",@"18个月",@"24个月"],nil];
+                                @[@"1个月",@"3个月",@"6个月",@"12个月",@"18个月",@"24个月"],nil];//换芯周期
             
             for (AMProductRelatedInformation *model in modelArray) {
                 
@@ -123,41 +169,49 @@
                     [model.value replaceObjectAtIndex:i withObject:str];
                 }
                 
-                if ([model.key isEqualToString:@"drinking"]) {
+                if ([model.key isEqualToString:@"brand"]) {
                     
                     [optionDataArray replaceObjectAtIndex:0 withObject:model.value];
+                }
+                else if ([model.key isEqualToString:@"pmodel"]){
+                    
+                    [optionDataArray replaceObjectAtIndex:1 withObject:model.value];
+                }
+                
+                else if ([model.key isEqualToString:@"drinking"]) {
+                    
+                    [optionDataArray replaceObjectAtIndex:2 withObject:model.value];
                 }
 
                 else if ([model.key isEqualToString:@"classification"]) {
                     
-                    [optionDataArray replaceObjectAtIndex:1 withObject:model.value];
+                    [optionDataArray replaceObjectAtIndex:3 withObject:model.value];
                 }
                 else if ([model.key isEqualToString:@"filter"]) {
                     
-                    [optionDataArray replaceObjectAtIndex:2 withObject:model.value];
+                    [optionDataArray replaceObjectAtIndex:4 withObject:model.value];
                 }
                 else if ([model.key isEqualToString:@"features"]) {
                     
-                    [optionDataArray replaceObjectAtIndex:3 withObject:model.value];
+                    [optionDataArray replaceObjectAtIndex:5 withObject:model.value];
                 }
                 else if ([model.key isEqualToString:@"putposition"]) {
                     
-                    [optionDataArray replaceObjectAtIndex:4 withObject:model.value];
+                    [optionDataArray replaceObjectAtIndex:6 withObject:model.value];
                 }
                 else if ([model.key isEqualToString:@"number"]) {
                     
-                    [optionDataArray replaceObjectAtIndex:5 withObject:model.value];
+                    [optionDataArray replaceObjectAtIndex:7 withObject:model.value];
                 }
                 else if ([model.key isEqualToString:@"area"]) {
                     
-                    [optionDataArray replaceObjectAtIndex:6 withObject:model.value];
+                    [optionDataArray replaceObjectAtIndex:8 withObject:model.value];
                 }
                 else if ([model.key isEqualToString:@"cycle"]) {
                     
-                    [optionDataArray replaceObjectAtIndex:8 withObject:model.value];
+                    [optionDataArray replaceObjectAtIndex:10 withObject:model.value];
                 }
                 
-          
             }
             
             
