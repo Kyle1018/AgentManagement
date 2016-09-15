@@ -28,8 +28,9 @@ static const int ddLogLevel = DDLogLevelWarning;
 
 #define WeakObj(o) __weak typeof(o) o##Weak = o;
 
-#define KDeletaProductInfoNotifi @"deleteProductInfo"
-#define KAddProductInfoNotifi @"addProductInfo"
+#define KDeletaProductInfoNotifi @"deleteProductInfo"//删除产品通知
+#define KAddProductInfoNotifi @"addProductInfo"//添加产品通知
+#define KProductListOrCostListPullRefreshNotifi @"productListPullRefresh"//产品管理列表页或成本管理列表页下拉刷新通知
 typedef enum 
 {
     IsDrinking                 =300,//是否能直接饮用

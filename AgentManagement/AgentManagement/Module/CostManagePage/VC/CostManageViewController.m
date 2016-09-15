@@ -38,7 +38,7 @@
     
     [self pullRefresh];
     
-    [self addOrDeleteProductInfoNotifi];
+    [self notifi];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -92,7 +92,7 @@
             selfWeak.lastDate = currentDateStr;
             
         }
-        
+     
         [selfWeak.keysArray addObjectsFromArray:[selfWeak.listDataDic allKeys]];
      
     }];
@@ -134,29 +134,18 @@
      WeakObj(self);
     
     self.formTabelView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+    
+//        [[NSNotificationCenter defaultCenter]postNotificationName:KProductListOrCostListPullRefreshNotifi object:nil];
+        [selfWeak.listDataDic removeAllObjects];
+        [selfWeak.keysArray removeAllObjects];
         
-        [[[selfWeak.viewModel requestProductListDataOrSearchProductDataWithPage:0 Size:0 Search:nil]delay:1]
-         
-         subscribeNext:^(NSNumber* x) {
-             
-             if ([x integerValue] == 3) {
-                 
-                [MBProgressHUD showText:@"数据刷新失败"];
-                
-             }
-             else {
-                 
-                  [selfWeak.formTabelView reloadData];
-             }
-             
-            [selfWeak.formTabelView.mj_header endRefreshing];
-         }];
+        [selfWeak pullRefreshRequestListData];
         
     }];
     
 }
 
-- (void)addOrDeleteProductInfoNotifi {
+- (void)notifi {
     
 
     [[[NSNotificationCenter defaultCenter]rac_addObserverForName:KDeletaProductInfoNotifi object:nil]subscribeNext:^(NSNotification* notifi) {
@@ -252,6 +241,34 @@
         [self.keysArray addObjectsFromArray:[self.listDataDic allKeys]];
         
     }];
+    
+    [[[NSNotificationCenter defaultCenter]rac_addObserverForName:KProductListOrCostListPullRefreshNotifi object:nil]subscribeNext:^(id x) {
+       
+        [self pullRefreshRequestListData];
+        
+    }];
+}
+
+- (void)pullRefreshRequestListData {
+    
+    WeakObj(self);
+    
+    [[[self.viewModel requestProductListDataOrSearchProductDataWithPage:0 Size:0 Search:nil]delay:1]
+     
+     subscribeNext:^(NSNumber* x) {
+         
+         if ([x integerValue] == 3) {
+             
+             [MBProgressHUD showText:@"数据刷新失败"];
+             
+         }
+         else {
+             
+             [selfWeak.formTabelView reloadData];
+         }
+         
+         [selfWeak.formTabelView.mj_header endRefreshing];
+     }];
 }
 
 #pragma mark - UITableViewDelegate/UITableViewDataSource
