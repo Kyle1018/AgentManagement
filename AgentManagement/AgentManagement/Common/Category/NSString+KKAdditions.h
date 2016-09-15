@@ -10,6 +10,6 @@
 
 @interface NSString (KKAdditions)
 
-+(NSString*)timeTransformString:(NSString*)time;
++(NSString*)timeTransformString:(NSString*)time dateFormatter:(NSDateFormatter*)dateFormatter;
 
 @end

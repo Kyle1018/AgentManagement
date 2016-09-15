@@ -36,7 +36,11 @@
     
     self.brandLabel.text = self.productInfo.brand;
     
-    self.addTimeLabel.text = self.productInfo.add_time;
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    //    //设定时间格式,这里可以设置成自己需要的格式
+    [dateFormatter setDateFormat:@"yyyy/MM/dd"];
+    //    [dateFormatter setDateFormat:@"yyyy-MM"];
+    self.addTimeLabel.text =  [NSString timeTransformString:self.productInfo.add_time dateFormatter:dateFormatter];
     
     self.pmodelLabel.text = self.productInfo.pmodel;
     

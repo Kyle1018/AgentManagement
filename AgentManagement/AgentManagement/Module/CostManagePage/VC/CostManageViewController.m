@@ -69,10 +69,13 @@
         
         for (AMProductInfo *productInfo in x) {
             
-            NSString *currentDateStr = [NSString timeTransformString:productInfo.add_time];
+            
+            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+            [dateFormatter setDateFormat:@"yyyy-MM"];
+            
+            NSString *currentDateStr = [NSString timeTransformString:productInfo.add_time dateFormatter:dateFormatter];
             
             if ([currentDateStr isEqualToString:selfWeak.lastDate]) {
-                
                 
                 [dataArray addObject:productInfo];
                 
@@ -204,7 +207,13 @@
         AMProductInfo *addProductInfo = notifi.userInfo[@"productInfo"];
         
         //如果列表没有数据时——
-        NSString *currentDateStr = [NSString timeTransformString:addProductInfo.add_time];
+        
+        
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        //    //设定时间格式,这里可以设置成自己需要的格式
+        //[dateFormatter setDateFormat:@"yyyy/MM/dd"];
+        [dateFormatter setDateFormat:@"yyyy-MM"];
+        NSString *currentDateStr =[NSString timeTransformString:addProductInfo.add_time dateFormatter:dateFormatter];
         
         if (self.keysArray.count == 0) {
             
