@@ -26,8 +26,6 @@
 
 @property(nonatomic,strong)NSMutableArray *productInfoDataArray;//产品列表数据数组
 
-//@property(nonatomic,strong)AMProductInfo *addProductInfo;
-
 @property(nonatomic,strong)NSMutableDictionary*selectedOptionDic;
 
 @property(nonatomic,strong)LoadingView *loadingView;
@@ -65,17 +63,8 @@
   
     WeakObj(self);
     
-    if (self.selectedOptionDic.count>0) {
-        
-         [LoadingView hideLoadingViewRemoveView:self.view];
-    }
-    else {
-        
-        [LoadingView showLoadingAddToView:self.view];
-    }
-
     //请求产品列表数据
-    [[[self.viewModel requestProductListDataOrSearchProductDataWithPage:0 Size:0 Search:self.selectedOptionDic]delay:0.5]subscribeNext:^(NSNumber* value) {
+    [[self.viewModel requestProductListDataOrSearchProductDataWithPage:0 Size:0 Search:self.selectedOptionDic] subscribeNext:^(NSNumber* value) {
         
         if ([value integerValue]==3) {
             
@@ -86,6 +75,12 @@
                 //再次请求数据
                 [selfWeak requestListData];
             };
+        }
+        else if ([value integerValue]==2) {
+            
+            [LoadingView showNoDataAddToView:self.view];
+            selfWeak.formTabelView.hidden = YES;
+            
         }
         else {
             
@@ -235,7 +230,7 @@
     
     if (indexPath.row==0) {
         
-        
+        cell.model = nil;
     }
     else {
         

@@ -23,13 +23,38 @@
 
 - (void)setModel:(AMProductInfo *)model {
     
-    self.brand.text = model.brand;
+    if (model == nil) {
+        
+        self.brand.text =@"品牌";
+        
+        self.pModel.text = @"产品型号";
+        
+        self.price.text = @"零售价格";
+        
+        [self.seeDetailBtn setTitle:@"操作" forState:UIControlStateNormal];
+        
+        self.seeDetailBtn.titleLabel.textColor
+        =self.brand.textColor
+        =self.pModel.textColor
+        =self.price.textColor
+        =[UIColor colorWithHex:@"000000"];
+        
+    }
+    else {
+        
+        self.brand.text = model.brand;
+        
+        self.pModel.text = model.pmodel;
+        
+        self.price.text = model.price;
+        
+        [self.seeDetailBtn setTitle:@"查看详情" forState:UIControlStateNormal];
+        
+        [self.seeDetailBtn setTitleColor:[UIColor colorWithHex:@"4a4a4a"] forState:UIControlStateNormal];
+        
+        self.brand.textColor = self.pModel.textColor = self.price.textColor = [UIColor colorWithHex:@"4a4a4a"];
+    }
     
-    self.pModel.text = model.pmodel;
-    
-    self.price.text = model.price;
-    
-    [self.seeDetailBtn setTitle:@"查看详情" forState:UIControlStateNormal];
 }
 
 

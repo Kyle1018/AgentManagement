@@ -23,6 +23,7 @@
 @property(nonatomic,copy)NSString* lastDate;
 @property(nonatomic,strong)LoadingView *loadingView;
 @property(nonatomic,strong)NSMutableArray *brandAndPmodelDataArray;
+@property(nonatomic,strong)NSMutableDictionary *selectedOptionDic;
 @end
 
 @implementation CostManageViewController
@@ -32,7 +33,9 @@
 
     [self initProperty];
     
-    [self requestData];
+    [self requestListData];
+    
+    [self requestInfoData];
     
     [self observeData];
     
@@ -87,13 +90,15 @@
                 
                 [selfWeak.listDataDic safeSetObject:dd forKey:currentDateStr];
                 
-               //dataArray =dd;
+               dataArray =dd;
             }
             
             selfWeak.lastDate = currentDateStr;
             
         }
      
+        
+        
         [selfWeak.keysArray addObjectsFromArray:[selfWeak.listDataDic allKeys]];
      
     }];
@@ -106,14 +111,21 @@
     }];
 }
 
-- (void)requestData {
+- (void)requestListData {
     
     WeakObj(self);
-
-    [LoadingView showLoadingAddToView:self.view];
-    
+//
+//    if (self.selectedOptionDic.count>0) {
+//        
+//        [LoadingView hideLoadingViewRemoveView:self.view];
+//    }
+//    else {
+//        
+//        [LoadingView showLoadingAddToView:self.view];
+//    }
+//    
     //“成本管理列表”调用“产品管理列表”中的数据进行显示。
-    [[[self.viewModel requestProductListDataOrSearchProductDataWithPage:0 Size:0 Search:nil]delay:0.5]subscribeNext:^(NSNumber* x) {
+    [[self.viewModel requestProductListDataOrSearchProductDataWithPage:0 Size:0 Search:self.selectedOptionDic]subscribeNext:^(NSNumber* x) {
           
           if ([x integerValue]==3) {
               
@@ -122,9 +134,15 @@
               selfWeak.loadingView.tapRefreshButtonBlcok = ^() {
                   
                   //再次请求数据
-                  [selfWeak requestData];
+                  [selfWeak requestListData];
               };
 
+          }
+          else if ([x integerValue]==2) {
+              
+              [LoadingView showNoDataAddToView:self.view];
+              selfWeak.formTabelView.hidden = YES;
+             
           }
           else {
               
@@ -133,7 +151,10 @@
               [selfWeak.formTabelView reloadData];
           }
     }];
-    
+
+}
+
+- (void)requestInfoData {
     
     //成本管理搜索页面“调用”产品管理中的产品与型号数据
     [[self.viewModel requestProductBrandAndPmodelData]subscribeNext:^(id x) {
@@ -150,8 +171,7 @@
         [selfWeak.listDataDic removeAllObjects];
         [selfWeak.keysArray removeAllObjects];
         
-        [[[self.viewModel requestProductListDataOrSearchProductDataWithPage:0 Size:0 Search:nil]delay:1]
-         
+        [[self.viewModel requestProductListDataOrSearchProductDataWithPage:0 Size:0 Search:nil]
          subscribeNext:^(NSNumber* x) {
              
              if ([x integerValue] == 3) {
@@ -199,25 +219,6 @@
                     }
                 }];
                 
-//                for (AMProductInfo *productInfo in productArray) {
-//                    
-//                    if ([productInfo.pd_id isEqualToString:deleteProductInfo.pd_id]) {
-//                        
-//                        [productArray removeObject:productInfo];
-//                    }
-//                }
-//                
-                
-//                if (productArray.count>0) {
-//                    
-//                    [_isHaveData addObject:@(YES)];
-//                }
-//                else {
-//                    
-//                    [self.listDataDic removeObjectForKey:key];
-//                    
-//                    [_isHaveData addObject:@(NO)];
-//                }
             }
             
         }
@@ -373,6 +374,16 @@
     _coSearchMenuVC = [storyboard instantiateViewControllerWithIdentifier:@"CoSearchMenuViewID"];
     _coSearchMenuVC.brandAndPmodelDataArray = self.brandAndPmodelDataArray;
     [[UIApplication sharedApplication].keyWindow addSubview:_coSearchMenuVC.view];
+    
+    WeakObj(self);
+    //点击了搜索产品回调
+    _coSearchMenuVC.tapSearchProductBlock = ^(NSMutableDictionary*selectedOptionDic) {
+        
+        selfWeak.selectedOptionDic = [NSMutableDictionary dictionaryWithDictionary:selectedOptionDic];
+        
+        [selfWeak requestListData];
+        
+    };
 }
 
 @end

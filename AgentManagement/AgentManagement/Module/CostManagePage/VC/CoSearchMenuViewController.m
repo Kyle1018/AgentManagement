@@ -9,6 +9,7 @@
 #import "CoSearchMenuViewController.h"
 #import "MenuHeaderView.h"
 #import "MenuCollectionViewCell.h"
+#import "ProductManageViewModel.h"
 @interface CoSearchMenuViewController ()
 
 @property (weak, nonatomic) IBOutlet UICollectionView *menuCollectionView;
@@ -19,8 +20,6 @@
 
 @property (weak, nonatomic) IBOutlet UIView *cancelView;
 
-//@property(nonatomic,assign)NSInteger optionLabelTag;
-
 @property(nonatomic,strong)NSArray *heaerDataArray;
 
 @property(nonatomic,strong)NSMutableArray *dataArray;
@@ -30,6 +29,10 @@
 @property(nonatomic,strong)NSIndexPath *lastIndexPath;
 
 @property(nonatomic,strong)NSMutableArray *indexPathArray;
+
+@property(nonatomic,strong)NSMutableDictionary *selectedOptionDic;
+@property(nonatomic,strong)ProductManageViewModel *viewModel;
+
 @end
 
 @implementation CoSearchMenuViewController
@@ -40,14 +43,15 @@
     NSLog(@"%@",self.brandAndPmodelDataArray);
     
     self.bgView.originX = ScreenWidth;
-//    
-//    _optionLabelTag = 2000;
+
     
     [self.cancelView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideMenuView)]];
     
-//    self.flowLaout.itemSize = CGSizeMake((ScreenWidth-75)/3, 48);
-    
     [self requstData];
+    
+      _selectedOptionDic = [NSMutableDictionary dictionary];
+    
+    _viewModel = [[ProductManageViewModel alloc]init];
     // Do any additional setup after loading the view.
 }
 
@@ -206,6 +210,8 @@
         
         cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"CellTimerID" forIndexPath:indexPath];
 
+        
+        
         [[[[cell.addTimeTextField rac_textSignal]distinctUntilChanged]filter:^BOOL(NSString* value) {
             
             if (value.length>0) {
@@ -219,7 +225,7 @@
             
         }]subscribeNext:^(id x) {
             
-          //  [_selectedOptionDic safeSetObject:x forKey:@"price"];
+            [_selectedOptionDic safeSetObject:x forKey:@"add_time"];
         }];
         
         [cell setTitleData:@"输入框" backgroundColor:[UIColor clearColor] titleColor:[UIColor clearColor]];
@@ -272,9 +278,15 @@
             
             NSString *str = self.dataArray[indexPath.section][indexPath.row];
             
+            if ([str isEqualToString:@"不限"]) {
+                
+                [_selectedOptionDic removeObjectForKey:[self.viewModel textChangeToKey:self.heaerDataArray[indexPath.section]]];
+            }
+            else {
+                
+                [_selectedOptionDic safeSetObject:str forKey:[self.viewModel textChangeToKey:self.heaerDataArray[indexPath.section]]];
+            }
             
-            
-//            [_selectedOptionDic safeSetObject:str forKey:[self.viewModel textChangeToKey:self.heaerDataArray[indexPath.section]]];
             
             [_indexPathArray removeObject:path];
             [_indexPathArray addObject:indexPath];
@@ -303,5 +315,44 @@
     }
 }
 
+#pragma mark -Action
+//重置
+- (IBAction)resetAction:(UIButton *)sender {
+    
+    [_indexPathArray removeAllObjects];
+    
+    [_selectedOptionDic removeAllObjects];
+    
+    for (int i = 0; i < self.dataArray.count; i++) {
+        
+        NSIndexPath *path = [NSIndexPath indexPathForRow:0 inSection:i];
+        
+        [_indexPathArray addObject:path];//将每组第0个indexpath存入数组
+    }
+    
+    _lastIndexPath = nil;
+    
+    [self.menuCollectionView reloadData];
+}
 
+//确定
+- (IBAction)confirmAction:(UIButton *)sender {
+
+    if (self.tapSearchProductBlock) {
+        
+        self.tapSearchProductBlock(self.selectedOptionDic);
+    }
+    
+    [UIView animateWithDuration:1 animations:^{
+        
+        self.bgView.originX = ScreenWidth;
+        
+    } completion:^(BOOL finished) {
+        
+        [self.bgView removeFromSuperview];
+        [self.cancelView removeFromSuperview];
+        [self.view removeFromSuperview];
+    }];
+    
+}
 @end

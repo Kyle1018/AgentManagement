@@ -8,8 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void(^TapSearchProductBlock)(NSMutableDictionary*selectedOptionDic);
+
 @interface CoSearchMenuViewController : UIViewController
 
 @property(nonatomic,strong)NSMutableArray *brandAndPmodelDataArray;
+
+@property(nonatomic,copy)TapSearchProductBlock tapSearchProductBlock;
 
 @end

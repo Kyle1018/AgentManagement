@@ -329,9 +329,15 @@
             
             NSString *str = self.dataArray[indexPath.section][indexPath.row];
             
-            
+            if ([str isEqualToString:@"不限"]) {
+                
+                [_selectedOptionDic removeObjectForKey:[self.viewModel textChangeToKey:self.heaerDataArray[indexPath.section]]];
+            }
+            else {
+                
+                [_selectedOptionDic safeSetObject:str forKey:[self.viewModel textChangeToKey:self.heaerDataArray[indexPath.section]]];
+            }
           
-            [_selectedOptionDic safeSetObject:str forKey:[self.viewModel textChangeToKey:self.heaerDataArray[indexPath.section]]];
 
             [_indexPathArray removeObject:path];
             [_indexPathArray addObject:indexPath];
