@@ -152,10 +152,22 @@
     
     self.formTabelView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         
-//        [[NSNotificationCenter defaultCenter]postNotificationName:KProductListOrCostListPullRefreshNotifi object:nil];
-        
-        //请求刷新数据
-        [selfWeak pullRefreshRequestListData];
+        [[selfWeak.viewModel requestProductListDataOrSearchProductDataWithPage:0 Size:0 Search:nil]
+         
+         subscribeNext:^(NSNumber* x) {
+             
+             if ([x integerValue]==3) {
+                 
+                 [MBProgressHUD showText:@"数据刷新失败"];
+             }
+             else {
+                 
+                 [selfWeak.formTabelView reloadData];
+             }
+             
+             [selfWeak.formTabelView.mj_header endRefreshing];
+             
+         }];
 
     }];
     
@@ -194,41 +206,8 @@
         [LoadingView hideLoadingViewRemoveView:self.view];
  
     }];
-    
-    
-    [[[NSNotificationCenter defaultCenter]rac_addObserverForName:KProductListOrCostListPullRefreshNotifi object:nil]subscribeNext:^(id x) {
-        
-        [self pullRefreshRequestListData];
-        
-    }];
 }
 
-
-- (void)pullRefreshRequestListData {
-    
-    WeakObj(self);
-    
-    [[self.viewModel requestProductListDataOrSearchProductDataWithPage:0 Size:0 Search:nil]
-     
-     subscribeNext:^(NSNumber* x) {
-         
-         if ([x integerValue]==3) {
-             
-             [MBProgressHUD showText:@"数据刷新失败"];
-         }
-         else {
-             
-             [selfWeak.formTabelView reloadData];
-             
-             
-            //[[NSNotificationCenter defaultCenter]postNotificationName:KProductListOrCostListPullRefreshNotifi object:nil];
-             
-         }
-         
-         [selfWeak.formTabelView.mj_header endRefreshing];
-         
-     }];
-}
 
 #pragma mark - UITableViewDelegate/UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

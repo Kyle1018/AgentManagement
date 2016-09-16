@@ -21,8 +21,8 @@
 @property(nonatomic,strong)NSMutableDictionary *listDataDic;
 @property(nonatomic,strong)NSMutableArray *keysArray;
 @property(nonatomic,copy)NSString* lastDate;
-//@property(nonatomic,strong)NSMutableArray *isHaveData;
 @property(nonatomic,strong)LoadingView *loadingView;
+@property(nonatomic,strong)NSMutableArray *brandAndPmodelDataArray;
 @end
 
 @implementation CostManageViewController
@@ -51,8 +51,6 @@
 - (void)initProperty {
     
     _listDataDic = [NSMutableDictionary dictionary];
-    
-   // _isHaveData = [NSMutableArray array];
     
     _viewModel = [[ProductManageViewModel alloc]init];
     
@@ -99,6 +97,13 @@
         [selfWeak.keysArray addObjectsFromArray:[selfWeak.listDataDic allKeys]];
      
     }];
+    
+    
+    //品牌和型号数据
+    [RACObserve(self.viewModel, productAndModelArray)subscribeNext:^(NSMutableArray* x) {
+    
+        selfWeak.brandAndPmodelDataArray = x;
+    }];
 }
 
 - (void)requestData {
@@ -108,9 +113,7 @@
     [LoadingView showLoadingAddToView:self.view];
     
     //“成本管理列表”调用“产品管理列表”中的数据进行显示。
-    [[[self.viewModel requestProductListDataOrSearchProductDataWithPage:0 Size:0 Search:nil]delay:0.5]
-
-      subscribeNext:^(NSNumber* x) {
+    [[[self.viewModel requestProductListDataOrSearchProductDataWithPage:0 Size:0 Search:nil]delay:0.5]subscribeNext:^(NSNumber* x) {
           
           if ([x integerValue]==3) {
               
@@ -130,6 +133,12 @@
               [selfWeak.formTabelView reloadData];
           }
     }];
+    
+    
+    //成本管理搜索页面“调用”产品管理中的产品与型号数据
+    [[self.viewModel requestProductBrandAndPmodelData]subscribeNext:^(id x) {
+        
+    }];
 }
 
 - (void)pullRefresh {
@@ -138,12 +147,26 @@
     
     self.formTabelView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
     
-//        [[NSNotificationCenter defaultCenter]postNotificationName:KProductListOrCostListPullRefreshNotifi object:nil];
         [selfWeak.listDataDic removeAllObjects];
         [selfWeak.keysArray removeAllObjects];
         
-        [selfWeak pullRefreshRequestListData];
-        
+        [[[self.viewModel requestProductListDataOrSearchProductDataWithPage:0 Size:0 Search:nil]delay:1]
+         
+         subscribeNext:^(NSNumber* x) {
+             
+             if ([x integerValue] == 3) {
+                 
+                 [MBProgressHUD showText:@"数据刷新失败"];
+                 
+             }
+             else {
+                 
+                 [selfWeak.formTabelView reloadData];
+             }
+             
+             [selfWeak.formTabelView.mj_header endRefreshing];
+         }];
+
     }];
     
 }
@@ -251,34 +274,8 @@
         
     }];
     
-    [[[NSNotificationCenter defaultCenter]rac_addObserverForName:KProductListOrCostListPullRefreshNotifi object:nil]subscribeNext:^(id x) {
-       
-        [self pullRefreshRequestListData];
-        
-    }];
 }
 
-- (void)pullRefreshRequestListData {
-    
-    WeakObj(self);
-    
-    [[[self.viewModel requestProductListDataOrSearchProductDataWithPage:0 Size:0 Search:nil]delay:1]
-     
-     subscribeNext:^(NSNumber* x) {
-         
-         if ([x integerValue] == 3) {
-             
-             [MBProgressHUD showText:@"数据刷新失败"];
-             
-         }
-         else {
-             
-             [selfWeak.formTabelView reloadData];
-         }
-         
-         [selfWeak.formTabelView.mj_header endRefreshing];
-     }];
-}
 
 #pragma mark - UITableViewDelegate/UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -374,6 +371,7 @@
     
     UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"CostManage" bundle:nil];
     _coSearchMenuVC = [storyboard instantiateViewControllerWithIdentifier:@"CoSearchMenuViewID"];
+    _coSearchMenuVC.brandAndPmodelDataArray = self.brandAndPmodelDataArray;
     [[UIApplication sharedApplication].keyWindow addSubview:_coSearchMenuVC.view];
 }
 

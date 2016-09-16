@@ -10,4 +10,6 @@
 
 @interface CoSearchMenuViewController : UIViewController
 
+@property(nonatomic,strong)NSMutableArray *brandAndPmodelDataArray;
+
 @end
