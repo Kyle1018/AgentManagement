@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Base Navigation Controller-->
@@ -21,24 +22,29 @@
             </objects>
             <point key="canvasLocation" x="-400" y="186.49333333333334"/>
         </scene>
-        <!--Data Analysis View Controller-->
+        <!--数据分析-->
         <scene sceneID="PlK-7r-One">
             <objects>
                 <viewController id="cVd-BG-fC0" customClass="DataAnalysisViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="XHC-Rg-HRd"/>
-                        <viewControllerLayoutGuide type="bottom" id="3rQ-Wv-b1t"/>
+                        <viewControllerLayoutGuide type="top" id="gQM-O2-pqf"/>
+                        <viewControllerLayoutGuide type="bottom" id="SXZ-f8-vdc"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="IaN-F3-ooN">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.98823535439999999" green="0.086274512110000007" blue="0.47450983520000001" alpha="1" colorSpace="deviceRGB"/>
                     </view>
-                    <navigationItem key="navigationItem" id="tRd-vV-XOY"/>
+                    <navigationItem key="navigationItem" title="数据分析" id="tRd-vV-XOY"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sfr-nU-NsL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-32" y="186"/>
+            <point key="canvasLocation" x="119.5" y="185.5"/>
         </scene>
     </scenes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4_7.fullscreen"/>
+    </simulatedMetricsContainer>
 </document>
