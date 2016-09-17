@@ -55,8 +55,6 @@
 		27E26B3F1D6B1D360072F26E /* AddCustomerViewControllerC.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E26B101D6B1D360072F26E /* AddCustomerViewControllerC.m */; };
 		27E26B401D6B1D360072F26E /* CustomerDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E26B121D6B1D360072F26E /* CustomerDetailViewController.m */; };
 		27E26B411D6B1D360072F26E /* CustomerManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E26B141D6B1D360072F26E /* CustomerManageViewController.m */; };
-		27E26B421D6B1D360072F26E /* DataAnalysis.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27E26B161D6B1D360072F26E /* DataAnalysis.storyboard */; };
-		27E26B431D6B1D360072F26E /* DataAnalysisViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E26B181D6B1D360072F26E /* DataAnalysisViewController.m */; };
 		27E26B4A1D6B1D360072F26E /* ProductManage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27E26B271D6B1D360072F26E /* ProductManage.storyboard */; };
 		27E26B4B1D6B1D360072F26E /* AddProductViewControllerA.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E26B2A1D6B1D360072F26E /* AddProductViewControllerA.m */; };
 		27E26B4C1D6B1D360072F26E /* AddProductViewControllerB.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E26B2C1D6B1D360072F26E /* AddProductViewControllerB.m */; };
@@ -91,6 +89,15 @@
 		E221EEBD1D4F8B9D005B3417 /* BaseTabbarController.m in Sources */ = {isa = PBXBuildFile; fileRef = E221EEBC1D4F8B9D005B3417 /* BaseTabbarController.m */; };
 		E221EEE81D4F9EFB005B3417 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E221EEE71D4F9EFB005B3417 /* Launch Screen.storyboard */; };
 		E221EF8A1D603238005B3417 /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E221EF891D603238005B3417 /* BaseTableViewController.m */; };
+		E244F1451D8CFFFF003BA93B /* DataAnalysisViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E244F1441D8CFFFF003BA93B /* DataAnalysisViewController.m */; };
+		E244F1541D8D072A003BA93B /* PNChartLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = E244F1491D8D072A003BA93B /* PNChartLabel.m */; };
+		E244F1551D8D072A003BA93B /* PNColor.m in Sources */ = {isa = PBXBuildFile; fileRef = E244F14B1D8D072A003BA93B /* PNColor.m */; };
+		E244F1561D8D072A003BA93B /* PNGenericChart.m in Sources */ = {isa = PBXBuildFile; fileRef = E244F14D1D8D072A003BA93B /* PNGenericChart.m */; };
+		E244F1571D8D072A003BA93B /* PNLineChart.m in Sources */ = {isa = PBXBuildFile; fileRef = E244F14F1D8D072A003BA93B /* PNLineChart.m */; };
+		E244F1581D8D072A003BA93B /* PNLineChartData.m in Sources */ = {isa = PBXBuildFile; fileRef = E244F1511D8D072A003BA93B /* PNLineChartData.m */; };
+		E244F1591D8D072A003BA93B /* PNLineChartDataItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E244F1531D8D072A003BA93B /* PNLineChartDataItem.m */; };
+		E244F15C1D8D074A003BA93B /* DataAnalysis.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E244F15B1D8D074A003BA93B /* DataAnalysis.storyboard */; };
+		E244F1601D8D077B003BA93B /* DataAnalysisCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E244F15F1D8D077B003BA93B /* DataAnalysisCell.m */; };
 		E24819C81D84542600F885EE /* PickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E24819C71D84542600F885EE /* PickerView.m */; };
 		E24819CA1D84543100F885EE /* PickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E24819C91D84543100F885EE /* PickerView.xib */; };
 		E24819CE1D85038100F885EE /* CustomerManageViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E24819CD1D85038100F885EE /* CustomerManageViewModel.m */; };
@@ -108,12 +115,6 @@
 		E24BF4801D7475240054DFDC /* ProductDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E24BF47F1D7475240054DFDC /* ProductDetailViewController.m */; };
 		E24BF4831D755C690054DFDC /* AMAddProductRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = E24BF4821D755C690054DFDC /* AMAddProductRequest.m */; };
 		E24BF4861D75DDFF0054DFDC /* CustomerManageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E24BF4851D75DDFF0054DFDC /* CustomerManageCell.m */; };
-		E25918601D8BA933003BDB48 /* PNLineChart.m in Sources */ = {isa = PBXBuildFile; fileRef = E259185F1D8BA933003BDB48 /* PNLineChart.m */; };
-		E25918631D8BA9C2003BDB48 /* PNGenericChart.m in Sources */ = {isa = PBXBuildFile; fileRef = E25918621D8BA9C2003BDB48 /* PNGenericChart.m */; };
-		E25918661D8BA9F2003BDB48 /* PNColor.m in Sources */ = {isa = PBXBuildFile; fileRef = E25918651D8BA9F2003BDB48 /* PNColor.m */; };
-		E25918691D8BA9FF003BDB48 /* PNChartLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = E25918681D8BA9FF003BDB48 /* PNChartLabel.m */; };
-		E259186D1D8BAA26003BDB48 /* PNLineChartData.m in Sources */ = {isa = PBXBuildFile; fileRef = E259186C1D8BAA26003BDB48 /* PNLineChartData.m */; };
-		E25918701D8BAA2F003BDB48 /* PNLineChartDataItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E259186F1D8BAA2F003BDB48 /* PNLineChartDataItem.m */; };
 		E27B06291D616A7000ED18D1 /* address.plist in Resources */ = {isa = PBXBuildFile; fileRef = E27B06281D616A7000ED18D1 /* address.plist */; };
 		E29A7B931D7C443800826744 /* AMUser.m in Sources */ = {isa = PBXBuildFile; fileRef = E29A7B921D7C443800826744 /* AMUser.m */; };
 		E29A7B971D7DBD4500826744 /* AMUserInformationRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = E29A7B961D7DBD4500826744 /* AMUserInformationRequest.m */; };
@@ -239,9 +240,6 @@
 		27E26B121D6B1D360072F26E /* CustomerDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerDetailViewController.m; sourceTree = "<group>"; };
 		27E26B131D6B1D360072F26E /* CustomerManageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerManageViewController.h; sourceTree = "<group>"; };
 		27E26B141D6B1D360072F26E /* CustomerManageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerManageViewController.m; sourceTree = "<group>"; };
-		27E26B161D6B1D360072F26E /* DataAnalysis.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = DataAnalysis.storyboard; sourceTree = "<group>"; };
-		27E26B171D6B1D360072F26E /* DataAnalysisViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataAnalysisViewController.h; sourceTree = "<group>"; };
-		27E26B181D6B1D360072F26E /* DataAnalysisViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataAnalysisViewController.m; sourceTree = "<group>"; };
 		27E26B271D6B1D360072F26E /* ProductManage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ProductManage.storyboard; sourceTree = "<group>"; };
 		27E26B291D6B1D360072F26E /* AddProductViewControllerA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddProductViewControllerA.h; sourceTree = "<group>"; };
 		27E26B2A1D6B1D360072F26E /* AddProductViewControllerA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddProductViewControllerA.m; sourceTree = "<group>"; };
@@ -305,6 +303,23 @@
 		E221EEE71D4F9EFB005B3417 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		E221EF881D603238005B3417 /* BaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewController.h; sourceTree = "<group>"; };
 		E221EF891D603238005B3417 /* BaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewController.m; sourceTree = "<group>"; };
+		E244F1431D8CFFFF003BA93B /* DataAnalysisViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataAnalysisViewController.h; sourceTree = "<group>"; };
+		E244F1441D8CFFFF003BA93B /* DataAnalysisViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataAnalysisViewController.m; sourceTree = "<group>"; };
+		E244F1481D8D072A003BA93B /* PNChartLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNChartLabel.h; sourceTree = "<group>"; };
+		E244F1491D8D072A003BA93B /* PNChartLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNChartLabel.m; sourceTree = "<group>"; };
+		E244F14A1D8D072A003BA93B /* PNColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNColor.h; sourceTree = "<group>"; };
+		E244F14B1D8D072A003BA93B /* PNColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNColor.m; sourceTree = "<group>"; };
+		E244F14C1D8D072A003BA93B /* PNGenericChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNGenericChart.h; sourceTree = "<group>"; };
+		E244F14D1D8D072A003BA93B /* PNGenericChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNGenericChart.m; sourceTree = "<group>"; };
+		E244F14E1D8D072A003BA93B /* PNLineChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNLineChart.h; sourceTree = "<group>"; };
+		E244F14F1D8D072A003BA93B /* PNLineChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNLineChart.m; sourceTree = "<group>"; };
+		E244F1501D8D072A003BA93B /* PNLineChartData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNLineChartData.h; sourceTree = "<group>"; };
+		E244F1511D8D072A003BA93B /* PNLineChartData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNLineChartData.m; sourceTree = "<group>"; };
+		E244F1521D8D072A003BA93B /* PNLineChartDataItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNLineChartDataItem.h; sourceTree = "<group>"; };
+		E244F1531D8D072A003BA93B /* PNLineChartDataItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNLineChartDataItem.m; sourceTree = "<group>"; };
+		E244F15B1D8D074A003BA93B /* DataAnalysis.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = DataAnalysis.storyboard; sourceTree = "<group>"; };
+		E244F15E1D8D077B003BA93B /* DataAnalysisCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataAnalysisCell.h; sourceTree = "<group>"; };
+		E244F15F1D8D077B003BA93B /* DataAnalysisCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataAnalysisCell.m; sourceTree = "<group>"; };
 		E24819C61D84542600F885EE /* PickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerView.h; sourceTree = "<group>"; };
 		E24819C71D84542600F885EE /* PickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickerView.m; sourceTree = "<group>"; };
 		E24819C91D84543100F885EE /* PickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PickerView.xib; sourceTree = "<group>"; };
@@ -338,18 +353,6 @@
 		E24BF4821D755C690054DFDC /* AMAddProductRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMAddProductRequest.m; sourceTree = "<group>"; };
 		E24BF4841D75DDFF0054DFDC /* CustomerManageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerManageCell.h; sourceTree = "<group>"; };
 		E24BF4851D75DDFF0054DFDC /* CustomerManageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerManageCell.m; sourceTree = "<group>"; };
-		E259185E1D8BA933003BDB48 /* PNLineChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNLineChart.h; sourceTree = "<group>"; };
-		E259185F1D8BA933003BDB48 /* PNLineChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNLineChart.m; sourceTree = "<group>"; };
-		E25918611D8BA9C2003BDB48 /* PNGenericChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNGenericChart.h; sourceTree = "<group>"; };
-		E25918621D8BA9C2003BDB48 /* PNGenericChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNGenericChart.m; sourceTree = "<group>"; };
-		E25918641D8BA9F2003BDB48 /* PNColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNColor.h; sourceTree = "<group>"; };
-		E25918651D8BA9F2003BDB48 /* PNColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNColor.m; sourceTree = "<group>"; };
-		E25918671D8BA9FF003BDB48 /* PNChartLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNChartLabel.h; sourceTree = "<group>"; };
-		E25918681D8BA9FF003BDB48 /* PNChartLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNChartLabel.m; sourceTree = "<group>"; };
-		E259186B1D8BAA26003BDB48 /* PNLineChartData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNLineChartData.h; sourceTree = "<group>"; };
-		E259186C1D8BAA26003BDB48 /* PNLineChartData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNLineChartData.m; sourceTree = "<group>"; };
-		E259186E1D8BAA2F003BDB48 /* PNLineChartDataItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNLineChartDataItem.h; sourceTree = "<group>"; };
-		E259186F1D8BAA2F003BDB48 /* PNLineChartDataItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNLineChartDataItem.m; sourceTree = "<group>"; };
 		E27B06281D616A7000ED18D1 /* address.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = address.plist; sourceTree = "<group>"; };
 		E29A7B911D7C443800826744 /* AMUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMUser.h; sourceTree = "<group>"; };
 		E29A7B921D7C443800826744 /* AMUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMUser.m; sourceTree = "<group>"; };
@@ -680,10 +683,9 @@
 		27E26B151D6B1D360072F26E /* DataAnalysisPage */ = {
 			isa = PBXGroup;
 			children = (
+				E244F15A1D8D074A003BA93B /* SB */,
+				E244F1421D8CFFD4003BA93B /* VC */,
 				E259185D1D8BA920003BDB48 /* View */,
-				27E26B161D6B1D360072F26E /* DataAnalysis.storyboard */,
-				27E26B171D6B1D360072F26E /* DataAnalysisViewController.h */,
-				27E26B181D6B1D360072F26E /* DataAnalysisViewController.m */,
 			);
 			path = DataAnalysisPage;
 			sourceTree = "<group>";
@@ -899,6 +901,51 @@
 			path = BaseTabbarController;
 			sourceTree = "<group>";
 		};
+		E244F1421D8CFFD4003BA93B /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				E244F1431D8CFFFF003BA93B /* DataAnalysisViewController.h */,
+				E244F1441D8CFFFF003BA93B /* DataAnalysisViewController.m */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
+		E244F1471D8D072A003BA93B /* LineChartView */ = {
+			isa = PBXGroup;
+			children = (
+				E244F1481D8D072A003BA93B /* PNChartLabel.h */,
+				E244F1491D8D072A003BA93B /* PNChartLabel.m */,
+				E244F14A1D8D072A003BA93B /* PNColor.h */,
+				E244F14B1D8D072A003BA93B /* PNColor.m */,
+				E244F14C1D8D072A003BA93B /* PNGenericChart.h */,
+				E244F14D1D8D072A003BA93B /* PNGenericChart.m */,
+				E244F14E1D8D072A003BA93B /* PNLineChart.h */,
+				E244F14F1D8D072A003BA93B /* PNLineChart.m */,
+				E244F1501D8D072A003BA93B /* PNLineChartData.h */,
+				E244F1511D8D072A003BA93B /* PNLineChartData.m */,
+				E244F1521D8D072A003BA93B /* PNLineChartDataItem.h */,
+				E244F1531D8D072A003BA93B /* PNLineChartDataItem.m */,
+			);
+			path = LineChartView;
+			sourceTree = "<group>";
+		};
+		E244F15A1D8D074A003BA93B /* SB */ = {
+			isa = PBXGroup;
+			children = (
+				E244F15B1D8D074A003BA93B /* DataAnalysis.storyboard */,
+			);
+			path = SB;
+			sourceTree = "<group>";
+		};
+		E244F15D1D8D075A003BA93B /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				E244F15E1D8D077B003BA93B /* DataAnalysisCell.h */,
+				E244F15F1D8D077B003BA93B /* DataAnalysisCell.m */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		E24819C51D84541600F885EE /* PickerView */ = {
 			isa = PBXGroup;
 			children = (
@@ -980,18 +1027,8 @@
 		E259185D1D8BA920003BDB48 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				E259186E1D8BAA2F003BDB48 /* PNLineChartDataItem.h */,
-				E259186F1D8BAA2F003BDB48 /* PNLineChartDataItem.m */,
-				E259186B1D8BAA26003BDB48 /* PNLineChartData.h */,
-				E259186C1D8BAA26003BDB48 /* PNLineChartData.m */,
-				E25918671D8BA9FF003BDB48 /* PNChartLabel.h */,
-				E25918681D8BA9FF003BDB48 /* PNChartLabel.m */,
-				E25918641D8BA9F2003BDB48 /* PNColor.h */,
-				E25918651D8BA9F2003BDB48 /* PNColor.m */,
-				E259185E1D8BA933003BDB48 /* PNLineChart.h */,
-				E259185F1D8BA933003BDB48 /* PNLineChart.m */,
-				E25918611D8BA9C2003BDB48 /* PNGenericChart.h */,
-				E25918621D8BA9C2003BDB48 /* PNGenericChart.m */,
+				E244F15D1D8D075A003BA93B /* Cell */,
+				E244F1471D8D072A003BA93B /* LineChartView */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1261,10 +1298,10 @@
 				34EB45E61D87C88A00522B22 /* CostManagerListHeaderView.xib in Resources */,
 				E21947421D786209001C5E5F /* Me.storyboard in Resources */,
 				E221EEE81D4F9EFB005B3417 /* Launch Screen.storyboard in Resources */,
-				27E26B421D6B1D360072F26E /* DataAnalysis.storyboard in Resources */,
 				E27B06291D616A7000ED18D1 /* address.plist in Resources */,
 				27E26B4A1D6B1D360072F26E /* ProductManage.storyboard in Resources */,
 				34EE98221D76B6AE0040C997 /* AlertController.xib in Resources */,
+				E244F15C1D8D074A003BA93B /* DataAnalysis.storyboard in Resources */,
 				270704C91D45F9A900633390 /* Assets.xcassets in Resources */,
 				E2C14F7C1D7AA46000B0B0B2 /* Land.storyboard in Resources */,
 				E24819CA1D84543100F885EE /* PickerView.xib in Resources */,
@@ -1347,12 +1384,11 @@
 				27E26B4D1D6B1D360072F26E /* AddProductViewControllerC.m in Sources */,
 				E2FA0C0C1D4CFF000094A6FE /* KKQRCodeScanner.m in Sources */,
 				E2FA0C1E1D4D036F0094A6FE /* BaseViewController.m in Sources */,
+				E244F1561D8D072A003BA93B /* PNGenericChart.m in Sources */,
 				E24BF4831D755C690054DFDC /* AMAddProductRequest.m in Sources */,
 				27E26B411D6B1D360072F26E /* CustomerManageViewController.m in Sources */,
-				E25918601D8BA933003BDB48 /* PNLineChart.m in Sources */,
 				34EE98211D76B6AE0040C997 /* AlertController.m in Sources */,
 				275F32951D717B210033C8FF /* ASICloudFilesContainer.m in Sources */,
-				E25918631D8BA9C2003BDB48 /* PNGenericChart.m in Sources */,
 				27E26B3F1D6B1D360072F26E /* AddCustomerViewControllerC.m in Sources */,
 				E21947391D771B64001C5E5F /* CoSearchMenuViewController.m in Sources */,
 				E2C14F7F1D7AA46000B0B0B2 /* RegisterViewController.m in Sources */,
@@ -1380,11 +1416,11 @@
 				275F328B1D717B210033C8FF /* ASIAuthenticationDialog.m in Sources */,
 				27E26B3E1D6B1D360072F26E /* AddCustomerViewControllerB.m in Sources */,
 				E21947591D786F78001C5E5F /* SalerManageCell.m in Sources */,
+				E244F1571D8D072A003BA93B /* PNLineChart.m in Sources */,
 				E2C14FBB1D7B0A1B00B0B0B2 /* IdentifyCodeButton.m in Sources */,
 				275F328D1D717B210033C8FF /* ASIDataDecompressor.m in Sources */,
-				E25918701D8BAA2F003BDB48 /* PNLineChartDataItem.m in Sources */,
+				E244F1591D8D072A003BA93B /* PNLineChartDataItem.m in Sources */,
 				275F32BF1D71924B0033C8FF /* AMBaseRequest.m in Sources */,
-				E25918691D8BA9FF003BDB48 /* PNChartLabel.m in Sources */,
 				E2C14F701D7A9B6F00B0B0B2 /* MBProgressHUD+KKAdditions.m in Sources */,
 				270704C11D45F9A900633390 /* AppDelegate.m in Sources */,
 				E2C14F821D7AA4A200B0B0B2 /* LandViewModel.m in Sources */,
@@ -1402,6 +1438,7 @@
 				E24819D51D86FEC700F885EE /* AMCustomerOrSearchRequest.m in Sources */,
 				27E26B4B1D6B1D360072F26E /* AddProductViewControllerA.m in Sources */,
 				E24BF4671D7416280054DFDC /* AMProductAndModel.m in Sources */,
+				E244F1451D8CFFFF003BA93B /* DataAnalysisViewController.m in Sources */,
 				E2C14F851D7AF73100B0B0B2 /* SetPasswordViewController.m in Sources */,
 				E24BF46D1D741CAB0054DFDC /* AMProductRelatedInformation.m in Sources */,
 				E2FA0C051D4CFF000094A6FE /* KKBaseModel.m in Sources */,
@@ -1410,7 +1447,6 @@
 				270704BE1D45F9A900633390 /* main.m in Sources */,
 				275F329C1D717B210033C8FF /* ASIS3BucketObject.m in Sources */,
 				E24BF4861D75DDFF0054DFDC /* CustomerManageCell.m in Sources */,
-				27E26B431D6B1D360072F26E /* DataAnalysisViewController.m in Sources */,
 				E2FA0C0B1D4CFF000094A6FE /* KKAppUtility.m in Sources */,
 				3422BA5E1D7E5C51003751F1 /* AMProductInfo.m in Sources */,
 				E24819C81D84542600F885EE /* PickerView.m in Sources */,
@@ -1420,8 +1456,8 @@
 				275F32991D717B210033C8FF /* ASICloudFilesObjectRequest.m in Sources */,
 				E2C14F7D1D7AA46000B0B0B2 /* ForgetPasswordViewController.m in Sources */,
 				275F329D1D717B210033C8FF /* ASIS3BucketRequest.m in Sources */,
-				E259186D1D8BAA26003BDB48 /* PNLineChartData.m in Sources */,
 				E219474D1D7867DB001C5E5F /* AdministratorManageCell.m in Sources */,
+				E244F1581D8D072A003BA93B /* PNLineChartData.m in Sources */,
 				275F328C1D717B210033C8FF /* ASIDataCompressor.m in Sources */,
 				27CA014C1D6B116F009F9A25 /* AMRegisterRequest.m in Sources */,
 				E219475C1D786F8D001C5E5F /* OperationlogCell.m in Sources */,
@@ -1439,17 +1475,19 @@
 				E24BF4631D7414B60054DFDC /* ProductManageViewModel.m in Sources */,
 				27CA01331D6B10E4009F9A25 /* UIView+KKAdditions.m in Sources */,
 				275F328E1D717B210033C8FF /* ASIDownloadCache.m in Sources */,
+				E244F1551D8D072A003BA93B /* PNColor.m in Sources */,
+				E244F1541D8D072A003BA93B /* PNChartLabel.m in Sources */,
 				E2C14FB81D7B090200B0B0B2 /* TimerCountDownManager.m in Sources */,
 				E2C14F7E1D7AA46000B0B0B2 /* LandViewController.m in Sources */,
 				E2FA0C061D4CFF000094A6FE /* KKBaseRequest.m in Sources */,
 				E24BF4481D734AAD0054DFDC /* PSearchMenuViewController.m in Sources */,
-				E25918661D8BA9F2003BDB48 /* PNColor.m in Sources */,
 				E24BF46A1D741AB00054DFDC /* AMProductRelatedInformationRequest.m in Sources */,
 				275F32B71D718A8A0033C8FF /* NSData+KKAdditions.m in Sources */,
 				27E26B401D6B1D360072F26E /* CustomerDetailViewController.m in Sources */,
 				27E26B4C1D6B1D360072F26E /* AddProductViewControllerB.m in Sources */,
 				E21947301D771525001C5E5F /* CostManageTableViewCell.m in Sources */,
 				275F32B01D717B210033C8FF /* Reachability.m in Sources */,
+				E244F1601D8D077B003BA93B /* DataAnalysisCell.m in Sources */,
 				275F32981D717B210033C8FF /* ASICloudFilesObject.m in Sources */,
 				275F329B1D717B210033C8FF /* ASIS3Bucket.m in Sources */,
 				275F329F1D717B210033C8FF /* ASIS3Request.m in Sources */,

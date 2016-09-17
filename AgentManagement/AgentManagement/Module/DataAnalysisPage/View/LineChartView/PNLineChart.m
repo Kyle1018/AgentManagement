@@ -112,7 +112,7 @@
 
     CGFloat yLabelHeight;
     if (_showLabel) {
-        yLabelHeight = _chartCavanHeight / [yLabels count];
+        yLabelHeight = _chartCavanHeight / [yLabels count]-8;
     } else {
         yLabelHeight = (self.frame.size.height) / [yLabels count];
     }
@@ -139,16 +139,17 @@
         for (int index = 0; index < yLabels.count; index++) {
             labelText = yLabels[index];
 
-            NSInteger y = (NSInteger) (_chartCavanHeight - index * yStepHeight);
+            NSInteger y = (NSInteger) (_chartCavanHeight - index * (yStepHeight));
 
             PNChartLabel *label = [[PNChartLabel alloc] initWithFrame:CGRectMake(0.0, y, (NSInteger) _chartMarginLeft+10 , (NSInteger) _yLabelHeight)];
+            label.backgroundColor=[UIColor clearColor];
             [label setTextAlignment:NSTextAlignmentCenter];
             label.text = labelText;
             [self setCustomStyleForYLabel:label];
             [self addSubview:label];
             [_yChartLabels addObject:label];
             
-            UIView *view = [[UIView alloc]initWithFrame:CGRectMake(label.frame.size.width+10, label.center.y, self.frame.size.width-label.frame.size.width-20, 1)];
+            UIView *view = [[UIView alloc]initWithFrame:CGRectMake(label.frame.size.width, label.center.y, self.frame.size.width-label.frame.size.width-20, 1)];
             view.backgroundColor=[UIColor lightGrayColor];
             [self addSubview:view];
 
@@ -200,11 +201,10 @@
         for (int index = 0; index < xLabels.count; index++) {
             labelText = xLabels[index];
 
-
             NSInteger x = (index * _xLabelWidth + _chartMarginLeft + _xLabelWidth / 2.0);
             NSInteger y = _chartMarginBottom + _chartCavanHeight;
 
-            PNChartLabel *label = [[PNChartLabel alloc] initWithFrame:CGRectMake(x-15, y, (NSInteger) _xLabelWidth, (NSInteger) _chartMarginBottom)];
+            PNChartLabel *label = [[PNChartLabel alloc] initWithFrame:CGRectMake(x, y, (NSInteger) _xLabelWidth, (NSInteger) _chartMarginBottom)];
             [label setTextAlignment:NSTextAlignmentCenter];
             label.backgroundColor=[UIColor clearColor];
             label.text = labelText;
@@ -374,8 +374,6 @@
         CGFloat yValue;
         CGFloat innerGrade;
 
-   
-        
         UIBezierPath *progressline = [UIBezierPath bezierPath];
 
         UIBezierPath *pointPath = [UIBezierPath bezierPath];
@@ -404,26 +402,21 @@
                 innerGrade = (yValue - _yValueMin) / (_yValueMax - _yValueMin);
             }
 
-            int x = i * _xLabelWidth + _chartMarginLeft + _xLabelWidth / 2.0;
+            //折线的x轴
+            int x = i * _xLabelWidth + _chartMarginLeft + _xLabelWidth / 2.0+10;
 
             int y = _chartCavanHeight - (innerGrade * _chartCavanHeight) + (_yLabelHeight / 2) + _chartMarginTop - _chartMarginBottom;
 
             // Circular point
             if (chartData.inflexionPointStyle == PNLineChartPointStyleCircle) {
 
+                //折线点的frame
                 CGRect circleRect = CGRectMake(x - inflexionWidth / 2, y - inflexionWidth / 2, inflexionWidth, inflexionWidth);
                 CGPoint circleCenter = CGPointMake(circleRect.origin.x + (circleRect.size.width / 2), circleRect.origin.y + (circleRect.size.height / 2));
-                
+//
                 [pointPath moveToPoint:CGPointMake(circleCenter.x + (inflexionWidth / 2), circleCenter.y)];
                 [pointPath addArcWithCenter:circleCenter radius:inflexionWidth / 2 startAngle:0 endAngle:2 * M_PI clockwise:YES];
-
-//                [[UIColor blueColor] setStroke];
-//                [[UIColor redColor] setFill];
-//                // 描边和填充
-//                [pointPath stroke];
-//                [pointPath fill];
-                
-             
+               
                 
                 //jet text display text
                 if (chartData.showPointLabel) {
@@ -483,7 +476,7 @@
                 CGPoint startPoint = CGPointMake(squareRect.origin.x, squareRect.origin.y + squareRect.size.height);
                 CGPoint endPoint = CGPointMake(squareRect.origin.x + (squareRect.size.width / 2), squareRect.origin.y);
                 CGPoint middlePoint = CGPointMake(squareRect.origin.x + (squareRect.size.width), squareRect.origin.y + squareRect.size.height);
-
+                
                 [pointPath moveToPoint:startPoint];
                 [pointPath addLineToPoint:middlePoint];
                 [pointPath addLineToPoint:endPoint];
@@ -578,7 +571,7 @@
             pointLayer.strokeColor = [[chartData.color colorWithAlphaComponent:chartData.alpha] CGColor];
             pointLayer.lineCap = kCALineCapRound;
             pointLayer.lineJoin = kCALineJoinBevel;
-            pointLayer.fillColor = nil;
+            pointLayer.fillColor = [UIColor colorWithHex:@"47b6ff"].CGColor;//折线点的填充颜色
             pointLayer.lineWidth = chartData.lineWidth;
             [self.layer addSublayer:pointLayer];
             [self.chartPointArray addObject:pointLayer];
@@ -796,8 +789,11 @@
 
     _chartMarginLeft = 25.0;
     _chartMarginRight = 25.0;
-    _chartMarginTop = 25.0;
-    _chartMarginBottom = 25.0;
+//    _chartMarginTop = 25.0;
+//    _chartMarginBottom = 25.0;
+    
+    _chartMarginTop = 15.0;
+    _chartMarginBottom = 15.0;
 
     _yLabelFormat = @"%1.f";
 
@@ -980,6 +976,8 @@
                                           andAlpha:pdata.alpha]];
 
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(x + legendLineWidth, y, labelsize.width, labelsize.height)];
+        
+//           UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(self.width-labelsize.width, y, labelsize.width, labelsize.height)];
         label.text = pdata.dataTitle;
         label.textColor = self.legendFontColor ? self.legendFontColor : [UIColor blackColor];
         label.font = self.legendFont ? self.legendFont : [UIFont systemFontOfSize:12.0f];
@@ -1015,8 +1013,7 @@
     CGContextRef context = UIGraphicsGetCurrentContext();
     
     if (type == PNLineChartPointStyleCircle) {
-//        UIColor*aColor = [UIColor colorWithRed:1 green:0.0 blue:0 alpha:1];
-//        CGContextSetFillColorWithColor(context, aColor.CGColor);//填充颜色
+
         CGContextSetLineWidth(context, 3.0);//线的宽度
         CGContextAddArc(context, (size + sw) / 2, (size + sw) / 2, size / 2, 0, M_PI * 2, YES);
     } else if (type == PNLineChartPointStyleSquare) {
@@ -1049,6 +1046,7 @@
 
     UIImageView *squareImageView = [[UIImageView alloc] initWithImage:squareImage];
     [squareImageView setFrame:CGRectMake(originX, originY, size + sw, size + sw)];
+  //  squareImageView.backgroundColor=[UIColor blackColor];
     return squareImageView;
     
 
@@ -1060,9 +1058,9 @@
     CATextLayer *textLayer = [[CATextLayer alloc] init];
     [textLayer setAlignmentMode:kCAAlignmentCenter];
     [textLayer setForegroundColor:[chartData.pointLabelColor CGColor]];
-    
-    
-    //[textLayer setBackgroundColor:[[[UIColor whiteColor] colorWithAlphaComponent:0.8] CGColor]];
+//    
+//    [textLayer setBackgroundColor:[[[UIColor clearColor]colorWithAlphaComponent:1]CGColor]];
+//    //[textLayer setBackgroundColor:[[[UIColor whiteColor] colorWithAlphaComponent:0.8] CGColor]];
     [textLayer setCornerRadius:textLayer.fontSize / 8.0];
 
     if (chartData.pointLabelFont != nil) {
