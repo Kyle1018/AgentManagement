@@ -7,7 +7,6 @@
 //
 
 #import "PNLineChart.h"
-#import "PNColor.h"
 #import "PNChartLabel.h"
 #import "PNLineChartData.h"
 #import "PNLineChartDataItem.h"
