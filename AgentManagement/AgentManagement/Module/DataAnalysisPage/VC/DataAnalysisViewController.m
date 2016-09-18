@@ -53,7 +53,7 @@
                                                         ],nil];
  
     
-    _datasArray = [NSMutableArray arrayWithObjects:@[@11,@0],@[@60.1, @160.1, @126.4, @0.0, @186.2, @127.2, @176.2,@1000,@500,@688,@0,@29],nil];
+    _datasArray = [NSMutableArray arrayWithObjects:@[@[@11,@0,@66,@34,@101,@123,@134,@219,@176,@77,@90,@12],@[@155,@67,@200,@33,@92,@76,@88,@177,@232,@201,@99,@32]],@[@60.1, @160.1, @126.4, @0.0, @186.2, @127.2, @176.2,@1000,@500,@688,@0,@29],nil];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -94,17 +94,9 @@
         
         cell = [[DataAnalysisCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
     }
-//    
-//    if (indexPath.section==0) {
-//        
-//        cell.backgroundColor=[UIColor blueColor];
-//    }
-//    else {
-//        
-//        cell.backgroundColor=[UIColor purpleColor];
-//    }
-//    
-//    
+    
+ 
+//
     
 //    if (indexPath.section == ) {
 //        

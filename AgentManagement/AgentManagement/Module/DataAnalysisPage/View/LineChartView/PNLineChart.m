@@ -143,13 +143,14 @@
             PNChartLabel *label = [[PNChartLabel alloc] initWithFrame:CGRectMake(0.0, y, (NSInteger) _chartMarginLeft+10 , (NSInteger) _yLabelHeight)];
             label.backgroundColor=[UIColor clearColor];
             [label setTextAlignment:NSTextAlignmentCenter];
+            label.textColor = [UIColor colorWithHex:@"4a4a4a"];
             label.text = labelText;
             [self setCustomStyleForYLabel:label];
             [self addSubview:label];
             [_yChartLabels addObject:label];
             
             UIView *view = [[UIView alloc]initWithFrame:CGRectMake(label.frame.size.width, label.center.y, self.frame.size.width-label.frame.size.width-20, 1)];
-            view.backgroundColor=[UIColor lightGrayColor];
+            view.backgroundColor=[UIColor colorWithHex:@"b8b8b8"];
             [self addSubview:view];
 
         }
@@ -206,6 +207,7 @@
             PNChartLabel *label = [[PNChartLabel alloc] initWithFrame:CGRectMake(x, y, (NSInteger) _xLabelWidth, (NSInteger) _chartMarginBottom)];
             [label setTextAlignment:NSTextAlignmentCenter];
             label.backgroundColor=[UIColor clearColor];
+            label.textColor = [UIColor colorWithHex:@"4a4a4a"];
             label.text = labelText;
             [self setCustomStyleForXLabel:label];
             [self addSubview:label];
@@ -554,7 +556,11 @@
         self.chartLineArray = [NSMutableArray arrayWithCapacity:data.count];
         self.chartPointArray = [NSMutableArray arrayWithCapacity:data.count];
 
-        for (PNLineChartData *chartData in data) {
+      //  for (PNLineChartData *chartData in data) {
+        for (int i = 0; i<data.count; i++) {
+            
+            PNLineChartData *chartData = data[i];
+       // }
             // create as many chart line layers as there are data-lines
             CAShapeLayer *chartLine = [CAShapeLayer layer];
             chartLine.lineCap = kCALineCapButt;
@@ -570,7 +576,26 @@
             pointLayer.strokeColor = [[chartData.color colorWithAlphaComponent:chartData.alpha] CGColor];
             pointLayer.lineCap = kCALineCapRound;
             pointLayer.lineJoin = kCALineJoinBevel;
-            pointLayer.fillColor = [UIColor colorWithHex:@"47b6ff"].CGColor;//折线点的填充颜色
+    
+            if (data.count == 2) {
+                
+                if (i == 0) {
+                    
+                    pointLayer.fillColor = [UIColor colorWithHex:@"47b6ff"].CGColor;//折线点的填充颜色
+
+                }
+                else {
+                    
+                     pointLayer.fillColor = [UIColor colorWithHex:@"ff3131"].CGColor;//折线点的填充颜色
+                }
+            }
+            
+            else {
+                
+                
+                pointLayer.fillColor = [UIColor colorWithHex:@"47b6ff"].CGColor;//折线点的填充颜色
+            }
+            
             pointLayer.lineWidth = chartData.lineWidth;
             [self.layer addSublayer:pointLayer];
             [self.chartPointArray addObject:pointLayer];
@@ -883,7 +908,7 @@
     }
 }
 
-- (UIView *)getLegendWithMaxWidth:(CGFloat)mWidth {
+- (UIView *)getLegendWithMaxWidth:(CGFloat)mWidth{
     if ([self.chartData count] < 1) {
         return nil;
     }
@@ -919,7 +944,11 @@
     NSUInteger rowWidth = 0;
     NSUInteger rowMaxHeight = 0;
 
-    for (PNLineChartData *pdata in self.chartData) {
+    for (int i = 0; i<self.chartData.count; i++) {
+        
+        PNLineChartData *pdata = self.chartData[i];
+   // }
+  //  for (PNLineChartData *pdata in self.chartData) {
         /* Expected label size*/
         CGSize labelsize = [PNLineChart sizeOfString:pdata.dataTitle
                                            withWidth:maxLabelWidth
@@ -948,24 +977,45 @@
         } else {
             halfLineLength = legendLineWidth * 0.8;
         }
-
-        UIView *line = [[UIView alloc] initWithFrame:CGRectMake(x + legendLineWidth * 0.1, y + (singleRowHeight - pdata.lineWidth) / 2, halfLineLength, pdata.lineWidth)];
-
-        line.backgroundColor = pdata.color;
-        line.alpha = pdata.alpha;
-        [legendViews addObject:line];
+//        UIView *line = [[UIView alloc] initWithFrame:CGRectMake(x + legendLineWidth * 0.1, y + (singleRowHeight - pdata.lineWidth) / 2, halfLineLength, pdata.lineWidth)];
+//
+//        //  UIView *line = [[UIView alloc] initWithFrame:CGRectMake(200, y + (singleRowHeight - pdata.lineWidth) / 2, halfLineLength, pdata.lineWidth)];
+//        line.backgroundColor = pdata.color;
+//        line.alpha = pdata.alpha;
+//        [legendViews addObject:line];
 
         if (pdata.inflexionPointStyle != PNLineChartPointStyleNone) {
-            line = [[UIView alloc] initWithFrame:CGRectMake(x + legendLineWidth * 0.1 + halfLineLength + inflexionWidthSpacer, y + (singleRowHeight - pdata.lineWidth) / 2, halfLineLength, pdata.lineWidth)];
-            line.backgroundColor = pdata.color;
+            
+            UIView*line = [[UIView alloc] initWithFrame:CGRectMake(x + legendLineWidth * 0.1 + halfLineLength + inflexionWidthSpacer, y + (singleRowHeight - pdata.lineWidth) / 2, halfLineLength, pdata.lineWidth)];
+           
+            if (self.chartData.count==2) {
+                
+                if (i == 0) {
+                    
+                     line.backgroundColor = [UIColor colorWithHex:@"47b6ff"];
+                   
+                }
+                else {
+                    
+                    line.backgroundColor = [UIColor colorWithHex:@"ff3131"];;
+                  
+                }
+            }
+            else {
+                
+                line.backgroundColor = pdata.color;
+            }
+           
             line.alpha = pdata.alpha;
             [legendViews addObject:line];
         }
 
         // Add inflexion type
-        UIColor *inflexionPointColor = pdata.inflexionPointColor;
+     //   UIColor *inflexionPointColor = pdata.inflexionPointColor;
+        UIColor *inflexionPointColor = [UIColor clearColor];
         if (!inflexionPointColor) {
             inflexionPointColor = pdata.color;
+           
         }
         [legendViews addObject:[self drawInflexion:pdata.inflexionPointWidth
                                             center:CGPointMake(x + legendLineWidth / 2, y + singleRowHeight / 2)
@@ -974,11 +1024,27 @@
                                           andColor:inflexionPointColor
                                           andAlpha:pdata.alpha]];
 
+      
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(x + legendLineWidth, y, labelsize.width, labelsize.height)];
-        
-//           UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(self.width-labelsize.width, y, labelsize.width, labelsize.height)];
+        //设置图解label的frame
+        //UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(f, y, labelsize.width, labelsize.height)];
         label.text = pdata.dataTitle;
-        label.textColor = self.legendFontColor ? self.legendFontColor : [UIColor blackColor];
+        
+        if (self.chartData.count==2) {
+            
+            if (i == 0) {
+                
+                label.textColor = [UIColor colorWithHex:@"47b6ff"];
+            }
+            else {
+                
+                label.textColor = [UIColor colorWithHex:@"ff3131"];
+            }
+        }
+        else {
+            
+            label.textColor = self.legendFontColor ? self.legendFontColor : [UIColor blackColor];
+        }
         label.font = self.legendFont ? self.legendFont : [UIFont systemFontOfSize:12.0f];
         label.lineBreakMode = NSLineBreakByWordWrapping;
         label.numberOfLines = 0;
@@ -1029,7 +1095,7 @@
     CGContextSetLineWidth(context, sw);
     CGContextSetAlpha(context, alfa);
     CGContextSetStrokeColorWithColor(context, color.CGColor);
-   // CGContextSetFillColorWithColor(context, [UIColor blackColor].CGColor);
+
 
     //Finally draw
     CGContextDrawPath(context, kCGPathStroke);
