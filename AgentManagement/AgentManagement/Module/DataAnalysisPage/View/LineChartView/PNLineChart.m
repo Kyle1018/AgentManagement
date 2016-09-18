@@ -140,7 +140,7 @@
 
             NSInteger y = (NSInteger) (_chartCavanHeight - index * (yStepHeight));
 
-            PNChartLabel *label = [[PNChartLabel alloc] initWithFrame:CGRectMake(0.0, y, (NSInteger) _chartMarginLeft+10 , (NSInteger) _yLabelHeight)];
+            PNChartLabel *label = [[PNChartLabel alloc] initWithFrame:CGRectMake(0.0, y+10, (NSInteger) _chartMarginLeft+8 , (NSInteger) _yLabelHeight)];
             label.backgroundColor=[UIColor clearColor];
             [label setTextAlignment:NSTextAlignmentCenter];
             label.textColor = [UIColor colorWithHex:@"4a4a4a"];
@@ -406,7 +406,7 @@
             //折线的x轴
             int x = i * _xLabelWidth + _chartMarginLeft + _xLabelWidth / 2.0+10;
 
-            int y = _chartCavanHeight - (innerGrade * _chartCavanHeight) + (_yLabelHeight / 2) + _chartMarginTop - _chartMarginBottom;
+            int y = _chartCavanHeight - (innerGrade * _chartCavanHeight) + (_yLabelHeight / 2) + _chartMarginTop - _chartMarginBottom+10;
 
             // Circular point
             if (chartData.inflexionPointStyle == PNLineChartPointStyleCircle) {
@@ -816,8 +816,8 @@
 //    _chartMarginTop = 25.0;
 //    _chartMarginBottom = 25.0;
     
-    _chartMarginTop = 15.0;
-    _chartMarginBottom = 15.0;
+    _chartMarginTop = 20.0;
+    _chartMarginBottom = 20.0;
 
     _yLabelFormat = @"%1.f";
 
@@ -983,20 +983,26 @@
 //        line.backgroundColor = pdata.color;
 //        line.alpha = pdata.alpha;
 //        [legendViews addObject:line];
+        
+     
 
         if (pdata.inflexionPointStyle != PNLineChartPointStyleNone) {
             
-            UIView*line = [[UIView alloc] initWithFrame:CGRectMake(x + legendLineWidth * 0.1 + halfLineLength + inflexionWidthSpacer, y + (singleRowHeight - pdata.lineWidth) / 2, halfLineLength, pdata.lineWidth)];
+//            UIView*line = [[UIView alloc] initWithFrame:CGRectMake(x + legendLineWidth * 0.1 + halfLineLength + inflexionWidthSpacer, y + (singleRowHeight - pdata.lineWidth) / 2, halfLineLength, pdata.lineWidth)];
            
+            UIView *line = [[UIView alloc]init];
+            
             if (self.chartData.count==2) {
                 
                 if (i == 0) {
                     
+                    line.frame =CGRectMake(ScreenWidth-(labelsize.width*2+legendLineWidth*2)-labelsize.width+20,y + (singleRowHeight - pdata.lineWidth) / 2+10, halfLineLength, pdata.lineWidth);
                      line.backgroundColor = [UIColor colorWithHex:@"47b6ff"];
                    
                 }
                 else {
                     
+                      line.frame =CGRectMake(ScreenWidth-(labelsize.width+legendLineWidth)-labelsize.width+23,y + (singleRowHeight - pdata.lineWidth) / 2+10 , halfLineLength, pdata.lineWidth);
                     line.backgroundColor = [UIColor colorWithHex:@"ff3131"];;
                   
                 }
@@ -1023,9 +1029,23 @@
                                     inflexionStyle:pdata.inflexionPointStyle
                                           andColor:inflexionPointColor
                                           andAlpha:pdata.alpha]];
+        
+        UILabel *label = [[UILabel alloc] init];
 
-      
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(x + legendLineWidth, y, labelsize.width, labelsize.height)];
+        if (i==0) {
+            
+            label.frame =CGRectMake(ScreenWidth-(labelsize.width*2+legendLineWidth*2)+10, y+10, labelsize.width, labelsize.height);
+         
+          //  UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(ScreenWidth-(labelsize.width*2+legendLineWidth*2), y, labelsize.width, labelsize.height)];
+        }
+        else {
+            
+            label.frame = CGRectMake(ScreenWidth-(labelsize.width+legendLineWidth)+5, y+10, labelsize.width, labelsize.height);
+         
+//               UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(x + legendLineWidth, y, labelsize.width, labelsize.height)];
+        }
+        
+//        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(x + legendLineWidth, y, labelsize.width, labelsize.height)];
         //设置图解label的frame
         //UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(f, y, labelsize.width, labelsize.height)];
         label.text = pdata.dataTitle;

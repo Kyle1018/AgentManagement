@@ -7,13 +7,13 @@
 //
 
 #import "DataAnalysisCell.h"
-
+#define CurrentScrrenSize(oldWidth) (oldWidth * (ScreenWidth/375))
 @implementation DataAnalysisCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
     
-    UIView *bgView = [[UIView alloc]initWithFrame:CGRectMake(10, 0, ScreenWidth-20, self.contentView.height+20)];
+    UIView *bgView = [[UIView alloc]initWithFrame:CGRectMake(10, 0, ScreenWidth-20, CurrentScrrenSize(227))];
     bgView.backgroundColor=[UIColor whiteColor];
     [self.contentView addSubview:bgView];
     
@@ -21,14 +21,13 @@
     bgView.layer.borderColor = [UIColor colorWithHex:@"b8b8b8"].CGColor;
 
     self.titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth-20, 35)];
-    self.titleLabel.backgroundColor=[UIColor whiteColor];
-    self.titleLabel.text = @"全年销售额";
+    self.titleLabel.backgroundColor=[UIColor clearColor];
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
     self.titleLabel.textColor = [UIColor colorWithHex:@"4a4a4a"];
     self.titleLabel.font = [UIFont systemFontOfSize:15];
     [bgView addSubview:self.titleLabel];
     
-    self.lineChart = [[PNLineChart alloc] initWithFrame:CGRectMake(0, self.titleLabel.bottom,ScreenWidth-20,self.contentView.height-25)];
+    self.lineChart = [[PNLineChart alloc] initWithFrame:CGRectMake(0, self.titleLabel.height,ScreenWidth-20,bgView.height-self.titleLabel.height)];
     self.lineChart.backgroundColor=[UIColor whiteColor];
     [bgView addSubview:self.lineChart];
     
@@ -50,14 +49,14 @@
     [self.lineChart setYLabels:yLabels];
 
     if (sectionIndex == 0) {
-        
-        self.titleLabel.hidden = YES;
+       
+         self.titleLabel.text = @"库存增减";
        
         NSArray * data01Array = dataArray[0];
         PNLineChartData *data01 = [PNLineChartData new];
-        data01.dataTitle = @"Alpha";
+        data01.dataTitle = @"库存";
         data01.showPointLabel = YES;
-        data01.pointLabelFont=[UIFont systemFontOfSize:12];
+        data01.pointLabelFont=[UIFont systemFontOfSize:10];
         data01.pointLabelColor = [UIColor colorWithHex:@"47b6ff"];
         data01.color = [UIColor colorWithHex:@"47b6ff"];//折线的颜色
         data01.alpha = 1.0f;
@@ -72,9 +71,9 @@
         
         NSArray * data02Array = dataArray[1];
         PNLineChartData *data02 = [PNLineChartData new];
-        data02.dataTitle = @"Plist";
+        data02.dataTitle = @"销售量";
         data02.showPointLabel = YES;
-        data02.pointLabelFont=[UIFont systemFontOfSize:12];
+        data02.pointLabelFont=[UIFont systemFontOfSize:10];
         data02.pointLabelColor = [UIColor colorWithHex:@"ff3131"];
         data02.color = [UIColor colorWithHex:@"ff3131"];//折线的颜色
         data02.alpha = 1.0f;
@@ -92,7 +91,7 @@
         
         
         self.lineChart.legendStyle = PNLegendItemStyleSerial;
-        self.lineChart.legendFont = [UIFont boldSystemFontOfSize:12.0f];
+        self.lineChart.legendFont = [UIFont boldSystemFontOfSize:10.0f];
         
         
         
@@ -100,18 +99,18 @@
   
         //注解视图
         UIView *legend = [self.lineChart getLegendWithMaxWidth:ScreenWidth-20];
-        legend.backgroundColor=[UIColor blackColor];
+        legend.backgroundColor=[UIColor clearColor];
         [legend setFrame:CGRectMake(10, 0, ScreenWidth-20, 35)];
         [self.contentView addSubview:legend];
     }
     else {
-        
+       
+         self.titleLabel.text = @"全年销售额";
         
         NSArray * data01Array = dataArray;
         PNLineChartData *data01 = [PNLineChartData new];
-        data01.dataTitle = @"Alpha";
         data01.showPointLabel = YES;
-        data01.pointLabelFont=[UIFont systemFontOfSize:12];
+        data01.pointLabelFont=[UIFont systemFontOfSize:10];
         data01.pointLabelColor = [UIColor colorWithHex:@"47b6ff"];
         data01.color = [UIColor colorWithHex:@"47b6ff"];//折线的颜色
         data01.alpha = 1.0f;
@@ -126,18 +125,8 @@
         self.lineChart.chartData = @[data01];
         [self.lineChart strokeChart];
         
-        self.titleLabel.hidden = NO;
-        
     }
     
-//
-    
-    
-    
-//    UIView *legend = [self.lineChart getLegendWithMaxWidth:ScreenWidth-20];
-//    legend.backgroundColor=[UIColor whiteColor];
-//    [legend setFrame:CGRectMake(30, 340,100,100)];
-//    [self.contentView addSubview:legend];
 }
 
 

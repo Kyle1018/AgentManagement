@@ -8,6 +8,8 @@
 
 #import "DataAnalysisViewController.h"
 #import "DataAnalysisCell.h"
+
+#define CurrentScrrenSize(oldWidth) (oldWidth * (ScreenWidth/375))
 @interface DataAnalysisViewController ()
 @property(nonatomic,strong)NSArray *xLabels;
 
@@ -53,7 +55,7 @@
                                                         ],nil];
  
     
-    _datasArray = [NSMutableArray arrayWithObjects:@[@[@11,@0,@66,@34,@101,@123,@134,@219,@176,@77,@90,@12],@[@155,@67,@200,@33,@92,@76,@88,@177,@232,@201,@99,@32]],@[@60.1, @160.1, @126.4, @0.0, @186.2, @127.2, @176.2,@1000,@500,@688,@0,@29],nil];
+    _datasArray = [NSMutableArray arrayWithObjects:@[@[@11,@0,@66,@34,@101,@123,@134,@219,@176,@77,@90,@12],@[@155,@67,@200,@33,@92,@76,@88,@177,@232,@201,@99,@32]],@[@60.1, @160.1, @126.4, @0.0, @186.2, @127.2, @176.2,@1200,@500,@688,@0,@29],nil];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -72,7 +74,6 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     
- 
     return 40;
 }
 
@@ -80,7 +81,11 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    return  (ScreenHeight-49-64-self.tableView.numberOfSections*30)/2;
+//    CGFloat height = CurrentScrrenSize((ScreenHeight-self.tableView.numberOfSections*40)/2);
+//    return  height;
+    //return  (ScreenHeight-self.tableView.numberOfSections*40-49-64)/2;
+    return CurrentScrrenSize(227);
+   // return  (ScreenHeight-49-64)/2;
 }
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -96,8 +101,7 @@
     }
     
  
-//
-    
+
 //    if (indexPath.section == ) {
 //        
         [cell setDataWithXLabels:_xLabels YLabels:_yLabels[indexPath.section] datasArray:_datasArray[indexPath.section]sectionIndex:indexPath.section];
