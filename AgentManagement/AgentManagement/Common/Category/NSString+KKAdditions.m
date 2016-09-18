@@ -14,7 +14,7 @@
     
     NSTimeInterval timeInterval=[time doubleValue]+28800;//因为时差问题要加8小时 == 28800 sec
     NSDate *detaildate=[NSDate dateWithTimeIntervalSince1970:timeInterval];
-    NSLog(@"date:%@",[detaildate description]);
+    DDLogDebug(@"date:%@",[detaildate description]);
     //实例化一个NSDateFormatter对象
 //    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
 //    //设定时间格式,这里可以设置成自己需要的格式

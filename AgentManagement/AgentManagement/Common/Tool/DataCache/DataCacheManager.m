@@ -52,7 +52,7 @@
     //判断数据库是否已经打开，如果没有打开，提示失败
     if (!isOpenSuccess)
     {
-        NSLog(@"数据库打开失败");
+        DDLogDebug(@"数据库打开失败");
     }
     
     return isOpenSuccess;
@@ -68,7 +68,7 @@
 {
     NSArray *filePath = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
     NSString *cachePath = [filePath objectAtIndex:0];
-    NSLog(@"%@",filePath);
+    DDLogDebug(@"%@",filePath);
     NSString *dbFilePath = [cachePath stringByAppendingPathComponent:@"optionResult.sqlite"];
     return dbFilePath;
 }
@@ -82,7 +82,7 @@
     //判断数据库是否已经打开，如果没有打开，提示失败
     if (!isCloseSuccess)
     {
-        NSLog(@"数据库关闭失败");
+        DDLogDebug(@"数据库关闭失败");
     }
     
     return isCloseSuccess;
@@ -97,7 +97,7 @@
         
         if(!creatSuccess)
         {
-            NSLog(@"创建攻略表完成");
+            DDLogDebug(@"创建攻略表完成");
         }
         return creatSuccess;
     }

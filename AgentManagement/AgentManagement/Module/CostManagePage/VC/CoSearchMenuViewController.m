@@ -40,7 +40,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSLog(@"%@",self.brandAndPmodelDataArray);
+    DDLogDebug(@"%@",self.brandAndPmodelDataArray);
     
     self.bgView.originX = ScreenWidth;
 

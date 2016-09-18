@@ -36,7 +36,7 @@
 
     [self requestData];
     
-    NSLog(@"%@",self.addCutomerInfoDic);
+    DDLogDebug(@"%@",self.addCutomerInfoDic);
 
 }
 

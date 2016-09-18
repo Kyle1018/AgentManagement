@@ -259,7 +259,7 @@
         [weakSelf.apRequset requestWithSuccess:^(KKBaseModel *model, KKRequestError *error) {
             
             addProductInfoModel = (AMProductInfo*)model;
-            NSLog(@"%@", model);
+            DDLogDebug(@"%@", model);
             if ([addProductInfoModel.resultCode integerValue]== 0) {
                 
                 [subscriber sendNext:addProductInfoModel];
@@ -275,7 +275,7 @@
 
         } failure:^(KKBaseModel *model, KKRequestError *error) {
             
-            NSLog(@"%@", error);
+            DDLogDebug(@"%@", error);
             
             [subscriber sendNext:@(NO)];
             [subscriber sendCompleted];

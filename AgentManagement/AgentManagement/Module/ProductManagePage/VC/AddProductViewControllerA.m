@@ -35,14 +35,14 @@
     
     RACSignal *brandInputSignal = [[self.brandTextField rac_textSignal]map:^id(NSString* value) {
         
-        NSLog(@"____________%ld",value.length);
+        DDLogDebug(@"____________%ld",value.length);
         return @(value.length>0);
         
     }];
                                    
     RACSignal *modelInputSignal = [[self.modelTextField rac_textSignal]map:^id(NSString* value) {
         
-        NSLog(@"++++++++++++++%ld",value.length);
+        DDLogDebug(@"++++++++++++++%ld",value.length);
         
         return @(value.length>0);
         

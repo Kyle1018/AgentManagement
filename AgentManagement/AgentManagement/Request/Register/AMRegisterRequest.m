@@ -15,8 +15,8 @@
     
     self = [super init];
     if (self) {
-        NSLog(@"phone:%@",phone);
-        NSLog(@"code:%@",code);
+        DDLogDebug(@"phone:%@",phone);
+        DDLogDebug(@"code:%@",code);
         [self.requestParameters safeSetObject:phone forKey:@"phone"];
         [self.requestParameters safeSetObject:password forKey:@"password"];
         [self.requestParameters safeSetObject:code forKey:@"code"];
@@ -32,8 +32,8 @@
 - (id)buildModelWithJsonDictionary:(NSDictionary *)dictionary
 {
 //    
-//    NSLog(@"%@",[dictionary[@"resultMessage"]description]);
-//    NSLog(@"注册信息：－－－－－－－－－－－%@",dictionary);
+//    DDLogDebug(@"%@",[dictionary[@"resultMessage"]description]);
+//    DDLogDebug(@"注册信息：－－－－－－－－－－－%@",dictionary);
 //    //
 //    return nil;
      return [[AMUser alloc] initWithDictionary:dictionary error:nil];

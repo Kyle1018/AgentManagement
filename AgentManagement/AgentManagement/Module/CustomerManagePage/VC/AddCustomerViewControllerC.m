@@ -22,7 +22,7 @@
     
     _viewModel = [[CustomerManageViewModel alloc]init];
     
-    NSLog(@"%@",self.addCutomerInfoDic);
+    DDLogDebug(@"%@",self.addCutomerInfoDic);
     // Do any additional setup after loading the view.
 }
 

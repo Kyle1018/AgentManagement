@@ -127,7 +127,7 @@
 
 //点击了选择城市
 - (IBAction)SelectCityAction:(UIControl *)sender {
-    NSLog(@"点击了选择城市");
+    DDLogDebug(@"点击了选择城市");
 }
 
 @end

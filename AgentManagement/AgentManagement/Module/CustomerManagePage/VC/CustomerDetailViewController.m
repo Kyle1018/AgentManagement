@@ -71,7 +71,7 @@
         
         if (index == 0) {
             
-            NSLog(@"点击了编辑客户");
+            DDLogDebug(@"点击了编辑客户");
             UITextField *customerName=[weakSelf.tableView viewWithTag:1000];
             UITextField *phoneNumber = [weakSelf.tableView viewWithTag:1001];
             
@@ -83,7 +83,7 @@
         }
         else {
             
-            NSLog(@"点击删除客户");
+            DDLogDebug(@"点击删除客户");
             weakSelf.alertVC = [AlertController alertControllerWithTitle:@"确认删除" message:nil preferredStyle:UIAlertControllerStyleAlert];
             weakSelf.alertVC.alertOptionName = @[@"确定",@"取消"];
             [weakSelf presentViewController: weakSelf.alertVC animated: YES completion:^{

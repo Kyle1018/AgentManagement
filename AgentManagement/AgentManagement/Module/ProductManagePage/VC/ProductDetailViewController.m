@@ -35,7 +35,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSLog(@"%@",self.productInfo);
+    DDLogDebug(@"%@",self.productInfo);
 
     //设置数据
     [self setData];
@@ -261,7 +261,7 @@
 
 -(void)doBack:(id)sender {
     
-    NSLog(@"点击了返回");
+    DDLogDebug(@"点击了返回");
     __weak typeof(self) weakSelf = self;
     
     self.alertVC = [AlertController alertControllerWithTitle:@"退出此次编辑" message:nil preferredStyle:UIAlertControllerStyleAlert];

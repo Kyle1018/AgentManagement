@@ -390,7 +390,7 @@
 //确定
 - (IBAction)confirmAction:(UIButton *)sender {
     
-//    NSLog(@"%@",_selectedOptionDic);
+//    DDLogDebug(@"%@",_selectedOptionDic);
 //
 //    __weak typeof(self) weakSelf = self;
 //    //发起查询产品数据请求

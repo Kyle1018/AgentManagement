@@ -33,7 +33,7 @@
 
 - (id)buildModelWithJsonDictionary:(NSDictionary *)dictionary
 {
-    NSLog(@"%@",dictionary);
+    DDLogDebug(@"%@",dictionary);
     
     return [[AMProductInfo alloc]initWithDictionary:dictionary error:nil];
    

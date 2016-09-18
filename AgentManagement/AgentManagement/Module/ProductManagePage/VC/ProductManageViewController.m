@@ -173,7 +173,7 @@
     
     [[[NSNotificationCenter defaultCenter]rac_addObserverForName:KDeletaProductInfoNotifi object:nil]subscribeNext:^(NSNotification* notifi){
         
-        NSLog(@"获取了删除产品通知");
+        DDLogDebug(@"获取了删除产品通知");
         
         AMProductInfo *deletProductInfo = notifi.userInfo[@"productInfo"];
         

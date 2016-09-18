@@ -196,7 +196,7 @@
 
     [[[NSNotificationCenter defaultCenter]rac_addObserverForName:KDeletaProductInfoNotifi object:nil]subscribeNext:^(NSNotification* notifi) {
         
-        NSLog(@"%@",notifi.userInfo);
+        DDLogDebug(@"%@",notifi.userInfo);
         AMProductInfo *deleteProductInfo=notifi.userInfo[@"productInfo"];
         
         for (NSString *key in self.keysArray) {
