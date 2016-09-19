@@ -10,4 +10,12 @@
 
 @implementation AMSales
 
++(JSONKeyMapper*)keyMapper
+{
+    return [[JSONKeyMapper alloc] initWithDictionary:@{
+                                                       @"id": @"s_id",
+                                                       }];
+}
+
+
 @end

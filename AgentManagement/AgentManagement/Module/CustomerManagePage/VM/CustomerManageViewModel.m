@@ -8,6 +8,8 @@
 
 #import "CustomerManageViewModel.h"
 #import "AMProductAndModel.h"
+#import "AMAdministrators.h"
+#import "AMSales.h"
 @implementation CustomerManageViewModel
 
 - (id)init {
@@ -65,8 +67,6 @@
     }];
 }
 
-
-
 - (RACSignal*)requestCustomerInfoListDataOrSearchCustomerInfoDataWithPage:(NSInteger)page size:(NSInteger)size search:(NSDictionary*)searchDic {
     
     return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
@@ -92,5 +92,96 @@
         return nil;
     }];
 }
+
+
+//请求销售员列表——获取销售员的姓名
+- (RACSignal*)requstSalersName {
+    
+    RACSignal *signal = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+       
+        self.request1 = [[AMSalerListOrSearchRequest alloc]initWithPage:@"0" Size:@"0" Search:nil];
+    
+        [self.request1 requestWithSuccess:^(KKBaseModel *model, KKRequestError *error) {
+            
+            if ([model isValid]) {
+                
+                AMBaseModel *baseModel = (AMBaseModel*)model;
+                
+                NSMutableArray *salersNameArray = [NSMutableArray array];
+                
+                for (NSDictionary*dic in baseModel.data) {
+                    
+                    AMSales *model = [[AMSales alloc]initWithDictionary:dic error:nil];
+                    
+                    [salersNameArray addObject:model.name];
+                }
+                
+                [subscriber sendNext:salersNameArray];
+                [subscriber sendCompleted];
+            }
+            else {
+                
+                [subscriber sendError:error];
+            }
+            
+        } failure:^(KKBaseModel *model, KKRequestError *error) {
+            
+            [subscriber sendError:error];
+        }];
+        
+        return [RACDisposable disposableWithBlock:^{
+            [self.request1 cancel];
+        }];
+    }];
+    
+    return [signal takeUntil:self.rac_willDeallocSignal];
+}
+//请求管理员列表——获取管理员姓名
+- (RACSignal*)requestAdministratorName {
+    
+     RACSignal *signal = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        
+         self.request2 = [[AMAdministratorListOrSearchRequest alloc]initWithPage:@"0" Size:@"0" Search:nil];
+         
+         [ self.request2 requestWithSuccess:^(KKBaseModel *model, KKRequestError *error) {
+             
+             if ([model isValid]) {
+                 
+                 AMBaseModel *baseModel = (AMBaseModel*)model;
+                 
+                 NSMutableArray *nameArray = [NSMutableArray array];
+                 
+                 for (NSDictionary*dic in baseModel.data) {
+                     
+                     AMAdministrators *model = [[AMAdministrators alloc]initWithDictionary:dic error:nil];
+                     
+                     [nameArray addObject:model.nickname];
+                 }
+                 
+                 [subscriber sendNext:nameArray];
+                 [subscriber sendCompleted];
+             }
+             else {
+                 
+                 [subscriber sendError:error];
+             }
+             
+             NSLog(@"%@",model);
+             
+             
+         } failure:^(KKBaseModel *model, KKRequestError *error) {
+             
+              [subscriber sendError:error];
+         }];
+         
+        return [RACDisposable disposableWithBlock:^{
+            
+            [self.request2 cancel];
+        }];
+    }];
+    
+    return [signal takeUntil:self.rac_willDeallocSignal];
+}
+
 
 @end

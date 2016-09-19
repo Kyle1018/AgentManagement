@@ -34,6 +34,8 @@
 
 - (id)buildModelWithJsonDictionary:(NSDictionary *)dictionary
 {
+    
+    NSLog(@"%@",dictionary) ;
     DDLogDebug(@"%@",dictionary);
     
     

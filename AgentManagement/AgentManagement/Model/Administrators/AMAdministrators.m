@@ -10,4 +10,12 @@
 
 @implementation AMAdministrators
 
++(JSONKeyMapper*)keyMapper
+{
+    return [[JSONKeyMapper alloc] initWithDictionary:@{
+                                                       @"id": @"u_id",
+                                                       }];
+}
+
+
 @end

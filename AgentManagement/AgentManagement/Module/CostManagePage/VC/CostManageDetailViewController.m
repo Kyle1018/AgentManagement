@@ -48,7 +48,7 @@
     
     self.stockPriceLabel.text = self.productInfo.stock_price;
     
-    self.totalLabel.text = [NSString stringWithFormat:@"%d",[self.productInfo.stock_number integerValue]*[self.productInfo.stock_price integerValue]];
+    self.totalLabel.text = [NSString stringWithFormat:@"%ld",[self.productInfo.stock_number integerValue]*[self.productInfo.stock_price integerValue]];
     
     self.priceLabel.text = self.productInfo.price;
     
