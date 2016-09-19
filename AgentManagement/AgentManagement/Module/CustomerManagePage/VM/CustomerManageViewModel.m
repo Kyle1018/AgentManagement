@@ -113,7 +113,7 @@
                     
                     AMSales *model = [[AMSales alloc]initWithDictionary:dic error:nil];
                     
-                    [salersNameArray addObject:model.name];
+                    [salersNameArray addObject:model];
                 }
                 
                 [subscriber sendNext:salersNameArray];
@@ -155,7 +155,7 @@
                      
                      AMAdministrators *model = [[AMAdministrators alloc]initWithDictionary:dic error:nil];
                      
-                     [nameArray addObject:model.nickname];
+                     [nameArray addObject:model];
                  }
                  
                  [subscriber sendNext:nameArray];

@@ -9,11 +9,13 @@
 #import "AddCustomerViewControllerC.h"
 #import "PickerView.h"
 #import "CustomerManageViewModel.h"
+#import "AMSales.h"
+#import "AMAdministrators.h"
 @interface AddCustomerViewControllerC ()<UIPickerViewDelegate,UIPickerViewDataSource>
 @property(nonatomic,strong)PickerView *pickerView;
 @property(nonatomic,strong)CustomerManageViewModel *viewModel;
-@property(nonatomic,strong)NSMutableArray*salersNameArray;
-@property(nonatomic,strong)NSMutableArray *administratorNameArray;
+@property(nonatomic,strong)NSMutableArray*salersArray;
+@property(nonatomic,strong)NSMutableArray *administratorArray;
 @property(nonatomic,assign)NSInteger indexRow;
 @end
 
@@ -33,13 +35,13 @@
     
     [[self.viewModel requstSalersName]subscribeNext:^(NSMutableArray* x) {
         
-        self.salersNameArray = x;
+        self.salersArray = x;
         
     }];
     
     [[self.viewModel requestAdministratorName]subscribeNext:^(NSMutableArray*x) {
         
-        self.administratorNameArray = x;
+        self.administratorArray = x;
     }];
 }
 
@@ -63,15 +65,24 @@
         
         UILabel *label = [tableView viewWithTag:1000+indexPath.row];
 
-        label.text = indexPath.row == 0?[self.salersNameArray objectAtIndex:[self.pickerView.picker selectedRowInComponent:0]]:[self.administratorNameArray objectAtIndex:[self.pickerView.picker selectedRowInComponent:0]];
+        
+//        
+//        label.text = indexPath.row == 0?[self.salersArray objectAtIndex:[self.pickerView.picker selectedRowInComponent:0]]:[self.administratorArray objectAtIndex:[self.pickerView.picker selectedRowInComponent:0]];
         
         if (indexPath.row == 0) {
             
-            [self.addCutomerInfoDic safeSetObject:label.text forKey:@"s_id"];
+            AMSales *sales = [self.salersArray objectAtIndex:[self.pickerView.picker selectedRowInComponent:0]];
+            label.text = sales.name;
+            
+            [self.addCutomerInfoDic safeSetObject:@(sales.s_id) forKey:@"s_id"];
         }
         else {
+            AMAdministrators *administrators = [self.administratorArray objectAtIndex:[self.pickerView.picker selectedRowInComponent:0]];
             
-            [self.addCutomerInfoDic safeSetObject:label.text forKey:@"a_id"];
+            label.text = administrators.nickname;
+            
+            
+            [self.addCutomerInfoDic safeSetObject:@(administrators.a_id) forKey:@"a_id"];
         }
     };
 }
@@ -84,13 +95,28 @@
 
 -(NSInteger) pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
     
-    return _indexRow == 0?self.salersNameArray.count:self.administratorNameArray.count;
+    return _indexRow == 0?self.salersArray.count:self.administratorArray.count;
   
 }
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
     
-    return _indexRow==0?[self.salersNameArray objectAtIndex:row]:[self.administratorNameArray objectAtIndex:row];
+    if (_indexRow == 0) {
+        AMSales *sales = [self.salersArray objectAtIndex:row];
+        
+        return sales.name;
+        
+    }
+    else {
+        
+        AMAdministrators *administrators = [self.administratorArray objectAtIndex:row];
+        
+        return administrators.nickname;
+    }
+    
+    
+//    
+//    return _indexRow==0?[self.salersNameArray objectAtIndex:row]:[self.administratorNameArray objectAtIndex:row];
 }
 
 - (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component {

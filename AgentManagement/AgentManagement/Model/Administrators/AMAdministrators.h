@@ -44,7 +44,7 @@
 
 @property(nonatomic,copy)NSString *email;
 
-@property(nonatomic,assign)NSInteger u_id;//用户id
+@property(nonatomic,assign)NSInteger a_id;//用户id
 
 @property(nonatomic,copy)NSString *img;
 
