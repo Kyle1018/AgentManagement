@@ -91,8 +91,9 @@
                 
             }];
             
+            @weakify(self);
             self.alertVC.tapExitButtonBlock = ^() {
-                
+                @strongify(self);
                 [self.navigationController popViewControllerAnimated:YES];
             };
             
