@@ -108,28 +108,7 @@
 
     }
     
-    else if (indexPath.section == 4+customer.orderArray.count-1) {
-        
-        self.titleLabel.text = @"";
-       
-        self.textView.hidden = self.textField.hidden = YES;
-        
-        self.labelA.hidden = NO;
-        
-        self.labelA.sd_layout.leftSpaceToView (self.contentView,0);
-        
-        self.labelA.text = @"继续添加";
-        
-        self.labelA.textAlignment = NSTextAlignmentCenter;
-        
-        self.labelA.font = [UIFont systemFontOfSize:17.f];
-        
-        self.labelA.textColor = [UIColor colorWithHex:@"9b9b9b"];
-       
-    
-    }//最后一组
-    
-    else if (indexPath.section == 4+customer.orderArray.count-2) {
+    else if (indexPath.section == 3+customer.orderArray.count-1) {
         
         self.titleLabel.text = [titleArray[3]objectAtIndex:indexPath.row];
         

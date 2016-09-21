@@ -22,7 +22,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hbV-16-8Nq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-983" y="-32"/>
+            <point key="canvasLocation" x="-1159" y="-12"/>
         </scene>
         <!--客户管理-->
         <scene sceneID="CZI-tv-RyN">
@@ -203,7 +203,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="flx-OP-UIj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-565.5" y="-11.5"/>
+            <point key="canvasLocation" x="-400" y="-33"/>
         </scene>
         <!--Search Menu View Controller-->
         <scene sceneID="xJJ-7b-93u">
@@ -865,22 +865,34 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="客户详情" id="vAX-qD-V18">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="crX-aq-THB">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="G6e-Pv-ZkC">
-                                <rect key="frame" x="339" y="11" width="20" height="22"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="EditProduct"/>
-                                <connections>
-                                    <action selector="editCutomerAction:" destination="khJ-R1-eN3" eventType="touchUpInside" id="mUg-Mp-yqc"/>
-                                </connections>
-                            </button>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem style="plain" id="crX-aq-THB">
+                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="G6e-Pv-ZkC">
+                                    <rect key="frame" x="339" y="11" width="20" height="22"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <state key="normal" image="EditProduct"/>
+                                    <connections>
+                                        <action selector="editCutomerAction:" destination="khJ-R1-eN3" eventType="touchUpInside" id="mUg-Mp-yqc"/>
+                                    </connections>
+                                </button>
+                            </barButtonItem>
+                            <barButtonItem style="plain" id="QH3-M7-zhP">
+                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="KH3-OH-aVa">
+                                    <rect key="frame" x="291" y="11" width="40" height="22"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <state key="normal" image="Add"/>
+                                    <connections>
+                                        <segue destination="XQg-Lj-VH8" kind="push" identifier="AddCustomerBSegue" id="wDI-CP-rvM"/>
+                                    </connections>
+                                </button>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XVZ-4I-lFf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-531.5" y="-835.5"/>
+            <point key="canvasLocation" x="-904" y="-882"/>
         </scene>
         <!--新增客户-->
         <scene sceneID="di8-RT-jzV">
@@ -1213,4 +1225,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4_7.fullscreen"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="wDI-CP-rvM"/>
+    </inferredMetricsTieBreakers>
 </document>

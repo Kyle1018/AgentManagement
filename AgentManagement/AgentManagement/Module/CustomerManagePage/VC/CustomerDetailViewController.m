@@ -62,7 +62,7 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     
    
-    return  4+self.customerModel.orderArray.count;
+    return  3+self.customerModel.orderArray.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -77,15 +77,11 @@
         return 4;
     }
     
-    else if (section == 4+self.customerModel.orderArray.count-1) {
-        
-        return 1;
-    }
-    else if (section == 4+self.customerModel.orderArray.count-2) {
+    else if (section == 3+self.customerModel.orderArray.count-1) {
         
         return 2;
     }
-    
+  
     else {
         
         return 4;
@@ -177,18 +173,6 @@
 }
 
 #pragma mark - UITextFieldDelegate
-//- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
-//    
-//    [self.view addSubview:self.maskView];
-//    self.maskView.alpha = 0;
-//    
-//    [UIView animateWithDuration:0.3 animations:^{
-//        self.maskView.alpha = 0.3;
-//    }];
-//    
-//    return YES;
-//}
-
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     
 
@@ -196,7 +180,6 @@
     
     return YES;
 }
-
 
 #pragma mark -UITextViewDelegate
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView {
@@ -221,6 +204,36 @@
         return NO;
     }
     return YES;
+}
+
+//进入添加产品页面
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    if([segue.identifier compare:@"AddCustomerBSegue"]==NO) {
+        
+        id page2=segue.destinationViewController;
+        
+
+        NSMutableArray *orderArray = [NSMutableArray array];
+        
+        for (AMOrder *order in self.customerModel.orderArray) {
+            
+            NSDictionary *dic = [order toDictionary];
+            
+            [orderArray addObject:dic];
+        }
+        
+        NSMutableDictionary *customerDic = [NSMutableDictionary dictionaryWithDictionary:[self.customerModel toDictionary]];
+        
+        [customerDic removeObjectForKey:@"orderArray"];
+        
+        [customerDic safeSetObject:orderArray forKey:@"order"];
+        
+        NSLog(@"%@",customerDic);
+        
+       // [page2 setValue:self.productRelatedInformationArray forKey:@"productRelatedInformationArray"];
+    }
+    
 }
 
 @end
