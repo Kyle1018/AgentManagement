@@ -102,14 +102,18 @@
     if (_indexRow == 0) {
         AMSales *sales = [self.salersArray objectAtIndex:row];
         
-        return sales.name;
+        NSString *str = [NSString stringWithFormat:@"%@          %@",sales.name,sales.phone];
+        
+        return str;
         
     }
     else {
         
         AMAdministrators *administrators = [self.administratorArray objectAtIndex:row];
         
-        return administrators.nickname;
+        NSString *str = [NSString stringWithFormat:@"%@          %@",administrators.nickname,administrators.username];
+        
+        return str;
     }
     
     
@@ -124,7 +128,7 @@
 
 - (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component {
     
-    return ScreenWidth/2;
+    return ScreenWidth;
 }
 
 - (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view{
