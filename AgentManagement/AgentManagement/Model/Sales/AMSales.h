@@ -35,7 +35,7 @@
 
 @property(nonatomic,copy)NSString *name;//销售员姓名
 
-@property(nonatomic,assign)NSInteger phone;//手机号码
+@property(nonatomic,copy)NSString* phone;//手机号码
 
 @property(nonatomic,assign)NSInteger u_id;
 @end

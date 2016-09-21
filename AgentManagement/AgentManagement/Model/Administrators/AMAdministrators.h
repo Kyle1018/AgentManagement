@@ -62,7 +62,7 @@
 
 @property(nonatomic,assign)NSInteger updated_at;
 
-@property(nonatomic,assign)NSInteger username;//手机号
+@property(nonatomic,copy)NSString* username;//手机号
 
 
 @end
