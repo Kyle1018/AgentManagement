@@ -29,9 +29,5 @@ typedef void(^TapConfirmBlock)();
 @property (weak, nonatomic) IBOutlet UIView *pickerBGView;
 @property(nonatomic,copy)TapConfirmBlock tapConfirmBlock;
 + (PickerDataView*)showDateAddTo:(UIView*)view;
-- (NSString*)getDateStr:(NSDate*)date;
 
 @end
-//
-//- (NSString*)getDateStr;
-//@end

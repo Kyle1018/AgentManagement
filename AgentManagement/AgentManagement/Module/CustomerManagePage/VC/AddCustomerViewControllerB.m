@@ -139,11 +139,11 @@
         
         _datePicker = [PickerDataView showDateAddTo:self.view];
       
-        _dateStr = [_datePicker getDateStr:_datePicker.datePicker.date];
+        _dateStr = [NSString getDateStr:_datePicker.datePicker.date];
         
         [[_datePicker.datePicker rac_signalForControlEvents:UIControlEventValueChanged]subscribeNext:^(UIDatePicker* x) {
 
-            self.dateStr=[self.datePicker getDateStr:x.date];
+            self.dateStr=[NSString getDateStr:x.date];
             
         }];
         
@@ -156,26 +156,20 @@
             
             label.text =  self.dateStr;
             
+         
+            
             if (label.tag == 2001) {
+
+                NSString *date = [NSString stringWithFormat:@"%@",self.datePicker.datePicker.date];
                 
-               // NSString *timeSp = [NSString stringWithFormat:@"%ld", (long)[self.datePicker.datePicker.date timeIntervalSince1970]];
-               // NSLog(@"timeSp:%@",timeSp); //时间戳的值
-                  NSTimeInterval timeSp = [self.datePicker.datePicker.date timeIntervalSince1970];
-                
-                NSLog(@"%@",self.datePicker.datePicker.date);
-                
-                [self.orderDic safeSetObject:@(timeSp) forKey:@"buy_time"];
+                [self.orderDic safeSetObject:date forKey:@"buy_time"];
                 
             }
             else if (label.tag == 2002) {
                 
-                NSTimeInterval timeSp = [self.datePicker.datePicker.date timeIntervalSince1970];
-              //  NSString *timeSp = [NSString stringWithFormat:@"%ld", (long)[self.datePicker.datePicker.date timeIntervalSince1970]];
-//                NSLog(@"timeSp:%@",timeSp); //时间戳的值
-//                NSLog(@"%@",self.datePicker.datePicker.date);
-
+                NSString *date = [NSString stringWithFormat:@"%@",self.datePicker.datePicker.date];
                 
-                [self.orderDic safeSetObject:@(timeSp) forKey:@"install_time"];
+                [self.orderDic safeSetObject:date forKey:@"install_time"];
             }
             
         };

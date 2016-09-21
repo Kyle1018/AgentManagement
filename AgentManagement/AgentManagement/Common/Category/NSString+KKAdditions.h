@@ -12,4 +12,5 @@
 
 +(NSString*)timeTransformString:(NSString*)time dateFormatter:(NSDateFormatter*)dateFormatter;
 
++ (NSString*)getDateStr:(NSDate*)date;
 @end

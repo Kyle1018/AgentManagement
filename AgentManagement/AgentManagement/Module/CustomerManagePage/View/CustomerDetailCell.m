@@ -13,14 +13,6 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
 
-//    self.textView.backgroundColor=[UIColor redColor];
-//    
-//    self.textField.backgroundColor=[UIColor greenColor];
-//    
-//   // self.labelB.backgroundColor=[UIColor brownColor];
-//    
-//    self.labelA.backgroundColor=[UIColor purpleColor];
-    
     self.titleLabel.sd_layout
     .leftSpaceToView(self.contentView,15)
     .topSpaceToView(self.contentView,10)
@@ -31,19 +23,19 @@
     self.textField.sd_layout
     .leftSpaceToView(self.titleLabel,10)
     .rightSpaceToView(self.contentView,0)
-    .topSpaceToView(self.contentView,10)
+    .topSpaceToView(self.contentView,13)
     .heightIs(19);
     
     self.textView.sd_layout
-    .leftSpaceToView(self.contentView,10)
+    .leftSpaceToView(self.titleLabel,10)
     .rightSpaceToView(self.contentView,0)
-    .topSpaceToView(self.contentView,0)
+    .topSpaceToView(self.contentView,3)
     .bottomSpaceToView(self.contentView,0);
     
     
     self.labelA.sd_layout
     .leftSpaceToView(self.titleLabel,10)
-    .topSpaceToView(self.contentView,10)
+    .topSpaceToView(self.contentView,13)
     .rightSpaceToView(self.contentView,0)
     .heightIs(19);
     
@@ -144,11 +136,20 @@
         }
         else if (indexPath.row == 1) {
             
-            self.labelA.text = order.buy_time;
+            NSString *string = order.buy_time;
+            
+            NSArray *strArr = [string componentsSeparatedByString:@" "];
+            
+            self.labelA.text = strArr[0];
+
         }
         else if (indexPath.row == 2) {
             
-            self.labelA.text = order.install_time;
+            NSString *string = order.install_time;
+            
+            NSArray *strArr = [string componentsSeparatedByString:@" "];
+            
+            self.labelA.text = strArr[0];
             
         }
         else {

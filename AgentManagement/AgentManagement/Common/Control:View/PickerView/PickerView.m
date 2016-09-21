@@ -177,15 +177,6 @@
 
 }
 
-- (NSString*)getDateStr:(NSDate*)date; {
-    
-    NSDateFormatter *pickerFormatter = [[NSDateFormatter alloc]init];
-    [pickerFormatter setDateFormat:@"yyyy年MM月dd日"];
-    
-    NSString *dateStr = [pickerFormatter stringFromDate:date];
-    
-    return dateStr;
-}
 
 @end
 
