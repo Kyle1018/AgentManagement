@@ -63,6 +63,7 @@
 		3422BA5E1D7E5C51003751F1 /* AMProductInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3422BA5D1D7E5C51003751F1 /* AMProductInfo.m */; };
 		3422BA611D7EA33E003751F1 /* AMProductListOrSearchRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3422BA601D7EA33E003751F1 /* AMProductListOrSearchRequest.m */; };
 		344FF63D1D88F9BE009911EB /* LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 344FF63C1D88F9BE009911EB /* LoadingView.m */; };
+		3465671B1D923A13008151A5 /* AMDeleteCustomerRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3465671A1D923A13008151A5 /* AMDeleteCustomerRequest.m */; };
 		34D4BB541D90FFC80077CC94 /* AMOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 34D4BB531D90FFC80077CC94 /* AMOrder.m */; };
 		34D4BB571D9117F70077CC94 /* CustomerDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34D4BB561D9117F70077CC94 /* CustomerDetailCell.m */; };
 		34E333ED1D90EC0700FB29D3 /* AMCustomer.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E333EC1D90EC0700FB29D3 /* AMCustomer.m */; };
@@ -261,6 +262,8 @@
 		3422BA601D7EA33E003751F1 /* AMProductListOrSearchRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMProductListOrSearchRequest.m; sourceTree = "<group>"; };
 		344FF63B1D88F9BE009911EB /* LoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingView.h; sourceTree = "<group>"; };
 		344FF63C1D88F9BE009911EB /* LoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingView.m; sourceTree = "<group>"; };
+		346567191D923A13008151A5 /* AMDeleteCustomerRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMDeleteCustomerRequest.h; sourceTree = "<group>"; };
+		3465671A1D923A13008151A5 /* AMDeleteCustomerRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMDeleteCustomerRequest.m; sourceTree = "<group>"; };
 		34D4BB521D90FFC80077CC94 /* AMOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMOrder.h; sourceTree = "<group>"; };
 		34D4BB531D90FFC80077CC94 /* AMOrder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMOrder.m; sourceTree = "<group>"; };
 		34D4BB551D9117F70077CC94 /* CustomerDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerDetailCell.h; sourceTree = "<group>"; };
@@ -1029,6 +1032,8 @@
 				E24819D41D86FEC700F885EE /* AMCustomerOrSearchRequest.m */,
 				E24819D61D87020900F885EE /* AMAddCustomerRequest.h */,
 				E24819D71D87020900F885EE /* AMAddCustomerRequest.m */,
+				346567191D923A13008151A5 /* AMDeleteCustomerRequest.h */,
+				3465671A1D923A13008151A5 /* AMDeleteCustomerRequest.m */,
 			);
 			path = CustomerManage;
 			sourceTree = "<group>";
@@ -1450,6 +1455,7 @@
 			files = (
 				E2B103C21D8FAFB00011FA8E /* AMAdministratorListOrSearchRequest.m in Sources */,
 				34EB45E41D87C87A00522B22 /* CostManagerListHeaderView.m in Sources */,
+				3465671B1D923A13008151A5 /* AMDeleteCustomerRequest.m in Sources */,
 				E24BF47A1D74706D0054DFDC /* ProductManageTableViewCell.m in Sources */,
 				E2B103C51D8FAFC80011FA8E /* AMSalerListOrSearchRequest.m in Sources */,
 				E2C14F6A1D7A849D00B0B0B2 /* RegexUtils.m in Sources */,

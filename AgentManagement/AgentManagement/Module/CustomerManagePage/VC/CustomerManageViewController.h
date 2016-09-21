@@ -7,9 +7,10 @@
 //
 
 #import "BaseViewController.h"
-
+#import "AMCustomer.h"
 @interface CustomerManageViewController : BaseViewController
 
-//@property(nonatomic,strong)NSMutableArray *administratorsArray;
+@property(nonatomic,strong)AMCustomer *addCustomer;
+
 
 @end

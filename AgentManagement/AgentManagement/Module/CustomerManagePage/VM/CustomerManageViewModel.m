@@ -83,6 +83,8 @@
             
             for (NSDictionary *dic in baseModel.data) {
                 
+                AMCustomer *customerModel = [[AMCustomer alloc]initWithDictionary:dic error:nil];
+                
                 NSArray *array = dic[@"order"];
                 
                 NSMutableArray *orderArray = [NSMutableArray array];
@@ -93,9 +95,7 @@
                     
                     [orderArray addObject:order];
                 }
-                
-                AMCustomer *customerModel = [[AMCustomer alloc]initWithDictionary:dic error:nil];
-                
+
                 customerModel.orderArray = orderArray;
                 
                 [customerArray addObject:customerModel];
@@ -135,10 +135,47 @@
         
         [self.addCustomerRequest requestWithSuccess:^(KKBaseModel *model, KKRequestError *error) {
             
-            NSLog(@"%@",model);
+            AMCustomer *customer = (AMCustomer*)model;
+            
+            if ([customer.resultCode integerValue]== 0) {
+                
+                [subscriber sendNext:customer];
+                [subscriber sendCompleted];
+            }
+            
+            else {
+                
+                [subscriber sendNext:@(NO)];
+                [subscriber sendCompleted];
+            }
+            
             
         } failure:^(KKBaseModel *model, KKRequestError *error) {
             
+            [subscriber sendNext:@(NO)];
+            [subscriber sendCompleted];
+        }];
+        
+        return nil;
+    }];
+}
+
+//删除客户
+- (RACSignal*)requestDeleteCustomer:(NSInteger)c_id {
+    
+    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        
+        self.deleteCustomerRequest = [[AMDeleteCustomerRequest alloc]initWithCustomerID:c_id];
+        
+        [self.deleteCustomerRequest requestWithSuccess:^(KKBaseModel *model, KKRequestError *error) {
+            
+            [subscriber sendNext:@(YES)];
+            [subscriber sendCompleted];
+            
+        } failure:^(KKBaseModel *model, KKRequestError *error) {
+            
+            [subscriber sendNext:@(NO)];
+            [subscriber sendCompleted];
         }];
         
         return nil;

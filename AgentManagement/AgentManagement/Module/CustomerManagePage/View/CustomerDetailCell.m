@@ -13,13 +13,13 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
 
-    self.textView.backgroundColor=[UIColor redColor];
-    
-    self.textField.backgroundColor=[UIColor greenColor];
-    
-    self.labelB.backgroundColor=[UIColor brownColor];
-    
-    self.labelA.backgroundColor=[UIColor purpleColor];
+//    self.textView.backgroundColor=[UIColor redColor];
+//    
+//    self.textField.backgroundColor=[UIColor greenColor];
+//    
+//   // self.labelB.backgroundColor=[UIColor brownColor];
+//    
+//    self.labelA.backgroundColor=[UIColor purpleColor];
     
     self.titleLabel.sd_layout
     .leftSpaceToView(self.contentView,15)
@@ -43,16 +43,9 @@
     
     self.labelA.sd_layout
     .leftSpaceToView(self.titleLabel,10)
-    .rightSpaceToView(self.contentView,0)
     .topSpaceToView(self.contentView,10)
-    .heightIs(19);
-    
-    self.labelB.sd_layout
-    .leftSpaceToView(self.labelA,10)
     .rightSpaceToView(self.contentView,0)
-    .topSpaceToView(self.contentView,10)
     .heightIs(19);
-    
     
 }
 
@@ -70,7 +63,7 @@
         
         self.textField.hidden = indexPath.row==2?YES:NO;
         self.textView.hidden = indexPath.row == 2?NO:YES;
-        self.labelA.hidden = self.labelB.hidden = YES;
+        self.labelA.hidden = YES;
         
         if (indexPath.row == 0) {
             
@@ -92,7 +85,7 @@
         self.textField.hidden = NO;
         self.textView.hidden = YES;
         
-        self.labelA.hidden = self.labelB.hidden = YES;
+        self.labelA.hidden = YES;
         
         if (indexPath.row == 0) {
             
@@ -114,14 +107,36 @@
         }
 
     }
-    else if (indexPath.section == 3+customer.orderArray.count-1) {
+    
+    else if (indexPath.section == 4+customer.orderArray.count-1) {
+        
+        self.titleLabel.text = @"";
+       
+        self.textView.hidden = self.textField.hidden = YES;
+        
+        self.labelA.hidden = NO;
+        
+        self.labelA.sd_layout.leftSpaceToView (self.contentView,0);
+        
+        self.labelA.text = @"继续添加";
+        
+        self.labelA.textAlignment = NSTextAlignmentCenter;
+        
+        self.labelA.font = [UIFont systemFontOfSize:17.f];
+        
+        self.labelA.textColor = [UIColor colorWithHex:@"9b9b9b"];
+       
+    
+    }//最后一组
+    
+    else if (indexPath.section == 4+customer.orderArray.count-2) {
         
         self.titleLabel.text = [titleArray[3]objectAtIndex:indexPath.row];
         
         self.textField.hidden = NO;
         self.textView.hidden = YES;
         
-         self.labelA.hidden = self.labelB.hidden = YES;
+         self.labelA.hidden = YES;
         
         if (indexPath.row == 0) {
             
@@ -134,16 +149,32 @@
         }
 
     }
+    
     else {
       
         self.titleLabel.text = [titleArray[2]objectAtIndex:indexPath.row];
         
         self.textView.hidden=self.textField.hidden = YES;
-        self.labelA.hidden = self.labelB.hidden = NO;
+        self.labelA.hidden = NO;
+        
+        AMOrder *order = customer.orderArray[indexPath.section-2];
         
         if (indexPath.row == 0) {
             
+            self.labelA.text = [NSString stringWithFormat:@"%@   %@",order.brand,order.pmodel];
+        }
+        else if (indexPath.row == 1) {
             
+            self.labelA.text = order.buy_time;
+        }
+        else if (indexPath.row == 2) {
+            
+            self.labelA.text = order.install_time;
+            
+        }
+        else {
+            
+            self.labelA.text = order.cycle;
         }
         
     }

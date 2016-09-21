@@ -38,7 +38,6 @@
                         <subviews>
                             <tableView clipsSubviews="YES" tag="1000" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="none" allowsSelection="NO" rowHeight="41" sectionHeaderHeight="20" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="XeQ-2A-drb">
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                <inset key="scrollIndicatorInsets" minX="0.0" minY="-1" maxX="0.0" maxY="0.0"/>
                                 <color key="separatorColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" placeholderIntrinsicWidth="240" placeholderIntrinsicHeight="50" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProductManageCellId" rowHeight="41" id="uQs-VZ-GAa" customClass="ProductManageTableViewCell">
@@ -260,7 +259,7 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="产品型号" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oXA-Mz-x9H">
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="68" id="2g4-4y-GZS"/>
+                                                        <constraint firstAttribute="width" constant="70" id="Gnu-1f-ggk"/>
                                                         <constraint firstAttribute="height" constant="18" id="roo-Hi-7QQ"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -302,8 +301,8 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="直接饮用" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6wX-G5-Anx">
                                                     <constraints>
+                                                        <constraint firstAttribute="width" constant="70" id="C0i-gm-nsN"/>
                                                         <constraint firstAttribute="height" constant="18" id="kDO-7j-YKm"/>
-                                                        <constraint firstAttribute="width" constant="68" id="oh8-CZ-azc"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -337,7 +336,7 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="分类" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F5c-9H-RAP">
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="34" id="bhR-Zq-ScU"/>
+                                                        <constraint firstAttribute="width" constant="35" id="hx1-Xm-A7E"/>
                                                         <constraint firstAttribute="height" constant="18" id="yK8-XC-We2"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -372,7 +371,7 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="过滤介质" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gww-wc-tyJ">
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="68" id="jkx-Iw-Vyg"/>
+                                                        <constraint firstAttribute="width" constant="70" id="txI-Qu-jel"/>
                                                         <constraint firstAttribute="height" constant="18" id="zvu-6C-IHc"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -407,7 +406,7 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="产品特点" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uEm-qG-uWm">
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="68" id="QsH-nk-lAs"/>
+                                                        <constraint firstAttribute="width" constant="70.5" id="AvY-1P-L8B"/>
                                                         <constraint firstAttribute="height" constant="18" id="ad3-YT-PqT"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -442,7 +441,7 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="摆放位置" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bDA-IT-hgi">
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="68" id="2W3-5K-8bW"/>
+                                                        <constraint firstAttribute="width" constant="70" id="LeI-PQ-sKC"/>
                                                         <constraint firstAttribute="height" constant="18" id="lOF-Zd-Vv8"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -478,7 +477,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="滤芯个数" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6d5-hh-PM0">
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="18" id="77N-Q9-eff"/>
-                                                        <constraint firstAttribute="width" constant="68" id="ZDe-KL-iRq"/>
+                                                        <constraint firstAttribute="width" constant="70" id="okl-UL-2td"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -512,8 +511,8 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="适用地区" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="voG-GF-L4a">
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="68" id="eJ6-gF-cEE"/>
                                                         <constraint firstAttribute="height" constant="18" id="fcz-a5-0XT"/>
+                                                        <constraint firstAttribute="width" constant="70" id="uzM-fQ-Qdb"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -548,7 +547,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="零售价格" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vy0-lm-E0k">
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="18" id="3zf-Yj-klq"/>
-                                                        <constraint firstAttribute="width" constant="68" id="PVB-QX-zE0"/>
+                                                        <constraint firstAttribute="width" constant="70" id="hqU-vP-tng"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -585,7 +584,7 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="换滤芯周期" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jZX-X3-v07">
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="85" id="8sB-AC-VNb"/>
+                                                        <constraint firstAttribute="width" constant="87" id="WrX-V0-9ta"/>
                                                         <constraint firstAttribute="height" constant="18" id="tdl-Jj-Qzs"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -624,7 +623,7 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="进货价格" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hn7-wQ-yV8">
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="68" id="7og-pi-ttz"/>
+                                                        <constraint firstAttribute="width" constant="70" id="9Zc-Vy-01f"/>
                                                         <constraint firstAttribute="height" constant="18" id="Y8h-nO-3qm"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -663,7 +662,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="进货数量" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sm2-Uy-Bah">
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="18" id="1FO-yW-PxW"/>
-                                                        <constraint firstAttribute="width" constant="68" id="yTV-nc-f0t"/>
+                                                        <constraint firstAttribute="width" constant="70" id="bbe-3d-JG0"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1439,7 +1438,8 @@
                                             <frame key="frameInset" width="342" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="适用地区" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rIn-xp-zbM">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="适用地区" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rIn-xp-zbM">
+                                                    <frame key="frameInset" width="1000" height="1000"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="18" id="4HM-qK-2Lf"/>
                                                         <constraint firstAttribute="width" constant="68" id="lWR-eF-YmV"/>

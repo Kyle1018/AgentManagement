@@ -12,6 +12,7 @@
 #import "AMSales.h"
 #import "AMAdministrators.h"
 #import "CustomerManageViewController.h"
+#import "AMCustomer.h"
 @interface AddCustomerViewControllerC ()<UIPickerViewDelegate,UIPickerViewDataSource>
 @property(nonatomic,strong)PickerView *pickerView;
 @property(nonatomic,strong)CustomerManageViewModel *viewModel;
@@ -66,10 +67,6 @@
         
         UILabel *label = [tableView viewWithTag:1000+indexPath.row];
 
-        
-//        
-//        label.text = indexPath.row == 0?[self.salersArray objectAtIndex:[self.pickerView.picker selectedRowInComponent:0]]:[self.administratorArray objectAtIndex:[self.pickerView.picker selectedRowInComponent:0]];
-        
         if (indexPath.row == 0) {
             
             AMSales *sales = [self.salersArray objectAtIndex:[self.pickerView.picker selectedRowInComponent:0]];
@@ -147,21 +144,29 @@
 - (IBAction)saveAction:(UIButton *)sender {
     
     //添加客户请求
-    [[self.viewModel requstAddCustomerData:self.addCutomerInfoDic]subscribeNext:^(id x) {
+    [[[self.viewModel requstAddCustomerData:self.addCutomerInfoDic]filter:^BOOL(id value) {
         
+        if ([value isKindOfClass:[AMCustomer class]]) {
+            
+            return YES;
+        }
+        else {
+            
+            [MBProgressHUD showText:@"添加用户失败"];
+             return NO;
+        }
+     
         
-//        CustomerManageViewController *customerManageVC = (CustomerManageViewController*)self.navigationController.topViewController;
-//        
-//        for (AMAdministrators *administrators in self.administratorArray) {
-//            
-//            
-//        }
-//        
-//        customerManageVC.administratorsArray = self.administratorArray;
+    }]subscribeNext:^(AMCustomer* x) {
         
-        [self.navigationController popToRootViewControllerAnimated:YES];
-
+        CustomerManageViewController *customerManageVC = (CustomerManageViewController*)[self.navigationController.viewControllers objectAtIndex:0];
+        
+        customerManageVC.addCustomer = x;
+        
+         [self.navigationController popToRootViewControllerAnimated:YES];
     }];
+   
+
     
 }
 

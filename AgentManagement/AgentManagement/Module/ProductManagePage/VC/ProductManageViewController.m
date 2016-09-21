@@ -146,11 +146,9 @@
 
 - (void)pullRefresh {
     
-    WeakObj(self);
-    
     self.formTabelView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         
-        [[selfWeak.viewModel requestProductListDataOrSearchProductDataWithPage:0 Size:0 Search:nil]
+        [[self.viewModel requestProductListDataOrSearchProductDataWithPage:0 Size:0 Search:nil]
          
          subscribeNext:^(NSNumber* x) {
              
@@ -160,10 +158,10 @@
              }
              else {
                  
-                 [selfWeak.formTabelView reloadData];
+                 [self.formTabelView reloadData];
              }
              
-             [selfWeak.formTabelView.mj_header endRefreshing];
+             [self.formTabelView.mj_header endRefreshing];
              
          }];
 

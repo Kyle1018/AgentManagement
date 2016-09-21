@@ -42,7 +42,7 @@
 
 @property(nonatomic,assign)NSInteger hardness;//'硬度',
 
-@property(nonatomic,assign)NSInteger c_id;//客户id
+@property(nonatomic,assign)NSInteger cutomer_id;//客户id
 
 @property(nonatomic,copy)NSString *name;//客户姓名
 

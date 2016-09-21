@@ -16,7 +16,7 @@
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 
 @property (weak, nonatomic) IBOutlet UILabel *labelA;
-@property (weak, nonatomic) IBOutlet UILabel *labelB;
+//@property (weak, nonatomic) IBOutlet UILabel *labelB;
 
 - (void)setDataWithTitle:(NSArray*)titleArray customer:(AMCustomer*)customer indexPaht:(NSIndexPath*)indexPath;
 

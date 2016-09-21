@@ -94,8 +94,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    __weak typeof(self) weakSelf = self;
-    
+  
     if (indexPath.row == 0 || indexPath.row == 3) {
         
         _pickerView = [PickerView showAddTo:self.view];
@@ -103,28 +102,32 @@
         _pickerView.picker.dataSource = self;
         _indexRow = indexPath.row;
         
+        @weakify(self);
+        
         _pickerView.tapConfirmBlock = ^() {
             
-            for (int i =0; i<[weakSelf.pickerView.picker numberOfComponents]; i++) {
+            @strongify(self)
+            
+            for (int i =0; i<[self.pickerView.picker numberOfComponents]; i++) {
                 
                 UILabel *label = [tableView viewWithTag:1000+indexPath.row+i];
                 
-                NSString *str = [[weakSelf.pickerDataArray[indexPath.row]objectAtIndex:i]objectAtIndex:[weakSelf.pickerView.picker selectedRowInComponent:i]];
+                NSString *str = [[self.pickerDataArray[indexPath.row]objectAtIndex:i]objectAtIndex:[self.pickerView.picker selectedRowInComponent:i]];
                 label.text = str;
                 
                 
                 if (label.tag == 1000) {
                     
-                    [weakSelf.orderDic safeSetObject:str forKey:@"brand"];
+                    [self.orderDic safeSetObject:str forKey:@"brand"];
 
                 }
                 else if (label.tag == 1001) {
                     
-                    [weakSelf.orderDic safeSetObject:str forKey:@"pmodel"];
+                    [self.orderDic safeSetObject:str forKey:@"pmodel"];
                 }
                 else if (label.tag == 1003) {
                     
-                    [weakSelf.orderDic safeSetObject:str forKey:@"cycle"];
+                    [self.orderDic safeSetObject:str forKey:@"cycle"];
                     
                 }
             }
@@ -140,24 +143,39 @@
         
         [[_datePicker.datePicker rac_signalForControlEvents:UIControlEventValueChanged]subscribeNext:^(UIDatePicker* x) {
 
-            weakSelf.dateStr=[weakSelf.datePicker getDateStr:x.date];
+            self.dateStr=[self.datePicker getDateStr:x.date];
             
         }];
         
+        @weakify(self);
         _datePicker.tapConfirmBlock = ^() {
+            
+            @strongify(self);
             
             UILabel *label = [tableView viewWithTag:2000+indexPath.row];
             
-            label.text =  weakSelf.dateStr;
+            label.text =  self.dateStr;
             
             if (label.tag == 2001) {
                 
-                [weakSelf.orderDic safeSetObject:weakSelf.dateStr forKey:@"buy_time"];
+               // NSString *timeSp = [NSString stringWithFormat:@"%ld", (long)[self.datePicker.datePicker.date timeIntervalSince1970]];
+               // NSLog(@"timeSp:%@",timeSp); //时间戳的值
+                  NSTimeInterval timeSp = [self.datePicker.datePicker.date timeIntervalSince1970];
+                
+                NSLog(@"%@",self.datePicker.datePicker.date);
+                
+                [self.orderDic safeSetObject:@(timeSp) forKey:@"buy_time"];
                 
             }
             else if (label.tag == 2002) {
                 
-                [weakSelf.orderDic safeSetObject:weakSelf.dateStr forKey:@"install_time"];
+                NSTimeInterval timeSp = [self.datePicker.datePicker.date timeIntervalSince1970];
+              //  NSString *timeSp = [NSString stringWithFormat:@"%ld", (long)[self.datePicker.datePicker.date timeIntervalSince1970]];
+//                NSLog(@"timeSp:%@",timeSp); //时间戳的值
+//                NSLog(@"%@",self.datePicker.datePicker.date);
+
+                
+                [self.orderDic safeSetObject:@(timeSp) forKey:@"install_time"];
             }
             
         };
@@ -247,12 +265,6 @@
          */
         
         [self.orderArray addObject:self.orderDic];
-        
-        NSDictionary *dic = @{@"brand":@"美的",@"buy_time":@"2016年09月20日",@"cycle":@"2个月",@"install_time":@"2016年09月23日",@"pmodel":@"ff"};
-        
-        [self.orderArray addObject:self.orderDic];
-        
-        [self.orderArray addObject:dic];
         
         [self.addCutomerInfoDic safeSetObject:self.orderArray forKey:@"order"];
         

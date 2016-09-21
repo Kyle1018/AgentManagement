@@ -8,6 +8,8 @@
 #import "CustomerDetailViewController.h"
 #import "AlertController.h"
 #import "CustomerDetailCell.h"
+#import "CustomerManageViewModel.h"
+
 @interface CustomerDetailViewController ()
 
 @property(nonatomic,strong)AlertController *alertVC;
@@ -17,6 +19,8 @@
 @property(nonatomic,strong)NSArray *titleArray;
 
 @property(nonatomic,assign)BOOL isTapEditing;
+
+@property(nonatomic,strong)CustomerManageViewModel *viewModel;
 
 //@property(nonatomic,strong)NSMutableSet *indexPathSet;
 
@@ -34,6 +38,7 @@
     
     _titleArray = @[@[@"客户姓名:",@"手机号:",@"客户地址:"],@[@"TDS值",@"PH值",@"硬度",@"余氯值"],@[@"购买品牌:",@"购买时间:",@"安装时间:",@"换芯周期:"],@[@"管理员:",@"管理员手机号:"]];
     
+    _viewModel = [[CustomerManageViewModel alloc]init];
  
 }
 
@@ -57,22 +62,26 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     
    
-    return  3+self.customerModel.orderArray.count;;
+    return  4+self.customerModel.orderArray.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    if (section == 0) {
+    if (section == 0) {//第一组
         
         return 3;
     }
     
-    else if (section == 1) {
+    else if (section == 1) {//第二组
         
         return 4;
     }
     
-    else if (section == 3+self.customerModel.orderArray.count-1) {
+    else if (section == 4+self.customerModel.orderArray.count-1) {
+        
+        return 1;
+    }
+    else if (section == 4+self.customerModel.orderArray.count-2) {
         
         return 2;
     }
@@ -132,15 +141,30 @@
             DDLogDebug(@"点击删除客户");
             self.alertVC = [AlertController alertControllerWithTitle:@"确认删除" message:nil preferredStyle:UIAlertControllerStyleAlert];
             self.alertVC.alertOptionName = @[@"确定",@"取消"];
-            [self presentViewController: self.alertVC animated: YES completion:^{
-                
-                
-            }];
+            [self presentViewController: self.alertVC animated: YES completion:nil];
             
             @weakify(self);
+            //点击了确定删除
             self.alertVC.tapExitButtonBlock = ^() {
                 @strongify(self);
-                [self.navigationController popViewControllerAnimated:YES];
+                
+                //删除请求
+                
+                NSInteger customer_id = self.customerModel.cutomer_id;
+                
+               [[self.viewModel requestDeleteCustomer:customer_id]subscribeNext:^(id x) {
+                   
+                   if (self.tapDeleteCustomerBlock) {
+
+                       self.tapDeleteCustomerBlock(customer_id);
+                   }
+
+                  [self.navigationController popViewControllerAnimated:YES];
+                   
+               }];
+                
+                
+               
             };
             
         }

@@ -11,6 +11,7 @@
 #import "AMSalerListOrSearchRequest.h"
 #import "AMAdministratorListOrSearchRequest.h"
 #import "AMCustomerOrSearchRequest.h"
+#import "AMDeleteCustomerRequest.h"
 @interface CustomerManageViewModel : NSObject
 
 @property(nonatomic,strong)NSArray *areaArray;
@@ -23,6 +24,8 @@
 
 @property(nonatomic,strong)AMCustomerOrSearchRequest *customerOrSearchRequest;
 
+@property(nonatomic,strong)AMDeleteCustomerRequest *deleteCustomerRequest;
+
 @property(nonatomic,strong)NSMutableArray *customerModelArray;
 //获取地区数据
 - (RACSignal*)requestAreaListData:(NSInteger)index lIndex:(NSInteger)lIndex;
@@ -34,6 +37,8 @@
 //添加客户
 - (RACSignal*)requstAddCustomerData:(NSDictionary*)paramt;
 
+//删除客户
+- (RACSignal*)requestDeleteCustomer:(NSInteger)c_id;
 
 //请求销售员列表——获取销售员的姓名
 - (RACSignal*)requstSalersList;
