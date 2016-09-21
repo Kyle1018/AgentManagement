@@ -11,6 +11,7 @@
 #import "CustomerManageViewModel.h"
 #import "AMSales.h"
 #import "AMAdministrators.h"
+#import "CustomerManageViewController.h"
 @interface AddCustomerViewControllerC ()<UIPickerViewDelegate,UIPickerViewDataSource>
 @property(nonatomic,strong)PickerView *pickerView;
 @property(nonatomic,strong)CustomerManageViewModel *viewModel;
@@ -33,13 +34,13 @@
     
     DDLogDebug(@"%@",self.addCutomerInfoDic);
     
-    [[self.viewModel requstSalersName]subscribeNext:^(NSMutableArray* x) {
+    [[self.viewModel requstSalersList]subscribeNext:^(NSMutableArray* x) {
         
         self.salersArray = x;
         
     }];
     
-    [[self.viewModel requestAdministratorName]subscribeNext:^(NSMutableArray*x) {
+    [[self.viewModel requestAdministratorList]subscribeNext:^(NSMutableArray*x) {
         
         self.administratorArray = x;
     }];
@@ -149,6 +150,17 @@
     [[self.viewModel requstAddCustomerData:self.addCutomerInfoDic]subscribeNext:^(id x) {
         
         
+//        CustomerManageViewController *customerManageVC = (CustomerManageViewController*)self.navigationController.topViewController;
+//        
+//        for (AMAdministrators *administrators in self.administratorArray) {
+//            
+//            
+//        }
+//        
+//        customerManageVC.administratorsArray = self.administratorArray;
+        
+        [self.navigationController popToRootViewControllerAnimated:YES];
+
     }];
     
 }

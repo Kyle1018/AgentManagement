@@ -63,6 +63,9 @@
 		3422BA5E1D7E5C51003751F1 /* AMProductInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3422BA5D1D7E5C51003751F1 /* AMProductInfo.m */; };
 		3422BA611D7EA33E003751F1 /* AMProductListOrSearchRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3422BA601D7EA33E003751F1 /* AMProductListOrSearchRequest.m */; };
 		344FF63D1D88F9BE009911EB /* LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 344FF63C1D88F9BE009911EB /* LoadingView.m */; };
+		34D4BB541D90FFC80077CC94 /* AMOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 34D4BB531D90FFC80077CC94 /* AMOrder.m */; };
+		34D4BB571D9117F70077CC94 /* CustomerDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34D4BB561D9117F70077CC94 /* CustomerDetailCell.m */; };
+		34E333ED1D90EC0700FB29D3 /* AMCustomer.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E333EC1D90EC0700FB29D3 /* AMCustomer.m */; };
 		34EB45E41D87C87A00522B22 /* CostManagerListHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EB45E31D87C87A00522B22 /* CostManagerListHeaderView.m */; };
 		34EB45E61D87C88A00522B22 /* CostManagerListHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34EB45E51D87C88A00522B22 /* CostManagerListHeaderView.xib */; };
 		34EE98211D76B6AE0040C997 /* AlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EE981F1D76B6AE0040C997 /* AlertController.m */; };
@@ -258,6 +261,12 @@
 		3422BA601D7EA33E003751F1 /* AMProductListOrSearchRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMProductListOrSearchRequest.m; sourceTree = "<group>"; };
 		344FF63B1D88F9BE009911EB /* LoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingView.h; sourceTree = "<group>"; };
 		344FF63C1D88F9BE009911EB /* LoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingView.m; sourceTree = "<group>"; };
+		34D4BB521D90FFC80077CC94 /* AMOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMOrder.h; sourceTree = "<group>"; };
+		34D4BB531D90FFC80077CC94 /* AMOrder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMOrder.m; sourceTree = "<group>"; };
+		34D4BB551D9117F70077CC94 /* CustomerDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerDetailCell.h; sourceTree = "<group>"; };
+		34D4BB561D9117F70077CC94 /* CustomerDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerDetailCell.m; sourceTree = "<group>"; };
+		34E333EB1D90EC0700FB29D3 /* AMCustomer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMCustomer.h; sourceTree = "<group>"; };
+		34E333EC1D90EC0700FB29D3 /* AMCustomer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMCustomer.m; sourceTree = "<group>"; };
 		34EB45E21D87C87A00522B22 /* CostManagerListHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CostManagerListHeaderView.h; sourceTree = "<group>"; };
 		34EB45E31D87C87A00522B22 /* CostManagerListHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CostManagerListHeaderView.m; sourceTree = "<group>"; };
 		34EB45E51D87C88A00522B22 /* CostManagerListHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CostManagerListHeaderView.xib; sourceTree = "<group>"; };
@@ -567,6 +576,7 @@
 		27CA01351D6B1167009F9A25 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				34E333E91D90EBC900FB29D3 /* CustomerManage */,
 				E224EB4F1D8FB7FF0046D4D8 /* Sales */,
 				E224EB4E1D8FB7E90046D4D8 /* Administrators */,
 				E29A7B901D7C442000826744 /* User */,
@@ -781,6 +791,25 @@
 				344FF63C1D88F9BE009911EB /* LoadingView.m */,
 			);
 			path = LoadingView;
+			sourceTree = "<group>";
+		};
+		34E333E91D90EBC900FB29D3 /* CustomerManage */ = {
+			isa = PBXGroup;
+			children = (
+				34E333EA1D90EBE700FB29D3 /* Customer */,
+			);
+			path = CustomerManage;
+			sourceTree = "<group>";
+		};
+		34E333EA1D90EBE700FB29D3 /* Customer */ = {
+			isa = PBXGroup;
+			children = (
+				34E333EB1D90EC0700FB29D3 /* AMCustomer.h */,
+				34E333EC1D90EC0700FB29D3 /* AMCustomer.m */,
+				34D4BB521D90FFC80077CC94 /* AMOrder.h */,
+				34D4BB531D90FFC80077CC94 /* AMOrder.m */,
+			);
+			path = Customer;
 			sourceTree = "<group>";
 		};
 		34EE98171D76B62E0040C997 /* Control:View */ = {
@@ -1048,6 +1077,8 @@
 			children = (
 				E24BF4841D75DDFF0054DFDC /* CustomerManageCell.h */,
 				E24BF4851D75DDFF0054DFDC /* CustomerManageCell.m */,
+				34D4BB551D9117F70077CC94 /* CustomerDetailCell.h */,
+				34D4BB561D9117F70077CC94 /* CustomerDetailCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1459,6 +1490,7 @@
 				E21947591D786F78001C5E5F /* SalerManageCell.m in Sources */,
 				E244F1571D8D072A003BA93B /* PNLineChart.m in Sources */,
 				E2C14FBB1D7B0A1B00B0B0B2 /* IdentifyCodeButton.m in Sources */,
+				34D4BB541D90FFC80077CC94 /* AMOrder.m in Sources */,
 				275F328D1D717B210033C8FF /* ASIDataDecompressor.m in Sources */,
 				E244F1591D8D072A003BA93B /* PNLineChartDataItem.m in Sources */,
 				275F32BF1D71924B0033C8FF /* AMBaseRequest.m in Sources */,
@@ -1516,6 +1548,7 @@
 				275F32911D717B210033C8FF /* ASIInputStream.m in Sources */,
 				E24BF4631D7414B60054DFDC /* ProductManageViewModel.m in Sources */,
 				27CA01331D6B10E4009F9A25 /* UIView+KKAdditions.m in Sources */,
+				34D4BB571D9117F70077CC94 /* CustomerDetailCell.m in Sources */,
 				275F328E1D717B210033C8FF /* ASIDownloadCache.m in Sources */,
 				E244F1541D8D072A003BA93B /* PNChartLabel.m in Sources */,
 				E2C14FB81D7B090200B0B0B2 /* TimerCountDownManager.m in Sources */,
@@ -1532,6 +1565,7 @@
 				E244F1601D8D077B003BA93B /* DataAnalysisCell.m in Sources */,
 				275F32981D717B210033C8FF /* ASICloudFilesObject.m in Sources */,
 				275F329B1D717B210033C8FF /* ASIS3Bucket.m in Sources */,
+				34E333ED1D90EC0700FB29D3 /* AMCustomer.m in Sources */,
 				275F329F1D717B210033C8FF /* ASIS3Request.m in Sources */,
 				34EE98251D76BAF90040C997 /* CSearchMenuViewController.m in Sources */,
 			);

@@ -10,4 +10,6 @@
 
 @interface CustomerManageViewController : BaseViewController
 
+//@property(nonatomic,strong)NSMutableArray *administratorsArray;
+
 @end

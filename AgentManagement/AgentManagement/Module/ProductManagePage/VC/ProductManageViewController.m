@@ -61,32 +61,35 @@
 #pragma mark - Data
 - (void)requestListData {
   
-    WeakObj(self);
-    
     //请求产品列表数据
     [[self.viewModel requestProductListDataOrSearchProductDataWithPage:0 Size:0 Search:self.selectedOptionDic] subscribeNext:^(NSNumber* value) {
         
         if ([value integerValue]==3) {
             
-            selfWeak.loadingView =[LoadingView showRetryAddToView:self.view];
-            selfWeak.formTabelView.hidden = YES;
-            selfWeak.loadingView.tapRefreshButtonBlcok = ^() {
+            self.loadingView =[LoadingView showRetryAddToView:self.view];
+            self.formTabelView.hidden = YES;
+            
+            @weakify(self);
+            
+            self.loadingView.tapRefreshButtonBlcok = ^() {
+                
+                @strongify(self);
                 
                 //再次请求数据
-                [selfWeak requestListData];
+                [self requestListData];
             };
         }
         else if ([value integerValue]==2) {
             
             [LoadingView showNoDataAddToView:self.view];
-            selfWeak.formTabelView.hidden = YES;
+            self.formTabelView.hidden = YES;
             
         }
         else {
             
             [LoadingView hideLoadingViewRemoveView:self.view];
-            selfWeak.formTabelView.hidden = NO;
-            [selfWeak.formTabelView reloadData];
+            self.formTabelView.hidden = NO;
+            [self.formTabelView reloadData];
         }
     }];
         

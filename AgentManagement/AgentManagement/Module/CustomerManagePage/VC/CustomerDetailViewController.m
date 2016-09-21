@@ -7,12 +7,18 @@
 
 #import "CustomerDetailViewController.h"
 #import "AlertController.h"
-
+#import "CustomerDetailCell.h"
 @interface CustomerDetailViewController ()
 
 @property(nonatomic,strong)AlertController *alertVC;
 
 @property(nonatomic,strong)UIView *maskView;
+
+@property(nonatomic,strong)NSArray *titleArray;
+
+@property(nonatomic,assign)BOOL isTapEditing;
+
+//@property(nonatomic,strong)NSMutableSet *indexPathSet;
 
 @end
 
@@ -21,41 +27,82 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    NSLog(@"%@",self.customerModel);
     // [self createMaskView];
+    
+    //_indexPathSet = [NSMutableSet set];
+    
+    _titleArray = @[@[@"客户姓名:",@"手机号:",@"客户地址:"],@[@"TDS值",@"PH值",@"硬度",@"余氯值"],@[@"购买品牌:",@"购买时间:",@"安装时间:",@"换芯周期:"],@[@"管理员:",@"管理员手机号:"]];
+    
+ 
 }
 
-//- (void)createMaskView {
-//    
-//    self.maskView = [[UIView alloc] initWithFrame:ScreenFrame];
-//    self.maskView.backgroundColor = [UIColor blackColor];
-//    self.maskView.alpha = 0;
-//    [self.maskView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideMyPicker)]];
-//}
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    
+    return 10;
+}
 
-//- (void)hideMyPicker {
-//    
-//    UITextField *cutomerNameTextField = [self.tableView viewWithTag:1000];
-//    
-//    UITextField*phoneNumberTextField = [self.view viewWithTag:1001];
-//    
-//    [UIView animateWithDuration:0.3 animations:^{
-//        
-//        if ([cutomerNameTextField isFirstResponder]) {
-//            
-//            [cutomerNameTextField resignFirstResponder];
-//        }
-//        else if ([phoneNumberTextField isFirstResponder]) {
-//            
-//            [phoneNumberTextField resignFirstResponder];
-//        }
-//        self.maskView.alpha = 0;
-//        
-//    } completion:^(BOOL finished) {
-//        
-//        [self.maskView removeFromSuperview];
-//        
-//    }];
-//}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (indexPath.section == 0 && indexPath.row == 2) {
+        
+        return 80;
+    }
+    else {
+        
+        return 44;
+    }
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    
+   
+    return  3+self.customerModel.orderArray.count;;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
+    if (section == 0) {
+        
+        return 3;
+    }
+    
+    else if (section == 1) {
+        
+        return 4;
+    }
+    
+    else if (section == 3+self.customerModel.orderArray.count-1) {
+        
+        return 2;
+    }
+    
+    else {
+        
+        return 4;
+    }
+
+}
+
+- (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    static NSString *cellId = @"cutomerDetialCellID";
+    
+    CustomerDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+    
+    if (!cell) {
+        
+        cell= [[CustomerDetailCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
+    }
+
+    [cell setDataWithTitle:_titleArray customer:self.customerModel indexPaht:indexPath];
+  
+    cell.textView.editable = cell.textField.enabled = self.tableView.allowsSelection = self.isTapEditing==YES?YES:NO;
+    
+    return cell;
+   
+}
+
 
 #pragma mark - Action
 //编辑菜单
@@ -72,13 +119,12 @@
         if (index == 0) {
             
             DDLogDebug(@"点击了编辑客户");
-            UITextField *customerName=[self.tableView viewWithTag:1000];
-            UITextField *phoneNumber = [self.tableView viewWithTag:1001];
+
+            self.isTapEditing = YES;
             
-            customerName.enabled = YES;
-            phoneNumber.enabled = YES;
+            [self.tableView reloadData];
             
-            [customerName becomeFirstResponder];
+            
             
         }
         else {
@@ -121,26 +167,35 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     
-    if (textField.tag == 1000) {
-        
-    }
+
+    [textField resignFirstResponder];
     
-    else if (textField.tag == 1001) {
-        
-    }
+    return YES;
+}
+
+
+#pragma mark -UITextViewDelegate
+- (BOOL)textViewShouldBeginEditing:(UITextView *)textView {
     
-//    [UIView animateWithDuration:0.3 animations:^{
+//    UITextView *input = [self.view viewWithTag:textView.tag];
+//    __weak typeof(self) weakSelf = self;
+//    
+//    [[input rac_textSignal]subscribeNext:^(id x) {
 //        
-//        [textField resignFirstResponder];
+//       // [weakSelf.addCutomerInfoDic safeSetObject:x forKey:@"address"];
 //        
-//        self.maskView.alpha = 0;
-//        
-//    } completion:^(BOOL finished) {
-//        
-//        [self.maskView removeFromSuperview];
-//        
+//        //_textTag = textView.tag;
 //    }];
 //    
+    return YES;
+}
+
+-(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+    if ([text isEqualToString:@"\n"]) {
+        [textView resignFirstResponder];
+        return NO;
+    }
     return YES;
 }
 

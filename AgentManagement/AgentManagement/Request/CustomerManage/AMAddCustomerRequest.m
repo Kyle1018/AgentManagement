@@ -7,7 +7,7 @@
 //
 
 #import "AMAddCustomerRequest.h"
-
+#import "AMCustomer.h"
 @implementation AMAddCustomerRequest
 
 
@@ -35,12 +35,10 @@
 - (id)buildModelWithJsonDictionary:(NSDictionary *)dictionary
 {
     
-    NSLog(@"%@",dictionary) ;
+    
     DDLogDebug(@"%@",dictionary);
     
-    
-    return nil;
-   // return [[AMProductInfo alloc]initWithDictionary:dictionary error:nil];
+    return [[AMCustomer alloc]initWithDictionary:dictionary error:nil];
     
 }
 

@@ -237,7 +237,22 @@
         
         id page2=segue.destinationViewController;
         
+        /*
+         brand = ".bobnonl";
+         "buy_time" = "2016\U5e7409\U670820\U65e5";
+         cycle = "1\U4e2a\U6708";
+         "install_time" = "2016\U5e7409\U670820\U65e5";
+         pmodel = jvjvbk;
+         }
+         */
+        
         [self.orderArray addObject:self.orderDic];
+        
+        NSDictionary *dic = @{@"brand":@"美的",@"buy_time":@"2016年09月20日",@"cycle":@"2个月",@"install_time":@"2016年09月23日",@"pmodel":@"ff"};
+        
+        [self.orderArray addObject:self.orderDic];
+        
+        [self.orderArray addObject:dic];
         
         [self.addCutomerInfoDic safeSetObject:self.orderArray forKey:@"order"];
         

@@ -10,6 +10,8 @@
 #import "AMProductAndModel.h"
 #import "AMAdministrators.h"
 #import "AMSales.h"
+#import "AMCustomer.h"
+#import "AMOrder.h"
 @implementation CustomerManageViewModel
 
 - (id)init {
@@ -71,11 +73,60 @@
     
     return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
        
+        self.customerOrSearchRequest = [[AMCustomerOrSearchRequest alloc]initWithPage:page Size:size Search:searchDic];
+        
+        [self.customerOrSearchRequest requestWithSuccess:^(KKBaseModel *model, KKRequestError *error) {
+            
+            AMBaseModel *baseModel = (AMBaseModel*)model;
+            
+            NSMutableArray *customerArray = [NSMutableArray array];
+            
+            for (NSDictionary *dic in baseModel.data) {
+                
+                NSArray *array = dic[@"order"];
+                
+                NSMutableArray *orderArray = [NSMutableArray array];
+                
+                for (NSDictionary *dicc in array) {
+                    
+                    AMOrder *order = [[AMOrder alloc]initWithDictionary:dicc error:nil];
+                    
+                    [orderArray addObject:order];
+                }
+                
+                AMCustomer *customerModel = [[AMCustomer alloc]initWithDictionary:dic error:nil];
+                
+                customerModel.orderArray = orderArray;
+                
+                [customerArray addObject:customerModel];
+                
+            }
+            self.customerModelArray = customerArray;
+            
+            if (self.customerModelArray.count > 0) {
+                
+                [subscriber sendNext:@(1)];
+                [subscriber sendCompleted];
+            }
+            
+            else {
+                
+                [subscriber sendNext:@(2)];
+                [subscriber sendCompleted];
+            }
+            
+            
+        } failure:^(KKBaseModel *model, KKRequestError *error) {
+            
+            [subscriber sendNext:@(3)];
+            [subscriber sendCompleted];
+        }];
         
         return nil;
     }];
 }
 
+//添加客户请求
 - (RACSignal*)requstAddCustomerData:(NSDictionary*)paramt {
     
     return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
@@ -84,6 +135,7 @@
         
         [self.addCustomerRequest requestWithSuccess:^(KKBaseModel *model, KKRequestError *error) {
             
+            NSLog(@"%@",model);
             
         } failure:^(KKBaseModel *model, KKRequestError *error) {
             
@@ -93,9 +145,8 @@
     }];
 }
 
-
-//请求销售员列表——获取销售员的姓名
-- (RACSignal*)requstSalersName {
+//请求销售员列表
+- (RACSignal*)requstSalersList {
     
     RACSignal *signal = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
        
@@ -136,8 +187,9 @@
     
     return [signal takeUntil:self.rac_willDeallocSignal];
 }
-//请求管理员列表——获取管理员姓名
-- (RACSignal*)requestAdministratorName {
+
+//请求管理员列表
+- (RACSignal*)requestAdministratorList {
     
      RACSignal *signal = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
         

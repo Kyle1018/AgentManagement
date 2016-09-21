@@ -7,7 +7,9 @@
 //
 
 #import "BaseTableViewController.h"
-
+#import "AMCustomer.h"
 @interface CustomerDetailViewController : BaseTableViewController
+
+@property(nonatomic,strong)AMCustomer *customerModel;
 
 @end
