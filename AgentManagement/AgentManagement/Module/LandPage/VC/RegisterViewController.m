@@ -111,6 +111,8 @@
             
             requestIdentifyCode = [x first];
             
+#warning 测试阶段使用
+            self.inputIdentifyCode.text = requestIdentifyCode;
             [registerInformationDic setValue:phoneText forKey:@"phone"];
             [registerInformationDic setValue:requestIdentifyCode forKey:@"identifyCode"];
 
