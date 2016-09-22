@@ -67,7 +67,21 @@
         }
         else {
             
-            self.textView.text = customer.address;
+            NSString *address = [NSString stringWithFormat:@"%@市",customer.province];
+           
+            if ([address isEqualToString:customer.city]) {
+                
+                NSString *str = [NSString stringWithFormat:@"%@%@%@",customer.city,customer.county,customer.address];
+                
+                self.textView.text = str;
+            }
+            else {
+                
+                 NSString *str = [NSString stringWithFormat:@"%@%@%@%@",customer.province,customer.city,customer.county,customer.address];
+                self.textView.text = str;
+            }
+            
+            //self.textView.text = customer.address;
         }
     }
     else if (indexPath.section == 1) {

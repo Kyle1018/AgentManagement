@@ -287,14 +287,15 @@
 
     [[UIApplication sharedApplication].keyWindow addSubview:_searchMenuVC.view];
     
-    
-    WeakObj(self);
+    @weakify(self);
     //点击了搜索产品回调
     _searchMenuVC.tapSearchProductBlock = ^(NSMutableDictionary*selectedOptionDic) {
         
-        selfWeak.selectedOptionDic = [NSMutableDictionary dictionaryWithDictionary:selectedOptionDic];
+        @strongify(self);
         
-        [selfWeak requestListData];
+        self.selectedOptionDic = [NSMutableDictionary dictionaryWithDictionary:selectedOptionDic];
+        
+        [self requestListData];
         
     };
 }

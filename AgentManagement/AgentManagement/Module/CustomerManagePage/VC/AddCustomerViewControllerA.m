@@ -32,12 +32,11 @@
 
 - (void)requestData {
     
-      __weak typeof(self) weakSelf = self;
     _viewModel = [[CustomerManageViewModel alloc]init];
     
     [[self.viewModel requestAreaListData:0 lIndex:0]subscribeNext:^(NSDictionary* x) {
        
-        weakSelf.areaDic = [NSMutableDictionary dictionaryWithDictionary:x];
+        self.areaDic = [NSMutableDictionary dictionaryWithDictionary:x];
         
     }];
 
@@ -185,7 +184,6 @@
 #pragma mark -UITextFieldDelegate
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
     
-      __weak typeof(self) weakSelf = self;
 
     UITextField *input = [self.view viewWithTag:textField.tag];
     
@@ -193,30 +191,30 @@
        
         if (textField.tag == 101) {//客户姓名
             
-            [weakSelf.addCutomerInfoDic safeSetObject:x forKey:@"name"];
+            [self.addCutomerInfoDic safeSetObject:x forKey:@"name"];
         }
         
         else if (textField.tag == 102) {//手机号
             
-            [weakSelf.addCutomerInfoDic safeSetObject:x forKey:@"phone" ];
+            [self.addCutomerInfoDic safeSetObject:x forKey:@"phone" ];
         }
         else if (textField.tag == 103) {//tds
             
-            [weakSelf.addCutomerInfoDic safeSetObject:x forKey:@"tds"];
+            [self.addCutomerInfoDic safeSetObject:x forKey:@"tds"];
             
         }
         else if (textField.tag == 104) {//ph
             
-            [weakSelf.addCutomerInfoDic safeSetObject:x forKey:@"ph"];
+            [self.addCutomerInfoDic safeSetObject:x forKey:@"ph"];
             
         }
         else if (textField.tag == 105) {//硬度
             
-            [weakSelf.addCutomerInfoDic safeSetObject:x forKey:@"hardness"];
+            [self.addCutomerInfoDic safeSetObject:x forKey:@"hardness"];
             
         }
         else if (textField.tag == 106) {//余氯值
-            [weakSelf.addCutomerInfoDic safeSetObject:x forKey:@"chlorine"];
+            [self.addCutomerInfoDic safeSetObject:x forKey:@"chlorine"];
             
         }
         _textTag = textField.tag;

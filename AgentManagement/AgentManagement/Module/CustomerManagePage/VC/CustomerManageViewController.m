@@ -26,6 +26,8 @@
 
 @property(nonatomic,strong)AMCustomer *customer;
 
+@property(nonatomic,strong)NSMutableDictionary*selectedOptionDic;
+
 @end
 
 @implementation CustomerManageViewController
@@ -34,7 +36,7 @@
     
     [super viewDidLoad];
     
-    [self requestData];
+     _viewModel = [[CustomerManageViewModel alloc]init];
     
     [self observeData];
     
@@ -44,24 +46,15 @@
 - (void)viewWillAppear:(BOOL)animated {
     
     [super viewWillAppear:animated];
+ 
+    [self requestData];
     
-    //如果添加了用户，就刷新表视图显示数据
-    if (self.addCustomer && self.addCustomer.cutomer_id != self.customer.cutomer_id) {
-        
-        self.customer  = self.addCustomer;
-        
-        [self.listDataArray insertObject:self.customer atIndex:0];
-        
-        [self.formTabelView reloadData];
-    }
-
 }
 
 - (void)requestData {
     
-    _viewModel = [[CustomerManageViewModel alloc]init];
-    
-    [[self.viewModel requestCustomerInfoListDataOrSearchCustomerInfoDataWithPage:0 size:0 search:nil]subscribeNext:^(NSNumber* x) {
+ 
+    [[self.viewModel requestCustomerInfoListDataOrSearchCustomerInfoDataWithPage:0 size:0 search:self.selectedOptionDic]subscribeNext:^(NSNumber* x) {
         
         if ([x integerValue] == 1) {
             
@@ -167,26 +160,7 @@
             CustomerDetailViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"CustomerDetailID"];
             vc.customerModel = self.listDataArray[indexPath.row-1];
             [self.navigationController pushViewController:vc animated:YES];
-            
-            vc.tapDeleteCustomerBlock = ^(NSInteger customer_id) {
-              
-                NSMutableArray *array = [NSMutableArray arrayWithArray:self.listDataArray];
-                
-                for (AMCustomer *customer in array) {
-                        
-                    if (customer.cutomer_id == customer_id) {
-                            
-                        [self.listDataArray removeObject:customer];
-                    }
-                }
-                
-                
-                    
-                self.formTabelView.hidden = self.listDataArray.count==0?YES:NO;
-                    
-                [self.formTabelView reloadData];
-            };
-            
+ 
         };
     }
     
@@ -198,8 +172,18 @@
     UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"CustomerManage" bundle:nil];
     _cSearchMenuVC = [storyboard instantiateViewControllerWithIdentifier:@"CSearchMenuID"];
     [[UIApplication sharedApplication].keyWindow addSubview:_cSearchMenuVC.view];
+    
+    @weakify(self);
+    //点击了搜索产品回调
+    _cSearchMenuVC.tapSearchProductBlock = ^(NSMutableDictionary*selectedOptionDic) {
+        
+        @strongify(self);
+        
+        self.selectedOptionDic = [NSMutableDictionary dictionaryWithDictionary:selectedOptionDic];
+        
+        [self requestData];
+        
+    };
 }
-
-
 
 @end

@@ -12,6 +12,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *optionLabel;
 
 @property (weak, nonatomic) IBOutlet UITextField *priceTextField;
+
 @property (weak, nonatomic) IBOutlet UITextField *addTimeTextField;
 
 - (void)setTitleData:(NSString*)text backgroundColor:(UIColor*)bgColor titleColor:(UIColor*)titleColor;

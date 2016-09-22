@@ -101,7 +101,11 @@
                 [customerArray addObject:customerModel];
                 
             }
-            self.customerModelArray = customerArray;
+            
+            NSMutableArray *array = (NSMutableArray *)[[customerArray reverseObjectEnumerator] allObjects];
+
+            
+            self.customerModelArray = array;
             
             if (self.customerModelArray.count > 0) {
                 

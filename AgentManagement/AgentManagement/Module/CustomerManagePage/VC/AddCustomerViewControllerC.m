@@ -11,7 +11,6 @@
 #import "CustomerManageViewModel.h"
 #import "AMSales.h"
 #import "AMAdministrators.h"
-#import "CustomerManageViewController.h"
 #import "AMCustomer.h"
 @interface AddCustomerViewControllerC ()<UIPickerViewDelegate,UIPickerViewDataSource>
 @property(nonatomic,strong)PickerView *pickerView;
@@ -162,10 +161,6 @@
      
         
     }]subscribeNext:^(AMCustomer* x) {
-        
-        CustomerManageViewController *customerManageVC = (CustomerManageViewController*)[self.navigationController.viewControllers objectAtIndex:0];
-        
-        customerManageVC.addCustomer = x;
         
          [self.navigationController popToRootViewControllerAnimated:YES];
     }];

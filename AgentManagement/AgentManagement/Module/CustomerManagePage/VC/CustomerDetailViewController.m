@@ -22,8 +22,6 @@
 
 @property(nonatomic,strong)CustomerManageViewModel *viewModel;
 
-//@property(nonatomic,strong)NSMutableSet *indexPathSet;
-
 @end
 
 @implementation CustomerDetailViewController
@@ -31,11 +29,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    NSLog(@"%@",self.customerModel);
-    // [self createMaskView];
-    
-    //_indexPathSet = [NSMutableSet set];
-    
     _titleArray = @[@[@"客户姓名:",@"手机号:",@"客户地址:"],@[@"TDS值",@"PH值",@"硬度",@"余氯值"],@[@"购买品牌:",@"购买时间:",@"安装时间:",@"换芯周期:"],@[@"管理员:",@"管理员手机号:"]];
     
     _viewModel = [[CustomerManageViewModel alloc]init];
@@ -150,11 +143,6 @@
                 
                [[self.viewModel requestDeleteCustomer:customer_id]subscribeNext:^(id x) {
                    
-                   if (self.tapDeleteCustomerBlock) {
-
-                       self.tapDeleteCustomerBlock(customer_id);
-                   }
-
                   [self.navigationController popViewControllerAnimated:YES];
                    
                }];

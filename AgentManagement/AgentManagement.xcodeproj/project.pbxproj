@@ -66,6 +66,7 @@
 		3465671B1D923A13008151A5 /* AMDeleteCustomerRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3465671A1D923A13008151A5 /* AMDeleteCustomerRequest.m */; };
 		34D4BB541D90FFC80077CC94 /* AMOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 34D4BB531D90FFC80077CC94 /* AMOrder.m */; };
 		34D4BB571D9117F70077CC94 /* CustomerDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34D4BB561D9117F70077CC94 /* CustomerDetailCell.m */; };
+		34D8D28D1D93C9370011217C /* CSearchMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34D8D28C1D93C9370011217C /* CSearchMenuCell.m */; };
 		34E333ED1D90EC0700FB29D3 /* AMCustomer.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E333EC1D90EC0700FB29D3 /* AMCustomer.m */; };
 		34EB45E41D87C87A00522B22 /* CostManagerListHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EB45E31D87C87A00522B22 /* CostManagerListHeaderView.m */; };
 		34EB45E61D87C88A00522B22 /* CostManagerListHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34EB45E51D87C88A00522B22 /* CostManagerListHeaderView.xib */; };
@@ -268,6 +269,8 @@
 		34D4BB531D90FFC80077CC94 /* AMOrder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMOrder.m; sourceTree = "<group>"; };
 		34D4BB551D9117F70077CC94 /* CustomerDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerDetailCell.h; sourceTree = "<group>"; };
 		34D4BB561D9117F70077CC94 /* CustomerDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerDetailCell.m; sourceTree = "<group>"; };
+		34D8D28B1D93C9370011217C /* CSearchMenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSearchMenuCell.h; sourceTree = "<group>"; };
+		34D8D28C1D93C9370011217C /* CSearchMenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSearchMenuCell.m; sourceTree = "<group>"; };
 		34E333EB1D90EC0700FB29D3 /* AMCustomer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMCustomer.h; sourceTree = "<group>"; };
 		34E333EC1D90EC0700FB29D3 /* AMCustomer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMCustomer.m; sourceTree = "<group>"; };
 		34EB45E21D87C87A00522B22 /* CostManagerListHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CostManagerListHeaderView.h; sourceTree = "<group>"; };
@@ -1084,6 +1087,8 @@
 				E24BF4851D75DDFF0054DFDC /* CustomerManageCell.m */,
 				34D4BB551D9117F70077CC94 /* CustomerDetailCell.h */,
 				34D4BB561D9117F70077CC94 /* CustomerDetailCell.m */,
+				34D8D28B1D93C9370011217C /* CSearchMenuCell.h */,
+				34D8D28C1D93C9370011217C /* CSearchMenuCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1541,6 +1546,7 @@
 				27CA014C1D6B116F009F9A25 /* AMRegisterRequest.m in Sources */,
 				E219475C1D786F8D001C5E5F /* OperationlogCell.m in Sources */,
 				34F552A31D81414300CCA537 /* AMDeleteProductRequest.m in Sources */,
+				34D8D28D1D93C9370011217C /* CSearchMenuCell.m in Sources */,
 				27CA01301D6B10E4009F9A25 /* NSMutableDictionary+KKAdditions.m in Sources */,
 				E21CF3221D8A6F7D00BE742A /* NSString+KKAdditions.m in Sources */,
 				27CA01491D6B116F009F9A25 /* AMIdentifyCodeRequest.m in Sources */,

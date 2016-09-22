@@ -9,12 +9,8 @@
 #import "BaseTableViewController.h"
 #import "AMCustomer.h"
 
-typedef void(^TapDeleteCustomerBlock)(NSInteger customer_id);
-
 @interface CustomerDetailViewController : BaseTableViewController
 
 @property(nonatomic,strong)AMCustomer *customerModel;
-
-@property(nonatomic,copy)TapDeleteCustomerBlock tapDeleteCustomerBlock;
 
 @end
