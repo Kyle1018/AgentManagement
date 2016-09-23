@@ -12,4 +12,5 @@
 #import "MaskView.h"
 #import "AlertController.h"
 #import "LoadingView.h"
+#import "PickerView.h"
 #endif /* CommonControl_h */

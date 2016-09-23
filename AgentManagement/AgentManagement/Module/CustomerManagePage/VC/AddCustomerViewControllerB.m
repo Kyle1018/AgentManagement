@@ -7,20 +7,21 @@
 //
 
 #import "AddCustomerViewControllerB.h"
-#import "PickerView.h"
 #import "ProductManageViewModel.h"
-@interface AddCustomerViewControllerB ()<UIPickerViewDelegate,UIPickerViewDataSource>
+
+@interface AddCustomerViewControllerB ()
 @property(nonatomic,strong)ProductManageViewModel *viewModel;
-@property(nonatomic,strong)NSMutableArray *brandAndModelArray;
+
 @property(nonatomic,strong)PickerView *pickerView;
 @property(nonatomic,assign)NSInteger indexRow;
 @property(nonatomic,strong)NSMutableArray *pickerDataArray;
+@property(nonatomic,strong)NSMutableArray *brandAndModelArray;
 @property(nonatomic,strong)PickerDataView *datePicker;
 @property(nonatomic,copy)NSString *dateStr;
 @property(nonatomic,strong)NSMutableArray *orderArray;//订单数组
 
 @property(nonatomic,strong)NSMutableDictionary *orderDic;//订单模型
-
+@property(nonatomic,strong)PickerViewProtocol *protocol;
 @end
 
 @implementation AddCustomerViewControllerB
@@ -33,6 +34,8 @@
     _orderArray = [NSMutableArray array];
     
     _orderDic = [NSMutableDictionary dictionary];
+    
+    _protocol = [[PickerViewProtocol alloc]init];
 
     [self requestData];
     
@@ -93,15 +96,23 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-  
+ 
     if (indexPath.row == 0 || indexPath.row == 3) {
         
-        _pickerView = [PickerView showAddTo:self.view];
-        _pickerView.picker.delegate = self;
-        _pickerView.picker.dataSource = self;
-        _indexRow = indexPath.row;
+        self.pickerView = [PickerView showAddTo:self.view];
+        self.pickerView.picker.delegate = self.protocol;
+        self.pickerView.picker.dataSource = self.protocol;
         
+        self.protocol.pickerDataArray = self.pickerDataArray[indexPath.row];
+        
+        [self.protocol.pickerDataArrayB removeAllObjects];
+        
+        if ([self.pickerDataArray[indexPath.row] count]>1) {
+            
+            self.protocol.pickerDataArrayB = self.brandAndModelArray[1];
+        }
+        [self.pickerView.picker reloadAllComponents];
+ 
         @weakify(self);
         
         _pickerView.tapConfirmBlock = ^() {
@@ -177,70 +188,7 @@
     
 }
 
-#pragma pickerViewDelegate
--(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
-    
-    return [self.pickerDataArray[_indexRow] count];
-}
 
--(NSInteger) pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
-    
-   return [[self.pickerDataArray[_indexRow] objectAtIndex:component]count];
-}
-
-- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-
-   return  [[self.pickerDataArray[_indexRow]objectAtIndex:component]objectAtIndex:row];
-}
-
-- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component {
-    
-    return 42;
-}
-
-
-- (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component {
-
-     return ScreenWidth/2;
-}
-
-- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-
-    if (_indexRow==0) {
-        
-        if (component==0) {
-            
-            [self.pickerDataArray[_indexRow]replaceObjectAtIndex:1 withObject: [_brandAndModelArray[1]objectAtIndex:row]];
-            
-            [pickerView selectedRowInComponent:1];
-            [pickerView reloadComponent:1];
-        }
-        
-        else {
-            
-            
-        }
-        
-    }
-    
-    else {
-        
-        [self.pickerDataArray[_indexRow][component]objectAtIndex:row];
-    }
-}
-
-- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view{
-    UILabel* pickerLabel = (UILabel*)view;
-    if (!pickerLabel){
-        pickerLabel = [[UILabel alloc] init];
-        pickerLabel.textAlignment = NSTextAlignmentCenter;
-        [pickerLabel setBackgroundColor:[UIColor clearColor]];
-        [pickerLabel setFont:[UIFont boldSystemFontOfSize:17]];
-    }
-    
-    pickerLabel.text=[self pickerView:pickerView titleForRow:row forComponent:component];
-    return pickerLabel;
-}
 
 //进入添加产品页面
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

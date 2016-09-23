@@ -84,6 +84,7 @@
             //self.textView.text = customer.address;
         }
     }
+    
     else if (indexPath.section == 1) {
         
         self.titleLabel.text = [titleArray[indexPath.section]objectAtIndex:indexPath.row];
@@ -118,10 +119,10 @@
         
         self.titleLabel.text = [titleArray[3]objectAtIndex:indexPath.row];
         
-        self.textField.hidden = NO;
+        self.textField.hidden = YES;
         self.textView.hidden = YES;
         
-         self.labelA.hidden = YES;
+         self.labelA.hidden = NO;
         
         if (indexPath.row == 0) {
             
@@ -172,7 +173,6 @@
         }
         
     }
-
 }
 
 @end

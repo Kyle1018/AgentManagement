@@ -9,8 +9,8 @@
 #import "CSearchMenuViewController.h"
 #import "CSearchMenuCell.h"
 #import "CustomerManageViewModel.h"
-#import "PickerView.h"
-@interface CSearchMenuViewController()<UITableViewDelegate,UITableViewDataSource,UIPickerViewDelegate,UIPickerViewDataSource>
+
+@interface CSearchMenuViewController()
 
 @property (strong, nonatomic) IBOutlet UIView *bgView;//背景视图
 
@@ -25,9 +25,12 @@
 @property(nonatomic,assign)NSInteger textTag;
 
 @property(nonatomic,strong)PickerView *pickerView;
+
 @property (weak, nonatomic) IBOutlet UITableView *searchMenuTabelView;
 
 @property(nonatomic,strong)NSMutableDictionary *selectedOptionDic;
+
+@property(nonatomic,strong)PickerViewProtocol *protocol;
 
 @end
 
@@ -41,9 +44,11 @@
     
     [self.cancleView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideMenuView)]];
     
-    [self requestData];
-    
     _selectedOptionDic = [NSMutableDictionary dictionary];
+    
+    _protocol = [[PickerViewProtocol alloc]init];
+    
+     _viewModel = [[CustomerManageViewModel alloc]init];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -74,104 +79,7 @@
     
 }
 
-- (void)requestData {
-    
-    _viewModel = [[CustomerManageViewModel alloc]init];
-    
-    [[self.viewModel requestAreaListData:0 lIndex:0]subscribeNext:^(NSDictionary* x) {
-        
-        self.areaDic = [NSMutableDictionary dictionaryWithDictionary:x];
-        
-    }];
-    
-}
 
-
--(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
-    
-    return 3;
-}
-
--(NSInteger) pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
-    
-    if (component == 0) {
-        return [self.areaDic[@"province"] count];
-    } else if (component == 1) {
-        return [self.areaDic[@"city"] count];
-    } else {
-        return [self.areaDic[@"district"] count];
-    }
-}
-
-- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-    if (component == 0) {
-        return [self.areaDic[@"province"]objectAtIndex:row];
-    } else if (component == 1) {
-        return [self.areaDic[@"city"]objectAtIndex:row];
-    } else {
-        return [self.areaDic[@"district"] objectAtIndex:row];
-    }
-}
-
-- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component {
-    
-    return 42;
-}
-
-
-- (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component {
-    
-    return ScreenWidth/3;
-}
-
-- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-    __weak typeof(self) weakSelf = self;
-    
-    if (component == 0) {
-        
-        [[self.viewModel requestAreaListData:row lIndex:0]subscribeNext:^(NSDictionary* x) {
-            
-            [weakSelf.areaDic removeAllObjects];
-            
-            [weakSelf.areaDic setDictionary:x];
-            
-        }];
-        
-        _lRow = row;
-        
-    }
-    [pickerView selectedRowInComponent:1];
-    [pickerView reloadComponent:1];
-    [pickerView selectedRowInComponent:2];
-    
-    if (component == 1) {
-        
-        [[self.viewModel requestAreaListData:_lRow lIndex:row]subscribeNext:^(id x) {
-            
-            [weakSelf.areaDic removeAllObjects];
-            [weakSelf.areaDic setDictionary:x];
-            [pickerView selectRow:1 inComponent:2 animated:YES];
-            
-        }];
-        
-    }
-    
-    [pickerView reloadComponent:2];
-}
-
-
-- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view{
-    UILabel* pickerLabel = (UILabel*)view;
-    if (!pickerLabel){
-        pickerLabel = [[UILabel alloc] init];
-        pickerLabel.textAlignment = NSTextAlignmentCenter;
-        [pickerLabel setBackgroundColor:[UIColor clearColor]];
-        [pickerLabel setFont:[UIFont boldSystemFontOfSize:17]];
-    }
-    
-    pickerLabel.text=[self pickerView:pickerView titleForRow:row forComponent:component];
-    return pickerLabel;
-}
 
 #pragma mark -UITableViewDelegate/UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -239,51 +147,94 @@
     
     UITextField *currentTextField = [self.view viewWithTag:1000+indexPath.section];
     
-    UILabel *provinceLabel = [self.view viewWithTag:2000];
-    UILabel *cityLabel = [self.view viewWithTag:2001];
-    UILabel *townLabel = [self.view viewWithTag:2002];
     
     if (indexPath.section == 2) {
     
         [textField resignFirstResponder];
       
-        _pickerView = [PickerView showAddTo:self.view];
-        _pickerView.picker.delegate = self;
-        _pickerView.picker.dataSource = self;
+        self.pickerView = [PickerView showAddTo:self.view];
+        self.pickerView.picker.delegate = self.protocol;
+        self.pickerView.picker.dataSource = self.protocol;
         
-           @weakify(self);
+        
+        [[self.viewModel requestAreaListData:0 lIndex:0]subscribeNext:^(NSMutableArray* x) {
+            
+            self.protocol.pickerDataArray = x;
+            
+            self.protocol.pickerDataArrayB =  x[1];
+            
+            self.protocol.pickerDataArrayC =  x[2];
+            
+            [self.pickerView.picker reloadAllComponents];
+
+        }];
+        
+    
+
+        
+       @weakify(self);
+       
+        self.protocol.didSelectRow = ^(NSInteger row,NSInteger component){
+            
+            @strongify(self);
+            
+            if (component == 0 || component == 1) {
+                
+                if (component == 0) {
+                    
+                    _lRow = row;
+                    
+                }
+                [self.protocol.pickerDataArray removeAllObjects];
+                [self.protocol.pickerDataArrayB removeAllObjects];
+                [self.protocol.pickerDataArrayC removeAllObjects];
+                
+                [[self.viewModel requestAreaListData:component==0?row:self.lRow lIndex:component==0?0:row]subscribeNext:^(NSMutableArray* x) {
+                    
+                    self.protocol.pickerDataArray = x;
+                    
+                    self.protocol.pickerDataArrayB = x[1];
+                    
+                    self.protocol.pickerDataArrayC = x[2];
+                    
+                    [self.pickerView.picker selectedRowInComponent:1];
+                    
+                    [self.pickerView.picker selectedRowInComponent:2];
+                    
+                    [self.pickerView.picker reloadAllComponents];
+                    
+                }];
+                
+                
+            }
+            
+        };
+        
+        
         _pickerView.tapConfirmBlock = ^(NSString*parameter) {
             @strongify(self);
       
+            UILabel *provinceLabel = [self.view viewWithTag:2000];
+            UILabel *cityLabel = [self.view viewWithTag:2001];
+            UILabel *townLabel = [self.view viewWithTag:2002];
             provinceLabel.hidden = cityLabel.hidden = townLabel.hidden = NO;
            
             currentTextField.hidden = YES;
+
+            provinceLabel.text = [ self.protocol.pickerDataArray[0]objectAtIndex:[self.pickerView.picker selectedRowInComponent:0]];
             
-            provinceLabel.text = [self.areaDic[@"province"]objectAtIndex:[self.pickerView.picker selectedRowInComponent:0]];
+            cityLabel.text = [ self.protocol.pickerDataArray[1]objectAtIndex:[self.pickerView.picker selectedRowInComponent:1]];
             
-            cityLabel.text = [self.areaDic[@"city"]objectAtIndex:[self.pickerView.picker selectedRowInComponent:1]];
+            townLabel.text = [ self.protocol.pickerDataArray[2]objectAtIndex:[self.pickerView.picker selectedRowInComponent:2]];
             
-            townLabel.text = [self.areaDic[@"district"]objectAtIndex:[self.pickerView.picker selectedRowInComponent:2]];
-            
-            
-            [self.selectedOptionDic safeSetObject: provinceLabel.text forKey:@"province"];
-            [self.selectedOptionDic safeSetObject: cityLabel.text forKey:@"city"];
-            [self.selectedOptionDic safeSetObject: townLabel.text forKey:@"county"];
-            
-//            [weakSelf.addCutomerInfoDic safeSetObject:provinceLabel.text forKey:@"province"];
-//            [weakSelf.addCutomerInfoDic safeSetObject:cityLabel.text forKey:@"city"];
-//            [weakSelf.addCutomerInfoDic safeSetObject:townLabel.text forKey:@"county"];
-            
+            [self.selectedOptionDic safeSetObject:provinceLabel.text forKey:@"province"];
+            [self.selectedOptionDic safeSetObject:cityLabel.text forKey:@"city"];
+            [self.selectedOptionDic safeSetObject:townLabel.text forKey:@"county"];
+ 
         };
         
     }
     
-//    else {
-//        
-//        provinceLabel.hidden = cityLabel.hidden = townLabel.hidden = YES;
-//        te
-//        
-//    }
 }
 
 #pragma mark -UITextFieldDelegate
@@ -310,6 +261,7 @@
     
     return YES;
 }
+
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     
     [textField resignFirstResponder];

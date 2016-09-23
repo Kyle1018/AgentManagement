@@ -59,10 +59,12 @@
         NSDictionary *dict = a1[lIndex];
             
         [district addObjectsFromArray:dict[@"sub"]];
+        
+        NSMutableArray *array = [NSMutableArray arrayWithObjects:province,city,district, nil];
 
-        NSDictionary *areaDic = [NSDictionary dictionaryWithObjectsAndKeys:province,@"province",city,@"city",district,@"district", nil];
+       // NSDictionary *areaDic = [NSDictionary dictionaryWithObjectsAndKeys:province,@"province",city,@"city",district,@"district", nil];
 
-        [subscriber sendNext:areaDic];
+        [subscriber sendNext:array];
         [subscriber sendCompleted];
         
         return nil;
@@ -274,6 +276,15 @@
     }];
     
     return [signal takeUntil:self.rac_willDeallocSignal];
+}
+
+//编辑客户
+- (RACSignal*)requestEditingCustomer:(NSDictionary*)paramt {
+    
+    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        
+        return nil;
+    }];
 }
 
 

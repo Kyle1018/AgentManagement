@@ -40,6 +40,9 @@
 //删除客户
 - (RACSignal*)requestDeleteCustomer:(NSInteger)c_id;
 
+//编辑客户
+- (RACSignal*)requestEditingCustomer:(NSDictionary*)paramt;
+
 //请求销售员列表——获取销售员的姓名
 - (RACSignal*)requstSalersList;
 

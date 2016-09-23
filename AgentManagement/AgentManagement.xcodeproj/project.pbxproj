@@ -70,6 +70,7 @@
 		34E333ED1D90EC0700FB29D3 /* AMCustomer.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E333EC1D90EC0700FB29D3 /* AMCustomer.m */; };
 		34EB45E41D87C87A00522B22 /* CostManagerListHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EB45E31D87C87A00522B22 /* CostManagerListHeaderView.m */; };
 		34EB45E61D87C88A00522B22 /* CostManagerListHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34EB45E51D87C88A00522B22 /* CostManagerListHeaderView.xib */; };
+		34ECB7871D94D848002D657A /* PickerViewProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 34ECB7861D94D848002D657A /* PickerViewProtocol.m */; };
 		34EE98211D76B6AE0040C997 /* AlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EE981F1D76B6AE0040C997 /* AlertController.m */; };
 		34EE98221D76B6AE0040C997 /* AlertController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34EE98201D76B6AE0040C997 /* AlertController.xib */; };
 		34EE98251D76BAF90040C997 /* CSearchMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EE98241D76BAF90040C997 /* CSearchMenuViewController.m */; };
@@ -276,6 +277,8 @@
 		34EB45E21D87C87A00522B22 /* CostManagerListHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CostManagerListHeaderView.h; sourceTree = "<group>"; };
 		34EB45E31D87C87A00522B22 /* CostManagerListHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CostManagerListHeaderView.m; sourceTree = "<group>"; };
 		34EB45E51D87C88A00522B22 /* CostManagerListHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CostManagerListHeaderView.xib; sourceTree = "<group>"; };
+		34ECB7851D94D848002D657A /* PickerViewProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerViewProtocol.h; sourceTree = "<group>"; };
+		34ECB7861D94D848002D657A /* PickerViewProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickerViewProtocol.m; sourceTree = "<group>"; };
 		34EE981E1D76B6AE0040C997 /* AlertController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertController.h; sourceTree = "<group>"; };
 		34EE981F1D76B6AE0040C997 /* AlertController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertController.m; sourceTree = "<group>"; };
 		34EE98201D76B6AE0040C997 /* AlertController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlertController.xib; sourceTree = "<group>"; };
@@ -1015,6 +1018,8 @@
 				E24819C61D84542600F885EE /* PickerView.h */,
 				E24819C71D84542600F885EE /* PickerView.m */,
 				E24819C91D84543100F885EE /* PickerView.xib */,
+				34ECB7851D94D848002D657A /* PickerViewProtocol.h */,
+				34ECB7861D94D848002D657A /* PickerViewProtocol.m */,
 			);
 			path = PickerView;
 			sourceTree = "<group>";
@@ -1500,6 +1505,7 @@
 				27E26B3E1D6B1D360072F26E /* AddCustomerViewControllerB.m in Sources */,
 				E21947591D786F78001C5E5F /* SalerManageCell.m in Sources */,
 				E244F1571D8D072A003BA93B /* PNLineChart.m in Sources */,
+				34ECB7871D94D848002D657A /* PickerViewProtocol.m in Sources */,
 				E2C14FBB1D7B0A1B00B0B0B2 /* IdentifyCodeButton.m in Sources */,
 				34D4BB541D90FFC80077CC94 /* AMOrder.m in Sources */,
 				275F328D1D717B210033C8FF /* ASIDataDecompressor.m in Sources */,

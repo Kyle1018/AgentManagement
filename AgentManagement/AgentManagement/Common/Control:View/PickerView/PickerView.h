@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "PickerViewProtocol.h"
 typedef void(^TapConfirmBlock)();
 
 @interface PickerView : UIView

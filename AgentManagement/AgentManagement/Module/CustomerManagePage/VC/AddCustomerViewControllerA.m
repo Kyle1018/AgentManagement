@@ -7,129 +7,31 @@
 //
 
 #import "AddCustomerViewControllerA.h"
-#import "PickerView.h"
 #import "CustomerManageViewModel.h"
-@interface AddCustomerViewControllerA ()<UIPickerViewDelegate,UIPickerViewDataSource>
+@interface AddCustomerViewControllerA ()
 
 @property(nonatomic,strong)PickerView *pickerView;
 @property(nonatomic,strong)CustomerManageViewModel *viewModel;
-@property(nonatomic,strong)NSMutableDictionary *areaDic;
 @property(nonatomic,assign)NSInteger lRow;
 @property(nonatomic,assign)NSInteger textTag;
-
+@property(nonatomic,strong)PickerViewProtocol *protocol;
 @property(nonatomic,strong)NSMutableDictionary *addCutomerInfoDic;
+
 @end
 
 @implementation AddCustomerViewControllerA
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    [self requestData];
+    
+    _protocol = [[PickerViewProtocol alloc]init];
     
     _addCutomerInfoDic = [NSMutableDictionary dictionary];
-}
-
-- (void)requestData {
     
     _viewModel = [[CustomerManageViewModel alloc]init];
-    
-    [[self.viewModel requestAreaListData:0 lIndex:0]subscribeNext:^(NSDictionary* x) {
-       
-        self.areaDic = [NSMutableDictionary dictionaryWithDictionary:x];
-        
-    }];
 
+    
 }
-
-
-#pragma pickerViewDelegate
--(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
-    
-    return 3;
-}
-
--(NSInteger) pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
-    
-    if (component == 0) {
-        return [self.areaDic[@"province"] count];
-    } else if (component == 1) {
-        return [self.areaDic[@"city"] count];
-    } else {
-        return [self.areaDic[@"district"] count];
-    }
-}
-
-- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-    if (component == 0) {
-        return [self.areaDic[@"province"]objectAtIndex:row];
-    } else if (component == 1) {
-        return [self.areaDic[@"city"]objectAtIndex:row];
-    } else {
-        return [self.areaDic[@"district"] objectAtIndex:row];
-    }
-}
-
-- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component {
-    
-    return 42;
-}
-
-
-- (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component {
-    
-    return ScreenWidth/3;
-}
-
-- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-      __weak typeof(self) weakSelf = self;
-    
-    if (component == 0) {
-      
-        [[self.viewModel requestAreaListData:row lIndex:0]subscribeNext:^(NSDictionary* x) {
-           
-            [weakSelf.areaDic removeAllObjects];
-            
-            [weakSelf.areaDic setDictionary:x];
-            
-        }];
-
-        _lRow = row;
-
-    }
-    [pickerView selectedRowInComponent:1];
-    [pickerView reloadComponent:1];
-    [pickerView selectedRowInComponent:2];
-    
-    if (component == 1) {
-        
-        [[self.viewModel requestAreaListData:_lRow lIndex:row]subscribeNext:^(id x) {
-            
-            [weakSelf.areaDic removeAllObjects];
-            [weakSelf.areaDic setDictionary:x];
-            [pickerView selectRow:1 inComponent:2 animated:YES];
-            
-        }];
-
-    }
-    
-    [pickerView reloadComponent:2];
-}
-
-
-- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view{
-    UILabel* pickerLabel = (UILabel*)view;
-    if (!pickerLabel){
-        pickerLabel = [[UILabel alloc] init];
-        pickerLabel.textAlignment = NSTextAlignmentCenter;
-        [pickerLabel setBackgroundColor:[UIColor clearColor]];
-        [pickerLabel setFont:[UIFont boldSystemFontOfSize:17]];
-    }
-    
-    pickerLabel.text=[self pickerView:pickerView titleForRow:row forComponent:component];
-    return pickerLabel;
-}
-
 
 #pragma mark -UITabelViewDatasource/Delegate
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -148,29 +50,79 @@
     
     if (indexPath.section==0 && indexPath.row==2) {
         
-        
         [ [self.view viewWithTag:_textTag] resignFirstResponder];
         
-        __weak typeof(self) weakSelf = self;
-        _pickerView = [PickerView showAddTo:self.view];
-        _pickerView.picker.delegate = self;
-        _pickerView.picker.dataSource = self;
+        self.pickerView = [PickerView showAddTo:self.view];
+        self.pickerView.picker.delegate = self.protocol;
+        self.pickerView.picker.dataSource = self.protocol;
         
-        _pickerView.tapConfirmBlock = ^(NSString*parameter) {
+        [[self.viewModel requestAreaListData:0 lIndex:0]subscribeNext:^(NSMutableArray* x) {
             
-            UILabel *provinceLabel = [weakSelf.view viewWithTag:500];
-            UILabel *cityLabel = [weakSelf.view viewWithTag:501];
-            UILabel *townLabel = [weakSelf.view viewWithTag:502];
+            self.protocol.pickerDataArray = x;
             
-            provinceLabel.text = [weakSelf.areaDic[@"province"]objectAtIndex:[weakSelf.pickerView.picker selectedRowInComponent:0]];
+            self.protocol.pickerDataArrayB = x[1];
             
-            cityLabel.text = [weakSelf.areaDic[@"city"]objectAtIndex:[weakSelf.pickerView.picker selectedRowInComponent:1]];
+            self.protocol.pickerDataArrayC =  x[2];
             
-            townLabel.text = [weakSelf.areaDic[@"district"]objectAtIndex:[weakSelf.pickerView.picker selectedRowInComponent:2]];
+            [self.pickerView.picker reloadAllComponents];
             
-            [weakSelf.addCutomerInfoDic safeSetObject:provinceLabel.text forKey:@"province"];
-            [weakSelf.addCutomerInfoDic safeSetObject:cityLabel.text forKey:@"city"];
-            [weakSelf.addCutomerInfoDic safeSetObject:townLabel.text forKey:@"county"];
+        }];
+        
+     
+        
+        @weakify(self);
+        self.protocol.didSelectRow = ^(NSInteger row,NSInteger component){
+          
+            @strongify(self);
+            
+
+            if (component == 0 || component == 1) {
+                
+                if (component == 0) {
+                    
+                    _lRow = row;
+                    
+                }
+                [self.protocol.pickerDataArray removeAllObjects];
+                [self.protocol.pickerDataArrayB removeAllObjects];
+                [self.protocol.pickerDataArrayC removeAllObjects];
+                
+                [[self.viewModel requestAreaListData:component==0?row:self.lRow lIndex:component==0?0:row]subscribeNext:^(NSMutableArray* x) {
+                    
+                    self.protocol.pickerDataArray = x;
+                    
+                    self.protocol.pickerDataArrayB = x[1];
+                    
+                    self.protocol.pickerDataArrayC = x[2];
+                    
+                    [self.pickerView.picker selectedRowInComponent:1];
+                    
+                    [self.pickerView.picker selectedRowInComponent:2];
+                    
+                    [self.pickerView.picker reloadAllComponents];
+                    
+                }];
+            }
+    
+        };
+        
+     
+        self.pickerView.tapConfirmBlock = ^(NSString*parameter) {
+            
+            @strongify(self);
+            UILabel *provinceLabel = [self.view viewWithTag:500];
+            UILabel *cityLabel = [self.view viewWithTag:501];
+            UILabel *townLabel = [self.view viewWithTag:502];
+
+            provinceLabel.text = [ self.protocol.pickerDataArray[0]objectAtIndex:[self.pickerView.picker selectedRowInComponent:0]];
+            
+            cityLabel.text = [ self.protocol.pickerDataArray[1]objectAtIndex:[self.pickerView.picker selectedRowInComponent:1]];
+            
+            townLabel.text = [ self.protocol.pickerDataArray[2]objectAtIndex:[self.pickerView.picker selectedRowInComponent:2]];
+
+            [self.addCutomerInfoDic safeSetObject:provinceLabel.text forKey:@"province"];
+            [self.addCutomerInfoDic safeSetObject:cityLabel.text forKey:@"city"];
+            [self.addCutomerInfoDic safeSetObject:townLabel.text forKey:@"county"];
 
         };
         
