@@ -37,6 +37,8 @@
 @property(nonatomic,strong)NSMutableArray *salersIdArray;
 @property(nonatomic,strong)NSMutableArray *administratorIdArray;
 @property(nonatomic,strong)NSMutableArray *optionArray;
+@property(nonatomic,assign)NSInteger lRow;
+@property(nonatomic,strong)NSMutableArray *productInfoArray;
 @end
 
 @implementation CustomerDetailViewController
@@ -44,7 +46,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    _titleArray = @[@[@"客户姓名:",@"手机号:",@"客户地址:"],@[@"TDS值",@"PH值",@"硬度",@"余氯值"],@[@"购买品牌:",@"购买时间:",@"安装时间:",@"换芯周期:"],@[@"管理员:",@"管理员手机号:"]];
+    _titleArray = @[@[@"客户姓名:",@"手机号:",@"客户地址:",@"详细地址:"],@[@"TDS值",@"PH值",@"硬度",@"余氯值"],@[@"购买品牌:",@"购买时间:",@"安装时间:",@"换芯周期:"],@[@"管理员:",@"管理员手机号:"]];
     
     _customerDic = [NSMutableDictionary dictionaryWithDictionary:[self.customerModel toDictionary]];
     
@@ -56,11 +58,18 @@
     
     _administratorIdArray = [NSMutableArray array];
     
-    _optionArray = [NSMutableArray arrayWithObjects:@"销售",@"管理", nil];
+    _productInfoArray = [NSMutableArray arrayWithObjects:@"购买机型",@"购买时间",@"安装时间",@"换芯周期", nil];
+    
+   // _optionArray = [NSMutableArray arrayWithObjects:@"管理员姓名",@"管理员手机号", nil];
+    
+    self.productManageViewModel = [[ProductManageViewModel alloc]init];
     
     [self observeData];
+    
+
  
 }
+
 
 - (void)observeData {
     
@@ -72,7 +81,7 @@
         
         NSMutableArray *array = [NSMutableArray arrayWithObjects:x[0], [x[1]objectAtIndex:0],nil];
         
-        [self.pickerDataArray replaceObjectAtIndex:0 withObject:array];
+        [self.productInfoArray replaceObjectAtIndex:0 withObject:array];
     }];
     
     [RACObserve(self.productManageViewModel, productRelatedInformationArray)subscribeNext:^(id x) {
@@ -81,7 +90,7 @@
         
         NSMutableArray *array = [NSMutableArray arrayWithObject:cycleArray];
         
-        [self.pickerDataArray replaceObjectAtIndex:3 withObject:array];
+        [self.productInfoArray replaceObjectAtIndex:3 withObject:array];
     }];
 }
 
@@ -92,7 +101,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    if (indexPath.section == 0 && indexPath.row == 2) {
+    if (indexPath.section == 0 && indexPath.row == 3) {
         
         return 80;
     }
@@ -112,7 +121,7 @@
     
     if (section == 0) {//第一组
         
-        return 3;
+        return 4;
     }
     
     else if (section == 1) {//第二组
@@ -149,13 +158,17 @@
     
     if (indexPath.section == 0 || indexPath.section == 1) {
         
-        if (indexPath.section == 0 && indexPath.row==2) {
+        if (indexPath.section == 0 && indexPath.row==3) {
             
             cell.textView.tag = 999;
         }
+        else if (indexPath.section==0 && indexPath.row ==2){
+            
+            cell.labelA.tag = 9999;
+        }
         else {
             
-            NSString *s = [NSString stringWithFormat:@"%ld500%ld",indexPath.section,indexPath.row];
+            NSString *s = [NSString stringWithFormat:@"%ld500%ld",(long)indexPath.section,(long)indexPath.row];
             
             cell.textField.tag = [s integerValue];
         }
@@ -175,107 +188,124 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    if (indexPath.section !=0 || indexPath.section !=1 || indexPath.section != 3+self.customerModel.orderArray.count-1) {
+
+    //地址picker
+    if (indexPath.section == 0) {
         
-        if (indexPath.row == 0 || indexPath.row == 3) {
+        if (indexPath.row == 2) {
             
-            self.pickerView = [PickerView showAddTo:self.view];
+         //   [ [self.view viewWithTag:_textTag] resignFirstResponder];
+            
+            self.pickerView = [PickerView showAddTo:[UIApplication sharedApplication].keyWindow];
             self.pickerView.picker.delegate = self.protocol;
             self.pickerView.picker.dataSource = self.protocol;
             
-            self.protocol.pickerDataArray = self.pickerDataArray[indexPath.row];
-            
-            [self.protocol.pickerDataArrayB removeAllObjects];
-            
-            if ([self.pickerDataArray[indexPath.row] count]>1) {
+            [[self.viewModel requestAreaListData:0 lIndex:0]subscribeNext:^(NSMutableArray* x) {
                 
-                self.protocol.pickerDataArrayB = self.brandAndModelArray[1];
-            }
-            [self.pickerView.picker reloadAllComponents];
-            
-            @weakify(self);
-            
-            _pickerView.tapConfirmBlock = ^() {
+                self.protocol.pickerDataArray = x;
                 
-                @strongify(self)
+                self.protocol.pickerDataArrayB = x[1];
                 
-                for (int i =0; i<[self.pickerView.picker numberOfComponents]; i++) {
-                    
-                    UILabel *label = [tableView viewWithTag:1000+indexPath.row+i];
-                    
-                    NSString *str = [[self.pickerDataArray[indexPath.row]objectAtIndex:i]objectAtIndex:[self.pickerView.picker selectedRowInComponent:i]];
-                    label.text = str;
-                    
-//                    
-//                    if (label.tag == 1000) {
-//                        
-//                        [self.orderDic safeSetObject:str forKey:@"brand"];
-//                        
-//                    }
-//                    else if (label.tag == 1001) {
-//                        
-//                        [self.orderDic safeSetObject:str forKey:@"pmodel"];
-//                    }
-//                    else if (label.tag == 1003) {
-//                        
-//                        [self.orderDic safeSetObject:str forKey:@"cycle"];
-//                        
-//                    }
-                }
+                self.protocol.pickerDataArrayC =  x[2];
                 
-            };
-        }
-        
-        else {
-            
-            _datePicker = [PickerDataView showDateAddTo:self.view];
-            
-            self.dateStr = [NSString getDateStr:_datePicker.datePicker.date];
-            
-            [[_datePicker.datePicker rac_signalForControlEvents:UIControlEventValueChanged]subscribeNext:^(UIDatePicker* x) {
-                
-                self.dateStr=[NSString getDateStr:x.date];
+                [self.pickerView.picker reloadAllComponents];
                 
             }];
             
+            
+            
             @weakify(self);
-            _datePicker.tapConfirmBlock = ^() {
+            self.protocol.didSelectRow = ^(NSInteger row,NSInteger component){
                 
                 @strongify(self);
                 
-                UILabel *label = [tableView viewWithTag:2000+indexPath.row];
                 
-                label.text =  self.dateStr;
-                
-                
-//                
-//                if (label.tag == 2001) {
-//                    
-//                    NSString *date = [NSString stringWithFormat:@"%@",self.datePicker.datePicker.date];
-//                    
-//                    [self.orderDic safeSetObject:date forKey:@"buy_time"];
-//                    
-//                }
-//                else if (label.tag == 2002) {
-//                    
-//                    NSString *date = [NSString stringWithFormat:@"%@",self.datePicker.datePicker.date];
-//                    
-//                    [self.orderDic safeSetObject:date forKey:@"install_time"];
-//                }
+                if (component == 0 || component == 1) {
+                    
+                    if (component == 0) {
+                        
+                        _lRow = row;
+                        
+                    }
+                    [self.protocol.pickerDataArray removeAllObjects];
+                    [self.protocol.pickerDataArrayB removeAllObjects];
+                    [self.protocol.pickerDataArrayC removeAllObjects];
+                    
+                    [[self.viewModel requestAreaListData:component==0?row:self.lRow lIndex:component==0?0:row]subscribeNext:^(NSMutableArray* x) {
+                        
+                        self.protocol.pickerDataArray = x;
+                        
+                        self.protocol.pickerDataArrayB = x[1];
+                        
+                        self.protocol.pickerDataArrayC = x[2];
+                        
+                        [self.pickerView.picker selectedRowInComponent:1];
+                        
+                        [self.pickerView.picker selectedRowInComponent:2];
+                        
+                        [self.pickerView.picker reloadAllComponents];
+                        
+                    }];
+                }
                 
             };
+            
+            
+            self.pickerView.tapConfirmBlock = ^() {
+                
+                @strongify(self);
+                
+                UILabel *adressLabel = [self.view viewWithTag:9999];
+            
+                NSString*province = [self.protocol.pickerDataArray[0]objectAtIndex:[self.pickerView.picker selectedRowInComponent:0]];
+                
+                NSString*city = [ self.protocol.pickerDataArray[1]objectAtIndex:[self.pickerView.picker selectedRowInComponent:1]];
+                
+                NSString*town= [ self.protocol.pickerDataArray[2]objectAtIndex:[self.pickerView.picker selectedRowInComponent:2]];
+                
+                NSString *address = [NSString stringWithFormat:@"%@市",province];
+                
+                NSString *str = @"";
+                
+                if ([address isEqualToString:city]) {
+                    
+                    str = [NSString stringWithFormat:@"%@%@",city,town];
+                    
+                }
+                else {
+                    
+                    str = [NSString stringWithFormat:@"%@%@%@",province,city,town];
+                    
+                }
+                
+                
+                adressLabel.text = str;
+                
+              //  [self.addCutomerInfoDic safeSetObject:provinceLabel.text forKey:@"province"];
+              //  [self.addCutomerInfoDic safeSetObject:cityLabel.text forKey:@"city"];
+              //  [self.addCutomerInfoDic safeSetObject:townLabel.text forKey:@"county"];
+                
+            };
+
         }
+        
     }
-    
+    else if (indexPath.section == 1) {
+        
+        
+    }
     else if (indexPath.section == 3+self.customerModel.orderArray.count-1) {
         
-        self.pickerView = [PickerView showAddTo:self.tableView];
+        //管理员姓名及电话
+        
+        self.pickerView = [PickerView showAddTo:[UIApplication sharedApplication].keyWindow];
         self.pickerView.picker.delegate = self.protocol;
         self.pickerView.picker.dataSource = self.protocol;
         
-        self.protocol.pickerDataArray = self.optionArray[indexPath.row];
+        self.protocol.pickerDataArray = self.optionArray[0];
         [self.pickerView.picker reloadAllComponents];
+        
+        self.protocol.didSelectRow = nil;
         
         @weakify(self);
         _pickerView.tapConfirmBlock = ^() {
@@ -288,18 +318,116 @@
             
             if (indexPath.row == 0) {
                 
-                NSNumber* salersId = [self.salersIdArray objectAtIndex:[self.pickerView.picker selectedRowInComponent:0]];
+              //  NSNumber* salersId = [self.salersIdArray objectAtIndex:[self.pickerView.picker selectedRowInComponent:0]];
                 
                // [self.addCutomerInfoDic safeSetObject:salersId forKey:@"s_id"];
             }
             else {
-                
-                NSNumber* administratorsId = [self.administratorIdArray objectAtIndex:[self.pickerView.picker selectedRowInComponent:0]];
+               
+              //  NSNumber* administratorsId = [self.administratorIdArray objectAtIndex:[self.pickerView.picker selectedRowInComponent:0]];
                 
                // [self.addCutomerInfoDic safeSetObject:administratorsId forKey:@"a_id"];
             }
         };
     }
+    
+    else {
+        //产品信息
+        if (indexPath.row == 0 || indexPath.row == 3) {
+            
+            self.pickerView = [PickerView showAddTo:[UIApplication sharedApplication].keyWindow];
+            self.pickerView.picker.delegate = self.protocol;
+            self.pickerView.picker.dataSource = self.protocol;
+            
+            self.protocol.pickerDataArray = self.productInfoArray[indexPath.row];
+            
+            [self.protocol.pickerDataArrayB removeAllObjects];
+            
+            if ([self.productInfoArray[indexPath.row] count]>1) {
+                
+                self.protocol.pickerDataArrayB = self.brandAndModelArray[1];
+            }
+            [self.pickerView.picker reloadAllComponents];
+            
+            @weakify(self);
+            
+            self.protocol.didSelectRow = nil;
+            
+            _pickerView.tapConfirmBlock = ^() {
+                
+                @strongify(self)
+                
+                for (int i =0; i<[self.pickerView.picker numberOfComponents]; i++) {
+                    
+                    UILabel *label = [self.view viewWithTag:9999];
+                    
+                    NSString *str = [[self.productInfoArray[indexPath.row]objectAtIndex:i]objectAtIndex:[self.pickerView.picker selectedRowInComponent:i]];
+                    label.text = str;
+                    
+                    /*
+                    if (label.tag == 1000) {
+                        
+                        [self.orderDic safeSetObject:str forKey:@"brand"];
+                        
+                    }
+                    else if (label.tag == 1001) {
+                        
+                        [self.orderDic safeSetObject:str forKey:@"pmodel"];
+                    }
+                    else if (label.tag == 1003) {
+                        
+                        [self.orderDic safeSetObject:str forKey:@"cycle"];
+                        
+                    }
+                     */
+                }
+                
+            };
+        }
+        
+        else {
+            
+            _datePicker = [PickerDataView showDateAddTo:[UIApplication sharedApplication].keyWindow];
+            
+            _dateStr = [NSString getDateStr:_datePicker.datePicker.date];
+            
+            [[_datePicker.datePicker rac_signalForControlEvents:UIControlEventValueChanged]subscribeNext:^(UIDatePicker* x) {
+                
+                self.dateStr=[NSString getDateStr:x.date];
+                
+            }];
+            
+            @weakify(self);
+            _datePicker.tapConfirmBlock = ^() {
+                
+                @strongify(self);
+                
+                UILabel *label = [self.view viewWithTag:9999];
+                
+                label.text =  self.dateStr;
+                
+                
+                /*
+                if (label.tag == 2001) {
+                    
+                    NSString *date = [NSString stringWithFormat:@"%@",self.datePicker.datePicker.date];
+                    
+                    [self.orderDic safeSetObject:date forKey:@"buy_time"];
+                    
+                }
+                else if (label.tag == 2002) {
+                    
+                    NSString *date = [NSString stringWithFormat:@"%@",self.datePicker.datePicker.date];
+                    
+                    [self.orderDic safeSetObject:date forKey:@"install_time"];
+                }
+                 */
+                
+            };
+        }
+    }
+ 
+    
 }
 
 #pragma mark - Action
@@ -329,53 +457,7 @@
             saveBtn.titleLabel.font = [UIFont systemFontOfSize:18.f];
             self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:saveBtn];
             
-            self.productManageViewModel = [[ProductManageViewModel alloc]init];
-            
-            //请求产品品牌和型号:使用请求产品品牌和型号时的viewmodel——ProductManageViewModel
-            [[self.productManageViewModel requestProductBrandAndPmodelData]subscribeNext:^(NSNumber* x) {
-                
-                
-            }];
-            
-            //请求换芯周期：使用请求产品相关信息时的viewmodel——ProductManageViewModel
-            [[self.productManageViewModel requstProductInformationData]subscribeNext:^(NSNumber* x) {
-                
-                
-                
-            }];
-            
-            [[self.viewModel requstSalersList]subscribeNext:^(NSMutableArray* x) {
-                
-                NSMutableArray *salersArray = [NSMutableArray array];
-                
-                for (AMSales *sales in x) {
-                    
-                    [salersArray addObject:[NSString stringWithFormat:@"%@          %@",sales.name,sales.phone]];
-                    
-                    [self.salersIdArray addObject:@(sales.s_id)];
-                    
-                }
-                
-                NSMutableArray *array = [NSMutableArray arrayWithObject:salersArray];
-                
-                [self.optionArray replaceObjectAtIndex:0 withObject:array];
-                
-            }];
-            
-            [[self.viewModel requestAdministratorList]subscribeNext:^(NSMutableArray*x) {
-                
-                NSMutableArray *administratorArray = [NSMutableArray array];
-                
-                for ( AMAdministrators *administrators in x) {
-                    
-                    [administratorArray addObject:[NSString stringWithFormat:@"%@          %@",administrators.nickname,administrators.username]];
-                    
-                    [self.administratorIdArray addObject:@(administrators.a_id)];
-                }
-                NSMutableArray *array = [NSMutableArray arrayWithObject:administratorArray];
-                
-                [self.optionArray replaceObjectAtIndex:1 withObject:array];
-            }];
+            [self requestEditingData];
         
         }
         else {
@@ -541,6 +623,41 @@
         
          [self.navigationController popToRootViewControllerAnimated:YES];
     }
+}
+
+- (void)requestEditingData {
+    
+    
+
+    
+    //请求产品品牌和型号:使用请求产品品牌和型号时的viewmodel——ProductManageViewModel
+    [[self.productManageViewModel requestProductBrandAndPmodelData]subscribeNext:^(NSNumber* x) {
+        
+        NSLog(@"dd");
+    }];
+    
+    //请求换芯周期：使用请求产品相关信息时的viewmodel——ProductManageViewModel
+    [[self.productManageViewModel requstProductInformationData]subscribeNext:^(NSNumber* x) {
+        
+        NSLog(@"dd");
+        
+    }];
+    
+    [[self.viewModel requestAdministratorList]subscribeNext:^(NSMutableArray*x) {
+        
+        NSMutableArray *administratorArray = [NSMutableArray array];
+        
+        for ( AMAdministrators *administrators in x) {
+            
+            [administratorArray addObject:[NSString stringWithFormat:@"%@          %@",administrators.nickname,administrators.username]];
+            
+            [self.administratorIdArray addObject:@(administrators.a_id)];
+        }
+        NSMutableArray *array = [NSMutableArray arrayWithObject:administratorArray];
+        
+        self.optionArray = [NSMutableArray arrayWithObject:array];
+       // [self.optionArray replaceObjectAtIndex:1 withObject:array];
+    }];
 }
 
 @end

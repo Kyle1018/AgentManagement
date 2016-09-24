@@ -85,7 +85,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
-    self.pickerView = [PickerView showAddTo:self.tableView];
+    self.pickerView = [PickerView showAddTo:[UIApplication sharedApplication].keyWindow];
     self.pickerView.picker.delegate = self.protocol;
     self.pickerView.picker.dataSource = self.protocol;
     

@@ -15,13 +15,17 @@
     PickerView *pickerView = [[[NSBundle mainBundle]loadNibNamed:@"PickerView" owner:nil options:nil]objectAtIndex:index];
     pickerView.backgroundColor = [UIColor colorWithHex:@"4a4a4a" alpha:0];
     pickerView.frame = CGRectMake(0, 0, ScreenWidth, ScreenHeight);
-    pickerView.pickerBGView.originY = ScreenHeight;
     
     [view addSubview:pickerView];
     
     [UIView animateWithDuration:0.3 animations:^{
         
         pickerView.backgroundColor = [UIColor colorWithHex:@"4a4a4a" alpha:0.3];
+      
+      //  pickerView.picker.backgroundColor=[UIColor redColor];
+       // pickerView.picker.bottom = view.bottom;
+        
+        
 
     } completion:^(BOOL finished) {
         
@@ -116,6 +120,7 @@
     [UIView animateWithDuration:0.3 animations:^{
         
         pickerDataView.backgroundColor = [UIColor colorWithHex:@"4a4a4a" alpha:0.3];
+        
         
     } completion:^(BOOL finished) {
         

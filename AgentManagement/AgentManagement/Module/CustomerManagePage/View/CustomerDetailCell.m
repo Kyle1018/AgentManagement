@@ -12,6 +12,10 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    
+   // self.textField.backgroundColor=[UIColor greenColor];
+    //self.labelA.backgroundColor=[UIColor redColor];
+    //self.textView.backgroundColor=[UIColor blueColor];
 
     self.titleLabel.sd_layout
     .leftSpaceToView(self.contentView,15)
@@ -53,36 +57,42 @@
    
         self.titleLabel.text = [titleArray[indexPath.section]objectAtIndex:indexPath.row];
         
-        self.textField.hidden = indexPath.row==2?YES:NO;
-        self.textView.hidden = indexPath.row == 2?NO:YES;
-        self.labelA.hidden = YES;
-        
-        if (indexPath.row == 0) {
+        if (indexPath.row==2) {
             
-            self.textField.text = customer.name;
-        }
-        else if (indexPath.row == 1) {
-            
-            self.textField.text = customer.phone;
-        }
-        else {
+            self.textView.hidden = self.textField.hidden = YES;
+            self.labelA.hidden = NO;
             
             NSString *address = [NSString stringWithFormat:@"%@市",customer.province];
-           
+            
+            NSString *str = @"";
+            
             if ([address isEqualToString:customer.city]) {
                 
-                NSString *str = [NSString stringWithFormat:@"%@%@%@",customer.city,customer.county,customer.address];
+                str = [NSString stringWithFormat:@"%@%@",customer.city,customer.county];
                 
-                self.textView.text = str;
             }
             else {
                 
-                 NSString *str = [NSString stringWithFormat:@"%@%@%@%@",customer.province,customer.city,customer.county,customer.address];
-                self.textView.text = str;
+                str = [NSString stringWithFormat:@"%@%@%@",customer.province,customer.city,customer.county];
+                
             }
             
-            //self.textView.text = customer.address;
+            self.labelA.text = str;
         }
+        else if (indexPath.row == 3) {
+            
+            self.labelA.hidden = self.textField.hidden = YES;
+            self.textView.hidden = NO;
+            
+              self.textView.text = customer.address;
+        }
+        else {
+            
+            self.labelA.hidden = self.textView.hidden = YES;
+            self.textField.hidden = NO;
+            self.textField.text = indexPath.row==0?customer.name:customer.phone;
+        }
+
     }
     
     else if (indexPath.section == 1) {
@@ -91,26 +101,25 @@
         
         self.textField.hidden = NO;
         self.textView.hidden = YES;
-        
         self.labelA.hidden = YES;
         
         if (indexPath.row == 0) {
             
-            self.textField.text = [NSString stringWithFormat:@"%ld",customer.tds];
+            self.textField.text = [NSString stringWithFormat:@"%ld",(long)customer.tds];
             
         }
         
         else if (indexPath.row == 1) {
             
-            self.textField.text =  [NSString stringWithFormat:@"%ld",customer.ph];
+            self.textField.text =  [NSString stringWithFormat:@"%ld",(long)customer.ph];
         }
         else if (indexPath.row == 2) {
             
-             self.textField.text =  [NSString stringWithFormat:@"%ld",customer.hardness];
+             self.textField.text =  [NSString stringWithFormat:@"%ld",(long)customer.hardness];
         }
         else {
             
-            self.textField.text = [NSString stringWithFormat:@"%ld",customer.chlorine];
+            self.textField.text = [NSString stringWithFormat:@"%ld",(long)customer.chlorine];
         }
 
     }

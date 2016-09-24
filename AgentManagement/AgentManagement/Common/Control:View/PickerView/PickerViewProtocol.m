@@ -36,6 +36,11 @@
         
         return ScreenWidth/3;
     }
+    else if ([self.pickerDataArray count]==2) {
+        
+        return ScreenWidth/2;
+    }
+ 
     else {
         
         return ScreenWidth;

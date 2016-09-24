@@ -152,7 +152,7 @@
     
         [textField resignFirstResponder];
       
-        self.pickerView = [PickerView showAddTo:self.view];
+        self.pickerView = [PickerView showAddTo:[UIApplication sharedApplication].keyWindow];
         self.pickerView.picker.delegate = self.protocol;
         self.pickerView.picker.dataSource = self.protocol;
         
