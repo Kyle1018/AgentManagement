@@ -10,90 +10,111 @@
 #import "CustomerDetailCell.h"
 #import "ProductManageViewModel.h"
 #import "CustomerManageViewModel.h"
-#import "AMSales.h"
 #import "AMAdministrators.h"
 @interface CustomerDetailViewController ()
 
 @property(nonatomic,strong)AlertController *alertVC;
-
-@property(nonatomic,strong)UIView *maskView;
-
-@property(nonatomic,strong)NSArray *titleArray;
-
 @property(nonatomic,assign)BOOL isTapEditing;
-
 @property(nonatomic,strong)CustomerManageViewModel *viewModel;
-
 @property(nonatomic,strong)NSMutableDictionary *customerDic;
-
 @property(nonatomic,strong)ProductManageViewModel *productManageViewModel;
-
 @property(nonatomic,strong)NSMutableArray *pickerDataArray;
 @property(nonatomic,strong)NSMutableArray *brandAndModelArray;
 @property(nonatomic,strong)PickerView *pickerView;
 @property(nonatomic,strong)PickerViewProtocol *protocol;
 @property(nonatomic,strong)PickerDataView *datePicker;
 @property(nonatomic,copy)NSString *dateStr;
-@property(nonatomic,strong)NSMutableArray *salersIdArray;
 @property(nonatomic,strong)NSMutableArray *administratorIdArray;
 @property(nonatomic,strong)NSMutableArray *optionArray;
 @property(nonatomic,assign)NSInteger lRow;
 @property(nonatomic,strong)NSMutableArray *productInfoArray;
+@property(nonatomic,assign)NSInteger textTag;
 @end
 
 @implementation CustomerDetailViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    _titleArray = @[@[@"客户姓名:",@"手机号:",@"客户地址:",@"详细地址:"],@[@"TDS值",@"PH值",@"硬度",@"余氯值"],@[@"购买品牌:",@"购买时间:",@"安装时间:",@"换芯周期:"],@[@"管理员:",@"管理员手机号:"]];
     
     _customerDic = [NSMutableDictionary dictionaryWithDictionary:[self.customerModel toDictionary]];
     
-    _viewModel = [[CustomerManageViewModel alloc]init];
+    NSArray *orderArray = _customerDic[@"orderArray"];
     
+    NSMutableArray *array = [NSMutableArray array];
+    
+    for (AMOrder *order in orderArray) {
+        
+        NSDictionary *dic = [order toDictionary];
+        
+        [array addObject:dic];
+    }
+    
+    [_customerDic safeSetObject:array forKey:@"orderArray"];
+
     _protocol = [[PickerViewProtocol alloc]init];
     
-    _salersIdArray = [NSMutableArray array];
-    
-    _administratorIdArray = [NSMutableArray array];
-    
-    _productInfoArray = [NSMutableArray arrayWithObjects:@"购买机型",@"购买时间",@"安装时间",@"换芯周期", nil];
-    
-   // _optionArray = [NSMutableArray arrayWithObjects:@"管理员姓名",@"管理员手机号", nil];
-    
-    self.productManageViewModel = [[ProductManageViewModel alloc]init];
-    
-    [self observeData];
-    
+    [self requestData];
 
- 
 }
 
-
-- (void)observeData {
+- (void)requestData {
     
-    [RACObserve(self.productManageViewModel, productAndModelArray)subscribeNext:^(NSMutableArray* x) {
+    self.viewModel = [[CustomerManageViewModel alloc]init];
+    
+     self.productManageViewModel = [[ProductManageViewModel alloc]init];
+    
+    self.administratorIdArray = [NSMutableArray array];
+    
+    self.productInfoArray = [NSMutableArray arrayWithObjects:@"购买机型",@"购买时间",@"安装时间",@"换芯周期", nil];
+    
+    //请求产品品牌和型号:使用请求产品品牌和型号时的viewmodel——ProductManageViewModel
+    [[self.productManageViewModel requestProductBrandAndPmodelData]subscribeNext:^(id x) {
         
-        [x removeObjectAtIndex:1];
-        
-        self.brandAndModelArray = x;
-        
-        NSMutableArray *array = [NSMutableArray arrayWithObjects:x[0], [x[1]objectAtIndex:0],nil];
-        
-        [self.productInfoArray replaceObjectAtIndex:0 withObject:array];
+        if ([x isKindOfClass:[NSMutableArray class]]) {
+            
+            self.brandAndModelArray = x;
+            
+            [self.brandAndModelArray removeObjectAtIndex:1];
+            
+            NSMutableArray *array = [NSMutableArray arrayWithObjects:x[0], [x[1]objectAtIndex:0],nil];
+            
+            [self.productInfoArray replaceObjectAtIndex:0 withObject:array];
+        }
     }];
     
-    [RACObserve(self.productManageViewModel, productRelatedInformationArray)subscribeNext:^(id x) {
+    //请求换芯周期：使用请求产品相关信息时的viewmodel——ProductManageViewModel
+    [[self.productManageViewModel requstProductInformationData]subscribeNext:^(id x) {
         
-        NSMutableArray *cycleArray = [NSMutableArray arrayWithArray:[[x lastObject]lastObject]];
+        if ([x isKindOfClass:[NSMutableArray class]]) {
+            
+            NSMutableArray *cycleArray = [NSMutableArray arrayWithArray:[[x lastObject]lastObject]];
+            
+            NSMutableArray *array = [NSMutableArray arrayWithObject:cycleArray];
+            
+            [self.productInfoArray replaceObjectAtIndex:3 withObject:array];
+        }
         
-        NSMutableArray *array = [NSMutableArray arrayWithObject:cycleArray];
         
-        [self.productInfoArray replaceObjectAtIndex:3 withObject:array];
+    }];
+    
+    //请求管理员数据
+    [[self.viewModel requestAdministratorList]subscribeNext:^(NSMutableArray*x) {
+        
+        NSMutableArray *administratorArray = [NSMutableArray array];
+        
+        for ( AMAdministrators *administrators in x) {
+            
+            [administratorArray addObject:[NSString stringWithFormat:@"%@          %@",administrators.nickname,administrators.username]];
+            
+            [self.administratorIdArray addObject:@(administrators.a_id)];
+        }
+        NSMutableArray *array = [NSMutableArray arrayWithObject:administratorArray];
+        
+        self.optionArray = [NSMutableArray arrayWithObject:array];
     }];
 }
 
+#pragma mark -UITabelViewDatasource
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     
     return 10;
@@ -113,32 +134,19 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     
-   
     return  3+self.customerModel.orderArray.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    if (section == 0) {//第一组
-        
-        return 4;
-    }
-    
-    else if (section == 1) {//第二组
-        
-        return 4;
-    }
-    
-    else if (section == 3+self.customerModel.orderArray.count-1) {
+    if (section == 3+self.customerModel.orderArray.count-1) {
         
         return 2;
     }
-  
     else {
         
         return 4;
     }
-
 }
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -152,53 +160,110 @@
         cell= [[CustomerDetailCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
     }
 
-    [cell setDataWithTitle:_titleArray customer:self.customerModel indexPaht:indexPath];
+    //赋值
+    [cell setDataWithTitle:@[@[@"客户姓名:",@"手机号:",@"客户地址:",@"详细地址:"],
+                             @[@"TDS值",@"PH值",@"硬度",@"余氯值"],
+                             @[@"购买品牌:",@"购买时间:",@"安装时间:",@"换芯周期:"],
+                             @[@"管理员:",@"管理员手机号:"]]
+                  customer:self.customerModel
+                 indexPaht:indexPath];
   
+
+    
+    if (indexPath.section == 0 &&indexPath.row==3) {
+        
+        cell.textView.tag = 999;
+        cell.textField.tag=0;
+        
+    }
+    else {
+        NSString *textFieldTag = [NSString stringWithFormat:@"10%ld%ld",indexPath.section,indexPath.row];
+        
+        cell.textField.tag = [textFieldTag integerValue];
+        cell.textView.tag =0;
+    }
+    
+    //根据是否是编辑状态决定单元格是否可以编辑
     cell.textView.editable = cell.textField.enabled = self.tableView.allowsSelection = self.isTapEditing==YES?YES:NO;
     
-    if (indexPath.section == 0 || indexPath.section == 1) {
-        
-        if (indexPath.section == 0 && indexPath.row==3) {
-            
-            cell.textView.tag = 999;
-        }
-        else if (indexPath.section==0 && indexPath.row ==2){
-            
-            cell.labelA.tag = 9999;
-        }
-        else {
-            
-            NSString *s = [NSString stringWithFormat:@"%ld500%ld",(long)indexPath.section,(long)indexPath.row];
-            
-            cell.textField.tag = [s integerValue];
-        }
-        
-        cell.accessoryType = UITableViewCellAccessoryNone;
-    }
     
-    else {
+    @weakify(self);
+    //textfield输入
+    [[[cell.textField rac_textSignal]distinctUntilChanged]subscribeNext:^(NSString * x) {
+   
+        @strongify(self);
+        if (indexPath.section == 0) {
+            
+            switch (indexPath.row) {
+                case 0:
+                    [self.customerDic safeSetObject:x forKey:@"name"];
+                    break;
+                case 1:
+                    [self.customerDic safeSetObject:x forKey:@"phone"];
+                    break;
+                    
+                default:
+                    break;
+            }
+        }
         
-        cell.textView.tag = cell.textField.tag = 0;
-        
-        cell.accessoryType = self.isTapEditing==YES?UITableViewCellAccessoryDisclosureIndicator:UITableViewCellAccessoryNone;
-    }
+        else if (indexPath.section == 1) {
+            
+            switch (indexPath.row) {
+                case 0:
+                    [self.customerDic safeSetObject:x forKey:@"tds"];
+                    break;
+                case 1:
+                     [self.customerDic safeSetObject:x forKey:@"ph"];
+                    break;
+                case 2:
+                     [self.customerDic safeSetObject:x forKey:@"hardness"];
+                    break;
+                case 3:
+                     [self.customerDic safeSetObject:x forKey:@"chlorine"];
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        DDLogDebug(@"_________________%@",x);
+    }];
+    
+
+    //textview输入
+    [[[cell.textView rac_textSignal]distinctUntilChanged]subscribeNext:^(id x) {
+        @strongify(self);
+        if (indexPath.section == 0 && indexPath.row == 3) {
+            
+            [self.customerDic safeSetObject:x forKey:@"address"];
+        }
+    }];
     
     return cell;
    
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+        
+    UITextView*textView = [self.view viewWithTag:999];
+     
+    [textView.delegate textView:textView shouldChangeTextInRange:NSMakeRange(textView.text.length, 0) replacementText:@"\n"];
+        
+    UITextField *textField = [self.view viewWithTag:_textTag];
+    [textField resignFirstResponder];
 
+
+    self.pickerView = [PickerView showAddTo:[UIApplication sharedApplication].keyWindow];
+    self.pickerView.picker.delegate = self.protocol;
+    self.pickerView.picker.dataSource = self.protocol;
+
+    CustomerDetailCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    
     //地址picker
     if (indexPath.section == 0) {
         
         if (indexPath.row == 2) {
-            
-         //   [ [self.view viewWithTag:_textTag] resignFirstResponder];
-            
-            self.pickerView = [PickerView showAddTo:[UIApplication sharedApplication].keyWindow];
-            self.pickerView.picker.delegate = self.protocol;
-            self.pickerView.picker.dataSource = self.protocol;
             
             [[self.viewModel requestAreaListData:0 lIndex:0]subscribeNext:^(NSMutableArray* x) {
                 
@@ -212,13 +277,10 @@
                 
             }];
             
-            
-            
             @weakify(self);
             self.protocol.didSelectRow = ^(NSInteger row,NSInteger component){
                 
                 @strongify(self);
-                
                 
                 if (component == 0 || component == 1) {
                     
@@ -227,6 +289,7 @@
                         _lRow = row;
                         
                     }
+                    
                     [self.protocol.pickerDataArray removeAllObjects];
                     [self.protocol.pickerDataArrayB removeAllObjects];
                     [self.protocol.pickerDataArrayC removeAllObjects];
@@ -250,13 +313,10 @@
                 
             };
             
-            
             self.pickerView.tapConfirmBlock = ^() {
                 
                 @strongify(self);
-                
-                UILabel *adressLabel = [self.view viewWithTag:9999];
-            
+    
                 NSString*province = [self.protocol.pickerDataArray[0]objectAtIndex:[self.pickerView.picker selectedRowInComponent:0]];
                 
                 NSString*city = [ self.protocol.pickerDataArray[1]objectAtIndex:[self.pickerView.picker selectedRowInComponent:1]];
@@ -277,31 +337,33 @@
                     str = [NSString stringWithFormat:@"%@%@%@",province,city,town];
                     
                 }
-                
-                
-                adressLabel.text = str;
-                
-              //  [self.addCutomerInfoDic safeSetObject:provinceLabel.text forKey:@"province"];
-              //  [self.addCutomerInfoDic safeSetObject:cityLabel.text forKey:@"city"];
-              //  [self.addCutomerInfoDic safeSetObject:townLabel.text forKey:@"county"];
+           
+                cell.labelA.text = str;
+  
+                [self.customerDic safeSetObject:province forKey:@"province"];
+                [self.customerDic safeSetObject:city forKey:@"city"];
+                [self.customerDic safeSetObject:town forKey:@"county"];
                 
             };
 
         }
+        else {
+            
+            [self.pickerView removeFromSuperview];
+        }
         
     }
+    
     else if (indexPath.section == 1) {
         
+        [self.pickerView removeFromSuperview];
         
     }
+    
+    //管理员姓名；管理员手机号
     else if (indexPath.section == 3+self.customerModel.orderArray.count-1) {
         
         //管理员姓名及电话
-        
-        self.pickerView = [PickerView showAddTo:[UIApplication sharedApplication].keyWindow];
-        self.pickerView.picker.delegate = self.protocol;
-        self.pickerView.picker.dataSource = self.protocol;
-        
         self.protocol.pickerDataArray = self.optionArray[0];
         [self.pickerView.picker reloadAllComponents];
         
@@ -311,34 +373,51 @@
         _pickerView.tapConfirmBlock = ^() {
             
             @strongify(self);
+ 
+            NSString *str = [[[self.optionArray firstObject]objectAtIndex:0]objectAtIndex:[self.pickerView.picker selectedRowInComponent:0]];
             
-            UILabel *label = [tableView viewWithTag:1000+indexPath.row];
-            
-            label.text=[[self.optionArray[indexPath.row]objectAtIndex:0]objectAtIndex:[self.pickerView.picker selectedRowInComponent:0]];
+            NSArray *list = [str componentsSeparatedByString:@" "];
+    
             
             if (indexPath.row == 0) {
                 
-              //  NSNumber* salersId = [self.salersIdArray objectAtIndex:[self.pickerView.picker selectedRowInComponent:0]];
-                
-               // [self.addCutomerInfoDic safeSetObject:salersId forKey:@"s_id"];
+                cell.labelA.text = [list firstObject];
+                NSIndexPath *path = [NSIndexPath indexPathForRow:1 inSection:indexPath.section];
+                CustomerDetailCell *cellB = [tableView cellForRowAtIndexPath:path];
+                cellB.labelA.text = [list lastObject];
+
             }
             else {
-               
-              //  NSNumber* administratorsId = [self.administratorIdArray objectAtIndex:[self.pickerView.picker selectedRowInComponent:0]];
-                
-               // [self.addCutomerInfoDic safeSetObject:administratorsId forKey:@"a_id"];
+                NSIndexPath *path = [NSIndexPath indexPathForRow:0 inSection:indexPath.section];
+                CustomerDetailCell *cellA = [tableView cellForRowAtIndexPath:path];
+                cellA.labelA.text = [list firstObject];
+                cell.labelA.text = [list lastObject];
+    
             }
+            
+            [self.customerDic safeSetObject:[self.administratorIdArray objectAtIndex:[self.pickerView.picker selectedRowInComponent:0]] forKey:@"a_id"];
         };
     }
     
+    //订单信息
     else {
         //产品信息
+        NSMutableArray *orderArray=self.customerDic[@"orderArray"];
+        
+        NSLog(@"%ld",indexPath.section);
+        
+        NSLog(@"%@",[self.customerDic[@"orderArray"]class]);
+        
+        NSLog(@"%@",[orderArray[0]class]);
+        
+       NSMutableDictionary *dic= [NSMutableDictionary dictionaryWithDictionary:orderArray[indexPath.section-2]];
+        
+      //  NSDictionary *orderDic = [order toDictionary];
+        
+      //  NSDictionary *dic = [order toDictionary];
+     //   NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:orderDic];
         if (indexPath.row == 0 || indexPath.row == 3) {
-            
-            self.pickerView = [PickerView showAddTo:[UIApplication sharedApplication].keyWindow];
-            self.pickerView.picker.delegate = self.protocol;
-            self.pickerView.picker.dataSource = self.protocol;
-            
+ 
             self.protocol.pickerDataArray = self.productInfoArray[indexPath.row];
             
             [self.protocol.pickerDataArrayB removeAllObjects];
@@ -354,38 +433,45 @@
             self.protocol.didSelectRow = nil;
             
             _pickerView.tapConfirmBlock = ^() {
-                
+    
                 @strongify(self)
                 
-                for (int i =0; i<[self.pickerView.picker numberOfComponents]; i++) {
+                if (indexPath.row == 0) {
+     
+                    NSString *brand = [self.brandAndModelArray[0]objectAtIndex:[self.pickerView.picker selectedRowInComponent:0]];
                     
-                    UILabel *label = [self.view viewWithTag:9999];
+                    NSArray *pmodelArray = [self.brandAndModelArray[1] objectAtIndex:[self.pickerView.picker selectedRowInComponent:0]];
                     
-                    NSString *str = [[self.productInfoArray[indexPath.row]objectAtIndex:i]objectAtIndex:[self.pickerView.picker selectedRowInComponent:i]];
-                    label.text = str;
+                    NSString *pmodel = [pmodelArray objectAtIndex:[self.pickerView.picker selectedRowInComponent:1]];
                     
-                    /*
-                    if (label.tag == 1000) {
-                        
-                        [self.orderDic safeSetObject:str forKey:@"brand"];
-                        
-                    }
-                    else if (label.tag == 1001) {
-                        
-                        [self.orderDic safeSetObject:str forKey:@"pmodel"];
-                    }
-                    else if (label.tag == 1003) {
-                        
-                        [self.orderDic safeSetObject:str forKey:@"cycle"];
-                        
-                    }
-                     */
+                    NSString *str = [NSString stringWithFormat:@"%@     %@",brand,pmodel];
+                    
+                    cell.labelA.text = str;
+                    
+                    [dic safeSetObject:brand forKey:@"brand"];
+                    
+                    [dic safeSetObject:pmodel forKey:@"pmodel"];
+                    
+                     [orderArray replaceObjectAtIndex:indexPath.section-2 withObject:dic];
+                }
+                else {
+                    
+                    NSString *str =  [[self.productInfoArray[indexPath.row]objectAtIndex:0]objectAtIndex:[self.pickerView.picker selectedRowInComponent:0]];
+                    cell.labelA.text = str;
+                    
+                    [dic safeSetObject:str forKey:@"cycle"];
+                    
+                    [orderArray replaceObjectAtIndex:indexPath.section-2 withObject:dic];
                 }
                 
+                [self.customerDic safeSetObject:orderArray forKey:@"order"];
+ 
             };
         }
         
         else {
+            
+            [self.pickerView removeFromSuperview];
             
             _datePicker = [PickerDataView showDateAddTo:[UIApplication sharedApplication].keyWindow];
             
@@ -402,32 +488,33 @@
                 
                 @strongify(self);
                 
-                UILabel *label = [self.view viewWithTag:9999];
+                cell.labelA.text = self.dateStr;
                 
-                label.text =  self.dateStr;
-                
-                
-                /*
-                if (label.tag == 2001) {
+                if (indexPath.row == 1) {
                     
                     NSString *date = [NSString stringWithFormat:@"%@",self.datePicker.datePicker.date];
+                    [dic safeSetObject:date forKey:@"buy_time"];
                     
-                    [self.orderDic safeSetObject:date forKey:@"buy_time"];
+                    [orderArray replaceObjectAtIndex:indexPath.section-2 withObject:dic];
                     
+                   // [self.orderDic safeSetObject:date forKey:@"buy_time"];
                 }
-                else if (label.tag == 2002) {
+                else if(indexPath.row == 2) {
+                    
                     
                     NSString *date = [NSString stringWithFormat:@"%@",self.datePicker.datePicker.date];
+                    [dic safeSetObject:date forKey:@"install_time"];
                     
-                    [self.orderDic safeSetObject:date forKey:@"install_time"];
+                    [orderArray replaceObjectAtIndex:indexPath.section-2 withObject:dic];
+                   // [self.orderDic safeSetObject:date forKey:@"install_time"];
                 }
-                 */
                 
+                 [self.customerDic safeSetObject:orderArray forKey:@"order"];
+
             };
         }
     }
- 
-    
+
 }
 
 #pragma mark - Action
@@ -449,6 +536,7 @@
             self.isTapEditing = YES;
             [self.tableView reloadData];
 
+            self.title = @"编辑客户信息";
             self.navigationItem.rightBarButtonItems = nil;
             UIButton *saveBtn = [UIButton buttonWithType:UIButtonTypeCustom];
             saveBtn.frame = CGRectMake(0, 0, 44, 44);
@@ -457,8 +545,17 @@
             saveBtn.titleLabel.font = [UIFont systemFontOfSize:18.f];
             self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:saveBtn];
             
-            [self requestEditingData];
-        
+            //保存编辑信息事件
+            [[saveBtn rac_signalForControlEvents:UIControlEventTouchUpInside]subscribeNext:^(id x) {
+                
+                [[self.viewModel requestEditingCustomer:self.customerDic]subscribeNext:^(id x) {
+                    
+                }];
+                //编辑保存请求
+                NSLog(@"%@",self.customerDic);
+                
+            }];
+            
         }
         else {
             
@@ -495,76 +592,20 @@
     }];
 }
 
-#pragma mark - UITextFieldDelegate
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
-    
-    
-    UITextField *input = [self.view viewWithTag:textField.tag];
-    
-    [[[input rac_textSignal]distinctUntilChanged]subscribeNext:^(NSString * x) {
-        
-        if (textField.tag == 5000) {//客户姓名
-    
-            [self.customerDic safeSetObject:x forKey:@"name"];
-
-        }
-        else if (textField.tag == 5001) {
-         
-            [self.customerDic safeSetObject:x forKey:@"phone"];
-        }
-        else if (textField.tag == 15000) {
-     
-            [self.customerDic safeSetObject:x forKey:@"tds"];
-        }
-        else if (textField.tag == 15001) {
-    
-            [self.customerDic safeSetObject:x forKey:@"ph"];
-        }
-        else if (textField.tag == 15002) {
-     
-            [self.customerDic safeSetObject:x forKey:@"hardness"];
-        }
-        else if (textField.tag == 15003) {
-            
-            [self.customerDic safeSetObject:x forKey:@"chlorine"];
-        }
-
-        DDLogDebug(@"_________________%@",x);
-    }];
-    
-    
-    return YES;
-}
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    
-
-    [textField resignFirstResponder];
-    
-    return YES;
-}
-
 #pragma mark -UITextViewDelegate
-- (BOOL)textViewShouldBeginEditing:(UITextView *)textView {
-    
-    UITextView *input = [self.view viewWithTag:textView.tag];
- 
-    [[[input rac_textSignal]distinctUntilChanged]subscribeNext:^(id x) {
-        
-        [self.customerDic safeSetObject:x forKey:@"address"];
-        
-        //_textTag = textView.tag;
-    }];
-    
-    return YES;
-}
-
 -(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 {
     if ([text isEqualToString:@"\n"]) {
         [textView resignFirstResponder];
         return NO;
     }
+    return YES;
+}
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+    
+    _textTag = textField.tag;
+    
     return YES;
 }
 
@@ -601,7 +642,6 @@
 #pragma mark - SuperMethod
 -(void)doBack:(id)sender
 {
-   
     if (self.isTapEditing == YES) {
         
         self.alertVC = [AlertController alertControllerWithTitle:@"退出此次编辑" message:nil preferredStyle:UIAlertControllerStyleAlert];
@@ -623,41 +663,6 @@
         
          [self.navigationController popToRootViewControllerAnimated:YES];
     }
-}
-
-- (void)requestEditingData {
-    
-    
-
-    
-    //请求产品品牌和型号:使用请求产品品牌和型号时的viewmodel——ProductManageViewModel
-    [[self.productManageViewModel requestProductBrandAndPmodelData]subscribeNext:^(NSNumber* x) {
-        
-        NSLog(@"dd");
-    }];
-    
-    //请求换芯周期：使用请求产品相关信息时的viewmodel——ProductManageViewModel
-    [[self.productManageViewModel requstProductInformationData]subscribeNext:^(NSNumber* x) {
-        
-        NSLog(@"dd");
-        
-    }];
-    
-    [[self.viewModel requestAdministratorList]subscribeNext:^(NSMutableArray*x) {
-        
-        NSMutableArray *administratorArray = [NSMutableArray array];
-        
-        for ( AMAdministrators *administrators in x) {
-            
-            [administratorArray addObject:[NSString stringWithFormat:@"%@          %@",administrators.nickname,administrators.username]];
-            
-            [self.administratorIdArray addObject:@(administrators.a_id)];
-        }
-        NSMutableArray *array = [NSMutableArray arrayWithObject:administratorArray];
-        
-        self.optionArray = [NSMutableArray arrayWithObject:array];
-       // [self.optionArray replaceObjectAtIndex:1 withObject:array];
-    }];
 }
 
 @end

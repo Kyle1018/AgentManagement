@@ -27,9 +27,9 @@
 
 @property(nonatomic,strong)NSMutableArray *productInfoDataArray;//产品列表或搜索模型数组
 
-@property(nonatomic,strong)NSMutableArray *productAndModelArray;//产品和型号数组
+//@property(nonatomic,strong)NSMutableArray *productAndModelArray;//产品和型号数组
 
-@property(nonatomic,strong)NSMutableArray*productRelatedInformationArray;//产品相关属性
+//@property(nonatomic,strong)NSMutableArray*productRelatedInformationArray;//产品相关属性
 
 /**
  *  请求产品品牌和型号数据

@@ -104,11 +104,6 @@
     }];
     
     
-    //品牌和型号数据
-    [RACObserve(self.viewModel, productAndModelArray)subscribeNext:^(NSMutableArray* x) {
-    
-        selfWeak.brandAndPmodelDataArray = x;
-    }];
 }
 
 - (void)requestListData {
@@ -158,6 +153,10 @@
     //成本管理搜索页面“调用”产品管理中的产品与型号数据
     [[self.viewModel requestProductBrandAndPmodelData]subscribeNext:^(id x) {
         
+        if ([x isKindOfClass:[NSMutableArray class]]) {
+            
+             self.brandAndPmodelDataArray = x;
+        }
     }];
 }
 

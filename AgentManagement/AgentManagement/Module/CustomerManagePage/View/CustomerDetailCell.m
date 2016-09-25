@@ -12,10 +12,6 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    
-   // self.textField.backgroundColor=[UIColor greenColor];
-    //self.labelA.backgroundColor=[UIColor redColor];
-    //self.textView.backgroundColor=[UIColor blueColor];
 
     self.titleLabel.sd_layout
     .leftSpaceToView(self.contentView,15)
@@ -43,6 +39,9 @@
     .rightSpaceToView(self.contentView,0)
     .heightIs(19);
     
+    _tagArray = [NSMutableArray array];
+    _rowArray = [NSMutableArray array];
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -52,9 +51,15 @@
 }
 
 - (void)setDataWithTitle:(NSArray*)titleArray customer:(AMCustomer*)customer indexPaht:(NSIndexPath*)indexPath {
+
+   // NSString *labelTag = [NSString stringWithFormat:@"10%ld%ld",indexPath.section,indexPath.row];
+    //NSString *textFiledTag = [NSString stringWithFormat:@"20%ld%ld",indexPath.section,indexPath.row];
+    
+    //self.labelA.tag = [labelTag integerValue];
+    //self.textField.tag = [textFiledTag integerValue];
     
     if (indexPath.section == 0) {
-   
+
         self.titleLabel.text = [titleArray[indexPath.section]objectAtIndex:indexPath.row];
         
         if (indexPath.row==2) {
@@ -83,8 +88,7 @@
             
             self.labelA.hidden = self.textField.hidden = YES;
             self.textView.hidden = NO;
-            
-              self.textView.text = customer.address;
+            self.textView.text = customer.address;
         }
         else {
             

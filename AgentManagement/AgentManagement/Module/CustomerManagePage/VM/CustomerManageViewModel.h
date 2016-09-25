@@ -12,6 +12,7 @@
 #import "AMAdministratorListOrSearchRequest.h"
 #import "AMCustomerOrSearchRequest.h"
 #import "AMDeleteCustomerRequest.h"
+#import "AMEditCustomerRequest.h"
 @interface CustomerManageViewModel : NSObject
 
 @property(nonatomic,strong)NSArray *areaArray;
@@ -25,6 +26,8 @@
 @property(nonatomic,strong)AMCustomerOrSearchRequest *customerOrSearchRequest;
 
 @property(nonatomic,strong)AMDeleteCustomerRequest *deleteCustomerRequest;
+
+@property(nonatomic,strong)AMEditCustomerRequest *editCustomerRequest;
 
 @property(nonatomic,strong)NSMutableArray *customerModelArray;
 //获取地区数据

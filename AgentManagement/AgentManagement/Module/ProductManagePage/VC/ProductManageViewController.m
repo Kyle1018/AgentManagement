@@ -109,11 +109,11 @@
 //    }];
 //
     //请求产品属性信息
-    [[self.viewModel requstProductInformationData]subscribeNext:^(NSNumber* x) {
+    [[self.viewModel requstProductInformationData]subscribeNext:^(id x) {
         
-        if ([x boolValue]==NO) {
+        if ([x isKindOfClass:[NSMutableArray class]]) {
             
-            //请求数据失败
+               self.productRelatedInformationArray = x;
         }
         
     }];
@@ -121,27 +121,12 @@
 
 - (void)observeData {
     
-    __weak typeof(self) weakSelf = self;
-    
     //列表数据
     [RACObserve(self.viewModel, productInfoDataArray)subscribeNext:^(NSMutableArray* x) {
        
-        weakSelf.productInfoDataArray = x;
+        self.productInfoDataArray = x;
     }];
     
-    
-////    //品牌和型号数据
-//    [RACObserve(self.viewModel, productAndModelArray)subscribeNext:^(NSMutableArray* x) {
-//        
-//         weakSelf.brandAndPmodelDataArray = x;
-//    }];
-//    
-    //产品相关属性数据
-    [RACObserve(self.viewModel, productRelatedInformationArray)subscribeNext:^(NSMutableArray* x) {
-        
-        weakSelf.productRelatedInformationArray = x;
-
-    }];
 }
 
 - (void)pullRefresh {

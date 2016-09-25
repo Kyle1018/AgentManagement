@@ -129,6 +129,7 @@
 		E2A3F27B1D6F2192006EC120 /* DataCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A3F27A1D6F2192006EC120 /* DataCacheManager.m */; };
 		E2B103C21D8FAFB00011FA8E /* AMAdministratorListOrSearchRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B103C11D8FAFB00011FA8E /* AMAdministratorListOrSearchRequest.m */; };
 		E2B103C51D8FAFC80011FA8E /* AMSalerListOrSearchRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B103C41D8FAFC80011FA8E /* AMSalerListOrSearchRequest.m */; };
+		E2B63B181D981797001B2237 /* AMEditCustomerRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B63B171D981797001B2237 /* AMEditCustomerRequest.m */; };
 		E2C14F6A1D7A849D00B0B0B2 /* RegexUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = E2C14F691D7A849D00B0B0B2 /* RegexUtils.m */; };
 		E2C14F701D7A9B6F00B0B0B2 /* MBProgressHUD+KKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = E2C14F6F1D7A9B6F00B0B0B2 /* MBProgressHUD+KKAdditions.m */; };
 		E2C14F7C1D7AA46000B0B0B2 /* Land.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2C14F721D7AA46000B0B0B2 /* Land.storyboard */; };
@@ -390,6 +391,8 @@
 		E2B103C11D8FAFB00011FA8E /* AMAdministratorListOrSearchRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMAdministratorListOrSearchRequest.m; sourceTree = "<group>"; };
 		E2B103C31D8FAFC80011FA8E /* AMSalerListOrSearchRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMSalerListOrSearchRequest.h; sourceTree = "<group>"; };
 		E2B103C41D8FAFC80011FA8E /* AMSalerListOrSearchRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMSalerListOrSearchRequest.m; sourceTree = "<group>"; };
+		E2B63B161D981797001B2237 /* AMEditCustomerRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMEditCustomerRequest.h; sourceTree = "<group>"; };
+		E2B63B171D981797001B2237 /* AMEditCustomerRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMEditCustomerRequest.m; sourceTree = "<group>"; };
 		E2C14F681D7A849D00B0B0B2 /* RegexUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegexUtils.h; sourceTree = "<group>"; };
 		E2C14F691D7A849D00B0B0B2 /* RegexUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexUtils.m; sourceTree = "<group>"; };
 		E2C14F6E1D7A9B6F00B0B0B2 /* MBProgressHUD+KKAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+KKAdditions.h"; sourceTree = "<group>"; };
@@ -1042,6 +1045,8 @@
 				E24819D71D87020900F885EE /* AMAddCustomerRequest.m */,
 				346567191D923A13008151A5 /* AMDeleteCustomerRequest.h */,
 				3465671A1D923A13008151A5 /* AMDeleteCustomerRequest.m */,
+				E2B63B161D981797001B2237 /* AMEditCustomerRequest.h */,
+				E2B63B171D981797001B2237 /* AMEditCustomerRequest.m */,
 			);
 			path = CustomerManage;
 			sourceTree = "<group>";
@@ -1488,6 +1493,7 @@
 				27E26B501D6B1D360072F26E /* ProductManageViewController.m in Sources */,
 				27CA01381D6B1167009F9A25 /* AMBaseModel.m in Sources */,
 				275F329A1D717B210033C8FF /* ASICloudFilesRequest.m in Sources */,
+				E2B63B181D981797001B2237 /* AMEditCustomerRequest.m in Sources */,
 				270704C41D45F9A900633390 /* ViewController.m in Sources */,
 				279C04161D727D2E00663EBA /* AMIdentifyCode.m in Sources */,
 				E21947461D786214001C5E5F /* MeViewController.m in Sources */,

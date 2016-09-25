@@ -38,9 +38,7 @@
     _protocol = [[PickerViewProtocol alloc]init];
 
     [self requestData];
-    
-    [self observeData];
-    
+
     DDLogDebug(@"%@",self.addCutomerInfoDic);
 
 }
@@ -52,42 +50,39 @@
     _pickerDataArray = [NSMutableArray arrayWithObjects:@"购买机型",@"购买时间",@"安装时间",@"换芯周期", nil];
     
     //请求产品品牌和型号:使用请求产品品牌和型号时的viewmodel——ProductManageViewModel
-    [[self.viewModel requestProductBrandAndPmodelData]subscribeNext:^(NSNumber* x) {
+    [[self.viewModel requestProductBrandAndPmodelData]subscribeNext:^(id x) {
     
+        if ([x isKindOfClass:[NSMutableArray class]]) {
+            
+            [x removeObjectAtIndex:1];
+            
+            self.brandAndModelArray = x;
+            
+            NSMutableArray *array = [NSMutableArray arrayWithObjects:x[0], [x[1]objectAtIndex:0],nil];
+            
+            [self.pickerDataArray replaceObjectAtIndex:0 withObject:array];
+        }
        
     }];
     
     //请求换芯周期：使用请求产品相关信息时的viewmodel——ProductManageViewModel
-    [[self.viewModel requstProductInformationData]subscribeNext:^(NSNumber* x) {
+    [[self.viewModel requstProductInformationData]subscribeNext:^(id x) {
+        
+        if ([x isKindOfClass:[NSMutableArray class]]) {
+            
+            NSMutableArray *cycleArray = [NSMutableArray arrayWithArray:[[x lastObject]lastObject]];
+            
+            NSMutableArray *array = [NSMutableArray arrayWithObject:cycleArray];
+            
+            [self.pickerDataArray replaceObjectAtIndex:3 withObject:array];
+            
+        }
 
      
-  
     }];
     
 }
 
-- (void)observeData {
-    
-    [RACObserve(self.viewModel, productAndModelArray)subscribeNext:^(NSMutableArray* x) {
-       
-        [x removeObjectAtIndex:1];
-        
-        self.brandAndModelArray = x;
-        
-        NSMutableArray *array = [NSMutableArray arrayWithObjects:x[0], [x[1]objectAtIndex:0],nil];
-        
-        [self.pickerDataArray replaceObjectAtIndex:0 withObject:array];
-    }];
-    
-    [RACObserve(self.viewModel, productRelatedInformationArray)subscribeNext:^(id x) {
-        
-        NSMutableArray *cycleArray = [NSMutableArray arrayWithArray:[[x lastObject]lastObject]];
-        
-        NSMutableArray *array = [NSMutableArray arrayWithObject:cycleArray];
-        
-        [self.pickerDataArray replaceObjectAtIndex:3 withObject:array];
-    }];
-}
 
 #pragma mark -UITabelViewDatasource
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {

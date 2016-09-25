@@ -283,6 +283,14 @@
     
     return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
         
+        self.editCustomerRequest = [[AMEditCustomerRequest alloc]initWithAddCustomerInfo:paramt];
+        
+        [self.editCustomerRequest requestWithSuccess:^(KKBaseModel *model, KKRequestError *error) {
+            
+        } failure:^(KKBaseModel *model, KKRequestError *error) {
+            
+        }];
+        
         return nil;
     }];
 }
