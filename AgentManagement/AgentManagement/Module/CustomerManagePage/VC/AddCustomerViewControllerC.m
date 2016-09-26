@@ -7,22 +7,32 @@
 //
 
 #import "AddCustomerViewControllerC.h"
-#import "PickerView.h"
 #import "CustomerManageViewModel.h"
 #import "AMSales.h"
 #import "AMAdministrators.h"
-@interface AddCustomerViewControllerC ()<UIPickerViewDelegate,UIPickerViewDataSource>
+#import "AMCustomer.h"
+@interface AddCustomerViewControllerC ()
 @property(nonatomic,strong)PickerView *pickerView;
 @property(nonatomic,strong)CustomerManageViewModel *viewModel;
-@property(nonatomic,strong)NSMutableArray*salersArray;
-@property(nonatomic,strong)NSMutableArray *administratorArray;
+@property(nonatomic,strong)NSMutableArray*salersIdArray;
+@property(nonatomic,strong)NSMutableArray *administratorIdArray;
+@property(nonatomic,strong)NSMutableArray *optionArray;
 @property(nonatomic,assign)NSInteger indexRow;
+@property(nonatomic,strong)PickerViewProtocol *protocol;
 @end
 
 @implementation AddCustomerViewControllerC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    _protocol = [[PickerViewProtocol alloc]init];
+    
+    _salersIdArray = [NSMutableArray array];
+    
+    _administratorIdArray = [NSMutableArray array];
+    
+    _optionArray = [NSMutableArray arrayWithObjects:@"销售",@"管理", nil];
     
     [self requestData];
 }
@@ -33,15 +43,37 @@
     
     DDLogDebug(@"%@",self.addCutomerInfoDic);
     
-    [[self.viewModel requstSalersName]subscribeNext:^(NSMutableArray* x) {
+    [[self.viewModel requstSalersList]subscribeNext:^(NSMutableArray* x) {
         
-        self.salersArray = x;
+        NSMutableArray *salersArray = [NSMutableArray array];
+        
+        for ( AMSales *sales in x) {
+            
+            [salersArray addObject:[NSString stringWithFormat:@"%@          %@",sales.name,sales.phone]];
+            
+            [self.salersIdArray addObject:@(sales.s_id)];
+         
+        }
+        
+        NSMutableArray *array = [NSMutableArray arrayWithObject:salersArray];
+        
+        [_optionArray replaceObjectAtIndex:0 withObject:array];
         
     }];
     
-    [[self.viewModel requestAdministratorName]subscribeNext:^(NSMutableArray*x) {
+    [[self.viewModel requestAdministratorList]subscribeNext:^(NSMutableArray*x) {
         
-        self.administratorArray = x;
+        NSMutableArray *administratorArray = [NSMutableArray array];
+        
+        for ( AMAdministrators *administrators in x) {
+            
+            [administratorArray addObject:[NSString stringWithFormat:@"%@          %@",administrators.nickname,administrators.username]];
+            
+            [self.administratorIdArray addObject:@(administrators.a_id)];
+        }
+         NSMutableArray *array = [NSMutableArray arrayWithObject:administratorArray];
+        
+        [_optionArray replaceObjectAtIndex:1 withObject:array];
     }];
 }
 
@@ -53,103 +85,62 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
-    _pickerView = [PickerView showAddTo:self.tableView];
-    _pickerView.picker.delegate = self;
-    _pickerView.picker.dataSource = self;
-    _indexRow = indexPath.row;
+    self.pickerView = [PickerView showAddTo:[UIApplication sharedApplication].keyWindow];
+    self.pickerView.picker.delegate = self.protocol;
+    self.pickerView.picker.dataSource = self.protocol;
     
+    self.protocol.pickerDataArray = self.optionArray[indexPath.row];
+     [self.pickerView.picker reloadAllComponents];
+
     @weakify(self);
     _pickerView.tapConfirmBlock = ^() {
         
         @strongify(self);
         
         UILabel *label = [tableView viewWithTag:1000+indexPath.row];
-
-        
-//        
-//        label.text = indexPath.row == 0?[self.salersArray objectAtIndex:[self.pickerView.picker selectedRowInComponent:0]]:[self.administratorArray objectAtIndex:[self.pickerView.picker selectedRowInComponent:0]];
+    
+        label.text=[[self.optionArray[indexPath.row]objectAtIndex:0]objectAtIndex:[self.pickerView.picker selectedRowInComponent:0]];
         
         if (indexPath.row == 0) {
+
+            NSNumber* salersId = [self.salersIdArray objectAtIndex:[self.pickerView.picker selectedRowInComponent:0]];
             
-            AMSales *sales = [self.salersArray objectAtIndex:[self.pickerView.picker selectedRowInComponent:0]];
-            label.text = sales.name;
-            
-            [self.addCutomerInfoDic safeSetObject:@(sales.s_id) forKey:@"s_id"];
+            [self.addCutomerInfoDic safeSetObject:salersId forKey:@"s_id"];
         }
         else {
-            AMAdministrators *administrators = [self.administratorArray objectAtIndex:[self.pickerView.picker selectedRowInComponent:0]];
+
+             NSNumber* administratorsId = [self.administratorIdArray objectAtIndex:[self.pickerView.picker selectedRowInComponent:0]];
             
-            label.text = administrators.nickname;
-            
-            
-            [self.addCutomerInfoDic safeSetObject:@(administrators.a_id) forKey:@"a_id"];
+            [self.addCutomerInfoDic safeSetObject:administratorsId forKey:@"a_id"];
         }
     };
 }
 
-#pragma pickerViewDelegate
--(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
-    
-    return 1;
-}
 
--(NSInteger) pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
-    
-    return _indexRow == 0?self.salersArray.count:self.administratorArray.count;
-  
-}
-
-- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-    
-    if (_indexRow == 0) {
-        AMSales *sales = [self.salersArray objectAtIndex:row];
-        
-        return sales.name;
-        
-    }
-    else {
-        
-        AMAdministrators *administrators = [self.administratorArray objectAtIndex:row];
-        
-        return administrators.nickname;
-    }
-    
-    
-//    
-//    return _indexRow==0?[self.salersNameArray objectAtIndex:row]:[self.administratorNameArray objectAtIndex:row];
-}
-
-- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component {
-    
-    return 42;
-}
-
-- (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component {
-    
-    return ScreenWidth/2;
-}
-
-- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view{
-    UILabel* pickerLabel = (UILabel*)view;
-    if (!pickerLabel){
-        pickerLabel = [[UILabel alloc] init];
-        pickerLabel.textAlignment = NSTextAlignmentCenter;
-        [pickerLabel setBackgroundColor:[UIColor clearColor]];
-        [pickerLabel setFont:[UIFont boldSystemFontOfSize:17]];
-    }
-    
-    pickerLabel.text=[self pickerView:pickerView titleForRow:row forComponent:component];
-    return pickerLabel;
-}
 
 #pragma mark - Action
 - (IBAction)saveAction:(UIButton *)sender {
     
     //添加客户请求
-    [[self.viewModel requstAddCustomerData:self.addCutomerInfoDic]subscribeNext:^(id x) {
+    [[[self.viewModel requstAddCustomerData:self.addCutomerInfoDic]filter:^BOOL(id value) {
         
+        if ([value isKindOfClass:[AMCustomer class]]) {
+            
+            return YES;
+        }
+        else {
+            
+            [MBProgressHUD showText:@"添加用户失败"];
+             return NO;
+        }
+     
         
+    }]subscribeNext:^(AMCustomer* x) {
+        
+         [self.navigationController popToRootViewControllerAnimated:YES];
     }];
+   
+
     
 }
 

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -12,39 +13,31 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rgD-li-1U1">
-                    <rect key="frame" x="0.0" y="359" width="375" height="308"/>
                     <subviews>
-                        <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FE5-WL-aiQ">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="308"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        </pickerView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bDL-xX-jB1">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                             <subviews>
                                 <button opaque="NO" tag="1000" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A8a-Dx-i63">
-                                    <rect key="frame" x="0.0" y="0.0" width="100" height="44"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="100" id="eB3-9F-kD9"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="16"/>
                                     <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="20" maxY="0.0"/>
                                     <state key="normal" title="取消">
-                                        <color key="titleColor" red="0.60784313725490191" green="0.60784313725490191" blue="0.60784313725490191" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="titleColor" red="0.60784313725490191" green="0.60784313725490191" blue="0.60784313725490191" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </state>
                                 </button>
                                 <button opaque="NO" tag="1001" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QQA-hU-Rpf">
-                                    <rect key="frame" x="275" y="0.0" width="100" height="44"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="100" id="nNL-Gh-oed"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="16"/>
                                     <inset key="contentEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     <state key="normal" title="确定">
-                                        <color key="titleColor" red="0.60784313725490191" green="0.60784313725490191" blue="0.60784313725490191" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="titleColor" red="0.60784313725490191" green="0.60784313725490191" blue="0.60784313725490191" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </state>
                                 </button>
                             </subviews>
-                            <color key="backgroundColor" red="0.94509803921568625" green="0.94509803921568625" blue="0.94509803921568625" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="backgroundColor" red="0.94509803921568625" green="0.94509803921568625" blue="0.94509803921568625" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="bottom" secondItem="A8a-Dx-i63" secondAttribute="bottom" id="51v-Pe-SRh"/>
                                 <constraint firstAttribute="trailing" secondItem="QQA-hU-Rpf" secondAttribute="trailing" id="95j-Gz-Lsh"/>
@@ -55,16 +48,19 @@
                                 <constraint firstAttribute="bottom" secondItem="QQA-hU-Rpf" secondAttribute="bottom" id="zOO-PR-kPm"/>
                             </constraints>
                         </view>
+                        <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FE5-WL-aiQ">
+                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </pickerView>
                     </subviews>
                     <constraints>
-                        <constraint firstItem="FE5-WL-aiQ" firstAttribute="top" secondItem="rgD-li-1U1" secondAttribute="top" id="AXU-8v-mq0"/>
-                        <constraint firstAttribute="bottom" secondItem="FE5-WL-aiQ" secondAttribute="bottom" id="AcH-I1-dzw"/>
+                        <constraint firstAttribute="bottom" secondItem="FE5-WL-aiQ" secondAttribute="bottom" id="49c-hn-ZCx"/>
                         <constraint firstItem="FE5-WL-aiQ" firstAttribute="leading" secondItem="rgD-li-1U1" secondAttribute="leading" id="Ci4-3G-o7L"/>
+                        <constraint firstItem="FE5-WL-aiQ" firstAttribute="top" secondItem="bDL-xX-jB1" secondAttribute="bottom" id="Hck-ee-S5f"/>
                         <constraint firstItem="bDL-xX-jB1" firstAttribute="top" secondItem="rgD-li-1U1" secondAttribute="top" id="L5M-p1-KP4"/>
+                        <constraint firstAttribute="height" constant="228" id="YQG-aE-qQd"/>
                         <constraint firstItem="bDL-xX-jB1" firstAttribute="leading" secondItem="rgD-li-1U1" secondAttribute="leading" id="kZK-8i-OOL"/>
                         <constraint firstAttribute="trailing" secondItem="FE5-WL-aiQ" secondAttribute="trailing" id="q7U-dS-YHW"/>
                         <constraint firstAttribute="trailing" secondItem="bDL-xX-jB1" secondAttribute="trailing" id="uHl-OP-ZJA"/>
-                        <constraint firstAttribute="height" constant="308" id="ugw-aj-xtS"/>
                     </constraints>
                 </view>
             </subviews>
@@ -89,41 +85,36 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Am-zl-YNP">
-                    <rect key="frame" x="0.0" y="359" width="375" height="308"/>
                     <subviews>
                         <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="s6K-9M-b8k">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="308"/>
                             <date key="date" timeIntervalSinceReferenceDate="495297420.57736999">
                                 <!--2016-09-11 14:37:00 +0000-->
                             </date>
                         </datePicker>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ciC-9G-gW1">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                             <subviews>
                                 <button opaque="NO" tag="1003" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cPx-ng-95M">
-                                    <rect key="frame" x="275" y="0.0" width="100" height="44"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="100" id="4EM-dc-k62"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="16"/>
                                     <inset key="contentEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     <state key="normal" title="确定">
-                                        <color key="titleColor" red="0.60784313725490191" green="0.60784313725490191" blue="0.60784313725490191" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="titleColor" red="0.60784313725490191" green="0.60784313725490191" blue="0.60784313725490191" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </state>
                                 </button>
                                 <button opaque="NO" tag="1002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Rf-kT-GOE">
-                                    <rect key="frame" x="0.0" y="0.0" width="100" height="44"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="100" id="YtD-Fy-tGe"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="16"/>
                                     <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="20" maxY="0.0"/>
                                     <state key="normal" title="取消">
-                                        <color key="titleColor" red="0.60784313725490191" green="0.60784313725490191" blue="0.60784313725490191" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="titleColor" red="0.60784313725490191" green="0.60784313725490191" blue="0.60784313725490191" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </state>
                                 </button>
                             </subviews>
-                            <color key="backgroundColor" red="0.94509803921568625" green="0.94509803921568625" blue="0.94509803921568625" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="backgroundColor" red="0.94509803921568625" green="0.94509803921568625" blue="0.94509803921568625" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="44" id="4vQ-dG-09P"/>
                                 <constraint firstItem="9Rf-kT-GOE" firstAttribute="leading" secondItem="ciC-9G-gW1" secondAttribute="leading" id="M8r-8E-oU5"/>
@@ -135,20 +126,20 @@
                             </constraints>
                         </view>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="s6K-9M-b8k" secondAttribute="bottom" id="2Nx-A9-xub"/>
                         <constraint firstItem="ciC-9G-gW1" firstAttribute="top" secondItem="9Am-zl-YNP" secondAttribute="top" id="8Kn-PY-GsX"/>
                         <constraint firstItem="s6K-9M-b8k" firstAttribute="leading" secondItem="9Am-zl-YNP" secondAttribute="leading" id="Ay2-j4-98L"/>
-                        <constraint firstAttribute="height" constant="308" id="N9z-kT-fg0"/>
                         <constraint firstItem="ciC-9G-gW1" firstAttribute="leading" secondItem="9Am-zl-YNP" secondAttribute="leading" id="NFn-Sq-8fI"/>
+                        <constraint firstAttribute="height" constant="228" id="Vei-Fx-aoY"/>
                         <constraint firstAttribute="trailing" secondItem="ciC-9G-gW1" secondAttribute="trailing" id="iMR-t0-3KQ"/>
                         <constraint firstAttribute="trailing" secondItem="s6K-9M-b8k" secondAttribute="trailing" id="oGO-x1-lGV"/>
                         <constraint firstItem="s6K-9M-b8k" firstAttribute="top" secondItem="9Am-zl-YNP" secondAttribute="top" id="rOk-6q-5Nw"/>
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="9Am-zl-YNP" secondAttribute="trailing" id="3Xa-bU-bq3"/>
                 <constraint firstItem="9Am-zl-YNP" firstAttribute="leading" secondItem="vdJ-yF-ZPp" secondAttribute="leading" id="tYV-Uk-W61"/>
@@ -165,4 +156,9 @@
             <point key="canvasLocation" x="682.5" y="203.5"/>
         </view>
     </objects>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4_7.fullscreen"/>
+    </simulatedMetricsContainer>
 </document>

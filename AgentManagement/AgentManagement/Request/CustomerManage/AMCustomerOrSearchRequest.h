@@ -10,4 +10,6 @@
 
 @interface AMCustomerOrSearchRequest : AMBaseRequest
 
+- (instancetype)initWithPage:(NSInteger)page Size:(NSInteger)size Search:(NSDictionary*)search;
+
 @end

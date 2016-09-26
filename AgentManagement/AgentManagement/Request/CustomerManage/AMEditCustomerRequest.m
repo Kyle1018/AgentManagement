@@ -1,18 +1,17 @@
 //
-//  AMAddCustomerRequest.m
+//  AMEditCustomerRequest.m
 //  AgentManagement
 //
-//  Created by 郭华滨 on 16/9/12.
+//  Created by 郭华滨 on 16/9/25.
 //  Copyright © 2016年 KK. All rights reserved.
 //
 
-#import "AMAddCustomerRequest.h"
-#import "AMCustomer.h"
-@implementation AMAddCustomerRequest
+#import "AMEditCustomerRequest.h"
 
+@implementation AMEditCustomerRequest
 
-- (instancetype)initWithAddCustomerInfo:(NSDictionary*)customerInfo
-{
+- (instancetype)initWithAddCustomerInfo:(NSDictionary*)customerInfo {
+    
     self = [super init];
     if (self) {
         
@@ -26,10 +25,9 @@
     return self;
 }
 
-
 - (NSString *)urlPath
 {
-    return @"apicustomer/add";
+    return @"apicustomer/edit";
 }
 
 - (id)buildModelWithJsonDictionary:(NSDictionary *)dictionary
@@ -38,8 +36,12 @@
     
     DDLogDebug(@"%@",dictionary);
     
-    return [[AMCustomer alloc]initWithDictionary:dictionary error:nil];
+    
+    return nil;
+    
+    //  return [[AMCustomer alloc]initWithDictionary:dictionary error:nil];
     
 }
+
 
 @end

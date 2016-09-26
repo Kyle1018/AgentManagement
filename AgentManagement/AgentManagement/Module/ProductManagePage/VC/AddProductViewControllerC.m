@@ -76,8 +76,6 @@
 
 - (IBAction)saveAction:(UIButton *)sender {
     
-    WeakObj(self);
-
     //添加产品请求
     [[[self.viewModel requstAddProductData:self.optionDic]filter:^BOOL(id value) {
         
@@ -96,7 +94,7 @@
         
         [[NSNotificationCenter defaultCenter]postNotificationName:KAddProductInfoNotifi object:nil userInfo:@{@"productInfo":x}];
         
-        [selfWeak.navigationController popToRootViewControllerAnimated:YES];
+        [self.navigationController popToRootViewControllerAnimated:YES];
         
     }];
 }

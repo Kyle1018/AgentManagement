@@ -10,14 +10,14 @@
 
 @implementation AMCustomerOrSearchRequest
 
-- (instancetype)initWithPage:(NSString *)page Size:(NSString*)size Search:(NSDictionary*)search
+- (instancetype)initWithPage:(NSInteger)page Size:(NSInteger)size Search:(NSDictionary*)search
 {
     self = [super init];
     if (self) {
         
         [self.requestParameters  safeSetObject:search forKey:@"search"];
-        [self.requestParameters safeSetObject:page forKey:@"page"];
-        [self.requestParameters safeSetObject:size forKey:@"size"];
+        [self.requestParameters safeSetObject:@(page) forKey:@"page"];
+        [self.requestParameters safeSetObject:@(size) forKey:@"size"];
         
     }
     return self;
@@ -25,12 +25,14 @@
 
 - (NSString *)urlPath
 {
-    return @"apiadministrators/search";
+    return @"apicustomer/search";
 }
 
 - (id)buildModelWithJsonDictionary:(NSDictionary *)dictionary
 {
-    return nil;
+    
+    NSLog(@"%@",dictionary);
+    return [[AMBaseModel alloc]initWithDictionary:dictionary error:nil];
    // return [[AMProductInfo alloc]initWithDictionary:dictionary error:nil];
     
 }

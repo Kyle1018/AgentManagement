@@ -1,20 +1,19 @@
 //
-//  AMUser.m
+//  AMOrder.m
 //  AgentManagement
 //
-//  Created by 郭华滨 on 16/9/4.
+//  Created by huabin on 16/9/20.
 //  Copyright © 2016年 KK. All rights reserved.
 //
 
-#import "AMUser.h"
+#import "AMOrder.h"
 
-@implementation AMUser
-
+@implementation AMOrder
 
 +(JSONKeyMapper*)keyMapper
 {
     return [[JSONKeyMapper alloc] initWithDictionary:@{
-                                                       @"id":@"user_id",
+                                                       @"id":@"dingdan_id",
                                                        }];
 }
 

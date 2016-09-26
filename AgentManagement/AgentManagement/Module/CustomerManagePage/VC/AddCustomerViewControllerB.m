@@ -7,20 +7,21 @@
 //
 
 #import "AddCustomerViewControllerB.h"
-#import "PickerView.h"
 #import "ProductManageViewModel.h"
-@interface AddCustomerViewControllerB ()<UIPickerViewDelegate,UIPickerViewDataSource>
+
+@interface AddCustomerViewControllerB ()
 @property(nonatomic,strong)ProductManageViewModel *viewModel;
-@property(nonatomic,strong)NSMutableArray *brandAndModelArray;
+
 @property(nonatomic,strong)PickerView *pickerView;
 @property(nonatomic,assign)NSInteger indexRow;
 @property(nonatomic,strong)NSMutableArray *pickerDataArray;
+@property(nonatomic,strong)NSMutableArray *brandAndModelArray;
 @property(nonatomic,strong)PickerDataView *datePicker;
 @property(nonatomic,copy)NSString *dateStr;
 @property(nonatomic,strong)NSMutableArray *orderArray;//订单数组
 
 @property(nonatomic,strong)NSMutableDictionary *orderDic;//订单模型
-
+@property(nonatomic,strong)PickerViewProtocol *protocol;
 @end
 
 @implementation AddCustomerViewControllerB
@@ -33,11 +34,11 @@
     _orderArray = [NSMutableArray array];
     
     _orderDic = [NSMutableDictionary dictionary];
+    
+    _protocol = [[PickerViewProtocol alloc]init];
 
     [self requestData];
-    
-    [self observeData];
-    
+
     DDLogDebug(@"%@",self.addCutomerInfoDic);
 
 }
@@ -49,42 +50,39 @@
     _pickerDataArray = [NSMutableArray arrayWithObjects:@"购买机型",@"购买时间",@"安装时间",@"换芯周期", nil];
     
     //请求产品品牌和型号:使用请求产品品牌和型号时的viewmodel——ProductManageViewModel
-    [[self.viewModel requestProductBrandAndPmodelData]subscribeNext:^(NSNumber* x) {
+    [[self.viewModel requestProductBrandAndPmodelData]subscribeNext:^(id x) {
     
+        if ([x isKindOfClass:[NSMutableArray class]]) {
+            
+            [x removeObjectAtIndex:1];
+            
+            self.brandAndModelArray = x;
+            
+            NSMutableArray *array = [NSMutableArray arrayWithObjects:x[0], [x[1]objectAtIndex:0],nil];
+            
+            [self.pickerDataArray replaceObjectAtIndex:0 withObject:array];
+        }
        
     }];
     
     //请求换芯周期：使用请求产品相关信息时的viewmodel——ProductManageViewModel
-    [[self.viewModel requstProductInformationData]subscribeNext:^(NSNumber* x) {
+    [[self.viewModel requstProductInformationData]subscribeNext:^(id x) {
+        
+        if ([x isKindOfClass:[NSMutableArray class]]) {
+            
+            NSMutableArray *cycleArray = [NSMutableArray arrayWithArray:[[x lastObject]lastObject]];
+            
+            NSMutableArray *array = [NSMutableArray arrayWithObject:cycleArray];
+            
+            [self.pickerDataArray replaceObjectAtIndex:3 withObject:array];
+            
+        }
 
      
-  
     }];
     
 }
 
-- (void)observeData {
-    
-    [RACObserve(self.viewModel, productAndModelArray)subscribeNext:^(NSMutableArray* x) {
-       
-        [x removeObjectAtIndex:1];
-        
-        self.brandAndModelArray = x;
-        
-        NSMutableArray *array = [NSMutableArray arrayWithObjects:x[0], [x[1]objectAtIndex:0],nil];
-        
-        [self.pickerDataArray replaceObjectAtIndex:0 withObject:array];
-    }];
-    
-    [RACObserve(self.viewModel, productRelatedInformationArray)subscribeNext:^(id x) {
-        
-        NSMutableArray *cycleArray = [NSMutableArray arrayWithArray:[[x lastObject]lastObject]];
-        
-        NSMutableArray *array = [NSMutableArray arrayWithObject:cycleArray];
-        
-        [self.pickerDataArray replaceObjectAtIndex:3 withObject:array];
-    }];
-}
 
 #pragma mark -UITabelViewDatasource
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -93,38 +91,49 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    __weak typeof(self) weakSelf = self;
-    
+ 
     if (indexPath.row == 0 || indexPath.row == 3) {
         
-        _pickerView = [PickerView showAddTo:self.view];
-        _pickerView.picker.delegate = self;
-        _pickerView.picker.dataSource = self;
-        _indexRow = indexPath.row;
+        self.pickerView = [PickerView showAddTo:[UIApplication sharedApplication].keyWindow];
+        self.pickerView.picker.delegate = self.protocol;
+        self.pickerView.picker.dataSource = self.protocol;
+        
+        self.protocol.pickerDataArray = self.pickerDataArray[indexPath.row];
+        
+        [self.protocol.pickerDataArrayB removeAllObjects];
+        
+        if ([self.pickerDataArray[indexPath.row] count]>1) {
+            
+            self.protocol.pickerDataArrayB = self.brandAndModelArray[1];
+        }
+        [self.pickerView.picker reloadAllComponents];
+ 
+        @weakify(self);
         
         _pickerView.tapConfirmBlock = ^() {
             
-            for (int i =0; i<[weakSelf.pickerView.picker numberOfComponents]; i++) {
+            @strongify(self)
+            
+            for (int i =0; i<[self.pickerView.picker numberOfComponents]; i++) {
                 
                 UILabel *label = [tableView viewWithTag:1000+indexPath.row+i];
                 
-                NSString *str = [[weakSelf.pickerDataArray[indexPath.row]objectAtIndex:i]objectAtIndex:[weakSelf.pickerView.picker selectedRowInComponent:i]];
+                NSString *str = [[self.pickerDataArray[indexPath.row]objectAtIndex:i]objectAtIndex:[self.pickerView.picker selectedRowInComponent:i]];
                 label.text = str;
                 
                 
                 if (label.tag == 1000) {
                     
-                    [weakSelf.orderDic safeSetObject:str forKey:@"brand"];
+                    [self.orderDic safeSetObject:str forKey:@"brand"];
 
                 }
                 else if (label.tag == 1001) {
                     
-                    [weakSelf.orderDic safeSetObject:str forKey:@"pmodel"];
+                    [self.orderDic safeSetObject:str forKey:@"pmodel"];
                 }
                 else if (label.tag == 1003) {
                     
-                    [weakSelf.orderDic safeSetObject:str forKey:@"cycle"];
+                    [self.orderDic safeSetObject:str forKey:@"cycle"];
                     
                 }
             }
@@ -134,30 +143,39 @@
     
     else {
         
-        _datePicker = [PickerDataView showDateAddTo:self.view];
+        _datePicker = [PickerDataView showDateAddTo:[UIApplication sharedApplication].keyWindow];
       
-        _dateStr = [_datePicker getDateStr:_datePicker.datePicker.date];
+        _dateStr = [NSString getDateStr:_datePicker.datePicker.date];
         
         [[_datePicker.datePicker rac_signalForControlEvents:UIControlEventValueChanged]subscribeNext:^(UIDatePicker* x) {
 
-            weakSelf.dateStr=[weakSelf.datePicker getDateStr:x.date];
+            self.dateStr=[NSString getDateStr:x.date];
             
         }];
         
+        @weakify(self);
         _datePicker.tapConfirmBlock = ^() {
+            
+            @strongify(self);
             
             UILabel *label = [tableView viewWithTag:2000+indexPath.row];
             
-            label.text =  weakSelf.dateStr;
+            label.text =  self.dateStr;
+            
+         
             
             if (label.tag == 2001) {
+
+                NSString *date = [NSString stringWithFormat:@"%@",self.datePicker.datePicker.date];
                 
-                [weakSelf.orderDic safeSetObject:weakSelf.dateStr forKey:@"buy_time"];
+                [self.orderDic safeSetObject:date forKey:@"buy_time"];
                 
             }
             else if (label.tag == 2002) {
                 
-                [weakSelf.orderDic safeSetObject:weakSelf.dateStr forKey:@"install_time"];
+                NSString *date = [NSString stringWithFormat:@"%@",self.datePicker.datePicker.date];
+                
+                [self.orderDic safeSetObject:date forKey:@"install_time"];
             }
             
         };
@@ -165,70 +183,7 @@
     
 }
 
-#pragma pickerViewDelegate
--(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
-    
-    return [self.pickerDataArray[_indexRow] count];
-}
 
--(NSInteger) pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
-    
-   return [[self.pickerDataArray[_indexRow] objectAtIndex:component]count];
-}
-
-- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-
-   return  [[self.pickerDataArray[_indexRow]objectAtIndex:component]objectAtIndex:row];
-}
-
-- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component {
-    
-    return 42;
-}
-
-
-- (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component {
-
-     return ScreenWidth/2;
-}
-
-- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-
-    if (_indexRow==0) {
-        
-        if (component==0) {
-            
-            [self.pickerDataArray[_indexRow]replaceObjectAtIndex:1 withObject: [_brandAndModelArray[1]objectAtIndex:row]];
-            
-            [pickerView selectedRowInComponent:1];
-            [pickerView reloadComponent:1];
-        }
-        
-        else {
-            
-            
-        }
-        
-    }
-    
-    else {
-        
-        [self.pickerDataArray[_indexRow][component]objectAtIndex:row];
-    }
-}
-
-- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view{
-    UILabel* pickerLabel = (UILabel*)view;
-    if (!pickerLabel){
-        pickerLabel = [[UILabel alloc] init];
-        pickerLabel.textAlignment = NSTextAlignmentCenter;
-        [pickerLabel setBackgroundColor:[UIColor clearColor]];
-        [pickerLabel setFont:[UIFont boldSystemFontOfSize:17]];
-    }
-    
-    pickerLabel.text=[self pickerView:pickerView titleForRow:row forComponent:component];
-    return pickerLabel;
-}
 
 //进入添加产品页面
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -236,6 +191,15 @@
     if([segue.identifier compare:@"AddCustomerCSegue"]==NO) {
         
         id page2=segue.destinationViewController;
+        
+        /*
+         brand = ".bobnonl";
+         "buy_time" = "2016\U5e7409\U670820\U65e5";
+         cycle = "1\U4e2a\U6708";
+         "install_time" = "2016\U5e7409\U670820\U65e5";
+         pmodel = jvjvbk;
+         }
+         */
         
         [self.orderArray addObject:self.orderDic];
         

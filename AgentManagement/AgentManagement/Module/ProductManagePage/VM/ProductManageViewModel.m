@@ -15,8 +15,6 @@
 
 - (RACSignal*)requestProductBrandAndPmodelData {
     
-    __weak typeof(self) weakSelf = self;
-    
     return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
        
         self.pmRequest = [[AMProductAndModelListRequest alloc]init];
@@ -63,12 +61,12 @@
                 
             }
             
-        
-            weakSelf.productAndModelArray = [NSMutableArray arrayWithObjects:brandArray,pmodelArray,CpmodelArray, nil];
+      
+             NSMutableArray *productAndModelArray = [NSMutableArray arrayWithObjects:brandArray,pmodelArray,CpmodelArray, nil];
 
             if (brandArray.count > 0 && pmodelArray.count>0) {
                 
-                [subscriber sendNext:@(YES)];
+                [subscriber sendNext:productAndModelArray];
                 
                 [subscriber sendCompleted];
                 
@@ -215,11 +213,11 @@
             }
             
             
-            weakSelf.productRelatedInformationArray = [NSMutableArray arrayWithObjects:optionTitleDataArray,optionDataArray, nil];
+           NSMutableArray*productRelatedInformationArray = [NSMutableArray arrayWithObjects:optionTitleDataArray,optionDataArray, nil];
             
             if (optionTitleDataArray.count>0 && optionDataArray.count>0) {
                 
-                [subscriber sendNext:@(YES)];
+                [subscriber sendNext:productRelatedInformationArray];
                 
                 [subscriber sendCompleted];
             }

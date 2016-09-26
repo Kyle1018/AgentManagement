@@ -10,6 +10,8 @@
 #import "AMProductAndModel.h"
 #import "AMAdministrators.h"
 #import "AMSales.h"
+#import "AMCustomer.h"
+#import "AMOrder.h"
 @implementation CustomerManageViewModel
 
 - (id)init {
@@ -57,10 +59,12 @@
         NSDictionary *dict = a1[lIndex];
             
         [district addObjectsFromArray:dict[@"sub"]];
+        
+        NSMutableArray *array = [NSMutableArray arrayWithObjects:province,city,district, nil];
 
-        NSDictionary *areaDic = [NSDictionary dictionaryWithObjectsAndKeys:province,@"province",city,@"city",district,@"district", nil];
+       // NSDictionary *areaDic = [NSDictionary dictionaryWithObjectsAndKeys:province,@"province",city,@"city",district,@"district", nil];
 
-        [subscriber sendNext:areaDic];
+        [subscriber sendNext:array];
         [subscriber sendCompleted];
         
         return nil;
@@ -71,11 +75,64 @@
     
     return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
        
+        self.customerOrSearchRequest = [[AMCustomerOrSearchRequest alloc]initWithPage:page Size:size Search:searchDic];
+        
+        [self.customerOrSearchRequest requestWithSuccess:^(KKBaseModel *model, KKRequestError *error) {
+            
+            AMBaseModel *baseModel = (AMBaseModel*)model;
+            
+            NSMutableArray *customerArray = [NSMutableArray array];
+            
+            for (NSDictionary *dic in baseModel.data) {
+                
+                AMCustomer *customerModel = [[AMCustomer alloc]initWithDictionary:dic error:nil];
+                
+                NSArray *array = dic[@"order"];
+                
+                NSMutableArray *orderArray = [NSMutableArray array];
+                
+                for (NSDictionary *dicc in array) {
+                    
+                    AMOrder *order = [[AMOrder alloc]initWithDictionary:dicc error:nil];
+                    
+                    [orderArray addObject:order];
+                }
+
+                customerModel.orderArray = orderArray;
+                
+                [customerArray addObject:customerModel];
+                
+            }
+            
+            NSMutableArray *array = (NSMutableArray *)[[customerArray reverseObjectEnumerator] allObjects];
+
+            
+            self.customerModelArray = array;
+            
+            if (self.customerModelArray.count > 0) {
+                
+                [subscriber sendNext:@(1)];
+                [subscriber sendCompleted];
+            }
+            
+            else {
+                
+                [subscriber sendNext:@(2)];
+                [subscriber sendCompleted];
+            }
+            
+            
+        } failure:^(KKBaseModel *model, KKRequestError *error) {
+            
+            [subscriber sendNext:@(3)];
+            [subscriber sendCompleted];
+        }];
         
         return nil;
     }];
 }
 
+//添加客户请求
 - (RACSignal*)requstAddCustomerData:(NSDictionary*)paramt {
     
     return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
@@ -84,18 +141,55 @@
         
         [self.addCustomerRequest requestWithSuccess:^(KKBaseModel *model, KKRequestError *error) {
             
+            AMCustomer *customer = (AMCustomer*)model;
+            
+            if ([customer.resultCode integerValue]== 0) {
+                
+                [subscriber sendNext:customer];
+                [subscriber sendCompleted];
+            }
+            
+            else {
+                
+                [subscriber sendNext:@(NO)];
+                [subscriber sendCompleted];
+            }
+            
             
         } failure:^(KKBaseModel *model, KKRequestError *error) {
             
+            [subscriber sendNext:@(NO)];
+            [subscriber sendCompleted];
         }];
         
         return nil;
     }];
 }
 
+//删除客户
+- (RACSignal*)requestDeleteCustomer:(NSInteger)c_id {
+    
+    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        
+        self.deleteCustomerRequest = [[AMDeleteCustomerRequest alloc]initWithCustomerID:c_id];
+        
+        [self.deleteCustomerRequest requestWithSuccess:^(KKBaseModel *model, KKRequestError *error) {
+            
+            [subscriber sendNext:@(YES)];
+            [subscriber sendCompleted];
+            
+        } failure:^(KKBaseModel *model, KKRequestError *error) {
+            
+            [subscriber sendNext:@(NO)];
+            [subscriber sendCompleted];
+        }];
+        
+        return nil;
+    }];
+}
 
-//请求销售员列表——获取销售员的姓名
-- (RACSignal*)requstSalersName {
+//请求销售员列表
+- (RACSignal*)requstSalersList {
     
     RACSignal *signal = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
        
@@ -136,8 +230,9 @@
     
     return [signal takeUntil:self.rac_willDeallocSignal];
 }
-//请求管理员列表——获取管理员姓名
-- (RACSignal*)requestAdministratorName {
+
+//请求管理员列表
+- (RACSignal*)requestAdministratorList {
     
      RACSignal *signal = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
         
@@ -181,6 +276,23 @@
     }];
     
     return [signal takeUntil:self.rac_willDeallocSignal];
+}
+
+//编辑客户
+- (RACSignal*)requestEditingCustomer:(NSDictionary*)paramt {
+    
+    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        
+        self.editCustomerRequest = [[AMEditCustomerRequest alloc]initWithAddCustomerInfo:paramt];
+        
+        [self.editCustomerRequest requestWithSuccess:^(KKBaseModel *model, KKRequestError *error) {
+            
+        } failure:^(KKBaseModel *model, KKRequestError *error) {
+            
+        }];
+        
+        return nil;
+    }];
 }
 
 

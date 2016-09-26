@@ -61,32 +61,35 @@
 #pragma mark - Data
 - (void)requestListData {
   
-    WeakObj(self);
-    
     //请求产品列表数据
     [[self.viewModel requestProductListDataOrSearchProductDataWithPage:0 Size:0 Search:self.selectedOptionDic] subscribeNext:^(NSNumber* value) {
         
         if ([value integerValue]==3) {
             
-            selfWeak.loadingView =[LoadingView showRetryAddToView:self.view];
-            selfWeak.formTabelView.hidden = YES;
-            selfWeak.loadingView.tapRefreshButtonBlcok = ^() {
+            self.loadingView =[LoadingView showRetryAddToView:self.view];
+            self.formTabelView.hidden = YES;
+            
+            @weakify(self);
+            
+            self.loadingView.tapRefreshButtonBlcok = ^() {
+                
+                @strongify(self);
                 
                 //再次请求数据
-                [selfWeak requestListData];
+                [self requestListData];
             };
         }
         else if ([value integerValue]==2) {
             
             [LoadingView showNoDataAddToView:self.view];
-            selfWeak.formTabelView.hidden = YES;
+            self.formTabelView.hidden = YES;
             
         }
         else {
             
             [LoadingView hideLoadingViewRemoveView:self.view];
-            selfWeak.formTabelView.hidden = NO;
-            [selfWeak.formTabelView reloadData];
+            self.formTabelView.hidden = NO;
+            [self.formTabelView reloadData];
         }
     }];
         
@@ -106,11 +109,11 @@
 //    }];
 //
     //请求产品属性信息
-    [[self.viewModel requstProductInformationData]subscribeNext:^(NSNumber* x) {
+    [[self.viewModel requstProductInformationData]subscribeNext:^(id x) {
         
-        if ([x boolValue]==NO) {
+        if ([x isKindOfClass:[NSMutableArray class]]) {
             
-            //请求数据失败
+               self.productRelatedInformationArray = x;
         }
         
     }];
@@ -118,36 +121,19 @@
 
 - (void)observeData {
     
-    __weak typeof(self) weakSelf = self;
-    
     //列表数据
     [RACObserve(self.viewModel, productInfoDataArray)subscribeNext:^(NSMutableArray* x) {
        
-        weakSelf.productInfoDataArray = x;
+        self.productInfoDataArray = x;
     }];
     
-    
-////    //品牌和型号数据
-//    [RACObserve(self.viewModel, productAndModelArray)subscribeNext:^(NSMutableArray* x) {
-//        
-//         weakSelf.brandAndPmodelDataArray = x;
-//    }];
-//    
-    //产品相关属性数据
-    [RACObserve(self.viewModel, productRelatedInformationArray)subscribeNext:^(NSMutableArray* x) {
-        
-        weakSelf.productRelatedInformationArray = x;
-
-    }];
 }
 
 - (void)pullRefresh {
     
-    WeakObj(self);
-    
     self.formTabelView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         
-        [[selfWeak.viewModel requestProductListDataOrSearchProductDataWithPage:0 Size:0 Search:nil]
+        [[self.viewModel requestProductListDataOrSearchProductDataWithPage:0 Size:0 Search:nil]
          
          subscribeNext:^(NSNumber* x) {
              
@@ -157,10 +143,10 @@
              }
              else {
                  
-                 [selfWeak.formTabelView reloadData];
+                 [self.formTabelView reloadData];
              }
              
-             [selfWeak.formTabelView.mj_header endRefreshing];
+             [self.formTabelView.mj_header endRefreshing];
              
          }];
 
@@ -286,14 +272,15 @@
 
     [[UIApplication sharedApplication].keyWindow addSubview:_searchMenuVC.view];
     
-    
-    WeakObj(self);
+    @weakify(self);
     //点击了搜索产品回调
     _searchMenuVC.tapSearchProductBlock = ^(NSMutableDictionary*selectedOptionDic) {
         
-        selfWeak.selectedOptionDic = [NSMutableDictionary dictionaryWithDictionary:selectedOptionDic];
+        @strongify(self);
         
-        [selfWeak requestListData];
+        self.selectedOptionDic = [NSMutableDictionary dictionaryWithDictionary:selectedOptionDic];
+        
+        [self requestListData];
         
     };
 }

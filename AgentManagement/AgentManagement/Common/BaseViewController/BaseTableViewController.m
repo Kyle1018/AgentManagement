@@ -41,8 +41,6 @@
 
 -(void)doBack:(id)sender
 {
-    __weak typeof(self) weakSelf = self;
-    
     self.alertVC = [AlertController alertControllerWithTitle:@"退出此次编辑" message:nil preferredStyle:UIAlertControllerStyleAlert];
     self.alertVC.alertOptionName = @[@"退出",@"取消"];
     [self presentViewController: self.alertVC animated: YES completion:^{
@@ -50,9 +48,11 @@
         
     }];
     
+    @weakify(self);
     self.alertVC.tapExitButtonBlock = ^() {
         
-        [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+        @strongify(self);
+        [self.navigationController popToRootViewControllerAnimated:YES];
     };
 }
 

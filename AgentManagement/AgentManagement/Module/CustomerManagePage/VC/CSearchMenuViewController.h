@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+typedef void(^TapSearchProductBlock)(NSMutableDictionary*selectedOptionDic);
 @interface CSearchMenuViewController : UIViewController
-
+@property(nonatomic,copy)TapSearchProductBlock tapSearchProductBlock;
 @end

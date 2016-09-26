@@ -1,21 +1,21 @@
 //
-//  AMUser.m
+//  AMCustomer.m
 //  AgentManagement
 //
-//  Created by 郭华滨 on 16/9/4.
+//  Created by huabin on 16/9/20.
 //  Copyright © 2016年 KK. All rights reserved.
 //
 
-#import "AMUser.h"
+#import "AMCustomer.h"
 
-@implementation AMUser
-
+@implementation AMCustomer
 
 +(JSONKeyMapper*)keyMapper
 {
     return [[JSONKeyMapper alloc] initWithDictionary:@{
-                                                       @"id":@"user_id",
+                                                       @"id":@"cutomer_id",
                                                        }];
 }
+
 
 @end
