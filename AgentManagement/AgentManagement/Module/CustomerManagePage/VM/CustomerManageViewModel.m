@@ -287,8 +287,11 @@
         
         [self.editCustomerRequest requestWithSuccess:^(KKBaseModel *model, KKRequestError *error) {
             
+            NSLog(@"%@",model);
+            
         } failure:^(KKBaseModel *model, KKRequestError *error) {
             
+            NSLog(@"dd");
         }];
         
         return nil;

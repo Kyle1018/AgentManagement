@@ -35,6 +35,9 @@
     _optionArray = [NSMutableArray arrayWithObjects:@"销售",@"管理", nil];
     
     [self requestData];
+    
+
+        // UILabel *label = [tableView viewWithTag:1000+indexPath.row];
 }
 
 - (void)requestData {
@@ -116,32 +119,40 @@
     };
 }
 
-
-
 #pragma mark - Action
 - (IBAction)saveAction:(UIButton *)sender {
     
-    //添加客户请求
-    [[[self.viewModel requstAddCustomerData:self.addCutomerInfoDic]filter:^BOOL(id value) {
-        
-        if ([value isKindOfClass:[AMCustomer class]]) {
-            
-            return YES;
-        }
-        else {
-            
-            [MBProgressHUD showText:@"添加用户失败"];
-             return NO;
-        }
-     
-        
-    }]subscribeNext:^(AMCustomer* x) {
-        
-         [self.navigationController popToRootViewControllerAnimated:YES];
-    }];
-   
-
+    NSLog(@"%@",self.addCutomerInfoDic);
     
+    if ([self.addCutomerInfoDic[@"order"]count]>1) {
+        
+        //编辑客户请求
+        [[self.viewModel requestEditingCustomer:self.addCutomerInfoDic]subscribeNext:^(id x) {
+            
+        }];
+    }
+    else {
+        
+        //添加客户请求
+        [[[self.viewModel requstAddCustomerData:self.addCutomerInfoDic]filter:^BOOL(id value) {
+            
+            if ([value isKindOfClass:[AMCustomer class]]) {
+                
+                return YES;
+            }
+            else {
+                
+                [MBProgressHUD showText:@"添加用户失败"];
+                return NO;
+            }
+            
+            
+        }]subscribeNext:^(AMCustomer* x) {
+            
+            [self.navigationController popToRootViewControllerAnimated:YES];
+        }];
+        
+    }
 }
 
 @end

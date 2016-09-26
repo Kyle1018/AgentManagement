@@ -203,7 +203,35 @@
         
         [self.orderArray addObject:self.orderDic];
         
-        [self.addCutomerInfoDic safeSetObject:self.orderArray forKey:@"order"];
+        NSMutableArray *orderArray = [NSMutableArray array];
+        
+        if ([self.addCutomerInfoDic[@"order"] count]>0) {
+            
+            orderArray = [self.addCutomerInfoDic objectForKey:@"order"];
+            
+           // NSMutableDictionary *orderDic = [NSMutableDictionary dictionary];
+            NSMutableArray *array = [NSMutableArray arrayWithArray:orderArray];
+            for (int i = 0; i<array.count; i++) {
+                
+                NSMutableDictionary*orderDic = [NSMutableDictionary dictionaryWithDictionary:array[i]];
+                [orderDic removeObjectForKey:@"id"];
+                [orderDic removeObjectForKey:@"c_id"];
+                
+                [orderArray replaceObjectAtIndex:i withObject:orderDic];
+                
+            }
+  
+         
+            [orderArray addObject:self.orderDic];
+            
+        }
+        else {
+            
+            
+            [self.addCutomerInfoDic safeSetObject:self.orderArray forKey:@"order"];
+            
+        }
+        
         
         [page2 setValue:self.addCutomerInfoDic forKey:@"addCutomerInfoDic"];
     }

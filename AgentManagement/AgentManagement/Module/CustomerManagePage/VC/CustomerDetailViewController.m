@@ -36,6 +36,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    NSLog(@"%@",self.customerModel);
     _customerDic = [NSMutableDictionary dictionaryWithDictionary:[self.customerModel toDictionary]];
     
     NSArray *orderArray = _customerDic[@"orderArray"];
@@ -48,8 +49,8 @@
         
         [array addObject:dic];
     }
-    
-    [_customerDic safeSetObject:array forKey:@"orderArray"];
+    [_customerDic removeObjectForKey:@"orderArray"];
+    [_customerDic safeSetObject:array forKey:@"order"];
 
     _protocol = [[PickerViewProtocol alloc]init];
     
@@ -211,16 +212,16 @@
             
             switch (indexPath.row) {
                 case 0:
-                    [self.customerDic safeSetObject:x forKey:@"tds"];
+                    [self.customerDic safeSetObject:@([x integerValue]) forKey:@"tds"];
                     break;
                 case 1:
-                     [self.customerDic safeSetObject:x forKey:@"ph"];
+                     [self.customerDic safeSetObject:@([x integerValue]) forKey:@"ph"];
                     break;
                 case 2:
-                     [self.customerDic safeSetObject:x forKey:@"hardness"];
+                     [self.customerDic safeSetObject:@([x integerValue]) forKey:@"hardness"];
                     break;
                 case 3:
-                     [self.customerDic safeSetObject:x forKey:@"chlorine"];
+                     [self.customerDic safeSetObject:@([x integerValue]) forKey:@"chlorine"];
                     break;
                 default:
                     break;
@@ -402,20 +403,10 @@
     //订单信息
     else {
         //产品信息
-        NSMutableArray *orderArray=self.customerDic[@"orderArray"];
-        
-        NSLog(@"%ld",indexPath.section);
-        
-        NSLog(@"%@",[self.customerDic[@"orderArray"]class]);
-        
-        NSLog(@"%@",[orderArray[0]class]);
+        NSMutableArray *orderArray=self.customerDic[@"order"];
         
        NSMutableDictionary *dic= [NSMutableDictionary dictionaryWithDictionary:orderArray[indexPath.section-2]];
-        
-      //  NSDictionary *orderDic = [order toDictionary];
-        
-      //  NSDictionary *dic = [order toDictionary];
-     //   NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:orderDic];
+
         if (indexPath.row == 0 || indexPath.row == 3) {
  
             self.protocol.pickerDataArray = self.productInfoArray[indexPath.row];
@@ -465,6 +456,7 @@
                 }
                 
                 [self.customerDic safeSetObject:orderArray forKey:@"order"];
+         
  
             };
         }
@@ -510,6 +502,7 @@
                 }
                 
                  [self.customerDic safeSetObject:orderArray forKey:@"order"];
+            
 
             };
         }
@@ -547,6 +540,8 @@
             
             //保存编辑信息事件
             [[saveBtn rac_signalForControlEvents:UIControlEventTouchUpInside]subscribeNext:^(id x) {
+                
+                
                 
                 [[self.viewModel requestEditingCustomer:self.customerDic]subscribeNext:^(id x) {
                     
@@ -634,7 +629,7 @@
         
         NSLog(@"%@",customerDic);
         
-       // [page2 setValue:self.productRelatedInformationArray forKey:@"productRelatedInformationArray"];
+        [page2 setValue:customerDic forKey:@"addCutomerInfoDic"];
     }
     
 }
