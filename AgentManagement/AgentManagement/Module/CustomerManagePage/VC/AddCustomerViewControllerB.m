@@ -10,8 +10,8 @@
 #import "ProductManageViewModel.h"
 
 @interface AddCustomerViewControllerB ()
-@property(nonatomic,strong)ProductManageViewModel *viewModel;
 
+@property(nonatomic,strong)ProductManageViewModel *viewModel;
 @property(nonatomic,strong)PickerView *pickerView;
 @property(nonatomic,assign)NSInteger indexRow;
 @property(nonatomic,strong)NSMutableArray *pickerDataArray;
@@ -19,7 +19,6 @@
 @property(nonatomic,strong)PickerDataView *datePicker;
 @property(nonatomic,copy)NSString *dateStr;
 @property(nonatomic,strong)NSMutableArray *orderArray;//订单数组
-
 @property(nonatomic,strong)NSMutableDictionary *orderDic;//订单模型
 @property(nonatomic,strong)PickerViewProtocol *protocol;
 @end
@@ -85,10 +84,7 @@
 
 
 #pragma mark -UITabelViewDatasource
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-   
-    return 44;
-}
+
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
  
@@ -182,7 +178,6 @@
     }
     
 }
-
 
 
 //进入添加产品页面

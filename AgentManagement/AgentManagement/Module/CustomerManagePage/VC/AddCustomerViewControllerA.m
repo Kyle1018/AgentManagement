@@ -9,14 +9,17 @@
 #import "AddCustomerViewControllerA.h"
 #import "CustomerManageViewModel.h"
 @interface AddCustomerViewControllerA ()
-
 @property(nonatomic,strong)PickerView *pickerView;
 @property(nonatomic,strong)CustomerManageViewModel *viewModel;
 @property(nonatomic,assign)NSInteger lRow;
 @property(nonatomic,assign)NSInteger textTag;
 @property(nonatomic,strong)PickerViewProtocol *protocol;
 @property(nonatomic,strong)NSMutableDictionary *addCutomerInfoDic;
-
+@property (weak, nonatomic) IBOutlet UIButton *nextButton;
+@property (weak, nonatomic) IBOutlet UITextField *textField;
+@property (weak, nonatomic) IBOutlet UITextView *textView;
+@property (weak, nonatomic) IBOutlet UILabel *addressLabel;
+@property(nonatomic,strong)RACSignal *signUpActiveSignal;
 @end
 
 @implementation AddCustomerViewControllerA
@@ -29,8 +32,46 @@
     _addCutomerInfoDic = [NSMutableDictionary dictionary];
     
     _viewModel = [[CustomerManageViewModel alloc]init];
-
     
+    [self signal];
+}
+
+- (void)signal {
+    
+    RACSignal *textFieldSignal=[[[self.textField rac_textSignal]distinctUntilChanged]map:^id(NSString* value) {
+        
+        return @(value.length>0);
+    }];
+    
+    RACSignal *textViewSignal = [[[self.textView rac_textSignal]distinctUntilChanged]map:^id(NSString* value) {
+        
+        return @(value.length>0);
+    }];
+    
+    _signUpActiveSignal =
+    [RACSignal combineLatest:@[textFieldSignal,textViewSignal]
+                      reduce:^id(NSNumber*a,NSNumber*b){
+                          
+                          return @([a boolValue]&&[b boolValue]&&[@(self.addressLabel.text.length>0)boolValue]);
+                      }];
+    
+    
+    RAC(self.nextButton,enabled) = [_signUpActiveSignal map:^id(id value) {
+        
+        if ([value boolValue]) {
+            
+            [self.nextButton setTitleColor:[UIColor colorWithHex:@"47b6ff"] forState:UIControlStateNormal];
+            
+        }
+        else {
+            
+            [self.nextButton setTitleColor:[UIColor colorWithHex:@"9b9b9b"] forState:UIControlStateNormal];
+            
+        }
+        
+        return value;
+    }];
+
 }
 
 #pragma mark -UITabelViewDatasource/Delegate
@@ -50,8 +91,8 @@
     
     if (indexPath.section==0 && indexPath.row==2) {
         
-        [ [self.view viewWithTag:_textTag] resignFirstResponder];
-        
+        [[self.view viewWithTag:_textTag] resignFirstResponder];
+                
         self.pickerView = [PickerView showAddTo:[UIApplication sharedApplication].keyWindow];
         self.pickerView.picker.delegate = self.protocol;
         self.pickerView.picker.dataSource = self.protocol;
@@ -67,8 +108,6 @@
             [self.pickerView.picker reloadAllComponents];
             
         }];
-        
-     
         
         @weakify(self);
         self.protocol.didSelectRow = ^(NSInteger row,NSInteger component){
@@ -105,78 +144,127 @@
             }
     
         };
-        
-     
+
         self.pickerView.tapConfirmBlock = ^() {
             
             @strongify(self);
-            UILabel *provinceLabel = [self.view viewWithTag:500];
-            UILabel *cityLabel = [self.view viewWithTag:501];
-            UILabel *townLabel = [self.view viewWithTag:502];
-
-            provinceLabel.text = [ self.protocol.pickerDataArray[0]objectAtIndex:[self.pickerView.picker selectedRowInComponent:0]];
+      
+            NSString*province = [ self.protocol.pickerDataArray[0]objectAtIndex:[self.pickerView.picker selectedRowInComponent:0]];
             
-            cityLabel.text = [ self.protocol.pickerDataArray[1]objectAtIndex:[self.pickerView.picker selectedRowInComponent:1]];
+            NSString*city= [ self.protocol.pickerDataArray[1]objectAtIndex:[self.pickerView.picker selectedRowInComponent:1]];
             
-            townLabel.text = [ self.protocol.pickerDataArray[2]objectAtIndex:[self.pickerView.picker selectedRowInComponent:2]];
+            NSString*county = [ self.protocol.pickerDataArray[2]objectAtIndex:[self.pickerView.picker selectedRowInComponent:2]];
 
-            [self.addCutomerInfoDic safeSetObject:provinceLabel.text forKey:@"province"];
-            [self.addCutomerInfoDic safeSetObject:cityLabel.text forKey:@"city"];
-            [self.addCutomerInfoDic safeSetObject:townLabel.text forKey:@"county"];
+            [self.addCutomerInfoDic safeSetObject:province forKey:@"province"];
+            [self.addCutomerInfoDic safeSetObject:city forKey:@"city"];
+            [self.addCutomerInfoDic safeSetObject:county forKey:@"county"];
+            
+            NSString *address = [NSString stringWithFormat:@"%@市",province];
+            
+            NSString *str = @"";
+            
+            if ([address isEqualToString:city]) {
+                
+                str = [NSString stringWithFormat:@"%@%@",city,county];
+                
+            }
+            else {
+                
+                str = [NSString stringWithFormat:@"%@%@%@",province,city,county];
+                
+            }
+            
+            self.addressLabel.text = str;
+            
+            [self.signUpActiveSignal subscribeNext:^(NSNumber* x) {
+                
+                if ([x boolValue]) {
+                    
+                    self.nextButton.enabled = YES;
+                    [self.nextButton setTitleColor:[UIColor colorWithHex:@"47b6ff"] forState:UIControlStateNormal];
 
+                }
+                else {
+                    
+                    self.nextButton.enabled = NO;
+                    [self.nextButton setTitleColor:[UIColor colorWithHex:@"9b9b9b"] forState:UIControlStateNormal];
+                }
+            }];
+            
+     
+   
         };
+
+    }
+    
+    else if (indexPath.section==0 && indexPath.row==3) {
         
+        self.textView.editable = YES;
+        self.textView.selectable = YES;
+        [self.textView becomeFirstResponder];
+        
+        [[self.textView rac_textSignal]subscribeNext:^(id x) {
+            
+            [self.addCutomerInfoDic safeSetObject:x forKey:@"address"];
+            
+            _textTag = self.textView.tag;
+        }];
+
     }
     else {
         
         DDLogDebug(@"点击了其它单元格");
+     
+        NSString *tagStr = [NSString stringWithFormat:@"1%ld%ld",indexPath.section,indexPath.row];
+        UITextField *textField = [self.view viewWithTag:[tagStr integerValue]];
+        textField.enabled = YES;
+        [textField becomeFirstResponder];
+
+        [[[textField rac_textSignal]distinctUntilChanged]subscribeNext:^(id x) {
+            
+            if (indexPath.section==0) {
+                
+                switch (indexPath.row) {
+                    case 0:
+                        [self.addCutomerInfoDic safeSetObject:x forKey:@"name"];
+                        break;
+                    case 1:
+                        [self.addCutomerInfoDic safeSetObject:x forKey:@"phone"];
+                        break;
+                        
+                    default:
+                        break;
+                }
+            }
+            else {
+                
+                switch (indexPath.row) {
+                    case 0:
+                        [self.addCutomerInfoDic safeSetObject:x forKey:@"tds"];
+                        break;
+                    case 1:
+                        [self.addCutomerInfoDic safeSetObject:x forKey:@"ph"];
+                        break;
+                    case 2:
+                        [self.addCutomerInfoDic safeSetObject:x forKey:@"hardness"];
+                        break;
+                    case 3:
+                        [self.addCutomerInfoDic safeSetObject:x forKey:@"chlorine"];
+                        break;
+                        
+                    default:
+                        break;
+                }
+            }
+            
+            _textTag = textField.tag;
+            
+        }];
+
     }
 }
 
 #pragma mark -UITextFieldDelegate
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
-    
-
-    UITextField *input = [self.view viewWithTag:textField.tag];
-    
-    [[input rac_textSignal]subscribeNext:^(NSString * x) {
-       
-        if (textField.tag == 101) {//客户姓名
-            
-            [self.addCutomerInfoDic safeSetObject:x forKey:@"name"];
-        }
-        
-        else if (textField.tag == 102) {//手机号
-            
-            [self.addCutomerInfoDic safeSetObject:x forKey:@"phone" ];
-        }
-        else if (textField.tag == 103) {//tds
-            
-            [self.addCutomerInfoDic safeSetObject:x forKey:@"tds"];
-            
-        }
-        else if (textField.tag == 104) {//ph
-            
-            [self.addCutomerInfoDic safeSetObject:x forKey:@"ph"];
-            
-        }
-        else if (textField.tag == 105) {//硬度
-            
-            [self.addCutomerInfoDic safeSetObject:x forKey:@"hardness"];
-            
-        }
-        else if (textField.tag == 106) {//余氯值
-            [self.addCutomerInfoDic safeSetObject:x forKey:@"chlorine"];
-            
-        }
-        _textTag = textField.tag;
-        DDLogDebug(@"_________________%@",x);
-    }];
-    
-    
-    return YES;
-}
-
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     
     [textField resignFirstResponder];
@@ -185,20 +273,6 @@
 }
 
 #pragma mark -UITextViewDelegate
-- (BOOL)textViewShouldBeginEditing:(UITextView *)textView {
-    
-    UITextView *input = [self.view viewWithTag:textView.tag];
-    __weak typeof(self) weakSelf = self;
-    
-    [[input rac_textSignal]subscribeNext:^(id x) {
-       
-        [weakSelf.addCutomerInfoDic safeSetObject:x forKey:@"address"];
-        
-        _textTag = textView.tag;
-    }];
-    
-    return YES;
-}
 
 -(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 {

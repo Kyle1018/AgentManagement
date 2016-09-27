@@ -62,6 +62,8 @@
                 pickerView.tapConfirmBlock();
             }
             
+            [pickerView.subject sendNext:@(YES)];
+            
             [pickerView removeFromSuperview];
     
         }];
@@ -92,6 +94,7 @@
     
     PickerView *pickerView = [self loadFromNib:0 addToView:view];
   
+    pickerView.subject = [RACSubject subject];
     
     return pickerView;
 }
@@ -154,6 +157,8 @@
                 
                 pickerDataView.tapConfirmBlock();
             }
+            
+            
             
             [pickerDataView removeFromSuperview];
             

@@ -15,9 +15,6 @@
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 @property (weak, nonatomic) IBOutlet UILabel *labelA;
 
-@property(nonatomic,strong)NSMutableArray *sectionArray;
-@property(nonatomic,strong)NSMutableArray *rowArray;
-@property(nonatomic,strong)NSMutableArray *tagArray;
 
 - (void)setDataWithTitle:(NSArray*)titleArray customer:(AMCustomer*)customer indexPaht:(NSIndexPath*)indexPath;
 

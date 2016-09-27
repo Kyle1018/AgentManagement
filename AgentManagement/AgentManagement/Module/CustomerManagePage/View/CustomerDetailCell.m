@@ -39,9 +39,6 @@
     .rightSpaceToView(self.contentView,0)
     .heightIs(19);
     
-    _tagArray = [NSMutableArray array];
-    _rowArray = [NSMutableArray array];
-    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

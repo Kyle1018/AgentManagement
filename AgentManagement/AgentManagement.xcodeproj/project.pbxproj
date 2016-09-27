@@ -1356,6 +1356,7 @@
 				TargetAttributes = {
 					270704B81D45F9A900633390 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = QT4ATDL294;
 					};
 				};
 			};
@@ -1688,7 +1689,7 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = QT4ATDL294;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/AgentManagement/PrefixHeader.pch";
 				INFOPLIST_FILE = AgentManagement/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
@@ -1709,7 +1710,7 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = QT4ATDL294;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/AgentManagement/PrefixHeader.pch";
 				INFOPLIST_FILE = AgentManagement/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
