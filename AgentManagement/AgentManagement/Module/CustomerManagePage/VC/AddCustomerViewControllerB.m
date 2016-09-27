@@ -13,7 +13,6 @@
 
 @property(nonatomic,strong)ProductManageViewModel *viewModel;
 @property(nonatomic,strong)PickerView *pickerView;
-@property(nonatomic,assign)NSInteger indexRow;
 @property(nonatomic,strong)NSMutableArray *pickerDataArray;
 @property(nonatomic,strong)NSMutableArray *brandAndModelArray;
 @property(nonatomic,strong)PickerDataView *datePicker;
@@ -21,6 +20,8 @@
 @property(nonatomic,strong)NSMutableArray *orderArray;//订单数组
 @property(nonatomic,strong)NSMutableDictionary *orderDic;//订单模型
 @property(nonatomic,strong)PickerViewProtocol *protocol;
+@property(nonatomic,assign)NSInteger tapCount;
+@property (weak, nonatomic) IBOutlet UIButton *nextButton;
 @end
 
 @implementation AddCustomerViewControllerB
@@ -37,6 +38,8 @@
     _protocol = [[PickerViewProtocol alloc]init];
 
     [self requestData];
+    
+    self.nextButton.enabled = NO;
 
     DDLogDebug(@"%@",self.addCutomerInfoDic);
 
@@ -82,10 +85,7 @@
     
 }
 
-
 #pragma mark -UITabelViewDatasource
-
-
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
  
     if (indexPath.row == 0 || indexPath.row == 3) {
@@ -109,6 +109,8 @@
         _pickerView.tapConfirmBlock = ^() {
             
             @strongify(self)
+            
+            self.tapCount++;
             
             for (int i =0; i<[self.pickerView.picker numberOfComponents]; i++) {
                 
@@ -134,6 +136,11 @@
                 }
             }
             
+            if (self.tapCount==4) {
+                self.nextButton.enabled = YES;
+                [self.nextButton setTitleColor:[UIColor colorWithHex:@"47b6ff"] forState:UIControlStateNormal];
+            }
+            
         };
     }
     
@@ -154,11 +161,11 @@
             
             @strongify(self);
             
+            self.tapCount++;
+            
             UILabel *label = [tableView viewWithTag:2000+indexPath.row];
             
             label.text =  self.dateStr;
-            
-         
             
             if (label.tag == 2001) {
 
@@ -174,11 +181,16 @@
                 [self.orderDic safeSetObject:date forKey:@"install_time"];
             }
             
+            
+            if (self.tapCount==4) {
+                self.nextButton.enabled = YES;
+                [self.nextButton setTitleColor:[UIColor colorWithHex:@"47b6ff"] forState:UIControlStateNormal];
+            }
+            
         };
     }
     
 }
-
 
 //进入添加产品页面
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

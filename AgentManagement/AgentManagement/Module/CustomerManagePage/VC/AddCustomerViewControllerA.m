@@ -148,7 +148,7 @@
         self.pickerView.tapConfirmBlock = ^() {
             
             @strongify(self);
-      
+        
             NSString*province = [ self.protocol.pickerDataArray[0]objectAtIndex:[self.pickerView.picker selectedRowInComponent:0]];
             
             NSString*city= [ self.protocol.pickerDataArray[1]objectAtIndex:[self.pickerView.picker selectedRowInComponent:1]];

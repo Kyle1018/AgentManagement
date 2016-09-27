@@ -88,10 +88,6 @@
         
         id page2=segue.destinationViewController;
         
-//        [self.productRelatedInformationArray[0] removeObjectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, 2)]];
-//        
-//        [self.productRelatedInformationArray[1]removeObjectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, 2)]];
-//        
         [page2 setValue:self.productRelatedInformationArray forKey:@"productRelatedInformationArray"];//产品属性信息
         [page2 setValue:self.inputContentDic forKey:@"inputContentDic"];//用户输入的信息
         

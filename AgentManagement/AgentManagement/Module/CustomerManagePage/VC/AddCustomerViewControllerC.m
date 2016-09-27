@@ -19,6 +19,8 @@
 @property(nonatomic,strong)NSMutableArray *optionArray;
 @property(nonatomic,assign)NSInteger indexRow;
 @property(nonatomic,strong)PickerViewProtocol *protocol;
+@property (weak, nonatomic) IBOutlet UIButton *saveButton;
+@property(nonatomic,assign)NSInteger tapCount;
 @end
 
 @implementation AddCustomerViewControllerC
@@ -36,8 +38,7 @@
     
     [self requestData];
     
-
-        // UILabel *label = [tableView viewWithTag:1000+indexPath.row];
+    self.saveButton.enabled = NO;
 }
 
 - (void)requestData {
@@ -100,6 +101,8 @@
         
         @strongify(self);
         
+        self.tapCount++;
+        
         UILabel *label = [tableView viewWithTag:1000+indexPath.row];
     
         label.text=[[self.optionArray[indexPath.row]objectAtIndex:0]objectAtIndex:[self.pickerView.picker selectedRowInComponent:0]];
@@ -116,6 +119,14 @@
             
             [self.addCutomerInfoDic safeSetObject:administratorsId forKey:@"a_id"];
         }
+        
+        if (self.tapCount==2) {
+            
+            self.saveButton.enabled = YES;
+            [self.saveButton setTitleColor:[UIColor colorWithHex:@"47b6ff"] forState:UIControlStateNormal];
+        }
+
+        
     };
 }
 

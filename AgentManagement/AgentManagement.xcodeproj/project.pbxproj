@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		270704BE1D45F9A900633390 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 270704BD1D45F9A900633390 /* main.m */; };
 		270704C11D45F9A900633390 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 270704C01D45F9A900633390 /* AppDelegate.m */; };
-		270704C41D45F9A900633390 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 270704C31D45F9A900633390 /* ViewController.m */; };
 		270704C91D45F9A900633390 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 270704C81D45F9A900633390 /* Assets.xcassets */; };
 		275F328B1D717B210033C8FF /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 275F32371D717B210033C8FF /* ASIAuthenticationDialog.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		275F328C1D717B210033C8FF /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 275F323A1D717B210033C8FF /* ASIDataCompressor.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -153,8 +152,6 @@
 		270704BD1D45F9A900633390 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		270704BF1D45F9A900633390 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		270704C01D45F9A900633390 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		270704C21D45F9A900633390 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		270704C31D45F9A900633390 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		270704C81D45F9A900633390 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		270704CD1D45F9A900633390 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		275F32361D717B210033C8FF /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIAuthenticationDialog.h; sourceTree = "<group>"; };
@@ -468,8 +465,6 @@
 				E2FA0BEE1D4CFF000094A6FE /* Common */,
 				270704BF1D45F9A900633390 /* AppDelegate.h */,
 				270704C01D45F9A900633390 /* AppDelegate.m */,
-				270704C21D45F9A900633390 /* ViewController.h */,
-				270704C31D45F9A900633390 /* ViewController.m */,
 				E221EEE71D4F9EFB005B3417 /* Launch Screen.storyboard */,
 				270704C81D45F9A900633390 /* Assets.xcassets */,
 				270704CD1D45F9A900633390 /* Info.plist */,
@@ -1494,7 +1489,6 @@
 				27CA01381D6B1167009F9A25 /* AMBaseModel.m in Sources */,
 				275F329A1D717B210033C8FF /* ASICloudFilesRequest.m in Sources */,
 				E2B63B181D981797001B2237 /* AMEditCustomerRequest.m in Sources */,
-				270704C41D45F9A900633390 /* ViewController.m in Sources */,
 				279C04161D727D2E00663EBA /* AMIdentifyCode.m in Sources */,
 				E21947461D786214001C5E5F /* MeViewController.m in Sources */,
 				E219474A1D786230001C5E5F /* AdministratorManageViewController.m in Sources */,

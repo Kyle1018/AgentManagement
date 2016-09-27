@@ -16,7 +16,6 @@ typedef void(^TapConfirmBlock)();
 @property (weak, nonatomic) IBOutlet UIView *pickerBGView;
 @property(nonatomic,copy)TapConfirmBlock tapConfirmBlock;
 @property (weak, nonatomic) IBOutlet UIButton *confirmBtn;
-@property(nonatomic,strong)RACSubject *subject;
 
 + (PickerView*)showAddTo:(UIView*)view;
 
