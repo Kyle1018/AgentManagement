@@ -191,7 +191,7 @@
         <!--成本管理-->
         <scene sceneID="P31-bv-sCS">
             <objects>
-                <tableViewController storyboardIdentifier="CostManageDetailID" id="jvZ-e0-qBw" customClass="CostManageDetailViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="CostManageDetailID" hidesBottomBarWhenPushed="YES" id="jvZ-e0-qBw" customClass="CostManageDetailViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="sWl-2L-zas">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

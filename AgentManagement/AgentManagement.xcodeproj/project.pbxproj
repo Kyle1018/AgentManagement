@@ -61,6 +61,7 @@
 		27E26B501D6B1D360072F26E /* ProductManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E26B331D6B1D360072F26E /* ProductManageViewController.m */; };
 		3422BA5E1D7E5C51003751F1 /* AMProductInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3422BA5D1D7E5C51003751F1 /* AMProductInfo.m */; };
 		3422BA611D7EA33E003751F1 /* AMProductListOrSearchRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3422BA601D7EA33E003751F1 /* AMProductListOrSearchRequest.m */; };
+		343800051D9B9FF600B3B816 /* AMEditProductRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 343800041D9B9FF600B3B816 /* AMEditProductRequest.m */; };
 		344FF63D1D88F9BE009911EB /* LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 344FF63C1D88F9BE009911EB /* LoadingView.m */; };
 		3465671B1D923A13008151A5 /* AMDeleteCustomerRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3465671A1D923A13008151A5 /* AMDeleteCustomerRequest.m */; };
 		34D4BB541D90FFC80077CC94 /* AMOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 34D4BB531D90FFC80077CC94 /* AMOrder.m */; };
@@ -260,6 +261,8 @@
 		3422BA5D1D7E5C51003751F1 /* AMProductInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMProductInfo.m; sourceTree = "<group>"; };
 		3422BA5F1D7EA33E003751F1 /* AMProductListOrSearchRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMProductListOrSearchRequest.h; sourceTree = "<group>"; };
 		3422BA601D7EA33E003751F1 /* AMProductListOrSearchRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMProductListOrSearchRequest.m; sourceTree = "<group>"; };
+		343800031D9B9FF600B3B816 /* AMEditProductRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMEditProductRequest.h; sourceTree = "<group>"; };
+		343800041D9B9FF600B3B816 /* AMEditProductRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMEditProductRequest.m; sourceTree = "<group>"; };
 		344FF63B1D88F9BE009911EB /* LoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingView.h; sourceTree = "<group>"; };
 		344FF63C1D88F9BE009911EB /* LoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingView.m; sourceTree = "<group>"; };
 		346567191D923A13008151A5 /* AMDeleteCustomerRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMDeleteCustomerRequest.h; sourceTree = "<group>"; };
@@ -1059,6 +1062,8 @@
 				3422BA601D7EA33E003751F1 /* AMProductListOrSearchRequest.m */,
 				34F552A11D81414300CCA537 /* AMDeleteProductRequest.h */,
 				34F552A21D81414300CCA537 /* AMDeleteProductRequest.m */,
+				343800031D9B9FF600B3B816 /* AMEditProductRequest.h */,
+				343800041D9B9FF600B3B816 /* AMEditProductRequest.m */,
 			);
 			path = ProductManage;
 			sourceTree = "<group>";
@@ -1486,6 +1491,7 @@
 				E21947561D786F4D001C5E5F /* OperationlogViewController.m in Sources */,
 				27CA012F1D6B10E4009F9A25 /* CALayer+Addition.m in Sources */,
 				27E26B501D6B1D360072F26E /* ProductManageViewController.m in Sources */,
+				343800051D9B9FF600B3B816 /* AMEditProductRequest.m in Sources */,
 				27CA01381D6B1167009F9A25 /* AMBaseModel.m in Sources */,
 				275F329A1D717B210033C8FF /* ASICloudFilesRequest.m in Sources */,
 				E2B63B181D981797001B2237 /* AMEditCustomerRequest.m in Sources */,

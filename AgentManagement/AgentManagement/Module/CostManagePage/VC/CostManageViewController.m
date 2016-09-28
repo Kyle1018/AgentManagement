@@ -311,15 +311,16 @@
         NSString *key = self.keysArray[indexPath.section];
         
         cell.productInfo = [[self.listDataDic objectForKey:key]objectAtIndex:indexPath.row-1];
-        
-        __weak typeof(self) weakSelf = self;
-
+ 
+        @weakify(self);
         cell.tapSeeDetailBlock = ^() {
+         
+            @strongify(self);
             
             UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"CostManage" bundle:nil];
             CostManageDetailViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"CostManageDetailID"];
             vc.productInfo = [[self.listDataDic objectForKey:key]objectAtIndex:indexPath.row-1];
-            [weakSelf.navigationController pushViewController:vc animated:YES];
+            [self.navigationController pushViewController:vc animated:YES];
             
         };
     }

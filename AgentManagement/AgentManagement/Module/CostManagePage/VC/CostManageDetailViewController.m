@@ -95,20 +95,22 @@
     [self presentViewController: self.alertVC animated: YES completion:nil];
     
     _viewModel = [[ProductManageViewModel alloc]init];
-     __weak typeof(self) weakSelf = self;
+
     //点击了删除产品
+    @weakify(self);
     self.alertVC.tapExitButtonBlock = ^() {
         
+        @strongify(self);
       
-        NSDictionary *dic = [weakSelf.productInfo toDictionary];
+        NSDictionary *dic = [self.productInfo toDictionary];
         //删除请求
-        [[weakSelf.viewModel deleteProduct:dic]subscribeNext:^(NSNumber* x) {
+        [[self.viewModel deleteProduct:dic]subscribeNext:^(NSNumber* x) {
             
          //   if ([x boolValue]== YES) {
 
               //  [[NSNotificationCenter defaultCenter]postNotificationName:KDeletaProductInfoNotifi object:nil userInfo:@{@"productInfo":weakSelf.productInfo}];
                 
-                [weakSelf.navigationController popViewControllerAnimated:YES];
+                [self.navigationController popViewControllerAnimated:YES];
 //                
 //            }
 //            else {

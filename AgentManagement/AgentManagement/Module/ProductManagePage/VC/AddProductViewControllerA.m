@@ -31,8 +31,6 @@
 
 - (void)signal {
     
-    __weak typeof(self) weakSelf = self;
-    
     RACSignal *brandInputSignal = [[self.brandTextField rac_textSignal]map:^id(NSString* value) {
    
         return @(value.length>0);
@@ -55,12 +53,12 @@
     
     [[[self.brandTextField rac_textSignal]distinctUntilChanged]subscribeNext:^(NSString* x) {
        
-        [weakSelf.inputContentDic setObject:x forKey:@"brand"];
+        [self.inputContentDic setObject:x forKey:@"brand"];
     }];
     
     [[[self.modelTextField rac_textSignal]distinctUntilChanged]subscribeNext:^(NSString* x) {
         
-        [weakSelf.inputContentDic setObject:x forKey:@"pmodel"];
+        [self.inputContentDic setObject:x forKey:@"pmodel"];
 
     }];
 

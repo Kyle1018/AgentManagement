@@ -45,8 +45,7 @@
     [self observeData];
     
     [self pullRefresh];
-    
-   // [self addOrDeleteProductInfoNotifi];
+
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -54,8 +53,7 @@
     [super viewWillAppear:animated];
     
     [self requestListData];
-    
-   // [self.formTabelView reloadData];
+
 }
 
 #pragma mark - Data
@@ -108,6 +106,11 @@
 //        
 //    }];
 //
+    
+    [[self.viewModel requestProductBrandAndPmodelData]subscribeNext:^(id x) {
+        
+    }];
+    
     //请求产品属性信息
     [[self.viewModel requstProductInformationData]subscribeNext:^(id x) {
         
@@ -154,44 +157,6 @@
     
 }
 
-/*
-- (void)addOrDeleteProductInfoNotifi {
-    
-    
-    [[[NSNotificationCenter defaultCenter]rac_addObserverForName:KDeletaProductInfoNotifi object:nil]subscribeNext:^(NSNotification* notifi){
-        
-        DDLogDebug(@"获取了删除产品通知");
-        
-        AMProductInfo *deletProductInfo = notifi.userInfo[@"productInfo"];
-        
-        NSMutableArray *pInfoArray = [NSMutableArray arrayWithArray:self.productInfoDataArray];
-        
-        [pInfoArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-           
-            AMProductInfo *productInfo = obj;
-            
-            if ([productInfo.pd_id isEqualToString:deletProductInfo.pd_id]) {
-                
-                [self.productInfoDataArray removeObject:productInfo];
-            }
-            
-        }];
-        
-    }];
-    
-    
-    [[[NSNotificationCenter defaultCenter]rac_addObserverForName:KAddProductInfoNotifi object:nil]subscribeNext:^(NSNotification* notifi){
-        
-        AMProductInfo *addProductInfo = notifi.userInfo[@"productInfo"];
-        
-        [self.productInfoDataArray insertObject:addProductInfo atIndex:0];
-        [LoadingView hideLoadingViewRemoveView:self.view];
- 
-    }];
-}
- */
-
-
 #pragma mark - UITableViewDelegate/UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
@@ -224,16 +189,16 @@
         
         cell.model = self.productInfoDataArray[indexPath.row-1];
         
-        WeakObj(self);
+        @weakify(self);
         
         //进入产品详情
         cell.tapSeeDetailBlock = ^() {
-            
+            @strongify(self);
             UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"ProductManage" bundle:nil];
             ProductDetailViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"ProductDetailID"];
-            vc.productInfo = selfWeak.productInfoDataArray[indexPath.row-1];
-            vc.productRelatedInformationArray = selfWeak.productRelatedInformationArray;
-            [selfWeak.navigationController pushViewController:vc animated:YES];
+            vc.productInfo = self.productInfoDataArray[indexPath.row-1];
+            vc.productRelatedInformationArray = self.productRelatedInformationArray;
+            [self.navigationController pushViewController:vc animated:YES];
             
         };
         

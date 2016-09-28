@@ -96,50 +96,15 @@
 
 - (RACSignal*)requstProductInformationData {
     
-    __weak typeof(self) weakSelf = self;
-    
     RACSignal *productRelatedSignal = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
         
         
-        weakSelf.priRequest = [[AMProductRelatedInformationRequest alloc] init];
+        self.priRequest = [[AMProductRelatedInformationRequest alloc] init];
         
-        [weakSelf.priRequest requestWithSuccess:^(KKBaseModel *model, KKRequestError *error) {
+        [self.priRequest requestWithSuccess:^(KKBaseModel *model, KKRequestError *error) {
             
             AMBaseModel *baseModel = (AMBaseModel*)model;
-            /*
-             <__NSArrayM 0x7fea737e49c0>(
-             {
-             key = cycle;
-             value =     (
-             {
-             value = "1\U4e2a\U6708";
-             },
-             {
-             value = "2\U4e2a\U6708";
-             },
-             {
-             value = "3\U4e2a\U6708";
-             }
-             );
-             },
-             {
-             key = sale;
-             value =     (
-             {
-             value = 1;
-             }
-             );
-             },
-             {
-             key = admin;
-             value =     (
-             {
-             value = 1;
-             }
-             );
-             }
-             */
-            
+      
             NSArray *modelArray=[AMProductRelatedInformation arrayOfModelsFromDictionaries:baseModel.data error:nil];
    
             NSMutableArray*optionTitleDataArray = [NSMutableArray arrayWithObjects:@"品牌",@"型号",@"直接饮用",@"分类",@"过滤介质",@"产品特点",@"摆放位置",@"滤芯个数",@"适用地区",@"零售价格",@"换芯周期", nil];
@@ -284,29 +249,25 @@
 
 - (RACSignal*)requestProductListDataOrSearchProductDataWithPage:(NSInteger)page Size:(NSInteger)size Search:(NSArray*)searchDic {
     
-    __weak typeof(self) weakSelf = self;
-    
-     __block AMProductInfo *productInfoModel = nil;
-    
     return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
        
         NSString *pageStr = [NSString stringWithFormat:@"%ld",(long)page];
         
         NSString *sizeStr = [NSString stringWithFormat:@"%ld",(long)size];
         
-        weakSelf.plOrSearchRequest = [[AMProductListOrSearchRequest alloc]initWithPage:pageStr Size:sizeStr Search:searchDic];
+        self.plOrSearchRequest = [[AMProductListOrSearchRequest alloc]initWithPage:pageStr Size:sizeStr Search:searchDic];
         
-        [weakSelf.plOrSearchRequest requestWithSuccess:^(KKBaseModel *model, KKRequestError *error) {
+        [self.plOrSearchRequest requestWithSuccess:^(KKBaseModel *model, KKRequestError *error) {
             
-             productInfoModel = (AMProductInfo*)model;
+             AMProductInfo*productInfoModel = (AMProductInfo*)model;
             
             NSArray *dataArray = [AMProductInfo arrayOfModelsFromDictionaries:productInfoModel.data];
             
             NSMutableArray *array = (NSMutableArray *)[[dataArray reverseObjectEnumerator] allObjects];
             
-            weakSelf.productInfoDataArray =[NSMutableArray arrayWithArray:array];
+            self.productInfoDataArray =[NSMutableArray arrayWithArray:array];
 
-            if (weakSelf.productInfoDataArray.count > 0) {
+            if (self.productInfoDataArray.count > 0) {
                 
                 [subscriber sendNext:@(1)];
                 [subscriber sendCompleted];
@@ -330,13 +291,11 @@
 
 - (RACSignal*)deleteProduct:(NSDictionary*)pdInfo; {
     
-    __weak typeof(self) weakSelf = self;
-    
     return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
       
-        weakSelf.deleteRequest = [[AMDeleteProductRequest alloc]initWithPD_id:pdInfo];
+        self.deleteRequest = [[AMDeleteProductRequest alloc]initWithPD_id:pdInfo];
         
-        [weakSelf.deleteRequest requestWithSuccess:^(KKBaseModel *model, KKRequestError *error) {
+        [self.deleteRequest requestWithSuccess:^(KKBaseModel *model, KKRequestError *error) {
             
             [subscriber sendNext:@(YES)];
             [subscriber sendCompleted];
@@ -347,6 +306,27 @@
             [subscriber sendNext:@(NO)];
             [subscriber sendCompleted];
           
+        }];
+        
+        return nil;
+    }];
+}
+
+- (RACSignal*)editProduct:(NSDictionary*)pdInfo {
+    
+    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        
+        self.editProductRequest = [[AMEditProductRequest alloc]initWithEditProductInfo:pdInfo];
+        
+        [self.editProductRequest requestWithSuccess:^(KKBaseModel *model, KKRequestError *error) {
+       
+            [subscriber sendNext:model];
+            [subscriber sendCompleted];
+            
+        } failure:^(KKBaseModel *model, KKRequestError *error) {
+            
+            [subscriber sendError:error];
+            
         }];
         
         return nil;
@@ -400,5 +380,6 @@
     
     return nil;
 }
+
 
 @end

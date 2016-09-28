@@ -46,13 +46,12 @@
 
 - (void)requestUserInfo {
     
-    __weak typeof(self) weakSelf = self;
     
    self.requst = [[AMUserInformationRequest alloc]init];
     
     [ self.requst requestWithSuccess:^(KKBaseModel *model, KKRequestError *error) {
         
-        weakSelf.userModel = (AMUser*)model;
+        self.userModel = (AMUser*)model;
  
     } failure:^(KKBaseModel *model, KKRequestError *error) {
         

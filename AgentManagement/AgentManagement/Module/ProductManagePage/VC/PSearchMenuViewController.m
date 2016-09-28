@@ -34,8 +34,6 @@
 
 @property(nonatomic,strong)ProductManageViewModel *viewModel;
 
-//@property(nonatomic,strong)NSMutableArray *searchResultArray;
-
 @end
 
 @implementation PSearchMenuViewController
@@ -51,7 +49,6 @@
     
     [self keyboradNotification];
 
-   // [self observeData];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -152,7 +149,6 @@
                                                object:nil];
     
 }
-
 
 - (void)hideMenuView {
     

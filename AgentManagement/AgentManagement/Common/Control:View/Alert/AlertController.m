@@ -28,7 +28,6 @@
             [self setValue:hogan forKey:@"attributedTitle"];
         }
 
-        __weak typeof(self) weakSelf = self;
         
         for (int i = 0; i < self.actionButtonArray.count; i++) {
             
@@ -39,9 +38,9 @@
             [self addAction:[UIAlertAction actionWithTitle:msg style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
 
 
-                    if (weakSelf.tapActionButtonBlock) {
+                    if (self.tapActionButtonBlock) {
                         
-                        weakSelf.tapActionButtonBlock(weakSelf.alertTag,[self keyName],i);
+                        self.tapActionButtonBlock(self.alertTag,[self keyName],i);
                     }
 
             }]];
