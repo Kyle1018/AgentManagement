@@ -34,15 +34,12 @@
     __weak typeof(self) weakSelf = self;
     
     RACSignal *brandInputSignal = [[self.brandTextField rac_textSignal]map:^id(NSString* value) {
-        
-        DDLogDebug(@"____________%ld",value.length);
+   
         return @(value.length>0);
         
     }];
                                    
     RACSignal *modelInputSignal = [[self.modelTextField rac_textSignal]map:^id(NSString* value) {
-        
-        DDLogDebug(@"++++++++++++++%ld",value.length);
         
         return @(value.length>0);
         
@@ -66,12 +63,21 @@
         [weakSelf.inputContentDic setObject:x forKey:@"pmodel"];
 
     }];
-    
-    RAC(self.nextButton,enabled) = signUpActiveSignal;
-    
-    RAC(self.nextButton.titleLabel,textColor) = [signUpActiveSignal map:^id(id value) {
+
+    RAC(self.nextButton,enabled) = [signUpActiveSignal map:^id(id value) {
         
-        return [value boolValue]?[UIColor colorWithHex:@"47b6ff"]:[UIColor colorWithHex:@"9b9b9b"];
+        if ([value boolValue]) {
+            
+            [self.nextButton setTitleColor:[UIColor colorWithHex:@"47b6ff"] forState:UIControlStateNormal];
+            
+        }
+        else {
+            
+            [self.nextButton setTitleColor:[UIColor colorWithHex:@"9b9b9b"] forState:UIControlStateNormal];
+            
+        }
+        
+        return value;
     }];
 }
 
@@ -93,6 +99,22 @@
         
     }
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (indexPath.section ==0) {
+        
+        self.brandTextField.enabled = YES;
+        [self.brandTextField becomeFirstResponder];
+    }
+    else {
+        
+        self.modelTextField.enabled = YES;
+        [self.modelTextField becomeFirstResponder];
+    }
+    
+}
+
 
 
 @end

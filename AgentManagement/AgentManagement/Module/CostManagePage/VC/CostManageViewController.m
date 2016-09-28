@@ -41,7 +41,6 @@
     
     [self pullRefresh];
     
-    [self notifi];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -109,16 +108,7 @@
 - (void)requestListData {
     
     WeakObj(self);
-//
-//    if (self.selectedOptionDic.count>0) {
-//        
-//        [LoadingView hideLoadingViewRemoveView:self.view];
-//    }
-//    else {
-//        
-//        [LoadingView showLoadingAddToView:self.view];
-//    }
-//    
+
     //“成本管理列表”调用“产品管理列表”中的数据进行显示。
     [[self.viewModel requestProductListDataOrSearchProductDataWithPage:0 Size:0 Search:self.selectedOptionDic]subscribeNext:^(NSNumber* x) {
           
@@ -189,6 +179,7 @@
     
 }
 
+/*
 - (void)notifi {
     
 
@@ -274,6 +265,7 @@
     }];
     
 }
+ */
 
 
 #pragma mark - UITableViewDelegate/UITableViewDataSource

@@ -40,22 +40,22 @@
     
     _viewModel = [[ProductManageViewModel alloc]init];
     
-    [self requestListData];
-    
     [self requestInfoData];
     
     [self observeData];
     
     [self pullRefresh];
     
-    [self addOrDeleteProductInfoNotifi];
+   // [self addOrDeleteProductInfoNotifi];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     
     [super viewWillAppear:animated];
     
-    [self.formTabelView reloadData];
+    [self requestListData];
+    
+   // [self.formTabelView reloadData];
 }
 
 #pragma mark - Data
@@ -154,6 +154,7 @@
     
 }
 
+/*
 - (void)addOrDeleteProductInfoNotifi {
     
     
@@ -188,6 +189,7 @@
  
     }];
 }
+ */
 
 
 #pragma mark - UITableViewDelegate/UITableViewDataSource

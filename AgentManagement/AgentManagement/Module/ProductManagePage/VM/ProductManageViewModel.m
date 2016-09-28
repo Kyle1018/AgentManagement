@@ -245,18 +245,17 @@
 
 - (RACSignal*)requstAddProductData:(NSDictionary*)paramt {
     
-    __weak typeof(self) weakSelf = self;
     
-    __block AMProductInfo *addProductInfoModel = nil;
+   // __block AMProductInfo *addProductInfoModel = nil;
     
     return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
        
         
-        weakSelf.apRequset = [[AMAddProductRequest alloc] initWithAddProductInfo:paramt];
+        self.apRequset = [[AMAddProductRequest alloc] initWithAddProductInfo:paramt];
         
-        [weakSelf.apRequset requestWithSuccess:^(KKBaseModel *model, KKRequestError *error) {
+        [self.apRequset requestWithSuccess:^(KKBaseModel *model, KKRequestError *error) {
             
-            addProductInfoModel = (AMProductInfo*)model;
+            AMProductInfo*addProductInfoModel = (AMProductInfo*)model;
             DDLogDebug(@"%@", model);
             if ([addProductInfoModel.resultCode integerValue]== 0) {
                 

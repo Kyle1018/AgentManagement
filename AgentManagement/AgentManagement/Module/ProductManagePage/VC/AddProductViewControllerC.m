@@ -33,8 +33,6 @@
 
 - (void)signal {
 
-    __weak typeof(self) weakSelf = self;
-    
     RACSignal *priceInputSignal = [[self.price rac_textSignal]map:^id(NSString* value) {
         
         return @(value.length>0);
@@ -56,21 +54,31 @@
                       }];
     
     
-    RAC(self.saveButton,enabled) = signUpActiveSignal;
-    
-    RAC(self.saveButton.titleLabel,textColor) = [signUpActiveSignal map:^id(id value) {
+    RAC(self.saveButton,enabled) = [signUpActiveSignal map:^id(id value) {
         
-        return [value boolValue]?[UIColor colorWithHex:@"47b6ff"]:[UIColor colorWithHex:@"9b9b9b"];
+        if ([value boolValue]) {
+            
+            [self.saveButton setTitleColor:[UIColor colorWithHex:@"47b6ff"] forState:UIControlStateNormal];
+            
+        }
+        else {
+            
+            [self.saveButton setTitleColor:[UIColor colorWithHex:@"9b9b9b"] forState:UIControlStateNormal];
+            
+        }
+        
+        return value;
     }];
+    
     
     [[[self.price rac_textSignal]distinctUntilChanged]subscribeNext:^(NSString* x) {
         
-          [weakSelf.optionDic setObject:x forKey:@"stock_price"];
+          [self.optionDic setObject:x forKey:@"stock_price"];
     }];
     
     [[[self.count rac_textSignal]distinctUntilChanged]subscribeNext:^(NSString* x) {
         
-          [weakSelf.optionDic setObject:x forKey:@"stock_number"];
+          [self.optionDic setObject:x forKey:@"stock_number"];
     }];
 }
 
@@ -92,7 +100,7 @@
     }]subscribeNext:^(AMProductInfo* x) {
         
         
-        [[NSNotificationCenter defaultCenter]postNotificationName:KAddProductInfoNotifi object:nil userInfo:@{@"productInfo":x}];
+      //  [[NSNotificationCenter defaultCenter]postNotificationName:KAddProductInfoNotifi object:nil userInfo:@{@"productInfo":x}];
         
         [self.navigationController popToRootViewControllerAnimated:YES];
         
@@ -104,6 +112,20 @@
     [textField resignFirstResponder];
 
     return YES;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (indexPath.section ==0) {
+        
+        self.price.enabled = YES;
+        [self.price becomeFirstResponder];
+    }
+    else {
+        
+        self.count.enabled = YES;
+        [self.count becomeFirstResponder];
+    }
 }
 
 @end
