@@ -6,8 +6,9 @@
 //  Copyright © 2016年 KK. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-@interface SetPasswordViewController : UIViewController
+#import "BaseViewController.h"
+
+@interface SetPasswordViewController : BaseViewController
 
 @property(nonatomic,strong)NSMutableDictionary *registerInformationDic;
 

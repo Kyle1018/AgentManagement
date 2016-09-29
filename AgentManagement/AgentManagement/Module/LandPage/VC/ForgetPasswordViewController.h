@@ -6,8 +6,8 @@
 //  Copyright © 2016年 KK. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "BaseViewController.h"
 
-@interface ForgetPasswordViewController : UIViewController
+@interface ForgetPasswordViewController : BaseViewController
 
 @end

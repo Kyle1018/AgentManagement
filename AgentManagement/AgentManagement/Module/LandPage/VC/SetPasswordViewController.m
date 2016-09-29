@@ -10,7 +10,7 @@
 #import "RegexUtils.h"
 #import "LandViewModel.h"
 #import "AMUser.h"
-#import "LandViewController.h"
+
 @interface SetPasswordViewController()
 
 @property (weak, nonatomic) IBOutlet UITextField *inputPassword;
@@ -29,7 +29,7 @@
     [super viewDidLoad];
     
     _viewModel = [[LandViewModel alloc]init];
-     __weak typeof(self) weakSelf = self;
+
     __block NSString *password = @"";
     __block NSString *againPassword = @"";
     
@@ -59,16 +59,13 @@
     //根据俩个输入框是否都有内容——决定下一步按钮是否可以点击
     RAC(self.finishBtn,enabled) = [signUpActiveSignal map:^id(NSNumber* value) {
         
+        self.finishBtn.backgroundColor = [value boolValue]?[UIColor colorWithHex:@"47b6ff"]:[UIColor colorWithHex:@"b3b3b3"];
+        
         return value;
     }];
     
-    //根据俩个输入框是否都有内容——决定下一步按钮的文字颜色
-    RAC(self.finishBtn,backgroundColor) = [signUpActiveSignal map:^id(NSNumber* value) {
-        
-        return [value boolValue]?[UIColor colorWithHex:@"47b6ff"]:[UIColor colorWithHex:@"b3b3b3"];
-    }];
     
-    
+    @weakify(self);
     //完成按钮点击事件
     [[[self.finishBtn rac_signalForControlEvents:UIControlEventTouchUpInside]filter:^BOOL(id value) {
         
@@ -90,7 +87,7 @@
             }
             
             else {
-                
+            
                 [MBProgressHUD showText:@"请输入6-12字符，包含数字、大写字母、小写字母"];
                 
                 return NO;
@@ -100,8 +97,9 @@
         
     }]subscribeNext:^(id x) {
         
+        @strongify(self);
         //注册请求
-        [[[weakSelf.viewModel requestRegisterWithRegisterInformation:weakSelf.registerInformationDic]filter:^BOOL(id value) {
+        [[[self.viewModel requestRegisterWithRegisterInformation:self.registerInformationDic]filter:^BOOL(id value) {
            
             if ([value isKindOfClass:[AMUser class]]) {
                 

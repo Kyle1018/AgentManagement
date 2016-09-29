@@ -27,7 +27,9 @@
 {
     MBProgressHUD *HUD = [MBProgressHUD createHUD];
     HUD.mode = MBProgressHUDModeText;
-    HUD.labelText = text;
+
+    HUD.detailsLabelText = text;
+    HUD.detailsLabelFont = [UIFont fontWithName:@"Arial" size:16];
     
     [HUD hide:YES afterDelay:4];
     return HUD;
