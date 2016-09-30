@@ -21,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *signinBtn;
 @property (weak, nonatomic) IBOutlet UIImageView *recordPwdImage;
 @property(nonatomic,assign)BOOL recordPwd;
+@property (weak, nonatomic) IBOutlet UIControl *recordPwdControl;
 @end
 
 @implementation LandViewController
@@ -41,13 +42,37 @@
                                                  name:UIKeyboardWillHideNotification
                                                object:nil];
     
-    if (self.recordPwd) {
+
+    
+    if ([[[NSUserDefaults standardUserDefaults]objectForKey:@"pp"]boolValue]) {
         
-        self.recordPwdImage.image = [UIImage imageNamed:@"Rp"];
+         self.recordPwdImage.image=[UIImage imageNamed:@"Rp1"];
+        self.inputUserName.text = [[NSUserDefaults standardUserDefaults]objectForKey:@"userName"];
+        self.inputPassWord.text = @"";
     }
-    else{
-        self.recordPwdImage.image = [UIImage imageNamed:@"Rp1"];
+    else {
+        
+         self.recordPwdImage.image=[UIImage imageNamed:@"Rp"];
+        NSLog(@"%@",[[NSUserDefaults standardUserDefaults]objectForKey:@"userName"]);
+         self.inputUserName.text = [[NSUserDefaults standardUserDefaults]objectForKey:@"userName"];
+         self.inputPassWord.text = [[NSUserDefaults standardUserDefaults]objectForKey:@"password"];
     }
+    
+
+    RACSignal*signal=[[self.recordPwdControl rac_signalForControlEvents:UIControlEventTouchUpInside]map:^id(UIControl* value) {
+       
+        value.selected = ![[[NSUserDefaults standardUserDefaults]objectForKey:@"pp"]boolValue];
+        [[NSUserDefaults standardUserDefaults]setObject:@(value.selected) forKey:@"pp"];
+        [[NSUserDefaults standardUserDefaults]synchronize];
+ 
+        return @(value.selected);
+    }];
+    
+    RAC(self.recordPwdImage,image) = [signal map:^id(NSNumber* value) {
+
+        return [value boolValue]?[UIImage imageNamed:@"Rp1"]:[UIImage imageNamed:@"Rp"];
+        
+    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -56,6 +81,13 @@
     
     [self.navigationController setNavigationBarHidden:YES animated:animated];
 
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    
+    [super viewWillDisappear:animated];
+    
+    
 }
 
 #pragma mark - KeyboradNotification
@@ -135,6 +167,10 @@
             
             return NO;
         }
+        else if (value.length==0) {
+            
+            return NO;
+        }
         else {
             
             return YES;
@@ -143,6 +179,9 @@
     }]subscribeNext:^(id x) {
         
          userName = x;
+        
+        [[NSUserDefaults standardUserDefaults]setObject:userName forKey:@"userName"];
+        [[NSUserDefaults standardUserDefaults]synchronize];
     }];
     
     [[self.inputPassWord.rac_textSignal filter:^BOOL(NSString* value) {
@@ -155,6 +194,10 @@
             
             return NO;
         }
+        else if (value.length == 0) {
+            
+            return NO;
+        }
         else {
             
             return YES;
@@ -163,6 +206,9 @@
     }]subscribeNext:^(id x) {
         
          password = x;
+        
+        [[NSUserDefaults standardUserDefaults]setObject:password forKey:@"password"];
+        [[NSUserDefaults standardUserDefaults]synchronize];
     }];
 
     
@@ -185,11 +231,11 @@
             
         }]subscribeNext:^(AMUser * x) {
             
+            //如果选择了“记住密码”则在此保存用户名和密码
+            
             BaseTabbarController *rootVC=[[BaseTabbarController alloc]init];
           
-            [self presentViewController:rootVC animated:YES completion:^{
-                
-            }];
+            [self presentViewController:rootVC animated:YES completion:nil];
 
         }];
     }];
