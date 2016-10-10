@@ -20,7 +20,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *inputPassWord;
 @property (weak, nonatomic) IBOutlet UIButton *signinBtn;
 @property (weak, nonatomic) IBOutlet UIImageView *recordPwdImage;
-@property(nonatomic,assign)BOOL recordPwd;
+@property(nonatomic,assign)BOOL isNotRecordPwd;
 @property (weak, nonatomic) IBOutlet UIControl *recordPwdControl;
 @end
 
@@ -30,7 +30,6 @@
     
     [super viewDidLoad];
 
-    [self racSignal];//信号相关
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(changeContentViewPosition:)
@@ -42,37 +41,48 @@
                                                  name:UIKeyboardWillHideNotification
                                                object:nil];
     
-
     
-    if ([[[NSUserDefaults standardUserDefaults]objectForKey:@"pp"]boolValue]) {
-        
-         self.recordPwdImage.image=[UIImage imageNamed:@"Rp1"];
-        self.inputUserName.text = [[NSUserDefaults standardUserDefaults]objectForKey:@"userName"];
+    
+    self.isNotRecordPwd=[[[NSUserDefaults standardUserDefaults]objectForKey:@"isNotRecordPwd"]boolValue];
+    self.inputUserName.text = [[[NSUserDefaults standardUserDefaults]objectForKey:@"landInfo"]objectForKey:@"userName"];
+    self.inputPassWord.text = [[[NSUserDefaults standardUserDefaults]objectForKey:@"landInfo"]objectForKey:@"password"];
+
+    if (self.isNotRecordPwd) {//不记住密码
+
         self.inputPassWord.text = @"";
-    }
-    else {
-        
-         self.recordPwdImage.image=[UIImage imageNamed:@"Rp"];
-        NSLog(@"%@",[[NSUserDefaults standardUserDefaults]objectForKey:@"userName"]);
-         self.inputUserName.text = [[NSUserDefaults standardUserDefaults]objectForKey:@"userName"];
-         self.inputPassWord.text = [[NSUserDefaults standardUserDefaults]objectForKey:@"password"];
-    }
-    
-
-    RACSignal*signal=[[self.recordPwdControl rac_signalForControlEvents:UIControlEventTouchUpInside]map:^id(UIControl* value) {
-       
-        value.selected = ![[[NSUserDefaults standardUserDefaults]objectForKey:@"pp"]boolValue];
-        [[NSUserDefaults standardUserDefaults]setObject:@(value.selected) forKey:@"pp"];
+         self.recordPwdImage.image=[UIImage imageNamed:@"Rp1"];
+        NSMutableDictionary*dic = [NSMutableDictionary dictionaryWithDictionary: [[NSUserDefaults standardUserDefaults]objectForKey:@"landInfo"]];
+        [dic removeObjectForKey:@"password"];
+        [[NSUserDefaults standardUserDefaults]setObject:dic forKey:@"landInfo"];
         [[NSUserDefaults standardUserDefaults]synchronize];
- 
-        return @(value.selected);
+    }
+    else {//记住密码
+
+         self.recordPwdImage.image=[UIImage imageNamed:@"Rp"];
+        
+        if ( self.inputUserName.text.length>0&&self.inputPassWord.text.length>0) {
+            
+            self.signinBtn.enabled = YES;
+            self.signinBtn.backgroundColor = [UIColor colorWithHex:@"47b6ff"];
+        }
+        else {
+            
+            self.signinBtn.enabled = NO;
+            self.signinBtn.backgroundColor = [UIColor colorWithHex:@"b3b3b3"];
+        }
+    }
+
+    [[self.recordPwdControl rac_signalForControlEvents:UIControlEventTouchUpInside]subscribeNext:^(UIControl* x) {
+       
+        self.isNotRecordPwd = !self.isNotRecordPwd;
+
+        self.recordPwdImage.image = self.isNotRecordPwd?[UIImage imageNamed:@"Rp1"]:[UIImage imageNamed:@"Rp"];
+
+          [[NSUserDefaults standardUserDefaults]setObject:@(self.isNotRecordPwd) forKey:@"isNotRecordPwd"];
+          [[NSUserDefaults standardUserDefaults]synchronize];
     }];
     
-    RAC(self.recordPwdImage,image) = [signal map:^id(NSNumber* value) {
-
-        return [value boolValue]?[UIImage imageNamed:@"Rp1"]:[UIImage imageNamed:@"Rp"];
-        
-    }];
+     [self racSignal];//信号相关
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -83,12 +93,6 @@
 
 }
 
-- (void)viewWillDisappear:(BOOL)animated {
-    
-    [super viewWillDisappear:animated];
-    
-    
-}
 
 #pragma mark - KeyboradNotification
 - (void)changeContentViewPosition:(NSNotification *)notification{
@@ -126,16 +130,25 @@
 #pragma mark -Signal
 - (void)racSignal {
     
-    _viewModel = [[LandViewModel alloc]init];
-
      RACSignal *validLenthUserNameSignal = [self.inputUserName.rac_textSignal map:^id(NSString* value) {
-  
+    
+         if (value.length>11) {
+             
+             self.inputUserName.text = [value substringToIndex:11];
+         }
+         
          return @(value.length>0);
+
      }];
 
     //密码输入框是否有内容
     RACSignal *validLenthPasswordSignal = [self.inputPassWord.rac_textSignal map:^id(NSString* value) {
    
+        if (value.length>12) {
+            
+            self.inputPassWord.text = [value substringToIndex:12];
+        }
+        
         return @(value.length>0);
     }];
 
@@ -153,69 +166,12 @@
         return value;
     }];
     
-    __block NSString *userName =@"";//用户名
-    __block NSString*password = @"";//密码
-    
-    @weakify(self);
-    [[self.inputUserName.rac_textSignal filter:^BOOL(NSString* value) {
-        
-        @strongify(self);
-        
-        if (value.length>11) {
-            
-            self.inputUserName.text = [value substringToIndex:11];
-            
-            return NO;
-        }
-        else if (value.length==0) {
-            
-            return NO;
-        }
-        else {
-            
-            return YES;
-        }
-        
-    }]subscribeNext:^(id x) {
-        
-         userName = x;
-        
-        [[NSUserDefaults standardUserDefaults]setObject:userName forKey:@"userName"];
-        [[NSUserDefaults standardUserDefaults]synchronize];
-    }];
-    
-    [[self.inputPassWord.rac_textSignal filter:^BOOL(NSString* value) {
-        
-        @strongify(self);
-        
-        if (value.length>12) {
-            
-            self.inputPassWord.text = [value substringToIndex:12];
-            
-            return NO;
-        }
-        else if (value.length == 0) {
-            
-            return NO;
-        }
-        else {
-            
-            return YES;
-        }
-        
-    }]subscribeNext:^(id x) {
-        
-         password = x;
-        
-        [[NSUserDefaults standardUserDefaults]setObject:password forKey:@"password"];
-        [[NSUserDefaults standardUserDefaults]synchronize];
-    }];
-
+    self.viewModel = [[LandViewModel alloc]init];
     
     [[self.signinBtn rac_signalForControlEvents:UIControlEventTouchUpInside]subscribeNext:^(id x) {
         
         //登录请求
-        [[[self.viewModel requestSigninWithUserName:userName Password:password]filter:^BOOL(id value) {
+        [[[self.viewModel requestSigninWithUserName:self.inputUserName.text Password:self.inputPassWord.text]filter:^BOOL(id value) {
             
             if ([value isKindOfClass:[NSString class]]) {
                 
@@ -226,13 +182,15 @@
             
             else {
                 
+                NSDictionary *dic = @{@"userName":self.inputUserName.text,@"password":self.inputPassWord.text};
+                [[NSUserDefaults standardUserDefaults]setObject:dic forKey:@"landInfo"];
+                [[NSUserDefaults standardUserDefaults]synchronize];
+                
                 return YES;
             }
             
         }]subscribeNext:^(AMUser * x) {
-            
-            //如果选择了“记住密码”则在此保存用户名和密码
-            
+   
             BaseTabbarController *rootVC=[[BaseTabbarController alloc]init];
           
             [self presentViewController:rootVC animated:YES completion:nil];
