@@ -33,8 +33,6 @@
 
     [self initProperty];
     
-    [self requestListData];
-    
     [self requestInfoData];
     
     [self observeData];

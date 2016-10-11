@@ -53,12 +53,16 @@
     
     _viewModel = [[ProductManageViewModel alloc]init];
 
-    _dataArray = [NSMutableArray arrayWithObjects:@[self.productInfo.brand,self.productInfo.pmodel],@[self.productInfo.drinking,self.productInfo.classification,self.productInfo.filter,self.productInfo.features,self.productInfo.putposition, self.productInfo.number,self.productInfo.area,self.productInfo.price,self.productInfo.cycle],@[self.productInfo.stock_price,self.productInfo.stock_number],nil];
+    NSLog(@"%@",self.productInfo);
+    
+    _dataArray = [NSMutableArray arrayWithObjects:@[self.productInfo.brand==nil?@"":self.productInfo.brand,self.productInfo.pmodel==nil?@"":self.productInfo.pmodel],@[self.productInfo.drinking==nil?@"":self.productInfo.drinking,self.productInfo.classification==nil?@"":self.productInfo.classification,self.productInfo.filter==nil?@"":self.productInfo.filter,self.productInfo.features==nil?@"":self.productInfo.features,self.productInfo.putposition==nil?@"":self.productInfo.putposition, self.productInfo.number==nil?@"":self.productInfo.number,self.productInfo.area==nil?@"":self.productInfo.area,self.productInfo.price==nil?@"":self.productInfo.price,self.productInfo.cycle==nil?@"":self.productInfo.cycle],@[self.productInfo.stock_price==nil?@"":self.productInfo.stock_price,self.productInfo.stock_number==nil?@"":self.productInfo.stock_number],nil];
     
     _keyNameArray = @[@[@"brand",@"pmodel"],@[@"drinking",@"classification",@"filter",@"features",@"putposition",@"number",@"area",@"price",@"cycle"],@[@"stock_price",@"stock_number"]];
     
     _inputOptionDic = [NSMutableDictionary dictionaryWithDictionary:[self.productInfo toDictionary]];
 }
+
+
 
 #pragma mark- UITabelViewDelegate;UITabelViewDatasource
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
