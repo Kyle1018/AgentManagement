@@ -34,6 +34,38 @@
     }];
 }
 
+//- (void)requestListData {
+//    
+//    WeakObj(self);
+//    //“成本管理列表”调用“产品管理列表”中的数据进行显示。
+//    [[self.viewModel requestProductListDataOrSearchProductDataWithPage:0 Size:0 Search:self.selectedOptionDic]subscribeNext:^(NSNumber* x) {
+//        
+//        if ([x integerValue]==3) {
+//            selfWeak.loadingView =[LoadingView showRetryAddToView:self.view];
+//            selfWeak.formTabelView.hidden = YES;
+//            selfWeak.loadingView.tapRefreshButtonBlcok = ^() {
+//                
+//                //再次请求数据
+//                [selfWeak requestListData];
+//            };
+//            
+//        }
+//        else if ([x integerValue]==2) {
+//            
+//            [LoadingView showNoDataAddToView:self.view];
+//            selfWeak.formTabelView.hidden = YES;
+//            
+//        }
+//        else {
+//            
+//            [LoadingView hideLoadingViewRemoveView:self.view];
+//            selfWeak.formTabelView.hidden = NO;
+//            [selfWeak.formTabelView reloadData];
+//        }
+//    }];
+//    
+//}
+
 - (void)getData {
     
     _xLabels = @[@"1月",@"2月",@"3月",@"4月",@"5月",@"6月",@"7月",@"8月",@"9月",@"10月",@"11月",@"12月"];

@@ -47,7 +47,7 @@
     
     [super viewWillAppear:animated];
     
-    [self.formTabelView reloadData];
+    [self requestListData];
 }
 
 - (void)initProperty {
@@ -61,7 +61,6 @@
 
 - (void)observeData {
     
-   WeakObj(self)
     //列表数据
     [RACObserve(self.viewModel, productInfoDataArray)subscribeNext:^(NSMutableArray* x) {
         
@@ -75,11 +74,11 @@
             
             NSString *currentDateStr = [NSString timeTransformString:productInfo.add_time dateFormatter:dateFormatter];
             
-            if ([currentDateStr isEqualToString:selfWeak.lastDate]) {
+            if ([currentDateStr isEqualToString:self.lastDate]) {
                 
                 [dataArray addObject:productInfo];
                 
-                [selfWeak.listDataDic safeSetObject:dataArray forKey:currentDateStr];
+                [self.listDataDic safeSetObject:dataArray forKey:currentDateStr];
             }
             else {
                 
@@ -87,28 +86,25 @@
                 
                 [dd addObject:productInfo];
                 
-                [selfWeak.listDataDic safeSetObject:dd forKey:currentDateStr];
+                [self.listDataDic safeSetObject:dd forKey:currentDateStr];
                 
                dataArray =dd;
             }
             
-            selfWeak.lastDate = currentDateStr;
+            self.lastDate = currentDateStr;
             
         }
      
         
         
-        [selfWeak.keysArray addObjectsFromArray:[selfWeak.listDataDic allKeys]];
+        [self.keysArray addObjectsFromArray:[self.listDataDic allKeys]];
      
     }];
-    
-    
 }
 
 - (void)requestListData {
     
     WeakObj(self);
-
     //“成本管理列表”调用“产品管理列表”中的数据进行显示。
     [[self.viewModel requestProductListDataOrSearchProductDataWithPage:0 Size:0 Search:self.selectedOptionDic]subscribeNext:^(NSNumber* x) {
           
@@ -178,94 +174,6 @@
     }];
     
 }
-
-/*
-- (void)notifi {
-    
-
-    [[[NSNotificationCenter defaultCenter]rac_addObserverForName:KDeletaProductInfoNotifi object:nil]subscribeNext:^(NSNotification* notifi) {
-        
-        DDLogDebug(@"%@",notifi.userInfo);
-        AMProductInfo *deleteProductInfo=notifi.userInfo[@"productInfo"];
-        
-        for (NSString *key in self.keysArray) {
-            
-            NSMutableArray *array = [NSMutableArray arrayWithObject:[self.listDataDic objectForKey:key]];
-            
-            
-            
-            for (NSMutableArray *productArray in array) {
-                
-                NSMutableArray *array = [NSMutableArray arrayWithArray:productArray];
-                
-                [array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                   
-                    AMProductInfo *productInfo = obj;
-                    
-                    if ([productInfo.pd_id isEqualToString:deleteProductInfo.pd_id]) {
-                        
-                        [productArray removeObject:productInfo];
-                    }
-                }];
-                
-            }
-            
-        }
-        
-    }];
-    
-
-    [[[NSNotificationCenter defaultCenter]rac_addObserverForName:KAddProductInfoNotifi object:nil]subscribeNext:^(NSNotification* notifi){
-        
-        AMProductInfo *addProductInfo = notifi.userInfo[@"productInfo"];
-        
-        //如果列表没有数据时——                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
-        
-        
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        //    //设定时间格式,这里可以设置成自己需要的格式
-        //[dateFormatter setDateFormat:@"yyyy/MM/dd"];
-        [dateFormatter setDateFormat:@"yyyy-MM"];
-        NSString *currentDateStr =[NSString timeTransformString:addProductInfo.add_time dateFormatter:dateFormatter];
-        
-        if (self.keysArray.count == 0) {
-            
-            NSMutableArray *dd = [NSMutableArray array];
-            
-            [dd addObject:addProductInfo];
-            
-            [self.listDataDic safeSetObject:dd forKey:currentDateStr];
- 
-        }
-        //如果列表已经有数据了
-        else {
-            
-            for (NSString *key in self.keysArray) {
-                
-                if ([key isEqualToString:currentDateStr]) {
-                    
-                    NSMutableArray *array=[self.listDataDic objectForKey:key];
-                    
-                    [array insertObject:addProductInfo atIndex:0];
-                }
-                else {
-                    
-                    NSMutableArray *dd = [NSMutableArray array];
-                    
-                    [dd addObject:addProductInfo];
-                    
-                    [self.listDataDic safeSetObject:dd forKey:currentDateStr];
-                }
-            }
-        }
-        
-        [self.keysArray removeAllObjects];
-        [self.keysArray addObjectsFromArray:[self.listDataDic allKeys]];
-        
-    }];
-    
-}
- */
 
 
 #pragma mark - UITableViewDelegate/UITableViewDataSource
