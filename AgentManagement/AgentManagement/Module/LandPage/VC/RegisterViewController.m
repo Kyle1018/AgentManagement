@@ -15,6 +15,7 @@
 @property(nonatomic,strong)LandViewModel *viewModel;
 @property (weak, nonatomic) IBOutlet UITextField *inputPhone;
 @property (weak, nonatomic) IBOutlet UITextField *inputIdentifyCode;
+@property (weak, nonatomic) IBOutlet UITextField *inputRegisterName;
 @property (weak, nonatomic) IBOutlet IdentifyCodeButton *identifyCodeBtn;
 @property (weak, nonatomic) IBOutlet UIButton *nextBtn;
 @end
@@ -47,7 +48,6 @@
         return @([phoneValid boolValue]);
     }];
     
-    
     //验证码输入框是否有内容
     RACSignal *validLenthIdentifyCodeSignal = [self.inputIdentifyCode.rac_textSignal map:^id(NSString* value) {
         
@@ -56,11 +56,18 @@
         
     }];
     
+    
+    //工商注册名称是否有内容
+    RACSignal *validLenthRegisterNameSignal = [self.inputRegisterName.rac_textSignal map:^id(NSString * value) {
+        
+        return @(value.length>0);
+        
+    }];
 
     //验证码输入框与手机号码输入框是否有内容
-    RACSignal *signUpActiveSignal = [RACSignal combineLatest:@[validLenthPhoneSignal,validLenthIdentifyCodeSignal] reduce:^id(NSNumber *phoneLenthValid,NSNumber*identifyCodeLenthValid){
+    RACSignal *signUpActiveSignal = [RACSignal combineLatest:@[validLenthPhoneSignal,validLenthIdentifyCodeSignal,validLenthRegisterNameSignal] reduce:^id(NSNumber *phoneLenthValid,NSNumber*identifyCodeLenthValid,NSNumber*registerNameLenthValid){
         
-        return @([phoneLenthValid boolValue] && [identifyCodeLenthValid boolValue]);
+        return @([phoneLenthValid boolValue] && [identifyCodeLenthValid boolValue] && [registerNameLenthValid boolValue]);
     }];
     
     //根据俩个输入框是否都有内容——决定下一步按钮是否可以点击
