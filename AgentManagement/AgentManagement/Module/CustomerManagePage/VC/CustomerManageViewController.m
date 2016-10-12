@@ -53,7 +53,6 @@
 
 - (void)requestData {
     
- 
     [[self.viewModel requestCustomerInfoListDataOrSearchCustomerInfoDataWithPage:0 size:0 search:self.selectedOptionDic]subscribeNext:^(NSNumber* x) {
         
         if ([x integerValue] == 1) {
@@ -63,9 +62,10 @@
             [self.formTabelView reloadData];
         }
         else if ([x integerValue] == 2) {
-            
-          //  [LoadingView showNoDataAddToView:self.view];
+ 
             self.formTabelView.hidden = YES;
+            [LoadingView showNoDataAddToView:self.view];
+           
         }
         
         else {
