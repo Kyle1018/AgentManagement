@@ -85,10 +85,11 @@
 - (IBAction)saveAction:(UIButton *)sender {
     
     //添加产品请求
-    [[[self.viewModel requstAddProductData:self.optionDic]filter:^BOOL(id value) {
+    [[[[self.viewModel requstAddProductData:self.optionDic]filter:^BOOL(id value) {
         
         if ([value isKindOfClass:[AMProductInfo class]]) {
             
+            [MBProgressHUD showText:@"添加产品成功"];
             return YES;
         }
         else {
@@ -97,10 +98,7 @@
             return NO;
         }
         
-    }]subscribeNext:^(AMProductInfo* x) {
-        
-        
-      //  [[NSNotificationCenter defaultCenter]postNotificationName:KAddProductInfoNotifi object:nil userInfo:@{@"productInfo":x}];
+    }]delay:2]subscribeNext:^(AMProductInfo* x) {
         
         [self.navigationController popToRootViewControllerAnimated:YES];
         
