@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "AMProductListOrSearchRequest.h"
+
 @interface DataAnalysisViewModel : NSObject
-@property(nonatomic,strong)AMProductListOrSearchRequest *plOrSearchRequest;
+
 
 //请求库存量
 - (RACSignal*)requestStock;

@@ -56,6 +56,11 @@
         [_datasArray replaceObjectAtIndex:0 withObject:array];
         [self.tabelView reloadData];
     }];
+    
+    //请求销售量
+    [[self.viewModel requestLSalesVolume]subscribeNext:^(id x) {
+        
+    }];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
