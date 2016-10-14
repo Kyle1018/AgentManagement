@@ -8,23 +8,35 @@
 
 #import "DataAnalysisViewController.h"
 #import "DataAnalysisCell.h"
-
+#import "DataAnalysisViewModel.h"
+#import "AMProductInfo.h"
 #define CurrentScrrenSize(oldWidth) (oldWidth * (ScreenWidth/375))
 @interface DataAnalysisViewController ()
-@property(nonatomic,strong)NSArray *xLabels;
-
 @property(nonatomic,strong)NSMutableArray *yLabels;
-
 @property(nonatomic,strong)NSMutableArray *datasArray;
+@property(nonatomic,strong)DataAnalysisViewModel *viewModel;
+@property (strong, nonatomic) IBOutlet UITableView *tabelView;
 @end
 
 @implementation DataAnalysisViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    [self getData];
     
+    _viewModel = [[DataAnalysisViewModel alloc]init];
+
+    NSMutableArray *array = [NSMutableArray array];
+    
+    for (int i = 0; i<12; i++) {
+        
+        [array addObject:@(0)];
+    }
+    
+
+    _datasArray = [NSMutableArray arrayWithObjects:@[array,array],array,nil];
+    
+    [self requestData];
+
     
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
        
@@ -34,64 +46,16 @@
     }];
 }
 
-//- (void)requestListData {
-//    
-//    WeakObj(self);
-//    //“成本管理列表”调用“产品管理列表”中的数据进行显示。
-//    [[self.viewModel requestProductListDataOrSearchProductDataWithPage:0 Size:0 Search:self.selectedOptionDic]subscribeNext:^(NSNumber* x) {
-//        
-//        if ([x integerValue]==3) {
-//            selfWeak.loadingView =[LoadingView showRetryAddToView:self.view];
-//            selfWeak.formTabelView.hidden = YES;
-//            selfWeak.loadingView.tapRefreshButtonBlcok = ^() {
-//                
-//                //再次请求数据
-//                [selfWeak requestListData];
-//            };
-//            
-//        }
-//        else if ([x integerValue]==2) {
-//            
-//            [LoadingView showNoDataAddToView:self.view];
-//            selfWeak.formTabelView.hidden = YES;
-//            
-//        }
-//        else {
-//            
-//            [LoadingView hideLoadingViewRemoveView:self.view];
-//            selfWeak.formTabelView.hidden = NO;
-//            [selfWeak.formTabelView reloadData];
-//        }
-//    }];
-//    
-//}
 
-- (void)getData {
+- (void)requestData {
     
-    _xLabels = @[@"1月",@"2月",@"3月",@"4月",@"5月",@"6月",@"7月",@"8月",@"9月",@"10月",@"11月",@"12月"];
-    
-    _yLabels = [NSMutableArray arrayWithObjects: @[
-                                                    @"0",
-                                                        @"50",
-                                                        @"100",
-                                                        @"150",
-                                                        @"200",
-                                                        @"250",
-                                                    ],@[@"0",
-                                                        @"200",
-                                                        @"400",
-                                                        @"600",
-                                                        @"800",
-                                                        @"1000",
-                                                        @"1200",
-                                                        ],nil];
- 
-    
-    _datasArray = [NSMutableArray arrayWithObjects:@[@[@11,@0,@66,@34,@101,@123,@134,@219,@176,@77,@90,@12],@[@155,@67,@200,@33,@92,@76,@88,@177,@232,@201,@99,@32]],@[@60.1, @160.1, @126.4, @0.0, @186.2, @127.2, @176.2,@1200,@500,@688,@0,@29],nil];
-}
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    //请求库存量
+    [[self.viewModel requestStock]subscribeNext:^(NSMutableArray* x) {
+        NSMutableArray *array = [NSMutableArray arrayWithArray:_datasArray[0]];
+        [array replaceObjectAtIndex:0 withObject:x];
+        [_datasArray replaceObjectAtIndex:0 withObject:array];
+        [self.tabelView reloadData];
+    }];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -109,15 +73,9 @@
     return 40;
 }
 
-
-
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-//    CGFloat height = CurrentScrrenSize((ScreenHeight-self.tableView.numberOfSections*40)/2);
-//    return  height;
-    //return  (ScreenHeight-self.tableView.numberOfSections*40-49-64)/2;
     return CurrentScrrenSize(227);
-   // return  (ScreenHeight-49-64)/2;
 }
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -132,18 +90,22 @@
         cell = [[DataAnalysisCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
     }
     
- 
+    [cell setDataWithXLabels:@[@"1月",@"2月",@"3月",@"4月",@"5月",@"6月",@"7月",@"8月",@"9月",@"10月",@"11月",@"12月"] YLabels: @[@[
+                                                                                                                          @"0",
+                                                                                                                          @"200",
+                                                                                                                          @"400",
+                                                                                                                          @"600",
+                                                                                                                          @"800",
+                                                                                                                          @"1000",
+                                                                                                                          ],@[@"0",
+                                                                                                                              @"50",
+                                                                                                                              @"100",
+                                                                                                                              @"150",
+                                                                                                                              @"200",
+                                                                                                                              @"250",
+                                                                                                                              @"300",
+                                                                                                                              ]][indexPath.section] datasArray:_datasArray[indexPath.section]sectionIndex:indexPath.section];
 
-//    if (indexPath.section == ) {
-//        
-        [cell setDataWithXLabels:_xLabels YLabels:_yLabels[indexPath.section] datasArray:_datasArray[indexPath.section]sectionIndex:indexPath.section];
-        
-//    }
-//    else {
-//        
-//        
-//    }
-    
     return cell;
 }
 
@@ -166,15 +128,5 @@
 
     return headerview;
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

@@ -589,7 +589,6 @@
                      pointLayer.fillColor = [UIColor colorWithHex:@"ff3131"].CGColor;//折线点的填充颜色
                 }
             }
-            
             else {
                 
                 
