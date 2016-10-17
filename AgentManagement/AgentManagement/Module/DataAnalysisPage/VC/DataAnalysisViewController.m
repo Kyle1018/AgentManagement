@@ -23,6 +23,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+
     _viewModel = [[DataAnalysisViewModel alloc]init];
 
     NSMutableArray *array = [NSMutableArray array];
@@ -44,6 +45,8 @@
         
         [self.tableView.mj_header endRefreshing];
     }];
+    
+
 }
 
 
@@ -58,9 +61,17 @@
     }];
     
     //请求销售量
-    [[self.viewModel requestLSalesVolume]subscribeNext:^(id x) {
+    /*
+    [[self.viewModel requestLSalesVolume]subscribeNext:^(NSMutableArray* x) {
+        
+        NSLog(@"%@",x);
+        NSMutableArray *array = [NSMutableArray arrayWithArray:_datasArray[0]];
+        [array replaceObjectAtIndex:1 withObject:x];
+           [_datasArray replaceObjectAtIndex:0 withObject:array];
+        [self.tabelView reloadData];
         
     }];
+     */
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

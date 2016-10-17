@@ -11,15 +11,16 @@
 #import "AMCustomerOrSearchRequest.h"
 #import "AMProductListOrSearchRequest.h"
 #import "AMCustomer.h"
+
 @interface DataAnalysisViewModel()
 @property(nonatomic,copy)NSString* lastDate;
-@property(nonatomic,copy)NSString*lastMonth;
 @property(nonatomic,assign)NSInteger tatol;
 @property(nonatomic,strong)NSMutableArray *stock;//库存数组
 @property(nonatomic,strong)NSMutableArray*lSalesVolume;//销售量数组
 @property(nonatomic,strong)NSMutableArray *eSalesVolume;//销售额数组
 @property(nonatomic,strong)AMProductListOrSearchRequest *plOrSearchRequest;
 @property(nonatomic,strong)AMCustomerOrSearchRequest *customerOrSearchRequest;
+
 @end
 @implementation DataAnalysisViewModel
 - (id)init {
@@ -46,7 +47,10 @@
 //请求库存量
 - (RACSignal*)requestStock {
     
-    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+   __block NSMutableArray*productInfoArray = [NSMutableArray array];
+    __block NSMutableDictionary*dataDic = [NSMutableDictionary dictionary];
+    
+    RACSignal*stockSignal =  [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
        
         self.plOrSearchRequest = [[AMProductListOrSearchRequest alloc]initWithPage:0 Size:0 Search:nil];
         
@@ -57,6 +61,8 @@
             NSArray *dataArray = [AMProductInfo arrayOfModelsFromDictionaries:productInfoModel.data];
             
             NSMutableArray *array = (NSMutableArray *)[[dataArray reverseObjectEnumerator] allObjects];
+            
+            productInfoArray = array;
 
             NSMutableArray *dataArray01 = [NSMutableArray array];
             
@@ -78,8 +84,6 @@
                     month = [month substringFromIndex:1];
                     
                 }
-                NSLog(@"%@",month);
-                
                 //获取当前年份
                 NSDate *now = [NSDate date];
                 NSCalendar *calendar = [NSCalendar currentCalendar];
@@ -137,8 +141,135 @@
             
         }];
     }];
+    
+    RACSignal *lSalesVolumeSignal = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        
+        self.customerOrSearchRequest = [[AMCustomerOrSearchRequest alloc]initWithPage:0 Size:0 Search:nil];
+        
+        [self.customerOrSearchRequest requestWithSuccess:^(KKBaseModel *model, KKRequestError *error) {
+            
+            AMBaseModel *baseModel = (AMBaseModel*)model;
+            
+            NSMutableDictionary*listDataDic = [NSMutableDictionary dictionary];
+            
+            for (NSDictionary*dic in baseModel.data) {
+                
+                NSArray *array = dic[@"order"];
+                
+                for (NSDictionary *dicc in array) {
+                    
+                    NSDictionary *brandAndPmodel = [NSDictionary dictionaryWithObjectsAndKeys:dicc[@"brand"],@"brand",dicc[@"pmodel"],@"pmodel", nil];
+                    
+                    NSInteger year = [[dicc[@"buy_time"] substringToIndex:4]integerValue];
+                    
+                    NSString *month = [dicc[@"buy_time"] substringWithRange:NSMakeRange(5, 2)];
+                    
+                    if ([[month substringToIndex:1]isEqualToString:@"0"]) {
+                        
+                        month = [month substringFromIndex:1];
+                        
+                    }
+                    
+                    NSDate *now = [NSDate date];
+                    NSCalendar *calendar = [NSCalendar currentCalendar];
+                    NSUInteger unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
+                    NSDateComponents *dateComponent = [calendar components:unitFlags fromDate:now];
+                    NSInteger nowYear = [dateComponent year];
+                    
+                    
+                    if (year==nowYear) {
+                        
+                        if ([listDataDic objectForKey:month]) {
+                            
+                            NSMutableArray *array = [listDataDic objectForKey:month];
+                            
+                            [array addObject:brandAndPmodel];
+                            
+                            [listDataDic safeSetObject:array forKey:month];
+                            
+                            
+                        }
+                        else {
+                            
+                            
+                            
+                            NSMutableArray *yy = [NSMutableArray arrayWithObject:brandAndPmodel];
+                            
+                            [listDataDic safeSetObject:yy forKey:month];
+                        }
+                        
+                    }
+                }
+            }
+            
+            dataDic = listDataDic;
+            
+            [listDataDic enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+                
+                
+                [_lSalesVolume replaceObjectAtIndex:[key integerValue]-1 withObject:@( [obj count])];
+                
+            }];
+   
+            [subscriber sendNext:_lSalesVolume];
+            [subscriber sendCompleted];
+            
+            
+            
+        } failure:^(KKBaseModel *model, KKRequestError *error) {
+            
+            
+        }];
+        
+        return [RACDisposable disposableWithBlock:^{
+            
+        }];
+    }];
+
+    RACSignal *eSalesVolume = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+       
+        NSLog(@"%@",dataDic);
+        NSLog(@"%@",productInfoArray);
+        
+        [subscriber sendNext:@"hahaha"];
+        [subscriber sendCompleted];
+        
+        [dataDic enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+           
+            NSArray *value = obj;
+            
+            for (NSDictionary*dic in value) {
+                
+                for (AMProductInfo*info in productInfoArray) {
+                    
+                    if ([dic[@"brand"]isEqualToString:info.brand]&&[dic[@"pmodel"]isEqualToString:info.pmodel]) {
+                        
+                        _tatol+=[info.price integerValue];
+                    }
+                }
+            }
+            
+            [_eSalesVolume replaceObjectAtIndex:[key integerValue]-1 withObject:@(_tatol)];
+            _tatol = 0;
+        }];
+        
+        [subscriber sendNext:_eSalesVolume];
+        [subscriber sendCompleted];
+        
+        return [RACDisposable disposableWithBlock:^{
+            
+        }];
+    }];
+    
+    RACSignal*d= [RACSignal combineLatest:@[stockSignal,lSalesVolumeSignal]];
+    
+    return [RACSignal concat:@[d,eSalesVolume]];
+ 
+ 
+    
 }
 
+/*
 //请求销售量
 - (RACSignal*)requestLSalesVolume {
     
@@ -149,46 +280,20 @@
         [self.customerOrSearchRequest requestWithSuccess:^(KKBaseModel *model, KKRequestError *error) {
             
             AMBaseModel *baseModel = (AMBaseModel*)model;
+
+            NSMutableDictionary*listDataDic = [NSMutableDictionary dictionary];
             
-            NSMutableArray *customerArray = [NSMutableArray array];
-            
-            for (NSDictionary *dic in baseModel.data) {
-                
-                AMCustomer *customerModel = [[AMCustomer alloc]initWithDictionary:dic error:nil];
+            for (NSDictionary*dic in baseModel.data) {
                 
                 NSArray *array = dic[@"order"];
                 
-                NSMutableArray *orderArray = [NSMutableArray array];
-                
                 for (NSDictionary *dicc in array) {
                     
-                    AMOrder *order = [[AMOrder alloc]initWithDictionary:dicc error:nil];
+                    NSDictionary *brandAndPmodel = [NSDictionary dictionaryWithObjectsAndKeys:dicc[@"brand"],@"brand",dicc[@"pmodel"],@"pmodel", nil];
+   
+                    NSInteger year = [[dicc[@"buy_time"] substringToIndex:4]integerValue];
                     
-                    [orderArray addObject:order];
-                }
-                
-                customerModel.orderArray = orderArray;
-                
-                [customerArray addObject:customerModel];
-                
-            }
-            
-            NSMutableArray *array = (NSMutableArray *)[[customerArray reverseObjectEnumerator] allObjects];
-         
-            NSLog(@"%@",array);
-            
-            NSMutableDictionary *listDataDic = [NSMutableDictionary dictionary];
-            NSMutableArray *dataArray01 = [NSMutableArray array];
-            
-            for (AMCustomer *model in array) {
-                
-                _tatol+=model.orderArray.count;
-                
-                for (AMOrder*order in array) {
-                    
-                    NSInteger year = [[order.buy_time substringToIndex:4]integerValue];
-                    
-                    NSString*month = [order.buy_time substringWithRange:NSMakeRange(5, 2)];
+                    NSString *month = [dicc[@"buy_time"] substringWithRange:NSMakeRange(5, 2)];
                     
                     if ([[month substringToIndex:1]isEqualToString:@"0"]) {
                         
@@ -196,124 +301,48 @@
                         
                     }
                     
-                    //获取当前年份
                     NSDate *now = [NSDate date];
                     NSCalendar *calendar = [NSCalendar currentCalendar];
                     NSUInteger unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
                     NSDateComponents *dateComponent = [calendar components:unitFlags fromDate:now];
                     NSInteger nowYear = [dateComponent year];
                     
+                    
                     if (year==nowYear) {
                         
-                        if ([month isEqualToString:self.lastMonth]) {
+                        if ([listDataDic objectForKey:month]) {
                             
-                            [dataArray01 addObject:order];
+                            NSMutableArray *array = [listDataDic objectForKey:month];
                             
-                            [listDataDic safeSetObject:dataArray01 forKey:month];
+                            [array addObject:brandAndPmodel];
+                            
+                            [listDataDic safeSetObject:array forKey:month];
+                            
                             
                         }
                         else {
                             
-                            NSMutableArray *dd = [NSMutableArray array];
                             
-                            [dd addObject:order];
                             
-                            [listDataDic safeSetObject:dd forKey:month];
-                            
-                            dataArray01 = dd;
-                            
+                             NSMutableArray *yy = [NSMutableArray arrayWithObject:brandAndPmodel];
+  
+                             [listDataDic safeSetObject:yy forKey:month];
                         }
                         
-                        self.lastMonth = month;
+                    }
+                }
+            }
+            
+            [listDataDic enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+                
 
-                    }
-                        
-                }
-            }
+                [_lSalesVolume replaceObjectAtIndex:[key integerValue]-1 withObject:@( [obj count])];
+
+            }];
             
-            NSLog(@"%@",listDataDic);
-            NSLog(@"%ld",(long)_tatol);
-            /*
-            NSMutableDictionary *listDataDic = [NSMutableDictionary dictionary];
-            NSMutableArray *dataArray01 = [NSMutableArray array];
-            
-             
-                NSArray *array=[NSArray arrayWithArray:model.orderArray];
-                
-             
-                    
-                   NSInteger year = [[order.buy_time substringToIndex:4]integerValue];
-                    
-                    NSString*month = [order.buy_time substringWithRange:NSMakeRange(5, 2)];
-                    
-                    if ([[month substringToIndex:1]isEqualToString:@"0"]) {
-                        
-                        month = [month substringFromIndex:1];
-                        
-                    }
-                 
-                    //获取当前年份
-                    NSDate *now = [NSDate date];
-                    NSCalendar *calendar = [NSCalendar currentCalendar];
-                    NSUInteger unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
-                    NSDateComponents *dateComponent = [calendar components:unitFlags fromDate:now];
-                    NSInteger nowYear = [dateComponent year];
-                    
-                    if (year==nowYear) {
-                        
-                        if ([month isEqualToString:self.lastMonth]) {
-                            
-                            [dataArray01 addObject:order];
-                            
-                            [listDataDic safeSetObject:dataArray01 forKey:month];
-                            
-                        }
-                        else {
-                            
-                            NSMutableArray *dd = [NSMutableArray array];
-                            
-                            [dd addObject:order];
-                            
-                            [listDataDic safeSetObject:dd forKey:month];
-                            
-                            dataArray01 = dd;
-                            
-                        }
-                        
-                        self.lastMonth = month;
-                        
-                       
-                        /*
-                        if ([currentDateStr isEqualToString:self.lastDate]) {
-                            
-                            [dataArray01 addObject:productInfo];
-                            
-                            [listDataDic safeSetObject:dataArray01 forKey:month];
-                        }
-                        
-                        else {
-                            
-                            NSMutableArray *dd = [NSMutableArray array];
-                            
-                            [dd addObject:productInfo];
-                            
-                            [listDataDic safeSetObject:dd forKey:month];
-                            
-                            dataArray01 =dd;
-                        }
-                        
-                        self.lastDate = currentDateStr;
-                         */
-                        
-                    //}
-               // }
-            //}
-         
-            
-           //  NSLog(@"%@",listDataDic);
-         
-            
- 
+            [subscriber sendNext:_lSalesVolume];
+            [subscriber sendCompleted];
+
             
             
         } failure:^(KKBaseModel *model, KKRequestError *error) {
@@ -326,5 +355,5 @@
         }];
     }];
 }
-
+*/
 @end
