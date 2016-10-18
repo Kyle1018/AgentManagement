@@ -47,7 +47,7 @@
     self.lineChart.yFixedValueMax = [[yLabels lastObject]floatValue];
     self.lineChart.yFixedValueMin = 0.0;
     [self.lineChart setYLabels:yLabels];
-
+    
     if (sectionIndex == 0) {
        
          self.titleLabel.text = @"库存增减";
@@ -65,6 +65,7 @@
             data01.inflexionPointColor = [UIColor colorWithHex:@"47b6ff"];//折线点的颜色
             data01.inflexionPointStyle = PNLineChartPointStyleCircle;
             data01.getData = ^(NSUInteger index) {
+                
                 CGFloat yValue = [data01Array[index] floatValue];
                 return [PNLineChartDataItem dataItemWithY:yValue];
             };
@@ -81,8 +82,11 @@
             data02.inflexionPointColor = [UIColor colorWithHex:@"ff3131"];//折线点的颜色
             data02.inflexionPointStyle = PNLineChartPointStyleCircle;
             data02.getData = ^(NSUInteger index) {
+                
                 CGFloat yValue = [data02Array[index] floatValue];
+        
                 return [PNLineChartDataItem dataItemWithY:yValue];
+             
             };
             
             
@@ -102,28 +106,35 @@
         
         
     }
+    
     else {
        
          self.titleLabel.text = @"全年销售额";
+        NSArray * data01Array = dataArray;
+        PNLineChartData *data01 = [PNLineChartData new];
+        data01.showPointLabel = YES;
+        data01.pointLabelFont=[UIFont systemFontOfSize:10];
+        data01.pointLabelColor = [UIColor colorWithHex:@"47b6ff"];
+        data01.color = [UIColor colorWithHex:@"47b6ff"];//折线的颜色
+        data01.alpha = 1.0f;
         
-            NSArray * data01Array = dataArray;
-            PNLineChartData *data01 = [PNLineChartData new];
-            data01.showPointLabel = YES;
-            data01.pointLabelFont=[UIFont systemFontOfSize:10];
-            data01.pointLabelColor = [UIColor colorWithHex:@"47b6ff"];
-            data01.color = [UIColor colorWithHex:@"47b6ff"];//折线的颜色
-            data01.alpha = 1.0f;
-            data01.itemCount = data01Array.count;
-            data01.inflexionPointColor = [UIColor colorWithHex:@"47b6ff"];//折线点的颜色
-            data01.inflexionPointStyle = PNLineChartPointStyleCircle;
-            data01.getData = ^(NSUInteger index) {
-                CGFloat yValue = [data01Array[index] floatValue];
-                return [PNLineChartDataItem dataItemWithY:yValue];
-            };
+        data01.itemCount = data01Array.count;
+        data01.inflexionPointColor = [UIColor colorWithHex:@"47b6ff"];//折线点的颜色
+        data01.inflexionPointStyle = PNLineChartPointStyleCircle;
+        
+        
+        data01.getData = ^(NSUInteger index) {
+            CGFloat yValue = [data01Array[index] floatValue];
             
-            self.lineChart.chartData = @[data01];
-            [self.lineChart strokeChart];
-        }
+            return [PNLineChartDataItem dataItemWithY:yValue];
+            
+        };
+        NSLog(@"%@",data01);
+            
+        self.lineChart.chartData = @[data01];
+        
+        [self.lineChart strokeChart];
+    }
         
 }
 

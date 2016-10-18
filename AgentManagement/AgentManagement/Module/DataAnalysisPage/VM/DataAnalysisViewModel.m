@@ -228,12 +228,7 @@
 
     RACSignal *eSalesVolume = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
        
-        NSLog(@"%@",dataDic);
-        NSLog(@"%@",productInfoArray);
-        
-        [subscriber sendNext:@"hahaha"];
-        [subscriber sendCompleted];
-        
+
         [dataDic enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
            
             NSArray *value = obj;

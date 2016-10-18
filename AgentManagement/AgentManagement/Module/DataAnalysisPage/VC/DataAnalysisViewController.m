@@ -53,11 +53,33 @@
 - (void)requestData {
     
     //请求库存量
-    [[self.viewModel requestStock]subscribeNext:^(NSMutableArray* x) {
+    [[self.viewModel requestStock]subscribeNext:^(id x) {
+        
+        if ([x isKindOfClass:[RACTuple class]]) {
+            
+            RACTuple *tuple = x;
+            NSLog(@"dd");
+            
+            NSMutableArray *array = [NSMutableArray arrayWithArray:_datasArray[0]];
+            [array replaceObjectAtIndex:0 withObject:[tuple first]];
+            [array replaceObjectAtIndex:1 withObject:[tuple second]];
+            [_datasArray replaceObjectAtIndex:0 withObject:array];
+
+        }
+        else {
+    
+            [_datasArray replaceObjectAtIndex:1 withObject:x];
+            NSLog(@"xx");
+        }
+        
+        [self.tabelView reloadData];
+        
+        /*
         NSMutableArray *array = [NSMutableArray arrayWithArray:_datasArray[0]];
         [array replaceObjectAtIndex:0 withObject:x];
         [_datasArray replaceObjectAtIndex:0 withObject:array];
         [self.tabelView reloadData];
+         */
     }];
     
     //请求销售量
@@ -106,6 +128,7 @@
         cell = [[DataAnalysisCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
     }
     
+    
     [cell setDataWithXLabels:@[@"1月",@"2月",@"3月",@"4月",@"5月",@"6月",@"7月",@"8月",@"9月",@"10月",@"11月",@"12月"] YLabels: @[@[
                                                                                                                           @"0",
                                                                                                                           @"200",
@@ -121,7 +144,7 @@
                                                                                                                               @"250",
                                                                                                                               @"300",
                                                                                                                               ]][indexPath.section] datasArray:_datasArray[indexPath.section]sectionIndex:indexPath.section];
-
+    
     return cell;
 }
 
