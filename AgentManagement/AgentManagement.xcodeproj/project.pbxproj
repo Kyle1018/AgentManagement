@@ -75,9 +75,8 @@
 		27E355001DB6C617006A6222 /* AMLogTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27E354FE1DB6C617006A6222 /* AMLogTableViewCell.xib */; };
 		27E355051DB6C65A006A6222 /* AMLogDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E355031DB6C65A006A6222 /* AMLogDetailViewController.m */; };
 		27E355061DB6C65A006A6222 /* AMLogDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27E355041DB6C65A006A6222 /* AMLogDetailViewController.xib */; };
-		27E3550A1DB6C802006A6222 /* AMLogViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E355091DB6C802006A6222 /* AMLogViewModel.m */; };
-		27E3550E1DB6CCC0006A6222 /* AMAdministrators.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E3550D1DB6CCC0006A6222 /* AMAdministrators.m */; };
-		27E355121DB6CCEC006A6222 /* AMLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E355111DB6CCEC006A6222 /* AMLog.m */; };
+		27E3552C1DB6DCE0006A6222 /* AMLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E3552B1DB6DCE0006A6222 /* AMLog.m */; };
+		27E355301DB6DCF4006A6222 /* AMLogViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E3552F1DB6DCF4006A6222 /* AMLogViewModel.m */; };
 		3422BA5E1D7E5C51003751F1 /* AMProductInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3422BA5D1D7E5C51003751F1 /* AMProductInfo.m */; };
 		3422BA611D7EA33E003751F1 /* AMProductListOrSearchRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3422BA601D7EA33E003751F1 /* AMProductListOrSearchRequest.m */; };
 		343800051D9B9FF600B3B816 /* AMEditProductRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 343800041D9B9FF600B3B816 /* AMEditProductRequest.m */; };
@@ -292,12 +291,10 @@
 		27E355021DB6C65A006A6222 /* AMLogDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMLogDetailViewController.h; sourceTree = "<group>"; };
 		27E355031DB6C65A006A6222 /* AMLogDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMLogDetailViewController.m; sourceTree = "<group>"; };
 		27E355041DB6C65A006A6222 /* AMLogDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AMLogDetailViewController.xib; sourceTree = "<group>"; };
-		27E355081DB6C802006A6222 /* AMLogViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMLogViewModel.h; sourceTree = "<group>"; };
-		27E355091DB6C802006A6222 /* AMLogViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMLogViewModel.m; sourceTree = "<group>"; };
-		27E3550C1DB6CCC0006A6222 /* AMAdministrators.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMAdministrators.h; sourceTree = "<group>"; };
-		27E3550D1DB6CCC0006A6222 /* AMAdministrators.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMAdministrators.m; sourceTree = "<group>"; };
-		27E355101DB6CCEC006A6222 /* AMLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMLog.h; sourceTree = "<group>"; };
-		27E355111DB6CCEC006A6222 /* AMLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMLog.m; sourceTree = "<group>"; };
+		27E3552A1DB6DCE0006A6222 /* AMLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMLog.h; sourceTree = "<group>"; };
+		27E3552B1DB6DCE0006A6222 /* AMLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMLog.m; sourceTree = "<group>"; };
+		27E3552E1DB6DCF4006A6222 /* AMLogViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMLogViewModel.h; sourceTree = "<group>"; };
+		27E3552F1DB6DCF4006A6222 /* AMLogViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMLogViewModel.m; sourceTree = "<group>"; };
 		3422BA5C1D7E5C51003751F1 /* AMProductInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMProductInfo.h; sourceTree = "<group>"; };
 		3422BA5D1D7E5C51003751F1 /* AMProductInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMProductInfo.m; sourceTree = "<group>"; };
 		3422BA5F1D7EA33E003751F1 /* AMProductListOrSearchRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMProductListOrSearchRequest.h; sourceTree = "<group>"; };
@@ -612,8 +609,7 @@
 		27CA01351D6B1167009F9A25 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				27E3550F1DB6CCDC006A6222 /* Log */,
-				27E3550B1DB6CCC0006A6222 /* Administrators */,
+				27E355291DB6DCE0006A6222 /* Log */,
 				34E333E91D90EBC900FB29D3 /* CustomerManage */,
 				E224EB4F1D8FB7FF0046D4D8 /* Sales */,
 				E224EB4E1D8FB7E90046D4D8 /* Administrators */,
@@ -841,7 +837,7 @@
 		27E354DE1DB6C162006A6222 /* Log */ = {
 			isa = PBXGroup;
 			children = (
-				27E355071DB6C7F3006A6222 /* ViewModel */,
+				27E3552D1DB6DCF4006A6222 /* ViewModel */,
 				27E355011DB6C646006A6222 /* Detail */,
 				27E354FB1DB6C5AD006A6222 /* Cell */,
 				27E354F11DB6C1BE006A6222 /* AMLogViewController.h */,
@@ -901,31 +897,22 @@
 			path = Detail;
 			sourceTree = "<group>";
 		};
-		27E355071DB6C7F3006A6222 /* ViewModel */ = {
+		27E355291DB6DCE0006A6222 /* Log */ = {
 			isa = PBXGroup;
 			children = (
-				27E355081DB6C802006A6222 /* AMLogViewModel.h */,
-				27E355091DB6C802006A6222 /* AMLogViewModel.m */,
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		27E3550B1DB6CCC0006A6222 /* Administrators */ = {
-			isa = PBXGroup;
-			children = (
-				27E3550C1DB6CCC0006A6222 /* AMAdministrators.h */,
-				27E3550D1DB6CCC0006A6222 /* AMAdministrators.m */,
-			);
-			path = Administrators;
-			sourceTree = "<group>";
-		};
-		27E3550F1DB6CCDC006A6222 /* Log */ = {
-			isa = PBXGroup;
-			children = (
-				27E355101DB6CCEC006A6222 /* AMLog.h */,
-				27E355111DB6CCEC006A6222 /* AMLog.m */,
+				27E3552A1DB6DCE0006A6222 /* AMLog.h */,
+				27E3552B1DB6DCE0006A6222 /* AMLog.m */,
 			);
 			path = Log;
+			sourceTree = "<group>";
+		};
+		27E3552D1DB6DCF4006A6222 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				27E3552E1DB6DCF4006A6222 /* AMLogViewModel.h */,
+				27E3552F1DB6DCF4006A6222 /* AMLogViewModel.m */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		344FF63A1D88F9A3009911EB /* LoadingView */ = {
@@ -1596,6 +1583,7 @@
 				275F32951D717B210033C8FF /* ASICloudFilesContainer.m in Sources */,
 				27E26B3F1D6B1D360072F26E /* AddCustomerViewControllerC.m in Sources */,
 				E21947391D771B64001C5E5F /* CoSearchMenuViewController.m in Sources */,
+				27E355301DB6DCF4006A6222 /* AMLogViewModel.m in Sources */,
 				E2C14F7F1D7AA46000B0B0B2 /* RegisterViewController.m in Sources */,
 				344FF63D1D88F9BE009911EB /* LoadingView.m in Sources */,
 				27E354EF1DB6C1B1006A6222 /* AMMessageViewController.m in Sources */,
@@ -1697,6 +1685,7 @@
 				E24BF46A1D741AB00054DFDC /* AMProductRelatedInformationRequest.m in Sources */,
 				275F32B71D718A8A0033C8FF /* NSData+KKAdditions.m in Sources */,
 				E224EB521D8FB8090046D4D8 /* AMSales.m in Sources */,
+				27E3552C1DB6DCE0006A6222 /* AMLog.m in Sources */,
 				27E26B401D6B1D360072F26E /* CustomerDetailViewController.m in Sources */,
 				27E26B4C1D6B1D360072F26E /* AddProductViewControllerB.m in Sources */,
 				E21947301D771525001C5E5F /* CostManageTableViewCell.m in Sources */,
