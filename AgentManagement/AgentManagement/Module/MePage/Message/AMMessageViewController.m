@@ -7,8 +7,15 @@
 //
 
 #import "AMMessageViewController.h"
+#import "AMMessageViewModel.h"
+#import "AMMessageTableViewCell.h"
 
-@interface AMMessageViewController ()
+@interface AMMessageViewController () <UITableViewDelegate, UITableViewDataSource>
+
+@property (nonatomic, weak) IBOutlet UITableView *messageTableView;
+
+@property (nonatomic, strong) NSArray *messageArray;
+@property (nonatomic, strong) AMMessageViewModel *messageViewModel;
 
 @end
 
@@ -18,6 +25,7 @@
     [super viewDidLoad];
     
     [self initializeControl];
+    [self refreshMessage];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -25,17 +33,80 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (AMMessageViewModel *)messageViewModel {
+    if (!_messageViewModel) {
+        _messageViewModel = [[AMMessageViewModel alloc] init];
+    }
+    return _messageViewModel;
+}
+
 - (void)initializeControl {
     self.title = @"我的消息";
+    
+    @weakify(self);
+    self.messageTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        @strongify(self);
+        [self refreshMessage];
+    }];
+    
+    self.messageTableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        @strongify(self);
+        [self loadMoreMessage];
+    }];
 }
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)refreshMessage {
+    [[self.messageViewModel refreshMessageSignal] subscribeNext:^(id x) {
+        self.messageArray = x;
+        [self.messageTableView reloadData];
+    } error:^(NSError *error) {
+        [self.messageTableView.mj_header endRefreshing];
+        [MBProgressHUD showText:@"刷新消息失败"];
+    } completed:^{
+        [self.messageTableView.mj_header endRefreshing];
+    }];
 }
-*/
+
+- (void)loadMoreMessage {
+    [[self.messageViewModel loadMoreMessageSignal] subscribeNext:^(id x) {
+        self.messageArray = x;
+        [self.messageTableView reloadData];
+    } error:^(NSError *error) {
+        [self.messageTableView.mj_footer endRefreshing];
+        [MBProgressHUD showText:@"加载更多消息失败"];
+    } completed:^{
+        [self.messageTableView.mj_footer endRefreshing];
+    }];
+}
+
+#pragma mark - UITableViewDataSource
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.messageArray.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    AMMessageTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kMessageCellIdentify];
+    
+    if (!cell) {
+        cell = [AMMessageTableViewCell viewFromXib];
+    }
+    
+    if (indexPath.row < self.messageArray.count) {
+        [cell updateWithMessage:self.messageArray[indexPath.row]];
+    }
+    return cell;
+}
+
+#pragma mark - UITableViewDelegate
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    CGFloat height = 0.;
+    
+    if (indexPath.row < self.messageArray.count) {
+        height = [AMMessageTableViewCell cellHeightForMessage:self.messageArray[indexPath.row]];
+    }
+    return height;
+}
 
 @end

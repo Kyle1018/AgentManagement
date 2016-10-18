@@ -26,6 +26,7 @@
     [super viewDidLoad];
     
     [self initializeControl];
+    [self refreshLog];
 }
 
 - (void)didReceiveMemoryWarning {

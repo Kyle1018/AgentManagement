@@ -77,6 +77,10 @@
 		27E355061DB6C65A006A6222 /* AMLogDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27E355041DB6C65A006A6222 /* AMLogDetailViewController.xib */; };
 		27E3552C1DB6DCE0006A6222 /* AMLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E3552B1DB6DCE0006A6222 /* AMLog.m */; };
 		27E355301DB6DCF4006A6222 /* AMLogViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E3552F1DB6DCF4006A6222 /* AMLogViewModel.m */; };
+		27E355361DB6DF85006A6222 /* AMMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E355341DB6DF85006A6222 /* AMMessageTableViewCell.m */; };
+		27E355371DB6DF85006A6222 /* AMMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27E355351DB6DF85006A6222 /* AMMessageTableViewCell.xib */; };
+		27E3553A1DB6DF95006A6222 /* AMMessageViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E355391DB6DF95006A6222 /* AMMessageViewModel.m */; };
+		27E3553E1DB6E16C006A6222 /* AMMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E3553D1DB6E16C006A6222 /* AMMessage.m */; };
 		3422BA5E1D7E5C51003751F1 /* AMProductInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3422BA5D1D7E5C51003751F1 /* AMProductInfo.m */; };
 		3422BA611D7EA33E003751F1 /* AMProductListOrSearchRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3422BA601D7EA33E003751F1 /* AMProductListOrSearchRequest.m */; };
 		343800051D9B9FF600B3B816 /* AMEditProductRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 343800041D9B9FF600B3B816 /* AMEditProductRequest.m */; };
@@ -295,6 +299,13 @@
 		27E3552B1DB6DCE0006A6222 /* AMLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMLog.m; sourceTree = "<group>"; };
 		27E3552E1DB6DCF4006A6222 /* AMLogViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMLogViewModel.h; sourceTree = "<group>"; };
 		27E3552F1DB6DCF4006A6222 /* AMLogViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMLogViewModel.m; sourceTree = "<group>"; };
+		27E355331DB6DF85006A6222 /* AMMessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMMessageTableViewCell.h; sourceTree = "<group>"; };
+		27E355341DB6DF85006A6222 /* AMMessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMMessageTableViewCell.m; sourceTree = "<group>"; };
+		27E355351DB6DF85006A6222 /* AMMessageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AMMessageTableViewCell.xib; sourceTree = "<group>"; };
+		27E355381DB6DF95006A6222 /* AMMessageViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMMessageViewModel.h; sourceTree = "<group>"; };
+		27E355391DB6DF95006A6222 /* AMMessageViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMMessageViewModel.m; sourceTree = "<group>"; };
+		27E3553C1DB6E16C006A6222 /* AMMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMMessage.h; sourceTree = "<group>"; };
+		27E3553D1DB6E16C006A6222 /* AMMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMMessage.m; sourceTree = "<group>"; };
 		3422BA5C1D7E5C51003751F1 /* AMProductInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMProductInfo.h; sourceTree = "<group>"; };
 		3422BA5D1D7E5C51003751F1 /* AMProductInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMProductInfo.m; sourceTree = "<group>"; };
 		3422BA5F1D7EA33E003751F1 /* AMProductListOrSearchRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMProductListOrSearchRequest.h; sourceTree = "<group>"; };
@@ -609,6 +620,7 @@
 		27CA01351D6B1167009F9A25 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				27E3553B1DB6E15F006A6222 /* Message */,
 				27E355291DB6DCE0006A6222 /* Log */,
 				34E333E91D90EBC900FB29D3 /* CustomerManage */,
 				E224EB4F1D8FB7FF0046D4D8 /* Sales */,
@@ -850,6 +862,8 @@
 		27E354DF1DB6C162006A6222 /* Message */ = {
 			isa = PBXGroup;
 			children = (
+				27E355311DB6DF6C006A6222 /* Cell */,
+				27E355321DB6DF6C006A6222 /* ViewModel */,
 				27E354EC1DB6C1B1006A6222 /* AMMessageViewController.h */,
 				27E354ED1DB6C1B1006A6222 /* AMMessageViewController.m */,
 				27E354EE1DB6C1B1006A6222 /* AMMessageViewController.xib */,
@@ -913,6 +927,34 @@
 				27E3552F1DB6DCF4006A6222 /* AMLogViewModel.m */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		27E355311DB6DF6C006A6222 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				27E355331DB6DF85006A6222 /* AMMessageTableViewCell.h */,
+				27E355341DB6DF85006A6222 /* AMMessageTableViewCell.m */,
+				27E355351DB6DF85006A6222 /* AMMessageTableViewCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		27E355321DB6DF6C006A6222 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				27E355381DB6DF95006A6222 /* AMMessageViewModel.h */,
+				27E355391DB6DF95006A6222 /* AMMessageViewModel.m */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		27E3553B1DB6E15F006A6222 /* Message */ = {
+			isa = PBXGroup;
+			children = (
+				27E3553C1DB6E16C006A6222 /* AMMessage.h */,
+				27E3553D1DB6E16C006A6222 /* AMMessage.m */,
+			);
+			path = Message;
 			sourceTree = "<group>";
 		};
 		344FF63A1D88F9A3009911EB /* LoadingView */ = {
@@ -1492,6 +1534,7 @@
 				27E354EB1DB6C19F006A6222 /* AMSalespersonViewController.xib in Resources */,
 				270704C91D45F9A900633390 /* Assets.xcassets in Resources */,
 				E2C14F7C1D7AA46000B0B0B2 /* Land.storyboard in Resources */,
+				27E355371DB6DF85006A6222 /* AMMessageTableViewCell.xib in Resources */,
 				27E354FA1DB6C1CE006A6222 /* AMAdministatorViewController.xib in Resources */,
 				E24819CA1D84543100F885EE /* PickerView.xib in Resources */,
 			);
@@ -1576,6 +1619,7 @@
 				27E26B4D1D6B1D360072F26E /* AddProductViewControllerC.m in Sources */,
 				E2FA0C0C1D4CFF000094A6FE /* KKQRCodeScanner.m in Sources */,
 				E2FA0C1E1D4D036F0094A6FE /* BaseViewController.m in Sources */,
+				27E355361DB6DF85006A6222 /* AMMessageTableViewCell.m in Sources */,
 				E244F1561D8D072A003BA93B /* PNGenericChart.m in Sources */,
 				E24BF4831D755C690054DFDC /* AMAddProductRequest.m in Sources */,
 				27E26B411D6B1D360072F26E /* CustomerManageViewController.m in Sources */,
@@ -1627,6 +1671,7 @@
 				27CA014A1D6B116F009F9A25 /* AMLoginRequest.m in Sources */,
 				E29A7B931D7C443800826744 /* AMUser.m in Sources */,
 				346190AB1DB0BF1800ED9599 /* DataAnalysisViewModel.m in Sources */,
+				27E3553E1DB6E16C006A6222 /* AMMessage.m in Sources */,
 				3422BA611D7EA33E003751F1 /* AMProductListOrSearchRequest.m in Sources */,
 				27E26B3D1D6B1D360072F26E /* AddCustomerViewControllerA.m in Sources */,
 				E2A3F27B1D6F2192006EC120 /* DataCacheManager.m in Sources */,
@@ -1650,7 +1695,6 @@
 				275F328F1D717B210033C8FF /* ASIFormDataRequest.m in Sources */,
 				275F329E1D717B210033C8FF /* ASIS3ObjectRequest.m in Sources */,
 				E221EEB91D4F8B68005B3417 /* BaseNavigationController.m in Sources */,
-				27E355121DB6CCEC006A6222 /* AMLog.m in Sources */,
 				275F32991D717B210033C8FF /* ASICloudFilesObjectRequest.m in Sources */,
 				E2C14F7D1D7AA46000B0B0B2 /* ForgetPasswordViewController.m in Sources */,
 				275F329D1D717B210033C8FF /* ASIS3BucketRequest.m in Sources */,
@@ -1658,9 +1702,7 @@
 				275F328C1D717B210033C8FF /* ASIDataCompressor.m in Sources */,
 				27CA014C1D6B116F009F9A25 /* AMRegisterRequest.m in Sources */,
 				34F552A31D81414300CCA537 /* AMDeleteProductRequest.m in Sources */,
-				27E3550A1DB6C802006A6222 /* AMLogViewModel.m in Sources */,
 				34D8D28D1D93C9370011217C /* CSearchMenuCell.m in Sources */,
-				27E3550E1DB6CCC0006A6222 /* AMAdministrators.m in Sources */,
 				27CA01301D6B10E4009F9A25 /* NSMutableDictionary+KKAdditions.m in Sources */,
 				E21CF3221D8A6F7D00BE742A /* NSString+KKAdditions.m in Sources */,
 				27CA01491D6B116F009F9A25 /* AMIdentifyCodeRequest.m in Sources */,
@@ -1677,6 +1719,7 @@
 				27CA01331D6B10E4009F9A25 /* UIView+KKAdditions.m in Sources */,
 				34D4BB571D9117F70077CC94 /* CustomerDetailCell.m in Sources */,
 				275F328E1D717B210033C8FF /* ASIDownloadCache.m in Sources */,
+				27E3553A1DB6DF95006A6222 /* AMMessageViewModel.m in Sources */,
 				E244F1541D8D072A003BA93B /* PNChartLabel.m in Sources */,
 				E2C14FB81D7B090200B0B0B2 /* TimerCountDownManager.m in Sources */,
 				E2C14F7E1D7AA46000B0B0B2 /* LandViewController.m in Sources */,

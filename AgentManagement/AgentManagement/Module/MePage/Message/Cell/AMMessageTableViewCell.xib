@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="AMMessageTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <frame key="frameInset" width="320" height="99"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RUW-X8-deK">
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cVN-FZ-dlC">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kGV-4h-wuB">
+                                <color key="backgroundColor" red="0.90588235294117647" green="0.90588235294117647" blue="0.90588235294117647" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="HHZ-NW-BO9"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0yT-RE-QGb">
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="0yT-RE-QGb" firstAttribute="leading" secondItem="RUW-X8-deK" secondAttribute="leading" constant="10" id="1iu-Up-WbS"/>
+                            <constraint firstItem="kGV-4h-wuB" firstAttribute="leading" secondItem="RUW-X8-deK" secondAttribute="leading" constant="10" id="4gi-xM-XwO"/>
+                            <constraint firstItem="kGV-4h-wuB" firstAttribute="top" secondItem="cVN-FZ-dlC" secondAttribute="bottom" constant="15" id="B7d-Cr-I95"/>
+                            <constraint firstAttribute="trailing" secondItem="cVN-FZ-dlC" secondAttribute="trailing" constant="10" id="Cft-K9-5Nn"/>
+                            <constraint firstItem="0yT-RE-QGb" firstAttribute="top" secondItem="kGV-4h-wuB" secondAttribute="bottom" constant="10" id="c5L-Fb-r0S"/>
+                            <constraint firstAttribute="trailing" secondItem="0yT-RE-QGb" secondAttribute="trailing" constant="10" id="eaZ-qj-9LQ"/>
+                            <constraint firstItem="cVN-FZ-dlC" firstAttribute="leading" secondItem="RUW-X8-deK" secondAttribute="leading" constant="10" id="kd3-vf-xR3"/>
+                            <constraint firstAttribute="bottom" secondItem="0yT-RE-QGb" secondAttribute="bottom" constant="10" id="mUo-OG-oOo"/>
+                            <constraint firstItem="cVN-FZ-dlC" firstAttribute="top" secondItem="RUW-X8-deK" secondAttribute="top" constant="10" id="qUd-RO-gBx"/>
+                            <constraint firstAttribute="trailing" secondItem="kGV-4h-wuB" secondAttribute="trailing" constant="10" id="zNc-rK-9lX"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="RUW-X8-deK" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Dol-26-MkV"/>
+                    <constraint firstItem="RUW-X8-deK" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="FMH-IA-MSz"/>
+                    <constraint firstAttribute="bottom" secondItem="RUW-X8-deK" secondAttribute="bottom" id="IcQ-Ej-2Ic"/>
+                    <constraint firstAttribute="trailing" secondItem="RUW-X8-deK" secondAttribute="trailing" id="wgg-NX-85t"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <connections>
+                <outlet property="messageContentLabel" destination="0yT-RE-QGb" id="QLP-eJ-shw"/>
+                <outlet property="messageTitleLabel" destination="cVN-FZ-dlC" id="YF1-Uy-a1h"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+</document>
