@@ -1,13 +1,13 @@
 //
-//  OperationlogCell.h
+//  AMLogTableViewCell.h
 //  AgentManagement
 //
-//  Created by 郭华滨 on 16/9/1.
+//  Created by Kyle on 2016/10/19.
 //  Copyright © 2016年 KK. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface OperationlogCell : UITableViewCell
+@interface AMLogTableViewCell : UITableViewCell
 
 @end

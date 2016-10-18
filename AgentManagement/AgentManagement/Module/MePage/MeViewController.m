@@ -13,6 +13,7 @@
 
 @property (nonatomic, weak) IBOutlet UIImageView *portraitImageView;
 @property (nonatomic, weak) IBOutlet UILabel *nameLabel;
+@property (nonatomic, weak) IBOutlet UILabel *subNameLabel;
 @property (nonatomic, weak) IBOutlet UILabel *phoneLabel;
 @property (nonatomic, weak) IBOutlet UILabel *addressLabel;
 @property (nonatomic, weak) IBOutlet UIImageView *codeImageView;
@@ -21,19 +22,25 @@
 
 @implementation MeViewController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     [self initializeControl];
 }
 
-- (void)initializeControl
-{
-    [self.portraitImageView sd_setImageWithURL:[NSURL URLWithString:@""] placeholderImage:[UIImage imageNamed:@""]];
-    self.nameLabel.text = nil;
-    self.phoneLabel.text = nil;
-    self.addressLabel.text = nil;
-    [self.codeImageView sd_setImageWithURL:[NSURL URLWithString:@""] placeholderImage:[UIImage imageNamed:@""]];
+- (void)initializeControl {
+}
+
+- (IBAction)administratorPressed:(id)sender {
+    [self.navigationController pushViewController:[[NSClassFromString(@"AMAdministatorViewController") alloc] init] animated:YES];
+}
+
+- (IBAction)salespersonPressed:(id)sender {
+    [self.navigationController pushViewController:[[NSClassFromString(@"AMSalespersonViewController") alloc] init] animated:YES];
+    
+}
+
+- (IBAction)logPressed:(id)sender {
+    [self.navigationController pushViewController:[[NSClassFromString(@"AMLogViewController") alloc] init] animated:YES];
 }
 
 @end

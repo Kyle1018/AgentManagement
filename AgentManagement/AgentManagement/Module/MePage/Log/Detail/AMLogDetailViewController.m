@@ -1,22 +1,22 @@
 //
-//  AddAdministratorViewController.m
+//  AMLogDetailViewController.m
 //  AgentManagement
 //
-//  Created by 郭华滨 on 16/9/1.
+//  Created by Kyle on 2016/10/19.
 //  Copyright © 2016年 KK. All rights reserved.
 //
 
-#import "AddAdministratorViewController.h"
+#import "AMLogDetailViewController.h"
 
-@interface AddAdministratorViewController ()
+@interface AMLogDetailViewController ()
 
 @end
 
-@implementation AddAdministratorViewController
+@implementation AMLogDetailViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    // Do any additional setup after loading the view from its nib.
 }
 
 - (void)didReceiveMemoryWarning {

@@ -1,14 +1,14 @@
 //
-//  OperationlogCell.m
+//  AMLogTableViewCell.m
 //  AgentManagement
 //
-//  Created by 郭华滨 on 16/9/1.
+//  Created by Kyle on 2016/10/19.
 //  Copyright © 2016年 KK. All rights reserved.
 //
 
-#import "OperationlogCell.h"
+#import "AMLogTableViewCell.h"
 
-@implementation OperationlogCell
+@implementation AMLogTableViewCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];

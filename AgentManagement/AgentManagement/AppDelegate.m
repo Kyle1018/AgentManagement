@@ -24,14 +24,10 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     UIStoryboard *s= [UIStoryboard storyboardWithName:@"Land" bundle:nil];
-    
     UINavigationController *navi = [s instantiateViewControllerWithIdentifier:@"NaviVC"];
     
     self.window.rootViewController = navi;
-    
-    // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
-    
     [self.window makeKeyAndVisible];
     
     // 联网监听
@@ -61,49 +57,13 @@
             case NotReachable: {
                 
                 [MBProgressHUD showText:@"当前没有网络"];
-               // ToastViewMessage(NSLocalizedString(@"Network unreachable string", nil));
                 break;
             } case ReachableViaWWAN: {
-                
-              
-//                _isChangeToWWAN = YES;
-//        //        [[VideoDownloader downloader] resumeCurrentDownloadQueue];
-//                
-//                if ([VideoDownloader downloader].downloadingCount>0) {
-//                    // 暂停所有下载
-//                    [[VideoDownloader downloader] pauseAllDownload];
-//                    //                    if (!self.netWarn) {
-//                    //                        NetWarnView * newWarnView=[[NetWarnView alloc]initWithNibName:nil Frame:[UIApplication sharedApplication].keyWindow.frame];
-//                    NetWarnView * newWarnView = [NetWarnView loadFromXibWithNibName:nil Frame:[UIApplication sharedApplication].keyWindow.frame];
-//                    self.netWarn=newWarnView;
-//                    //                    }
-//                    
-//                    [[UIApplication sharedApplication].keyWindow addSubview:self.netWarn];
-//                    self.netWarn.isShowNetWarn = YES;
-                
-               // }
-                
-               // [self promotWWAN];
                 break;
             }
             
             case ReachableViaWiFi: {
-                
-                  [MBProgressHUD showText:@"当前处于wifi"];
-                
-//                if (self.netWarn && self.netWarn.isShowNetWarn) {
-//                    [self.netWarn cancel];
-//                }
-//                
-//                NSArray *arry=[NSArray arrayWithArray:[Config getVideoFromWifiDownLoadForKey:@"kWifiVideoArray"]];
-//                
-//                if (arry) {
-//                    
-//                    for (NSNumber  *videoId in arry) {
-//                        [[VideoDownloader downloader] resumeDownloadVideo:[videoId intValue]];
-//                    }
-//                }
-//                
+                [MBProgressHUD showText:@"当前处于wifi"];
                 break;
             } default:
                 break;
