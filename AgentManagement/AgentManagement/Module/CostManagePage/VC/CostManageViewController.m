@@ -92,9 +92,7 @@
             self.lastDate = currentDateStr;
             
         }
-     
-        
-        NSLog(@"%@",self.listDataDic);
+
         [self.keysArray addObjectsFromArray:[self.listDataDic allKeys]];
      
     }];

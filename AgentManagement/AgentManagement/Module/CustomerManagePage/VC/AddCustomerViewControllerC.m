@@ -133,8 +133,6 @@
 #pragma mark - Action
 - (IBAction)saveAction:(UIButton *)sender {
     
-    NSLog(@"%@",self.addCutomerInfoDic);
-    
     if ([self.addCutomerInfoDic[@"order"]count]>1) {
         
         //编辑客户请求

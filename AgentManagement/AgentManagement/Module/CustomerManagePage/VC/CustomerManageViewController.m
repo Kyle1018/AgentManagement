@@ -89,9 +89,7 @@
 - (void)observeData {
     
     [RACObserve(self.viewModel, customerModelArray)subscribeNext:^(NSMutableArray* x) {
-       
-        NSLog(@"%@",x);
-        
+
         self.listDataArray = x;
         
     }];

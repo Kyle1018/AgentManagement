@@ -31,8 +31,6 @@
 
 - (id)buildModelWithJsonDictionary:(NSDictionary *)dictionary
 {
-//    NSLog(@"%@",dictionary);
-//    return nil;
      return [[AMAdministrators alloc]initWithDictionary:dictionary error:nil];
     
 }

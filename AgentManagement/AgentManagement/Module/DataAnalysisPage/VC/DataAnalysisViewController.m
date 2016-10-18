@@ -43,6 +43,8 @@
        
         DDLogDebug(@"下拉刷新");
         
+        [self requestData];
+        
         [self.tableView.mj_header endRefreshing];
     }];
     
@@ -58,8 +60,7 @@
         if ([x isKindOfClass:[RACTuple class]]) {
             
             RACTuple *tuple = x;
-            NSLog(@"dd");
-            
+  
             NSMutableArray *array = [NSMutableArray arrayWithArray:_datasArray[0]];
             [array replaceObjectAtIndex:0 withObject:[tuple first]];
             [array replaceObjectAtIndex:1 withObject:[tuple second]];
@@ -69,31 +70,14 @@
         else {
     
             [_datasArray replaceObjectAtIndex:1 withObject:x];
-            NSLog(@"xx");
+       
         }
         
         [self.tabelView reloadData];
-        
-        /*
-        NSMutableArray *array = [NSMutableArray arrayWithArray:_datasArray[0]];
-        [array replaceObjectAtIndex:0 withObject:x];
-        [_datasArray replaceObjectAtIndex:0 withObject:array];
-        [self.tabelView reloadData];
-         */
+
     }];
     
-    //请求销售量
-    /*
-    [[self.viewModel requestLSalesVolume]subscribeNext:^(NSMutableArray* x) {
-        
-        NSLog(@"%@",x);
-        NSMutableArray *array = [NSMutableArray arrayWithArray:_datasArray[0]];
-        [array replaceObjectAtIndex:1 withObject:x];
-           [_datasArray replaceObjectAtIndex:0 withObject:array];
-        [self.tabelView reloadData];
-        
-    }];
-     */
+
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

@@ -129,8 +129,7 @@
             return [PNLineChartDataItem dataItemWithY:yValue];
             
         };
-        NSLog(@"%@",data01);
-            
+   
         self.lineChart.chartData = @[data01];
         
         [self.lineChart strokeChart];
