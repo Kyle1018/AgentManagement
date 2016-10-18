@@ -7,7 +7,10 @@
 //
 
 #import "BaseViewController.h"
+#import "AMLog.h"
 
 @interface AMLogDetailViewController : BaseViewController
+
+@property (nonatomic, strong) AMLog *log;
 
 @end
