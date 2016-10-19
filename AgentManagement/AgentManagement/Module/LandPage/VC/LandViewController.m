@@ -169,12 +169,8 @@
     self.viewModel = [[LandViewModel alloc]init];
     
     [[self.signinBtn rac_signalForControlEvents:UIControlEventTouchUpInside]subscribeNext:^(id x) {
-        BaseTabbarController *rootVC=[[BaseTabbarController alloc]init];
-        
-        [self presentViewController:rootVC animated:YES completion:nil];
-        
         //登录请求
-        /*[[[self.viewModel requestSigninWithUserName:self.inputUserName.text Password:self.inputPassWord.text]filter:^BOOL(id value) {
+        [[[self.viewModel requestSigninWithUserName:self.inputUserName.text Password:self.inputPassWord.text]filter:^BOOL(id value) {
             
             if ([value isKindOfClass:[NSString class]]) {
                 
@@ -198,7 +194,7 @@
           
             [self presentViewController:rootVC animated:YES completion:nil];
 
-        }];*/
+        }];
     }];
 
 }
