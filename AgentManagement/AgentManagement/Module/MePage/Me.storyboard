@@ -255,7 +255,18 @@
                             <constraint firstAttribute="trailing" secondItem="GXY-oO-4jo" secondAttribute="trailing" id="uYC-8b-2o1"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="我的" id="mxB-Za-a5g"/>
+                    <navigationItem key="navigationItem" title="我的" id="mxB-Za-a5g">
+                        <barButtonItem key="leftBarButtonItem" image="setting" id="bGr-iq-MuP">
+                            <connections>
+                                <action selector="settingPressed:" destination="MSQ-2i-d7K" id="TEQ-hh-nb9"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="message" id="uhx-nu-gic">
+                            <connections>
+                                <action selector="messagePressed:" destination="MSQ-2i-d7K" id="whl-XH-GbC"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="addressLabel" destination="nSZ-XK-R1A" id="ykU-6R-bp6"/>
                         <outlet property="codeImageView" destination="V2M-xi-Na6" id="DuT-3k-1GS"/>
@@ -270,6 +281,10 @@
             <point key="canvasLocation" x="754.5" y="198.5"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="message" width="20" height="20"/>
+        <image name="setting" width="20" height="20"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

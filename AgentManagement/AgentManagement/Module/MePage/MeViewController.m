@@ -28,6 +28,7 @@
 }
 
 - (void)initializeControl {
+    self.title = @"我的";
 }
 
 - (IBAction)administratorPressed:(id)sender {
@@ -41,6 +42,14 @@
 
 - (IBAction)logPressed:(id)sender {
     [self.navigationController pushViewController:[[NSClassFromString(@"AMLogViewController") alloc] init] animated:YES];
+}
+
+- (IBAction)settingPressed:(id)sender {
+    [self.navigationController pushViewController:[[NSClassFromString(@"AMSettingViewController") alloc] init] animated:YES];
+}
+
+- (IBAction)messagePressed:(id)sender {
+    [self.navigationController pushViewController:[[NSClassFromString(@"AMMessageViewController") alloc] init] animated:YES];
 }
 
 @end
