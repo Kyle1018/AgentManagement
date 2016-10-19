@@ -44,6 +44,8 @@
 - (void)initializeControl {
     self.title = @"销售员管理";
     
+    [self initializeNavigation];
+    
     @weakify(self);
     self.salespersonTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         @strongify(self);
@@ -54,6 +56,21 @@
         @strongify(self);
         [self loadMoreSalesperson];
     }];
+}
+
+- (void)initializeNavigation {
+    UIBarButtonItem *addItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@""] style:UIBarButtonItemStylePlain target:self action:@selector(addSalespersonItemPressed)];
+    UIBarButtonItem *filterItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@""] style:UIBarButtonItemStylePlain target:self action:@selector(filterItemPressed)];
+    
+    self.navigationController.navigationItem.rightBarButtonItems = @[addItem, filterItem];
+}
+
+- (void)addSalespersonItemPressed {
+    [self.navigationController pushViewController:[[AMSalespersonDetailViewController alloc] init] animated:YES];
+}
+
+- (void)filterItemPressed {
+#warning 未完成
 }
 
 - (void)buildArrayWithSalespersons:(NSArray *)salespersons {
