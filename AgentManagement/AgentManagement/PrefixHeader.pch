@@ -18,6 +18,8 @@
 #import "Common/Control:View/CommonControl.h"
 #import <SDAutoLayout/UIView+SDAutoLayout.h>
 #import <MJRefresh_Bell/MJRefresh.h>
+#import "AMUserManager.h"
+
 #endif /* PrefixHeader_pch */
 
 #ifdef DEBUG

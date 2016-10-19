@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AMModifyPhoneViewController">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fmf-1e-BUH">
+                    <subviews>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入您的电话" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6ut-DX-bac">
+                            <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FnI-aN-QtA">
+                            <color key="backgroundColor" red="0.90588235289999997" green="0.90588235289999997" blue="0.90588235289999997" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="3Y2-Nv-BNQ"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="6ut-DX-bac" secondAttribute="trailing" constant="15" id="9SJ-Hd-cRU"/>
+                        <constraint firstItem="FnI-aN-QtA" firstAttribute="leading" secondItem="Fmf-1e-BUH" secondAttribute="leading" id="Eij-P8-PAb"/>
+                        <constraint firstAttribute="height" constant="44" id="RIs-k5-9RM"/>
+                        <constraint firstItem="6ut-DX-bac" firstAttribute="leading" secondItem="Fmf-1e-BUH" secondAttribute="leading" constant="15" id="VJk-fe-Xw6"/>
+                        <constraint firstItem="6ut-DX-bac" firstAttribute="top" secondItem="Fmf-1e-BUH" secondAttribute="top" id="Wab-1o-aoM"/>
+                        <constraint firstItem="FnI-aN-QtA" firstAttribute="top" secondItem="Fmf-1e-BUH" secondAttribute="top" id="eO1-mZ-jJA"/>
+                        <constraint firstAttribute="bottom" secondItem="6ut-DX-bac" secondAttribute="bottom" id="tbm-QM-GzM"/>
+                        <constraint firstAttribute="trailing" secondItem="FnI-aN-QtA" secondAttribute="trailing" id="unC-h7-ZqC"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="Fmf-1e-BUH" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="74" id="ORg-o4-yX5"/>
+                <constraint firstItem="Fmf-1e-BUH" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="g1y-xg-RPo"/>
+                <constraint firstAttribute="trailing" secondItem="Fmf-1e-BUH" secondAttribute="trailing" id="neM-7b-uvT"/>
+            </constraints>
+        </view>
+    </objects>
+</document>
