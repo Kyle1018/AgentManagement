@@ -89,6 +89,8 @@
 		27FA61CD1DB70E9300EDD77C /* AMSalespersonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27FA61CB1DB70E9300EDD77C /* AMSalespersonTableViewCell.xib */; };
 		27FA61D21DB7191500EDD77C /* AMSalespersonDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FA61D01DB7191500EDD77C /* AMSalespersonDetailViewController.m */; };
 		27FA61D31DB7191500EDD77C /* AMSalespersonDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27FA61D11DB7191500EDD77C /* AMSalespersonDetailViewController.xib */; };
+		27FA61D81DB728D300EDD77C /* AMSearchSalespersonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FA61D71DB728D300EDD77C /* AMSearchSalespersonView.m */; };
+		27FA61DA1DB728DD00EDD77C /* AMSearchSalespersonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27FA61D91DB728DD00EDD77C /* AMSearchSalespersonView.xib */; };
 		3422BA5E1D7E5C51003751F1 /* AMProductInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3422BA5D1D7E5C51003751F1 /* AMProductInfo.m */; };
 		3422BA611D7EA33E003751F1 /* AMProductListOrSearchRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3422BA601D7EA33E003751F1 /* AMProductListOrSearchRequest.m */; };
 		343800051D9B9FF600B3B816 /* AMEditProductRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 343800041D9B9FF600B3B816 /* AMEditProductRequest.m */; };
@@ -327,6 +329,9 @@
 		27FA61CF1DB7191500EDD77C /* AMSalespersonDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMSalespersonDetailViewController.h; sourceTree = "<group>"; };
 		27FA61D01DB7191500EDD77C /* AMSalespersonDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMSalespersonDetailViewController.m; sourceTree = "<group>"; };
 		27FA61D11DB7191500EDD77C /* AMSalespersonDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AMSalespersonDetailViewController.xib; sourceTree = "<group>"; };
+		27FA61D61DB728D300EDD77C /* AMSearchSalespersonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMSearchSalespersonView.h; sourceTree = "<group>"; };
+		27FA61D71DB728D300EDD77C /* AMSearchSalespersonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMSearchSalespersonView.m; sourceTree = "<group>"; };
+		27FA61D91DB728DD00EDD77C /* AMSearchSalespersonView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AMSearchSalespersonView.xib; sourceTree = "<group>"; };
 		3422BA5C1D7E5C51003751F1 /* AMProductInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMProductInfo.h; sourceTree = "<group>"; };
 		3422BA5D1D7E5C51003751F1 /* AMProductInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMProductInfo.m; sourceTree = "<group>"; };
 		3422BA5F1D7EA33E003751F1 /* AMProductListOrSearchRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMProductListOrSearchRequest.h; sourceTree = "<group>"; };
@@ -895,6 +900,7 @@
 		27E354E01DB6C162006A6222 /* Salesperson */ = {
 			isa = PBXGroup;
 			children = (
+				27FA61D51DB728B900EDD77C /* SearchView */,
 				27FA61CE1DB718FF00EDD77C /* Detail */,
 				27FA61C41DB70E6E00EDD77C /* Cell */,
 				27FA61C51DB70E6E00EDD77C /* ViewModel */,
@@ -1029,6 +1035,16 @@
 				27FA61D11DB7191500EDD77C /* AMSalespersonDetailViewController.xib */,
 			);
 			path = Detail;
+			sourceTree = "<group>";
+		};
+		27FA61D51DB728B900EDD77C /* SearchView */ = {
+			isa = PBXGroup;
+			children = (
+				27FA61D61DB728D300EDD77C /* AMSearchSalespersonView.h */,
+				27FA61D71DB728D300EDD77C /* AMSearchSalespersonView.m */,
+				27FA61D91DB728DD00EDD77C /* AMSearchSalespersonView.xib */,
+			);
+			path = SearchView;
 			sourceTree = "<group>";
 		};
 		344FF63A1D88F9A3009911EB /* LoadingView */ = {
@@ -1609,6 +1625,7 @@
 				27FA61D31DB7191500EDD77C /* AMSalespersonDetailViewController.xib in Resources */,
 				27E354EB1DB6C19F006A6222 /* AMSalespersonViewController.xib in Resources */,
 				270704C91D45F9A900633390 /* Assets.xcassets in Resources */,
+				27FA61DA1DB728DD00EDD77C /* AMSearchSalespersonView.xib in Resources */,
 				E2C14F7C1D7AA46000B0B0B2 /* Land.storyboard in Resources */,
 				27E355371DB6DF85006A6222 /* AMMessageTableViewCell.xib in Resources */,
 				27FA61CD1DB70E9300EDD77C /* AMSalespersonTableViewCell.xib in Resources */,
@@ -1809,6 +1826,7 @@
 				275F32B71D718A8A0033C8FF /* NSData+KKAdditions.m in Sources */,
 				E224EB521D8FB8090046D4D8 /* AMSales.m in Sources */,
 				27E3552C1DB6DCE0006A6222 /* AMLog.m in Sources */,
+				27FA61D81DB728D300EDD77C /* AMSearchSalespersonView.m in Sources */,
 				27FA61CC1DB70E9300EDD77C /* AMSalespersonTableViewCell.m in Sources */,
 				27E26B401D6B1D360072F26E /* CustomerDetailViewController.m in Sources */,
 				27E26B4C1D6B1D360072F26E /* AddProductViewControllerB.m in Sources */,

@@ -10,10 +10,12 @@
 #import "AMSalespersonTableViewCell.h"
 #import "AMSalespersonViewModel.h"
 #import "AMSalespersonDetailViewController.h"
+#import "AMSearchSalespersonView.h"
 
 @interface AMSalespersonViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, weak) IBOutlet UITableView *salespersonTableView;
+@property (nonatomic, strong) AMSearchSalespersonView *searchView;
 
 @property (nonatomic, strong) NSMutableArray *salespersonArray;
 @property (nonatomic, strong) AMSalespersonViewModel *salespersonViewModel;
@@ -60,17 +62,30 @@
 
 - (void)initializeNavigation {
     UIBarButtonItem *addItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@""] style:UIBarButtonItemStylePlain target:self action:@selector(addSalespersonItemPressed)];
-    UIBarButtonItem *filterItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@""] style:UIBarButtonItemStylePlain target:self action:@selector(filterItemPressed)];
+    UIBarButtonItem *searchItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@""] style:UIBarButtonItemStylePlain target:self action:@selector(searchItemPressed)];
     
-    self.navigationController.navigationItem.rightBarButtonItems = @[addItem, filterItem];
+    self.navigationController.navigationItem.rightBarButtonItems = @[addItem, searchItem];
 }
 
 - (void)addSalespersonItemPressed {
     [self.navigationController pushViewController:[[AMSalespersonDetailViewController alloc] init] animated:YES];
 }
 
-- (void)filterItemPressed {
-#warning 未完成
+- (void)searchItemPressed {
+    if (!self.searchView) {
+        self.searchView = [[AMSearchSalespersonView alloc] initWithFrame:CGRectMake(0., 0., self.view.width, (self.view.height - 64.))];
+        @weakify(self);
+        self.searchView.searchBlock = ^(NSString *name, NSString *phone, NSString *area) {
+            @strongify(self);
+            [self searchWithName:name phone:phone area:area];
+        };
+    }
+    
+    if (self.searchView.superview) {
+        [self.searchView removeFromSuperview];
+    } else {
+        [self.view addSubview:self.searchView];
+    }
 }
 
 - (void)buildArrayWithSalespersons:(NSArray *)salespersons {
@@ -107,6 +122,10 @@
     } completed:^{
         [self.salespersonTableView.mj_footer endRefreshing];
     }];
+}
+
+- (void)searchWithName:(NSString *)name phone:(NSString *)phone area:(NSString *)area {
+#warning 搜索
 }
 
 #pragma mark - UITableViewDataSource
