@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-typedef void (^SearchBlock)(NSString *name, NSString *phone, NSString *area);
+typedef void (^SearchSalespersonBlock)(NSString *name, NSString *phone, NSString *area);
 
 @interface AMSearchSalespersonView : UIView
 
-@property (nonatomic, copy) SearchBlock searchBlock;
+@property (nonatomic, copy) SearchSalespersonBlock searchBlock;
 
 @end

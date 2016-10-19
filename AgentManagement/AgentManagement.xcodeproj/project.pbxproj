@@ -91,6 +91,13 @@
 		27FA61D31DB7191500EDD77C /* AMSalespersonDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27FA61D11DB7191500EDD77C /* AMSalespersonDetailViewController.xib */; };
 		27FA61D81DB728D300EDD77C /* AMSearchSalespersonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FA61D71DB728D300EDD77C /* AMSearchSalespersonView.m */; };
 		27FA61DA1DB728DD00EDD77C /* AMSearchSalespersonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27FA61D91DB728DD00EDD77C /* AMSearchSalespersonView.xib */; };
+		27FBA4221DB75A74005B77FF /* AMAdministratorViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FBA4211DB75A74005B77FF /* AMAdministratorViewModel.m */; };
+		27FBA4261DB75CD2005B77FF /* AMAdministratorTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FBA4241DB75CD2005B77FF /* AMAdministratorTableViewCell.m */; };
+		27FBA4271DB75CD2005B77FF /* AMAdministratorTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27FBA4251DB75CD2005B77FF /* AMAdministratorTableViewCell.xib */; };
+		27FBA42B1DB75E9F005B77FF /* AMAdministratorDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FBA4291DB75E9F005B77FF /* AMAdministratorDetailViewController.m */; };
+		27FBA42C1DB75E9F005B77FF /* AMAdministratorDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27FBA42A1DB75E9F005B77FF /* AMAdministratorDetailViewController.xib */; };
+		27FBA42F1DB77029005B77FF /* AMSearchAdministratorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FBA42E1DB77029005B77FF /* AMSearchAdministratorView.m */; };
+		27FBA4311DB77038005B77FF /* AMSearchAdministratorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27FBA4301DB77038005B77FF /* AMSearchAdministratorView.xib */; };
 		3422BA5E1D7E5C51003751F1 /* AMProductInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3422BA5D1D7E5C51003751F1 /* AMProductInfo.m */; };
 		3422BA611D7EA33E003751F1 /* AMProductListOrSearchRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3422BA601D7EA33E003751F1 /* AMProductListOrSearchRequest.m */; };
 		343800051D9B9FF600B3B816 /* AMEditProductRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 343800041D9B9FF600B3B816 /* AMEditProductRequest.m */; };
@@ -332,6 +339,17 @@
 		27FA61D61DB728D300EDD77C /* AMSearchSalespersonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMSearchSalespersonView.h; sourceTree = "<group>"; };
 		27FA61D71DB728D300EDD77C /* AMSearchSalespersonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMSearchSalespersonView.m; sourceTree = "<group>"; };
 		27FA61D91DB728DD00EDD77C /* AMSearchSalespersonView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AMSearchSalespersonView.xib; sourceTree = "<group>"; };
+		27FBA4201DB75A74005B77FF /* AMAdministratorViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMAdministratorViewModel.h; sourceTree = "<group>"; };
+		27FBA4211DB75A74005B77FF /* AMAdministratorViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMAdministratorViewModel.m; sourceTree = "<group>"; };
+		27FBA4231DB75CD2005B77FF /* AMAdministratorTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMAdministratorTableViewCell.h; sourceTree = "<group>"; };
+		27FBA4241DB75CD2005B77FF /* AMAdministratorTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMAdministratorTableViewCell.m; sourceTree = "<group>"; };
+		27FBA4251DB75CD2005B77FF /* AMAdministratorTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AMAdministratorTableViewCell.xib; sourceTree = "<group>"; };
+		27FBA4281DB75E9F005B77FF /* AMAdministratorDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMAdministratorDetailViewController.h; sourceTree = "<group>"; };
+		27FBA4291DB75E9F005B77FF /* AMAdministratorDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMAdministratorDetailViewController.m; sourceTree = "<group>"; };
+		27FBA42A1DB75E9F005B77FF /* AMAdministratorDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AMAdministratorDetailViewController.xib; sourceTree = "<group>"; };
+		27FBA42D1DB77029005B77FF /* AMSearchAdministratorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMSearchAdministratorView.h; sourceTree = "<group>"; };
+		27FBA42E1DB77029005B77FF /* AMSearchAdministratorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMSearchAdministratorView.m; sourceTree = "<group>"; };
+		27FBA4301DB77038005B77FF /* AMSearchAdministratorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AMSearchAdministratorView.xib; sourceTree = "<group>"; };
 		3422BA5C1D7E5C51003751F1 /* AMProductInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMProductInfo.h; sourceTree = "<group>"; };
 		3422BA5D1D7E5C51003751F1 /* AMProductInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMProductInfo.m; sourceTree = "<group>"; };
 		3422BA5F1D7EA33E003751F1 /* AMProductListOrSearchRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMProductListOrSearchRequest.h; sourceTree = "<group>"; };
@@ -865,6 +883,10 @@
 		27E354DD1DB6C162006A6222 /* Administrator */ = {
 			isa = PBXGroup;
 			children = (
+				27FBA41C1DB75A5F005B77FF /* Cell */,
+				27FBA41D1DB75A5F005B77FF /* Detail */,
+				27FBA41E1DB75A5F005B77FF /* SearchView */,
+				27FBA41F1DB75A5F005B77FF /* ViewModel */,
 				27E354F61DB6C1CE006A6222 /* AMAdministatorViewController.h */,
 				27E354F71DB6C1CE006A6222 /* AMAdministatorViewController.m */,
 				27E354F81DB6C1CE006A6222 /* AMAdministatorViewController.xib */,
@@ -1045,6 +1067,45 @@
 				27FA61D91DB728DD00EDD77C /* AMSearchSalespersonView.xib */,
 			);
 			path = SearchView;
+			sourceTree = "<group>";
+		};
+		27FBA41C1DB75A5F005B77FF /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				27FBA4231DB75CD2005B77FF /* AMAdministratorTableViewCell.h */,
+				27FBA4241DB75CD2005B77FF /* AMAdministratorTableViewCell.m */,
+				27FBA4251DB75CD2005B77FF /* AMAdministratorTableViewCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		27FBA41D1DB75A5F005B77FF /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				27FBA4281DB75E9F005B77FF /* AMAdministratorDetailViewController.h */,
+				27FBA4291DB75E9F005B77FF /* AMAdministratorDetailViewController.m */,
+				27FBA42A1DB75E9F005B77FF /* AMAdministratorDetailViewController.xib */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		27FBA41E1DB75A5F005B77FF /* SearchView */ = {
+			isa = PBXGroup;
+			children = (
+				27FBA42D1DB77029005B77FF /* AMSearchAdministratorView.h */,
+				27FBA42E1DB77029005B77FF /* AMSearchAdministratorView.m */,
+				27FBA4301DB77038005B77FF /* AMSearchAdministratorView.xib */,
+			);
+			path = SearchView;
+			sourceTree = "<group>";
+		};
+		27FBA41F1DB75A5F005B77FF /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				27FBA4201DB75A74005B77FF /* AMAdministratorViewModel.h */,
+				27FBA4211DB75A74005B77FF /* AMAdministratorViewModel.m */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		344FF63A1D88F9A3009911EB /* LoadingView */ = {
@@ -1607,10 +1668,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27FBA4271DB75CD2005B77FF /* AMAdministratorTableViewCell.xib in Resources */,
+				27FBA4311DB77038005B77FF /* AMSearchAdministratorView.xib in Resources */,
 				E21947281D7714E1001C5E5F /* CostManage.storyboard in Resources */,
 				27E26B3C1D6B1D360072F26E /* CustomerManage.storyboard in Resources */,
 				2733BD511DB6B01F00F457E4 /* Me.storyboard in Resources */,
 				34EB45E61D87C88A00522B22 /* CostManagerListHeaderView.xib in Resources */,
+				27FBA42C1DB75E9F005B77FF /* AMAdministratorDetailViewController.xib in Resources */,
 				27E355481DB6F01C006A6222 /* AMSettingTableViewCell.xib in Resources */,
 				E221EEE81D4F9EFB005B3417 /* Launch Screen.storyboard in Resources */,
 				27E354F01DB6C1B1006A6222 /* AMMessageViewController.xib in Resources */,
@@ -1797,6 +1861,7 @@
 				275F329D1D717B210033C8FF /* ASIS3BucketRequest.m in Sources */,
 				E244F1581D8D072A003BA93B /* PNLineChartData.m in Sources */,
 				275F328C1D717B210033C8FF /* ASIDataCompressor.m in Sources */,
+				27FBA4221DB75A74005B77FF /* AMAdministratorViewModel.m in Sources */,
 				27CA014C1D6B116F009F9A25 /* AMRegisterRequest.m in Sources */,
 				34F552A31D81414300CCA537 /* AMDeleteProductRequest.m in Sources */,
 				34D8D28D1D93C9370011217C /* CSearchMenuCell.m in Sources */,
@@ -1812,6 +1877,7 @@
 				27E354FF1DB6C617006A6222 /* AMLogTableViewCell.m in Sources */,
 				E224EB551D8FB8190046D4D8 /* AMAdministrators.m in Sources */,
 				275F32911D717B210033C8FF /* ASIInputStream.m in Sources */,
+				27FBA4261DB75CD2005B77FF /* AMAdministratorTableViewCell.m in Sources */,
 				E24BF4631D7414B60054DFDC /* ProductManageViewModel.m in Sources */,
 				27CA01331D6B10E4009F9A25 /* UIView+KKAdditions.m in Sources */,
 				34D4BB571D9117F70077CC94 /* CustomerDetailCell.m in Sources */,
@@ -1825,8 +1891,10 @@
 				E24BF46A1D741AB00054DFDC /* AMProductRelatedInformationRequest.m in Sources */,
 				275F32B71D718A8A0033C8FF /* NSData+KKAdditions.m in Sources */,
 				E224EB521D8FB8090046D4D8 /* AMSales.m in Sources */,
+				27FBA42B1DB75E9F005B77FF /* AMAdministratorDetailViewController.m in Sources */,
 				27E3552C1DB6DCE0006A6222 /* AMLog.m in Sources */,
 				27FA61D81DB728D300EDD77C /* AMSearchSalespersonView.m in Sources */,
+				27FBA42F1DB77029005B77FF /* AMSearchAdministratorView.m in Sources */,
 				27FA61CC1DB70E9300EDD77C /* AMSalespersonTableViewCell.m in Sources */,
 				27E26B401D6B1D360072F26E /* CustomerDetailViewController.m in Sources */,
 				27E26B4C1D6B1D360072F26E /* AddProductViewControllerB.m in Sources */,

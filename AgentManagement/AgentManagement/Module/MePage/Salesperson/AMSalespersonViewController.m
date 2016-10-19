@@ -43,6 +43,13 @@
     return _salespersonViewModel;
 }
 
+- (NSMutableArray *)salespersonArray {
+    if (!_salespersonArray) {
+        _salespersonArray = [NSMutableArray array];
+    }
+    return _salespersonArray;
+}
+
 - (void)initializeControl {
     self.title = @"销售员管理";
     
@@ -61,8 +68,8 @@
 }
 
 - (void)initializeNavigation {
-    UIBarButtonItem *addItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@""] style:UIBarButtonItemStylePlain target:self action:@selector(addSalespersonItemPressed)];
-    UIBarButtonItem *searchItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@""] style:UIBarButtonItemStylePlain target:self action:@selector(searchItemPressed)];
+    UIBarButtonItem *addItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Add"] style:UIBarButtonItemStylePlain target:self action:@selector(addSalespersonItemPressed)];
+    UIBarButtonItem *searchItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Search"] style:UIBarButtonItemStylePlain target:self action:@selector(searchItemPressed)];
     
     self.navigationController.navigationItem.rightBarButtonItems = @[addItem, searchItem];
 }
@@ -118,7 +125,7 @@
         [self.salespersonTableView reloadData];
     } error:^(NSError *error) {
         [self.salespersonTableView.mj_footer endRefreshing];
-        [MBProgressHUD showText:@"加载更多销售列表失败"];
+        [MBProgressHUD showText:@"加载更多销售员列表失败"];
     } completed:^{
         [self.salespersonTableView.mj_footer endRefreshing];
     }];

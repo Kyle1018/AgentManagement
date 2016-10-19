@@ -144,6 +144,15 @@
                 <constraint firstItem="QGA-hQ-kAP" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="r6V-s4-Lbr"/>
                 <constraint firstItem="QGA-hQ-kAP" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="75" id="yKV-pR-CEd"/>
             </constraints>
+            <connections>
+                <outlet property="areaButton" destination="HTg-hz-n6j" id="Osl-I5-2Iq"/>
+                <outlet property="backgroundButton" destination="mtz-P3-dJX" id="hhh-Gb-tOl"/>
+                <outlet property="confirmButton" destination="ODy-Sj-lXP" id="lPt-u7-RuS"/>
+                <outlet property="contentBackgroundButton" destination="n4S-HH-kEc" id="4AC-IX-IAf"/>
+                <outlet property="nameTextField" destination="LUL-1q-QaU" id="SXo-BI-5s2"/>
+                <outlet property="phoneTextField" destination="5Up-mt-rT4" id="dPk-CB-ReC"/>
+                <outlet property="resetButton" destination="45A-8t-huT" id="txr-tR-MdL"/>
+            </connections>
         </view>
     </objects>
 </document>
