@@ -118,6 +118,7 @@
 		344FF63D1D88F9BE009911EB /* LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 344FF63C1D88F9BE009911EB /* LoadingView.m */; };
 		346190AB1DB0BF1800ED9599 /* DataAnalysisViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 346190AA1DB0BF1800ED9599 /* DataAnalysisViewModel.m */; };
 		3465671B1D923A13008151A5 /* AMDeleteCustomerRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3465671A1D923A13008151A5 /* AMDeleteCustomerRequest.m */; };
+		34A030151DB8C3B3003D3E07 /* PhoneRegisterStateRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 34A030141DB8C3B3003D3E07 /* PhoneRegisterStateRequest.m */; };
 		34D4BB541D90FFC80077CC94 /* AMOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 34D4BB531D90FFC80077CC94 /* AMOrder.m */; };
 		34D4BB571D9117F70077CC94 /* CustomerDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34D4BB561D9117F70077CC94 /* CustomerDetailCell.m */; };
 		34D8D28D1D93C9370011217C /* CSearchMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34D8D28C1D93C9370011217C /* CSearchMenuCell.m */; };
@@ -398,6 +399,8 @@
 		346190AA1DB0BF1800ED9599 /* DataAnalysisViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataAnalysisViewModel.m; sourceTree = "<group>"; };
 		346567191D923A13008151A5 /* AMDeleteCustomerRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMDeleteCustomerRequest.h; sourceTree = "<group>"; };
 		3465671A1D923A13008151A5 /* AMDeleteCustomerRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMDeleteCustomerRequest.m; sourceTree = "<group>"; };
+		34A030131DB8C3B3003D3E07 /* PhoneRegisterStateRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhoneRegisterStateRequest.h; sourceTree = "<group>"; };
+		34A030141DB8C3B3003D3E07 /* PhoneRegisterStateRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhoneRegisterStateRequest.m; sourceTree = "<group>"; };
 		34D4BB521D90FFC80077CC94 /* AMOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMOrder.h; sourceTree = "<group>"; };
 		34D4BB531D90FFC80077CC94 /* AMOrder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMOrder.m; sourceTree = "<group>"; };
 		34D4BB551D9117F70077CC94 /* CustomerDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerDetailCell.h; sourceTree = "<group>"; };
@@ -717,6 +720,7 @@
 		27CA01391D6B116F009F9A25 /* Request */ = {
 			isa = PBXGroup;
 			children = (
+				34A030121DB8C386003D3E07 /* PhoneNumRegisterState */,
 				E2B103BF1D8FAF4A0011FA8E /* Me */,
 				E24819D21D86FEA300F885EE /* CustomerManage */,
 				E29A7B941D7DBD2000826744 /* User */,
@@ -1246,6 +1250,15 @@
 				346190AA1DB0BF1800ED9599 /* DataAnalysisViewModel.m */,
 			);
 			path = VM;
+			sourceTree = "<group>";
+		};
+		34A030121DB8C386003D3E07 /* PhoneNumRegisterState */ = {
+			isa = PBXGroup;
+			children = (
+				34A030131DB8C3B3003D3E07 /* PhoneRegisterStateRequest.h */,
+				34A030141DB8C3B3003D3E07 /* PhoneRegisterStateRequest.m */,
+			);
+			path = PhoneNumRegisterState;
 			sourceTree = "<group>";
 		};
 		34E333E91D90EBC900FB29D3 /* CustomerManage */ = {
@@ -1966,6 +1979,7 @@
 				27E3553E1DB6E16C006A6222 /* AMMessage.m in Sources */,
 				3422BA611D7EA33E003751F1 /* AMProductListOrSearchRequest.m in Sources */,
 				27E26B3D1D6B1D360072F26E /* AddCustomerViewControllerA.m in Sources */,
+				34A030151DB8C3B3003D3E07 /* PhoneRegisterStateRequest.m in Sources */,
 				E2A3F27B1D6F2192006EC120 /* DataCacheManager.m in Sources */,
 				27FBA4421DB77992005B77FF /* AMModifyPasswordViewController.m in Sources */,
 				E24819D51D86FEC700F885EE /* AMCustomerOrSearchRequest.m in Sources */,

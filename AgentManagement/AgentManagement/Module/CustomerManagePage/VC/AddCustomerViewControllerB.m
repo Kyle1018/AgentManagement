@@ -90,7 +90,7 @@
  
     if (indexPath.row == 0 || indexPath.row == 3) {
         
-        self.pickerView = [PickerView showAddTo:[UIApplication sharedApplication].keyWindow];
+        self.pickerView = [PickerView showAddTo:kAppWindow];
         self.pickerView.picker.delegate = self.protocol;
         self.pickerView.picker.dataSource = self.protocol;
         
@@ -146,7 +146,7 @@
     
     else {
         
-        _datePicker = [PickerDataView showDateAddTo:[UIApplication sharedApplication].keyWindow];
+        _datePicker = [PickerDataView showDateAddTo:kAppWindow];
       
         _dateStr = [NSString getDateStr:_datePicker.datePicker.date];
         

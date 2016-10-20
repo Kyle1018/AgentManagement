@@ -10,6 +10,7 @@
 #import "AMIdentifyCodeRequest.h"
 #import "AMRegisterRequest.h"
 #import "AMLoginRequest.h"
+#import "PhoneRegisterStateRequest.h"
 @interface LandViewModel : NSObject
 
 @property (nonatomic, strong) AMIdentifyCodeRequest *identifyCodeRequest;
@@ -18,10 +19,13 @@
 
 @property(nonatomic,strong)AMLoginRequest *loginRequest;
 
+@property(nonatomic,strong)PhoneRegisterStateRequest *phoneRegisterStateRequest;
+
 - (RACSignal*)requestIdentifyCode:(NSString*)phone;//请求验证码
 
 - (RACSignal*)requestRegisterWithRegisterInformation:(NSDictionary*)dic;//注册请求
 
 - (RACSignal*)requestSigninWithUserName:(NSString*)userName Password:(NSString*)password;//登录请求
 
+- (RACSignal*)requestPhoneNumRegisterState:(NSString*)phone;
 @end

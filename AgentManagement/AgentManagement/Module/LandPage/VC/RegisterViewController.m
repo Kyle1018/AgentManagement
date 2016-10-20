@@ -83,6 +83,14 @@
     @weakify(self);
     [[[self.identifyCodeBtn rac_signalForControlEvents:UIControlEventTouchUpInside]filter:^BOOL(IdentifyCodeButton* sender) {
   
+        @strongify(self);
+        //请求判断手机号是否注册过接口
+        [[self.viewModel requestPhoneNumRegisterState:phoneText]subscribeNext:^(id x) {
+            
+            NSLog(@"%@",x);
+        }];
+        
+        
         if ([RegexUtils checkTelNumber:phoneText]) {
             
             return YES;

@@ -38,9 +38,11 @@
     
     [self requestData];
 
+    @weakify(self);
     
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
        
+        @strongify(self);
         DDLogDebug(@"下拉刷新");
         
         [self requestData];

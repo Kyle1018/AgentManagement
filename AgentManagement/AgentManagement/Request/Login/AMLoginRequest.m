@@ -27,6 +27,7 @@
 
 - (id)buildModelWithJsonDictionary:(NSDictionary *)dictionary
 {
+
     return [[AMUser alloc] initWithDictionary:dictionary error:nil];;
 }
 

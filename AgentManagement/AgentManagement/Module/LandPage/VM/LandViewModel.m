@@ -82,7 +82,6 @@
     }];
 }
 
-
 - (RACSignal*)requestSigninWithUserName:(NSString*)userName Password:(NSString*)password {
     
     __block AMUser *loginModel = nil;
@@ -113,6 +112,24 @@
         }];
         
         return nil;
+    }];
+}
+
+- (RACSignal*)requestPhoneNumRegisterState:(NSString*)phone {
+    
+    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+       
+        self.phoneRegisterStateRequest = [[PhoneRegisterStateRequest alloc]initWithPhone:phone];
+        
+        [self.phoneRegisterStateRequest requestWithSuccess:^(KKBaseModel *model, KKRequestError *error) {
+            
+        } failure:^(KKBaseModel *model, KKRequestError *error) {
+            
+        }];
+        
+        return [RACDisposable disposableWithBlock:^{
+            
+        }];
     }];
 }
 
