@@ -98,39 +98,42 @@
     }]subscribeNext:^(id x) {
         
         @strongify(self);
-        //注册请求
-        [[[self.viewModel requestRegisterWithRegisterInformation:self.registerInformationDic]filter:^BOOL(id value) {
-           
-            if ([value isKindOfClass:[AMUser class]]) {
+        //修改密码请求
+        NSLog(@"%@",self.registerInformationDic);
+        [[[self.viewModel requestModifyPasswordWithLandInformation:self.registerInformationDic]filter:^BOOL(id value) {
+            
+            if ([value isKindOfClass:[NSNumber class]]) {
                 
-                [MBProgressHUD showText:@"注册成功"];
-
                 return YES;
             }
             else {
-               
-                [MBProgressHUD showText:value];
+                
+                 [MBProgressHUD showText:@"密码重置失败"];
                 
                 return NO;
             }
             
-           
-        }]subscribeNext:^(AMUser* x) {
+        }]subscribeNext:^(NSNumber* x) {
             
-         
-            dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(4.0/*延迟执行时间*/ * NSEC_PER_SEC));
-            
-            dispatch_after(delayTime, dispatch_get_main_queue(), ^{
+            if ([x integerValue]==0) {
                 
-                [self.navigationController popToRootViewControllerAnimated:YES];
-
-            });
+                  [MBProgressHUD showText:@"密码重置成功"];
+                
+                dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(4.0 * NSEC_PER_SEC));
+                
+                dispatch_after(delayTime, dispatch_get_main_queue(), ^{
+                    
+                    [self.navigationController popToRootViewControllerAnimated:YES];
+                    
+                });
+            }
+            else {
+                
+                [MBProgressHUD showText:@"密码重置失败"];
+            }
             
-           
         }];
-        
     }];
-    
 }
 
 @end

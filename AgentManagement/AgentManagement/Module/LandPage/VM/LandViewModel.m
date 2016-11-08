@@ -123,8 +123,33 @@
         
         [self.phoneRegisterStateRequest requestWithSuccess:^(KKBaseModel *model, KKRequestError *error) {
             
+            [subscriber sendNext: (NSNumber*)model];
+            [subscriber sendCompleted];
+            
         } failure:^(KKBaseModel *model, KKRequestError *error) {
             
+        }];
+        
+        return [RACDisposable disposableWithBlock:^{
+            
+        }];
+    }];
+}
+
+- (RACSignal*)requestModifyPasswordWithLandInformation:(NSDictionary*)dic {
+    
+    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+       
+        self.modifyPasswordRequest = [[AMModifyPasswordRequest alloc]initWithLandInformation:dic];
+        
+        [self.modifyPasswordRequest requestWithSuccess:^(KKBaseModel *model, KKRequestError *error) {
+            
+            [subscriber sendNext: (NSNumber*)model];
+            [subscriber sendCompleted];
+            
+        } failure:^(KKBaseModel *model, KKRequestError *error) {
+            
+            [subscriber sendError:error];
         }];
         
         return [RACDisposable disposableWithBlock:^{

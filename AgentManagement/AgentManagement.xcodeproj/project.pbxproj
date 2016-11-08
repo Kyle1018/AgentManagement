@@ -112,6 +112,7 @@
 		27FBA45C1DB77A2A005B77FF /* AMCertificationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27FBA45A1DB77A2A005B77FF /* AMCertificationViewController.xib */; };
 		27FBA4611DB77BD7005B77FF /* AMUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FBA4601DB77BD7005B77FF /* AMUserManager.m */; };
 		27FBA4651DB77C02005B77FF /* AMUserViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FBA4641DB77C02005B77FF /* AMUserViewModel.m */; };
+		3411A29D1DC729B600C41F8B /* AMModifyPasswordRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3411A29C1DC729B600C41F8B /* AMModifyPasswordRequest.m */; };
 		3422BA5E1D7E5C51003751F1 /* AMProductInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3422BA5D1D7E5C51003751F1 /* AMProductInfo.m */; };
 		3422BA611D7EA33E003751F1 /* AMProductListOrSearchRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3422BA601D7EA33E003751F1 /* AMProductListOrSearchRequest.m */; };
 		343800051D9B9FF600B3B816 /* AMEditProductRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 343800041D9B9FF600B3B816 /* AMEditProductRequest.m */; };
@@ -387,6 +388,8 @@
 		27FBA4601DB77BD7005B77FF /* AMUserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMUserManager.m; sourceTree = "<group>"; };
 		27FBA4631DB77C02005B77FF /* AMUserViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMUserViewModel.h; sourceTree = "<group>"; };
 		27FBA4641DB77C02005B77FF /* AMUserViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMUserViewModel.m; sourceTree = "<group>"; };
+		3411A29B1DC729B600C41F8B /* AMModifyPasswordRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMModifyPasswordRequest.h; sourceTree = "<group>"; };
+		3411A29C1DC729B600C41F8B /* AMModifyPasswordRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMModifyPasswordRequest.m; sourceTree = "<group>"; };
 		3422BA5C1D7E5C51003751F1 /* AMProductInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMProductInfo.h; sourceTree = "<group>"; };
 		3422BA5D1D7E5C51003751F1 /* AMProductInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMProductInfo.m; sourceTree = "<group>"; };
 		3422BA5F1D7EA33E003751F1 /* AMProductListOrSearchRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMProductListOrSearchRequest.h; sourceTree = "<group>"; };
@@ -720,13 +723,14 @@
 		27CA01391D6B116F009F9A25 /* Request */ = {
 			isa = PBXGroup;
 			children = (
+				3411A29A1DC7299000C41F8B /* ModifyPassword */,
+				27CA013A1D6B116F009F9A25 /* AMBaseRequest.h */,
+				275F32BE1D71924B0033C8FF /* AMBaseRequest.m */,
 				34A030121DB8C386003D3E07 /* PhoneNumRegisterState */,
 				E2B103BF1D8FAF4A0011FA8E /* Me */,
 				E24819D21D86FEA300F885EE /* CustomerManage */,
 				E29A7B941D7DBD2000826744 /* User */,
 				E24BF4581D7413D50054DFDC /* ProductManage */,
-				27CA013A1D6B116F009F9A25 /* AMBaseRequest.h */,
-				275F32BE1D71924B0033C8FF /* AMBaseRequest.m */,
 				27CA013C1D6B116F009F9A25 /* IdenfityCode */,
 				27CA013F1D6B116F009F9A25 /* Login */,
 				27CA01421D6B116F009F9A25 /* Logout */,
@@ -1232,6 +1236,15 @@
 				27FBA4641DB77C02005B77FF /* AMUserViewModel.m */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		3411A29A1DC7299000C41F8B /* ModifyPassword */ = {
+			isa = PBXGroup;
+			children = (
+				3411A29B1DC729B600C41F8B /* AMModifyPasswordRequest.h */,
+				3411A29C1DC729B600C41F8B /* AMModifyPasswordRequest.m */,
+			);
+			path = ModifyPassword;
 			sourceTree = "<group>";
 		};
 		344FF63A1D88F9A3009911EB /* LoadingView */ = {
@@ -2049,6 +2062,7 @@
 				27E26B401D6B1D360072F26E /* CustomerDetailViewController.m in Sources */,
 				27E26B4C1D6B1D360072F26E /* AddProductViewControllerB.m in Sources */,
 				27E355431DB6EFDB006A6222 /* AMSettingViewModel.m in Sources */,
+				3411A29D1DC729B600C41F8B /* AMModifyPasswordRequest.m in Sources */,
 				E21947301D771525001C5E5F /* CostManageTableViewCell.m in Sources */,
 				275F32B01D717B210033C8FF /* Reachability.m in Sources */,
 				E244F1601D8D077B003BA93B /* DataAnalysisCell.m in Sources */,

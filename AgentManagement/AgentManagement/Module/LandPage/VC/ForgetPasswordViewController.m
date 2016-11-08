@@ -30,7 +30,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
     _viewModel = [[LandViewModel alloc]init];
 
     __block NSString *phoneText = @"";//手机号
@@ -82,45 +81,63 @@
     
     
     @weakify(self);
-    //获取验证码按钮点击事件
+ 
     [[[self.identifyCodeBtn rac_signalForControlEvents:UIControlEventTouchUpInside]filter:^BOOL(IdentifyCodeButton* sender) {
         
-        if ([RegexUtils checkTelNumber:phoneText]) {
-            
-            return YES;
-        }
-        else {
+        if (![RegexUtils checkTelNumber:phoneText]) {
             
             [MBProgressHUD showText:@"手机号格式错误"];
-            
             return NO;
+        }
+
+        else {
+            
+            return YES;
         }
         
     }]subscribeNext:^(IdentifyCodeButton* sender) {
         @strongify(self);
-        //请求验证码
-        [[[self.viewModel requestIdentifyCode:phoneText]filter:^BOOL(id value) {
-            
-            if ([value isKindOfClass:[NSString class]]) {
+        
+        RACSignal *signal = [self requestPhoneNumRegisterState:phoneText];
+        
+        [signal subscribeNext:^(NSNumber* x) {
+           
+            if ([x integerValue] == 1) {
                 
-                [MBProgressHUD showText:value];
-                return NO;
+                //请求验证码
+                [[[self.viewModel requestIdentifyCode:phoneText]filter:^BOOL(id value) {
+                    
+                    if ([value isKindOfClass:[NSString class]]) {
+                        
+                        [MBProgressHUD showText:value];
+                        return NO;
+                    }
+                    else {
+                        [sender start];
+                        
+                        return YES;
+                    }
+                    
+                }]subscribeNext:^(RACTuple* x) {
+                    
+                    requestIdentifyCode = [x first];
+                    self.inputIdentifyCode.text = requestIdentifyCode;
+                    [registerInformationDic setValue:phoneText forKey:@"phone"];
+                    [registerInformationDic setValue:requestIdentifyCode forKey:@"identifyCode"];
+                    
+                }];
+
             }
             else {
-                [sender start];
                 
-                return YES;
+                [MBProgressHUD showText:@"该手机号还未注册"];
+                
+             
             }
-            
-        }]subscribeNext:^(RACTuple* x) {
-            
-            requestIdentifyCode = [x first];
-            self.inputIdentifyCode.text = requestIdentifyCode;
-            [registerInformationDic setValue:phoneText forKey:@"phone"];
-            [registerInformationDic setValue:requestIdentifyCode forKey:@"identifyCode"];
-            
         }];
+    
     }];
+    
     
     //下一步按钮点击事件
     [[[self.nextBtn rac_signalForControlEvents:UIControlEventTouchUpInside]filter:^BOOL(id value) {
@@ -169,10 +186,14 @@
     [self.navigationController setNavigationBarHidden:NO animated:animated];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+//请求手机号是否注册过状态
+- (RACSignal*)requestPhoneNumRegisterState:(NSString*)phone {
+    
+   return  [[self.viewModel requestPhoneNumRegisterState:phone]map:^id(id value) {
+       
+        return value;
+    }];
 }
-
+ 
 
 @end

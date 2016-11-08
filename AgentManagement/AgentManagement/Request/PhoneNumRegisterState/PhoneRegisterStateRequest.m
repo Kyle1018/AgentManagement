@@ -28,9 +28,8 @@
 
 - (id)buildModelWithJsonDictionary:(NSDictionary *)dictionary
 {
-    
-    NSLog(@"%@",dictionary) ;
-    return [[AMUser alloc] initWithDictionary:dictionary error:nil];;
+
+    return [dictionary objectForKey:@"data"];
 }
 
 
