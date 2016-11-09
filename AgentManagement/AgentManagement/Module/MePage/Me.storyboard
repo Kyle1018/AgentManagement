@@ -205,7 +205,7 @@
                                                     <constraint firstItem="nxo-Xt-B2K" firstAttribute="centerY" secondItem="ZCV-IJ-Z2w" secondAttribute="centerY" id="uIb-G1-4LS"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ro2-rS-4ef">
+                                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ro2-rS-4ef">
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="V2M-xi-Na6">
                                                         <constraints>

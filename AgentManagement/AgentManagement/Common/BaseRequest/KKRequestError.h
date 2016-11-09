@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+extern const NSInteger kDefaultErrorCode;
+
 @interface KKRequestError : NSError
 
 - (instancetype)initWithError:(NSError *)error;

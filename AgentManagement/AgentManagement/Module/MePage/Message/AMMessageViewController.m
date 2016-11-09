@@ -9,6 +9,7 @@
 #import "AMMessageViewController.h"
 #import "AMMessageViewModel.h"
 #import "AMMessageTableViewCell.h"
+#import "AMMessageListRequest.h"
 
 @interface AMMessageViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -16,6 +17,8 @@
 
 @property (nonatomic, strong) NSArray *messageArray;
 @property (nonatomic, strong) AMMessageViewModel *messageViewModel;
+
+@property (nonatomic, strong) AMMessageListRequest *request;
 
 @end
 
@@ -26,6 +29,13 @@
     
     [self initializeControl];
     [self refreshMessage];
+    
+    self.request = [[AMMessageListRequest alloc] init];
+    [self.request requestWithSuccess:^(KKBaseModel *model, KKRequestError *error) {
+        NSLog(@"fa");
+    } failure:^(KKBaseModel *model, KKRequestError *error) {
+        NSLog(@"fa");
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

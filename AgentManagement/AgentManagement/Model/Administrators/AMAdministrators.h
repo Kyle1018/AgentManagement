@@ -28,6 +28,10 @@
 
 #import "AMBaseModel.h"
 
+@protocol AMAdministrators <NSObject>
+
+@end
+
 @interface AMAdministrators : AMBaseModel
 
 @property(nonatomic,assign)NSInteger add_time;//注册时间

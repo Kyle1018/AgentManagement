@@ -11,6 +11,9 @@
 #import "AMSalespersonViewModel.h"
 #import "AMSalespersonDetailViewController.h"
 #import "AMSearchSalespersonView.h"
+#import "AMSalespersonListRequest.h"
+#import "AMAddSalespersonRequest.h"
+#import "AMModifySalespersonRequest.h"
 
 @interface AMSalespersonViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -20,6 +23,10 @@
 @property (nonatomic, strong) NSMutableArray *salespersonArray;
 @property (nonatomic, strong) AMSalespersonViewModel *salespersonViewModel;
 
+@property (nonatomic, strong) AMSalespersonListRequest *request;
+@property (nonatomic, strong) AMAddSalespersonRequest *request1;
+@property (nonatomic, strong) AMModifySalespersonRequest *request2;
+
 @end
 
 @implementation AMSalespersonViewController
@@ -28,7 +35,29 @@
     [super viewDidLoad];
     
     [self initializeControl];
-    [self refreshSalesperson];
+//    [self refreshSalesperson];
+    
+    self.request = [[AMSalespersonListRequest alloc] initWithPageIndex:1 pageSize:10 name:nil phone:nil area:nil];
+    
+    [self.request requestWithSuccess:^(KKBaseModel *model, KKRequestError *error) {
+        NSLog(@"%@", model);
+    } failure:^(KKBaseModel *model, KKRequestError *error) {
+        NSLog(@"faf");
+    }];
+    
+    self.request1 = [[AMAddSalespersonRequest alloc] initWithNickname:@"fdjal" phone:@"18500326684" area:@"北京"];
+    [self.request1 requestWithSuccess:^(KKBaseModel *model, KKRequestError *error) {
+        NSLog(@"%@", model);
+    } failure:^(KKBaseModel *model, KKRequestError *error) {
+        NSLog(@"fda");
+    }];
+    
+    self.request2 = [[AMModifySalespersonRequest alloc] initWithSalespersonID:@"13" nickname:@"fdaf" phone:@"18500326684" area:@"1"];
+    [self.request2 requestWithSuccess:^(KKBaseModel *model, KKRequestError *error) {
+        NSLog(@"%@", model);
+    } failure:^(KKBaseModel *model, KKRequestError *error) {
+        NSLog(@"fda");
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

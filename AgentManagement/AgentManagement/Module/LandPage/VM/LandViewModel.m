@@ -9,6 +9,7 @@
 #import "LandViewModel.h"
 #import "AMIdentifyCode.h"
 #import "AMUser.h"
+#import "AMUserManager.h"
 @implementation LandViewModel
 
 - (RACSignal*)requestIdentifyCode:(NSString*)phone {
@@ -66,7 +67,7 @@
                 [subscriber sendCompleted];
             }
             else {
-                
+                kSharedUserManager.user = registerModel;
                 [subscriber sendNext:registerModel];
                 [subscriber sendCompleted];
             }
@@ -100,7 +101,7 @@
                 [subscriber sendCompleted];
             }
             else {
-                
+                kSharedUserManager.user = loginModel;
                 [subscriber sendNext:loginModel];
                 [subscriber sendCompleted];
             }

@@ -8,6 +8,7 @@
 
 #import "MeViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "AMUpdatePasswordRequest.h"
 
 @interface MeViewController ()
 
@@ -18,6 +19,8 @@
 @property (nonatomic, weak) IBOutlet UILabel *addressLabel;
 @property (nonatomic, weak) IBOutlet UIImageView *codeImageView;
 
+@property (nonatomic, strong) AMUpdatePasswordRequest *request;
+
 @end
 
 @implementation MeViewController
@@ -25,10 +28,34 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initializeControl];
+    
+    self.request = [[AMUpdatePasswordRequest alloc] initWithCurrentPassword:@"111aaa" inputPassword:@"aaa111" confirmPassword:@"aaa111"];
+    [self.request requestWithSuccess:^(KKBaseModel *model, KKRequestError *error) {
+        NSLog(@"fa");
+    } failure:^(KKBaseModel *model, KKRequestError *error) {
+        NSLog(@"fa");
+    }];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self updateUserUI];
 }
 
 - (void)initializeControl {
     self.title = @"我的";
+}
+
+- (void)updateUserUI {
+#warning 数据未正式返回
+    [self.portraitImageView sd_setImageWithURL:[NSURL URLWithString:kSharedUserManager.user.img] placeholderImage:nil];
+    self.nameLabel.text = kSharedUserManager.user.nickname;
+    
+    self.phoneLabel.text = nil;
+    if (kSharedUserManager.user.tphone.length > 0) {
+        self.phoneLabel.text = [NSString stringWithFormat:@"电话：%@", kSharedUserManager.user.tphone];
+    }
+    self.addressLabel.text = nil;
 }
 
 - (IBAction)administratorPressed:(id)sender {

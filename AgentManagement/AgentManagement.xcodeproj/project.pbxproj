@@ -39,6 +39,21 @@
 		275F32B71D718A8A0033C8FF /* NSData+KKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 275F32B61D718A8A0033C8FF /* NSData+KKAdditions.m */; };
 		275F32BD1D71916A0033C8FF /* NSDictionary+KKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 275F32BC1D71916A0033C8FF /* NSDictionary+KKAdditions.m */; };
 		275F32BF1D71924B0033C8FF /* AMBaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 275F32BE1D71924B0033C8FF /* AMBaseRequest.m */; };
+		278FE0D41DBB0DDC002D8C32 /* AMUpdatePasswordRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 278FE0D31DBB0DDC002D8C32 /* AMUpdatePasswordRequest.m */; };
+		278FE0D81DBB1A00002D8C32 /* AMToast.m in Sources */ = {isa = PBXBuildFile; fileRef = 278FE0D71DBB1A00002D8C32 /* AMToast.m */; };
+		278FE0DD1DBB1B7F002D8C32 /* AMAdministratorListRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 278FE0DC1DBB1B7F002D8C32 /* AMAdministratorListRequest.m */; };
+		278FE0E01DBB1B93002D8C32 /* AMSalespersonListRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 278FE0DF1DBB1B93002D8C32 /* AMSalespersonListRequest.m */; };
+		278FE0E31DBB1BA8002D8C32 /* AMAddAdministratorRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 278FE0E21DBB1BA8002D8C32 /* AMAddAdministratorRequest.m */; };
+		278FE0E61DBB1BB9002D8C32 /* AMModifyAdministratorRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 278FE0E51DBB1BB9002D8C32 /* AMModifyAdministratorRequest.m */; };
+		278FE0E91DBB1BCA002D8C32 /* AMAddSalespersonRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 278FE0E81DBB1BCA002D8C32 /* AMAddSalespersonRequest.m */; };
+		278FE0EC1DBB1BDC002D8C32 /* AMModifySalespersonRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 278FE0EB1DBB1BDC002D8C32 /* AMModifySalespersonRequest.m */; };
+		278FE0F01DBB1C17002D8C32 /* AMLogListRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 278FE0EF1DBB1C17002D8C32 /* AMLogListRequest.m */; };
+		278FE0F41DBB1C65002D8C32 /* AMMessageListRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 278FE0F31DBB1C65002D8C32 /* AMMessageListRequest.m */; };
+		278FE0F71DBB1CE8002D8C32 /* AMModifyUserRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 278FE0F61DBB1CE8002D8C32 /* AMModifyUserRequest.m */; };
+		278FE0FB1DBB1D39002D8C32 /* AMCertificateRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 278FE0FA1DBB1D39002D8C32 /* AMCertificateRequest.m */; };
+		278FE0FE1DBB1D50002D8C32 /* AMCertificationDetailRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 278FE0FD1DBB1D50002D8C32 /* AMCertificationDetailRequest.m */; };
+		278FE1011DBB1D77002D8C32 /* AMMessageRemindRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 278FE1001DBB1D77002D8C32 /* AMMessageRemindRequest.m */; };
+		278FE1041DBB21B2002D8C32 /* AMAdministratorList.m in Sources */ = {isa = PBXBuildFile; fileRef = 278FE1031DBB21B2002D8C32 /* AMAdministratorList.m */; };
 		279C04161D727D2E00663EBA /* AMIdentifyCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 279C04151D727D2E00663EBA /* AMIdentifyCode.m */; };
 		27CA012F1D6B10E4009F9A25 /* CALayer+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA01241D6B10E4009F9A25 /* CALayer+Addition.m */; };
 		27CA01301D6B10E4009F9A25 /* NSMutableDictionary+KKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA01281D6B10E4009F9A25 /* NSMutableDictionary+KKAdditions.m */; };
@@ -261,6 +276,36 @@
 		275F32BB1D71916A0033C8FF /* NSDictionary+KKAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+KKAdditions.h"; sourceTree = "<group>"; };
 		275F32BC1D71916A0033C8FF /* NSDictionary+KKAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+KKAdditions.m"; sourceTree = "<group>"; };
 		275F32BE1D71924B0033C8FF /* AMBaseRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMBaseRequest.m; sourceTree = "<group>"; };
+		278FE0D21DBB0DDC002D8C32 /* AMUpdatePasswordRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMUpdatePasswordRequest.h; sourceTree = "<group>"; };
+		278FE0D31DBB0DDC002D8C32 /* AMUpdatePasswordRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMUpdatePasswordRequest.m; sourceTree = "<group>"; };
+		278FE0D61DBB1A00002D8C32 /* AMToast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMToast.h; sourceTree = "<group>"; };
+		278FE0D71DBB1A00002D8C32 /* AMToast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMToast.m; sourceTree = "<group>"; };
+		278FE0DB1DBB1B7F002D8C32 /* AMAdministratorListRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMAdministratorListRequest.h; sourceTree = "<group>"; };
+		278FE0DC1DBB1B7F002D8C32 /* AMAdministratorListRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMAdministratorListRequest.m; sourceTree = "<group>"; };
+		278FE0DE1DBB1B93002D8C32 /* AMSalespersonListRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMSalespersonListRequest.h; sourceTree = "<group>"; };
+		278FE0DF1DBB1B93002D8C32 /* AMSalespersonListRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMSalespersonListRequest.m; sourceTree = "<group>"; };
+		278FE0E11DBB1BA8002D8C32 /* AMAddAdministratorRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMAddAdministratorRequest.h; sourceTree = "<group>"; };
+		278FE0E21DBB1BA8002D8C32 /* AMAddAdministratorRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMAddAdministratorRequest.m; sourceTree = "<group>"; };
+		278FE0E41DBB1BB9002D8C32 /* AMModifyAdministratorRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMModifyAdministratorRequest.h; sourceTree = "<group>"; };
+		278FE0E51DBB1BB9002D8C32 /* AMModifyAdministratorRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMModifyAdministratorRequest.m; sourceTree = "<group>"; };
+		278FE0E71DBB1BCA002D8C32 /* AMAddSalespersonRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMAddSalespersonRequest.h; sourceTree = "<group>"; };
+		278FE0E81DBB1BCA002D8C32 /* AMAddSalespersonRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMAddSalespersonRequest.m; sourceTree = "<group>"; };
+		278FE0EA1DBB1BDC002D8C32 /* AMModifySalespersonRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMModifySalespersonRequest.h; sourceTree = "<group>"; };
+		278FE0EB1DBB1BDC002D8C32 /* AMModifySalespersonRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMModifySalespersonRequest.m; sourceTree = "<group>"; };
+		278FE0EE1DBB1C17002D8C32 /* AMLogListRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMLogListRequest.h; sourceTree = "<group>"; };
+		278FE0EF1DBB1C17002D8C32 /* AMLogListRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMLogListRequest.m; sourceTree = "<group>"; };
+		278FE0F21DBB1C65002D8C32 /* AMMessageListRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMMessageListRequest.h; sourceTree = "<group>"; };
+		278FE0F31DBB1C65002D8C32 /* AMMessageListRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMMessageListRequest.m; sourceTree = "<group>"; };
+		278FE0F51DBB1CE8002D8C32 /* AMModifyUserRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMModifyUserRequest.h; sourceTree = "<group>"; };
+		278FE0F61DBB1CE8002D8C32 /* AMModifyUserRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMModifyUserRequest.m; sourceTree = "<group>"; };
+		278FE0F91DBB1D39002D8C32 /* AMCertificateRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMCertificateRequest.h; sourceTree = "<group>"; };
+		278FE0FA1DBB1D39002D8C32 /* AMCertificateRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMCertificateRequest.m; sourceTree = "<group>"; };
+		278FE0FC1DBB1D50002D8C32 /* AMCertificationDetailRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMCertificationDetailRequest.h; sourceTree = "<group>"; };
+		278FE0FD1DBB1D50002D8C32 /* AMCertificationDetailRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMCertificationDetailRequest.m; sourceTree = "<group>"; };
+		278FE0FF1DBB1D77002D8C32 /* AMMessageRemindRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMMessageRemindRequest.h; sourceTree = "<group>"; };
+		278FE1001DBB1D77002D8C32 /* AMMessageRemindRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMMessageRemindRequest.m; sourceTree = "<group>"; };
+		278FE1021DBB21B2002D8C32 /* AMAdministratorList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMAdministratorList.h; sourceTree = "<group>"; };
+		278FE1031DBB21B2002D8C32 /* AMAdministratorList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMAdministratorList.m; sourceTree = "<group>"; };
 		279C04141D727D2E00663EBA /* AMIdentifyCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMIdentifyCode.h; sourceTree = "<group>"; };
 		279C04151D727D2E00663EBA /* AMIdentifyCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMIdentifyCode.m; sourceTree = "<group>"; };
 		27CA01231D6B10E4009F9A25 /* CALayer+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+Addition.h"; sourceTree = "<group>"; };
@@ -694,6 +739,72 @@
 			path = Reachability;
 			sourceTree = "<group>";
 		};
+		278FE0D51DBB1A00002D8C32 /* Toast */ = {
+			isa = PBXGroup;
+			children = (
+				278FE0D61DBB1A00002D8C32 /* AMToast.h */,
+				278FE0D71DBB1A00002D8C32 /* AMToast.m */,
+			);
+			path = Toast;
+			sourceTree = "<group>";
+		};
+		278FE0D91DBB1B69002D8C32 /* Administrator */ = {
+			isa = PBXGroup;
+			children = (
+				278FE0DB1DBB1B7F002D8C32 /* AMAdministratorListRequest.h */,
+				278FE0DC1DBB1B7F002D8C32 /* AMAdministratorListRequest.m */,
+				278FE0E11DBB1BA8002D8C32 /* AMAddAdministratorRequest.h */,
+				278FE0E21DBB1BA8002D8C32 /* AMAddAdministratorRequest.m */,
+				278FE0E41DBB1BB9002D8C32 /* AMModifyAdministratorRequest.h */,
+				278FE0E51DBB1BB9002D8C32 /* AMModifyAdministratorRequest.m */,
+			);
+			path = Administrator;
+			sourceTree = "<group>";
+		};
+		278FE0DA1DBB1B69002D8C32 /* Salesperson */ = {
+			isa = PBXGroup;
+			children = (
+				278FE0DE1DBB1B93002D8C32 /* AMSalespersonListRequest.h */,
+				278FE0DF1DBB1B93002D8C32 /* AMSalespersonListRequest.m */,
+				278FE0E71DBB1BCA002D8C32 /* AMAddSalespersonRequest.h */,
+				278FE0E81DBB1BCA002D8C32 /* AMAddSalespersonRequest.m */,
+				278FE0EA1DBB1BDC002D8C32 /* AMModifySalespersonRequest.h */,
+				278FE0EB1DBB1BDC002D8C32 /* AMModifySalespersonRequest.m */,
+			);
+			path = Salesperson;
+			sourceTree = "<group>";
+		};
+		278FE0ED1DBB1C05002D8C32 /* Log */ = {
+			isa = PBXGroup;
+			children = (
+				278FE0EE1DBB1C17002D8C32 /* AMLogListRequest.h */,
+				278FE0EF1DBB1C17002D8C32 /* AMLogListRequest.m */,
+			);
+			path = Log;
+			sourceTree = "<group>";
+		};
+		278FE0F11DBB1C56002D8C32 /* Message */ = {
+			isa = PBXGroup;
+			children = (
+				278FE0F21DBB1C65002D8C32 /* AMMessageListRequest.h */,
+				278FE0F31DBB1C65002D8C32 /* AMMessageListRequest.m */,
+				278FE0FF1DBB1D77002D8C32 /* AMMessageRemindRequest.h */,
+				278FE1001DBB1D77002D8C32 /* AMMessageRemindRequest.m */,
+			);
+			path = Message;
+			sourceTree = "<group>";
+		};
+		278FE0F81DBB1D29002D8C32 /* Certification */ = {
+			isa = PBXGroup;
+			children = (
+				278FE0F91DBB1D39002D8C32 /* AMCertificateRequest.h */,
+				278FE0FA1DBB1D39002D8C32 /* AMCertificateRequest.m */,
+				278FE0FC1DBB1D50002D8C32 /* AMCertificationDetailRequest.h */,
+				278FE0FD1DBB1D50002D8C32 /* AMCertificationDetailRequest.m */,
+			);
+			path = Certification;
+			sourceTree = "<group>";
+		};
 		279C04131D727D1600663EBA /* IdentifyCode */ = {
 			isa = PBXGroup;
 			children = (
@@ -727,6 +838,11 @@
 				27CA013A1D6B116F009F9A25 /* AMBaseRequest.h */,
 				275F32BE1D71924B0033C8FF /* AMBaseRequest.m */,
 				34A030121DB8C386003D3E07 /* PhoneNumRegisterState */,
+				278FE0F81DBB1D29002D8C32 /* Certification */,
+				278FE0F11DBB1C56002D8C32 /* Message */,
+				278FE0ED1DBB1C05002D8C32 /* Log */,
+				278FE0D91DBB1B69002D8C32 /* Administrator */,
+				278FE0DA1DBB1B69002D8C32 /* Salesperson */,
 				E2B103BF1D8FAF4A0011FA8E /* Me */,
 				E24819D21D86FEA300F885EE /* CustomerManage */,
 				E29A7B941D7DBD2000826744 /* User */,
@@ -1296,6 +1412,7 @@
 		34EE98171D76B62E0040C997 /* Control:View */ = {
 			isa = PBXGroup;
 			children = (
+				278FE0D51DBB1A00002D8C32 /* Toast */,
 				344FF63A1D88F9A3009911EB /* LoadingView */,
 				E29A7B9F1D8012E200826744 /* CommonControl.h */,
 				E24819C51D84541600F885EE /* PickerView */,
@@ -1390,6 +1507,8 @@
 			children = (
 				E224EB531D8FB8190046D4D8 /* AMAdministrators.h */,
 				E224EB541D8FB8190046D4D8 /* AMAdministrators.m */,
+				278FE1021DBB21B2002D8C32 /* AMAdministratorList.h */,
+				278FE1031DBB21B2002D8C32 /* AMAdministratorList.m */,
 			);
 			path = Administrators;
 			sourceTree = "<group>";
@@ -1559,6 +1678,10 @@
 			children = (
 				E29A7B951D7DBD4500826744 /* AMUserInformationRequest.h */,
 				E29A7B961D7DBD4500826744 /* AMUserInformationRequest.m */,
+				278FE0D21DBB0DDC002D8C32 /* AMUpdatePasswordRequest.h */,
+				278FE0D31DBB0DDC002D8C32 /* AMUpdatePasswordRequest.m */,
+				278FE0F51DBB1CE8002D8C32 /* AMModifyUserRequest.h */,
+				278FE0F61DBB1CE8002D8C32 /* AMModifyUserRequest.m */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -1941,7 +2064,9 @@
 				27E26B3F1D6B1D360072F26E /* AddCustomerViewControllerC.m in Sources */,
 				E21947391D771B64001C5E5F /* CoSearchMenuViewController.m in Sources */,
 				27E355301DB6DCF4006A6222 /* AMLogViewModel.m in Sources */,
+				278FE0D81DBB1A00002D8C32 /* AMToast.m in Sources */,
 				E2C14F7F1D7AA46000B0B0B2 /* RegisterViewController.m in Sources */,
+				278FE0E61DBB1BB9002D8C32 /* AMModifyAdministratorRequest.m in Sources */,
 				344FF63D1D88F9BE009911EB /* LoadingView.m in Sources */,
 				27E354EF1DB6C1B1006A6222 /* AMMessageViewController.m in Sources */,
 				E24BF4801D7475240054DFDC /* ProductDetailViewController.m in Sources */,
@@ -1951,9 +2076,11 @@
 				343800051D9B9FF600B3B816 /* AMEditProductRequest.m in Sources */,
 				27CA01381D6B1167009F9A25 /* AMBaseModel.m in Sources */,
 				275F329A1D717B210033C8FF /* ASICloudFilesRequest.m in Sources */,
+				278FE0F01DBB1C17002D8C32 /* AMLogListRequest.m in Sources */,
 				27FBA4651DB77C02005B77FF /* AMUserViewModel.m in Sources */,
 				E2B63B181D981797001B2237 /* AMEditCustomerRequest.m in Sources */,
 				27E354F91DB6C1CE006A6222 /* AMAdministatorViewController.m in Sources */,
+				278FE0E91DBB1BCA002D8C32 /* AMAddSalespersonRequest.m in Sources */,
 				27FA61D21DB7191500EDD77C /* AMSalespersonDetailViewController.m in Sources */,
 				279C04161D727D2E00663EBA /* AMIdentifyCode.m in Sources */,
 				275F32A01D717B210033C8FF /* ASIS3ServiceRequest.m in Sources */,
@@ -1977,20 +2104,24 @@
 				E244F1591D8D072A003BA93B /* PNLineChartDataItem.m in Sources */,
 				27E354EA1DB6C19F006A6222 /* AMSalespersonViewController.m in Sources */,
 				275F32BF1D71924B0033C8FF /* AMBaseRequest.m in Sources */,
+				278FE0DD1DBB1B7F002D8C32 /* AMAdministratorListRequest.m in Sources */,
 				27FBA4611DB77BD7005B77FF /* AMUserManager.m in Sources */,
 				E2C14F701D7A9B6F00B0B0B2 /* MBProgressHUD+KKAdditions.m in Sources */,
 				270704C11D45F9A900633390 /* AppDelegate.m in Sources */,
 				E2C14F821D7AA4A200B0B0B2 /* LandViewModel.m in Sources */,
+				278FE0FE1DBB1D50002D8C32 /* AMCertificationDetailRequest.m in Sources */,
 				275F32941D717B210033C8FF /* ASICloudFilesCDNRequest.m in Sources */,
 				E24BF45F1D7414360054DFDC /* AMProductAndModelListRequest.m in Sources */,
 				E24819CE1D85038100F885EE /* CustomerManageViewModel.m in Sources */,
 				27CA01321D6B10E4009F9A25 /* UIImage+KKAdditions.m in Sources */,
 				275F32901D717B210033C8FF /* ASIHTTPRequest.m in Sources */,
 				27CA014A1D6B116F009F9A25 /* AMLoginRequest.m in Sources */,
+				278FE0EC1DBB1BDC002D8C32 /* AMModifySalespersonRequest.m in Sources */,
 				E29A7B931D7C443800826744 /* AMUser.m in Sources */,
 				346190AB1DB0BF1800ED9599 /* DataAnalysisViewModel.m in Sources */,
 				27E3553E1DB6E16C006A6222 /* AMMessage.m in Sources */,
 				3422BA611D7EA33E003751F1 /* AMProductListOrSearchRequest.m in Sources */,
+				278FE0E01DBB1B93002D8C32 /* AMSalespersonListRequest.m in Sources */,
 				27E26B3D1D6B1D360072F26E /* AddCustomerViewControllerA.m in Sources */,
 				34A030151DB8C3B3003D3E07 /* PhoneRegisterStateRequest.m in Sources */,
 				E2A3F27B1D6F2192006EC120 /* DataCacheManager.m in Sources */,
@@ -2019,14 +2150,19 @@
 				E221EEB91D4F8B68005B3417 /* BaseNavigationController.m in Sources */,
 				275F32991D717B210033C8FF /* ASICloudFilesObjectRequest.m in Sources */,
 				E2C14F7D1D7AA46000B0B0B2 /* ForgetPasswordViewController.m in Sources */,
+				278FE1011DBB1D77002D8C32 /* AMMessageRemindRequest.m in Sources */,
+				278FE0E31DBB1BA8002D8C32 /* AMAddAdministratorRequest.m in Sources */,
+				278FE0D41DBB0DDC002D8C32 /* AMUpdatePasswordRequest.m in Sources */,
 				275F329D1D717B210033C8FF /* ASIS3BucketRequest.m in Sources */,
 				E244F1581D8D072A003BA93B /* PNLineChartData.m in Sources */,
+				278FE0FB1DBB1D39002D8C32 /* AMCertificateRequest.m in Sources */,
 				275F328C1D717B210033C8FF /* ASIDataCompressor.m in Sources */,
 				27FBA4221DB75A74005B77FF /* AMAdministratorViewModel.m in Sources */,
 				27CA014C1D6B116F009F9A25 /* AMRegisterRequest.m in Sources */,
 				34F552A31D81414300CCA537 /* AMDeleteProductRequest.m in Sources */,
 				34D8D28D1D93C9370011217C /* CSearchMenuCell.m in Sources */,
 				27CA01301D6B10E4009F9A25 /* NSMutableDictionary+KKAdditions.m in Sources */,
+				278FE0F71DBB1CE8002D8C32 /* AMModifyUserRequest.m in Sources */,
 				E21CF3221D8A6F7D00BE742A /* NSString+KKAdditions.m in Sources */,
 				27CA01491D6B116F009F9A25 /* AMIdentifyCodeRequest.m in Sources */,
 				27CA014B1D6B116F009F9A25 /* AMLogoutRequest.m in Sources */,
@@ -2035,6 +2171,7 @@
 				E24819D81D87020900F885EE /* AMAddCustomerRequest.m in Sources */,
 				E29A7B9E1D8007AF00826744 /* MaskView.m in Sources */,
 				27CA01311D6B10E4009F9A25 /* UIColor+KKAdditions.m in Sources */,
+				278FE0F41DBB1C65002D8C32 /* AMMessageListRequest.m in Sources */,
 				27FBA4511DB779F6005B77FF /* AMModifyNameViewController.m in Sources */,
 				27E354FF1DB6C617006A6222 /* AMLogTableViewCell.m in Sources */,
 				E224EB551D8FB8190046D4D8 /* AMAdministrators.m in Sources */,
@@ -2072,6 +2209,7 @@
 				34E333ED1D90EC0700FB29D3 /* AMCustomer.m in Sources */,
 				275F329F1D717B210033C8FF /* ASIS3Request.m in Sources */,
 				34EE98251D76BAF90040C997 /* CSearchMenuViewController.m in Sources */,
+				278FE1041DBB21B2002D8C32 /* AMAdministratorList.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

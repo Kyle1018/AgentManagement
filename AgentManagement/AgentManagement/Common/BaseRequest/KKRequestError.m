@@ -9,7 +9,7 @@
 #import "KKRequestError.h"
 
 static NSString *const kDefaultErrorMessage = @"请求发生错误";
-static NSInteger const kDefaultErrorCode = -1000;
+const NSInteger kDefaultErrorCode = -1000;
 
 @interface KKRequestError () {
     NSInteger _errorCode;

@@ -18,9 +18,6 @@
 
 - (id)buildModelWithJsonDictionary:(NSDictionary *)dictionary
 {
-    
-
-    
     return [[AMUser alloc] initWithDictionary:dictionary error:nil];;
     // return [[AMProductAndModel alloc] initWithDictionary:dictionary error:nil];
 }

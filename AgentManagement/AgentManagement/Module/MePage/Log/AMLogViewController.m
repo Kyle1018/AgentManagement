@@ -10,6 +10,7 @@
 #import "AMLogViewModel.h"
 #import "AMLogTableViewCell.h"
 #import "AMLogDetailViewController.h"
+#import "AMLogListRequest.h"
 
 @interface AMLogViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -17,6 +18,8 @@
 
 @property (nonatomic, strong) NSMutableArray *logArray;
 @property (nonatomic, strong) AMLogViewModel *logViewModel;
+
+@property (nonatomic, strong) AMLogListRequest *request;
 
 @end
 
@@ -27,6 +30,13 @@
     
     [self initializeControl];
     [self refreshLog];
+    
+    self.request = [[AMLogListRequest alloc] initWithPageIndex:1 pageSize:10];
+    [self.request requestWithSuccess:^(KKBaseModel *model, KKRequestError *error) {
+        NSLog(@"fa");
+    } failure:^(KKBaseModel *model, KKRequestError *error) {
+        NSLog(@"fa");
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

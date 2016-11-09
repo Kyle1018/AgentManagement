@@ -12,4 +12,6 @@
 
 - (RACSignal *)modifyPasswordSignalWithCurrentPassword:(NSString *)currentPassword inputPassword:(NSString *)inputPassword confirmPassword:(NSString *)confirmPassword;
 
+- (RACSignal *)modifyUserSignal:(AMUser *)user;
+
 @end

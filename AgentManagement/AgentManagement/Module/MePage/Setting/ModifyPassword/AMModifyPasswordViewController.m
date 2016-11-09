@@ -54,9 +54,13 @@
     @weakify(self);
     [[self.confirmButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
         @strongify(self);
-        [MBProgressHUD showText:@"正在处理中..."];
+        [AMToast showLoadingMessage:@"正在处理中..." onView:self.view];
         [[self.userViewModel modifyPasswordSignalWithCurrentPassword:self.currentPasswordTextField.text inputPassword:self.inputPasswordTextField.text confirmPassword:self.confirmPasswordTextField.text] subscribeError:^(NSError *error) {
+            [AMToast dismissWithMessage:[((KKRequestError *)error) errorMessage] onView:self.view];
         } completed:^{
+            [AMToast dismissWithMessage:@"修改成功" onView:self.view];
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+            [self.navigationController popViewControllerAnimated:YES];
         }];
     }];
 }

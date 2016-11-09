@@ -11,6 +11,9 @@
 #import "AMAdministratorTableViewCell.h"
 #import "AMAdministratorDetailViewController.h"
 #import "AMSearchAdministratorView.h"
+#import "AMAdministratorListRequest.h"
+#import "AMAddAdministratorRequest.h"
+#import "AMModifyAdministratorRequest.h"
 
 @interface AMAdministatorViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -20,6 +23,10 @@
 @property (nonatomic, strong) AMAdministratorViewModel *administratorViewModel;
 @property (nonatomic, strong) NSMutableArray *administratorArray;
 
+@property (nonatomic, strong) AMAdministratorListRequest *request;
+@property (nonatomic, strong) AMAddAdministratorRequest *request1;
+@property (nonatomic, strong) AMModifyAdministratorRequest *request2;
+
 @end
 
 @implementation AMAdministatorViewController
@@ -28,7 +35,28 @@
     [super viewDidLoad];
     
     [self initializeControl];
-    [self refreshAdministrator];
+//    [self refreshAdministrator];
+    self.request = [[AMAdministratorListRequest alloc] initWithPageIndex:1 pageSize:10 name:nil phone:nil area:nil];
+    
+    [self.request requestWithSuccess:^(KKBaseModel *model, KKRequestError *error) {
+        NSLog(@"%@", model);
+    } failure:^(KKBaseModel *model, KKRequestError *error) {
+        NSLog(@"faf");
+    }];
+    
+    self.request1 = [[AMAddAdministratorRequest alloc] initWithNickname:@"fdjal" phone:@"18500326684" area:@"北京"];
+    [self.request1 requestWithSuccess:^(KKBaseModel *model, KKRequestError *error) {
+        NSLog(@"%@", model);
+    } failure:^(KKBaseModel *model, KKRequestError *error) {
+        NSLog(@"fda");
+    }];
+    
+    self.request2 = [[AMModifyAdministratorRequest alloc] initWithAdministratorID:@"25" nickname:@"fdaf" phone:@"18500326684" area:@"1"];
+    [self.request2 requestWithSuccess:^(KKBaseModel *model, KKRequestError *error) {
+        NSLog(@"%@", model);
+    } failure:^(KKBaseModel *model, KKRequestError *error) {
+        NSLog(@"fda");
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
