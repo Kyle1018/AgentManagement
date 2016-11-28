@@ -106,7 +106,6 @@
             
             NSMutableArray *array = (NSMutableArray *)[[customerArray reverseObjectEnumerator] allObjects];
 
-            
             self.customerModelArray = array;
             
             if (self.customerModelArray.count > 0) {
@@ -260,10 +259,7 @@
                  
                  [subscriber sendError:error];
              }
-             
-             NSLog(@"%@",model);
-             
-             
+
          } failure:^(KKBaseModel *model, KKRequestError *error) {
              
               [subscriber sendError:error];
@@ -286,12 +282,9 @@
         self.editCustomerRequest = [[AMEditCustomerRequest alloc]initWithAddCustomerInfo:paramt];
         
         [self.editCustomerRequest requestWithSuccess:^(KKBaseModel *model, KKRequestError *error) {
-            
-            NSLog(@"%@",model);
-            
+   
         } failure:^(KKBaseModel *model, KKRequestError *error) {
-            
-            NSLog(@"dd");
+
         }];
         
         return nil;

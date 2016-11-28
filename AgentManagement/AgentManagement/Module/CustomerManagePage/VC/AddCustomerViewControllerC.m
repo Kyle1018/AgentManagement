@@ -89,7 +89,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
-    self.pickerView = [PickerView showAddTo:[UIApplication sharedApplication].keyWindow];
+    self.pickerView = [PickerView showAddTo:kAppWindow];
     self.pickerView.picker.delegate = self.protocol;
     self.pickerView.picker.dataSource = self.protocol;
     
@@ -132,8 +132,6 @@
 
 #pragma mark - Action
 - (IBAction)saveAction:(UIButton *)sender {
-    
-    NSLog(@"%@",self.addCutomerInfoDic);
     
     if ([self.addCutomerInfoDic[@"order"]count]>1) {
         

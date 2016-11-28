@@ -403,10 +403,12 @@
                 innerGrade = (yValue - _yValueMin) / (_yValueMax - _yValueMin);
             }
 
+          
             //折线的x轴
             int x = i * _xLabelWidth + _chartMarginLeft + _xLabelWidth / 2.0+10;
-
+            
             int y = _chartCavanHeight - (innerGrade * _chartCavanHeight) + (_yLabelHeight / 2) + _chartMarginTop - _chartMarginBottom+10;
+            
 
             // Circular point
             if (chartData.inflexionPointStyle == PNLineChartPointStyleCircle) {
@@ -420,7 +422,7 @@
                
                 
                 //jet text display text
-                if (chartData.showPointLabel) {
+                if (chartData.showPointLabel && yValue>0) {
                     [gradePathArray addObject:[self createPointLabelFor:chartData.getData(i).rawY pointCenter:circleCenter width:inflexionWidth withChartData:chartData]];
                 }
 
@@ -499,13 +501,16 @@
                     [progrssLinePaths addObject:@{@"from" : [NSValue valueWithCGPoint:CGPointMake(last_x1, last_y1)],
                             @"to" : [NSValue valueWithCGPoint:CGPointMake(x1, y1)]}];
                 }
-            } else {
+            }
+            
+            else {
 
                 if (i > 0) {
                     [progrssLinePaths addObject:@{@"from" : [NSValue valueWithCGPoint:CGPointMake(last_x, last_y)],
                             @"to" : [NSValue valueWithCGPoint:CGPointMake(x, y)]}];
                 }
             }
+            
             [linePointsArray addObject:[NSValue valueWithCGPoint:CGPointMake(x, y)]];
             last_x = x;
             last_y = y;
@@ -589,7 +594,6 @@
                      pointLayer.fillColor = [UIColor colorWithHex:@"ff3131"].CGColor;//折线点的填充颜色
                 }
             }
-            
             else {
                 
                 
@@ -947,9 +951,9 @@
     for (int i = 0; i<self.chartData.count; i++) {
         
         PNLineChartData *pdata = self.chartData[i];
-   // }
-  //  for (PNLineChartData *pdata in self.chartData) {
-        /* Expected label size*/
+
+        
+        
         CGSize labelsize = [PNLineChart sizeOfString:pdata.dataTitle
                                            withWidth:maxLabelWidth
                                                 font:self.legendFont ? self.legendFont : [UIFont systemFontOfSize:12.0f]];
@@ -977,19 +981,9 @@
         } else {
             halfLineLength = legendLineWidth * 0.8;
         }
-//        UIView *line = [[UIView alloc] initWithFrame:CGRectMake(x + legendLineWidth * 0.1, y + (singleRowHeight - pdata.lineWidth) / 2, halfLineLength, pdata.lineWidth)];
-//
-//        //  UIView *line = [[UIView alloc] initWithFrame:CGRectMake(200, y + (singleRowHeight - pdata.lineWidth) / 2, halfLineLength, pdata.lineWidth)];
-//        line.backgroundColor = pdata.color;
-//        line.alpha = pdata.alpha;
-//        [legendViews addObject:line];
-        
-     
 
         if (pdata.inflexionPointStyle != PNLineChartPointStyleNone) {
-            
-//            UIView*line = [[UIView alloc] initWithFrame:CGRectMake(x + legendLineWidth * 0.1 + halfLineLength + inflexionWidthSpacer, y + (singleRowHeight - pdata.lineWidth) / 2, halfLineLength, pdata.lineWidth)];
-           
+
             UIView *line = [[UIView alloc]init];
             
             if (self.chartData.count==2) {
@@ -999,12 +993,13 @@
                     line.frame =CGRectMake(ScreenWidth-(labelsize.width*2+legendLineWidth*2)-labelsize.width+20,y + (singleRowHeight - pdata.lineWidth) / 2+10, halfLineLength, pdata.lineWidth);
                      line.backgroundColor = [UIColor colorWithHex:@"47b6ff"];
                    
+                   
                 }
                 else {
                     
                       line.frame =CGRectMake(ScreenWidth-(labelsize.width+legendLineWidth)-labelsize.width+23,y + (singleRowHeight - pdata.lineWidth) / 2+10 , halfLineLength, pdata.lineWidth);
                     line.backgroundColor = [UIColor colorWithHex:@"ff3131"];;
-                  
+                    
                 }
             }
             else {
@@ -1016,38 +1011,37 @@
             [legendViews addObject:line];
         }
 
-        // Add inflexion type
-     //   UIColor *inflexionPointColor = pdata.inflexionPointColor;
+
         UIColor *inflexionPointColor = [UIColor clearColor];
         if (!inflexionPointColor) {
             inflexionPointColor = pdata.color;
            
         }
+        
+    
+  
         [legendViews addObject:[self drawInflexion:pdata.inflexionPointWidth
-                                            center:CGPointMake(x + legendLineWidth / 2, y + singleRowHeight / 2)
-                                       strokeWidth:pdata.lineWidth
-                                    inflexionStyle:pdata.inflexionPointStyle
-                                          andColor:inflexionPointColor
-                                          andAlpha:pdata.alpha]];
+                                                center:CGPointMake(x + legendLineWidth / 2, y + singleRowHeight / 2)
+                                           strokeWidth:pdata.lineWidth
+                                        inflexionStyle:pdata.inflexionPointStyle
+                                              andColor:inflexionPointColor
+                                              andAlpha:pdata.alpha]];
+   
         
         UILabel *label = [[UILabel alloc] init];
 
         if (i==0) {
             
             label.frame =CGRectMake(ScreenWidth-(labelsize.width*2+legendLineWidth*2)+10, y+10, labelsize.width, labelsize.height);
-         
-          //  UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(ScreenWidth-(labelsize.width*2+legendLineWidth*2), y, labelsize.width, labelsize.height)];
+
         }
         else {
             
             label.frame = CGRectMake(ScreenWidth-(labelsize.width+legendLineWidth)+5, y+10, labelsize.width, labelsize.height);
          
-//               UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(x + legendLineWidth, y, labelsize.width, labelsize.height)];
+
         }
-        
-//        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(x + legendLineWidth, y, labelsize.width, labelsize.height)];
-        //设置图解label的frame
-        //UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(f, y, labelsize.width, labelsize.height)];
+   
         label.text = pdata.dataTitle;
         
         if (self.chartData.count==2) {
@@ -1143,9 +1137,7 @@
     CATextLayer *textLayer = [[CATextLayer alloc] init];
     [textLayer setAlignmentMode:kCAAlignmentCenter];
     [textLayer setForegroundColor:[chartData.pointLabelColor CGColor]];
-//    
-//    [textLayer setBackgroundColor:[[[UIColor clearColor]colorWithAlphaComponent:1]CGColor]];
-//    //[textLayer setBackgroundColor:[[[UIColor whiteColor] colorWithAlphaComponent:0.8] CGColor]];
+ 
     [textLayer setCornerRadius:textLayer.fontSize / 8.0];
 
     if (chartData.pointLabelFont != nil) {
@@ -1162,6 +1154,7 @@
     [self.layer addSublayer:textLayer];
 
     if (chartData.pointLabelFormat != nil) {
+        
         [textLayer setString:[[NSString alloc] initWithFormat:chartData.pointLabelFormat, grade]];
     } else {
         [textLayer setString:[[NSString alloc] initWithFormat:_yLabelFormat, grade]];

@@ -385,31 +385,12 @@
 
 //确定
 - (IBAction)confirmAction:(UIButton *)sender {
-    
-//    DDLogDebug(@"%@",_selectedOptionDic);
-//
-//    __weak typeof(self) weakSelf = self;
-//    //发起查询产品数据请求
-//    [[self.viewModel requestProductListDataOrSearchProductDataWithPage:0 Size:0 Search:_selectedOptionDic]subscribeNext:^(NSNumber* x) {
-//        
-//        if ([x integerValue] == 1) {
-//            
-//            
-//        }
-//        else {
-//            
-//            
-//        }
-         //weakSelf.searchResultArray = x;
-        
-        if (self.tapSearchProductBlock) {
-            
-            self.tapSearchProductBlock(self.selectedOptionDic);
-        }
 
-   // }];
-    
-    
+    if (self.tapSearchProductBlock) {
+            
+        self.tapSearchProductBlock(self.selectedOptionDic);
+    }
+
     [UIView animateWithDuration:1 animations:^{
         
         self.bgView.originX = ScreenWidth;

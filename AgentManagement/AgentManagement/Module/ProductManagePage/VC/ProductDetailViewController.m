@@ -18,7 +18,10 @@
 @property(nonatomic,assign)NSInteger textFieldTag;
 @property(nonatomic,strong)NSArray *keyNameArray;
 @property(nonatomic,assign)BOOL isTapEditing;
-
+@property (weak, nonatomic) IBOutlet UITextField *stock_numberTextField;
+@property (weak, nonatomic) IBOutlet UITextField *stock_priceTextField;
+@property (weak, nonatomic) IBOutlet UITextField *brandTextField;
+@property (weak, nonatomic) IBOutlet UITextField *pmodelTextField;
 
 @end
 
@@ -28,30 +31,25 @@
     [super viewDidLoad];
     
     DDLogDebug(@"%@",self.productInfo);
-
+    
     //设置数据
     [self setData];
-    
 }
 
 - (void)setData {
     
     _viewModel = [[ProductManageViewModel alloc]init];
 
-    NSLog(@"%@",self.productInfo);
-    
     _dataArray = [NSMutableArray arrayWithObjects:@[self.productInfo.brand==nil?@"":self.productInfo.brand,self.productInfo.pmodel==nil?@"":self.productInfo.pmodel],@[self.productInfo.drinking==nil?@"":self.productInfo.drinking,self.productInfo.classification==nil?@"":self.productInfo.classification,self.productInfo.filter==nil?@"":self.productInfo.filter,self.productInfo.features==nil?@"":self.productInfo.features,self.productInfo.putposition==nil?@"":self.productInfo.putposition, self.productInfo.number==nil?@"":self.productInfo.number,self.productInfo.area==nil?@"":self.productInfo.area,self.productInfo.price==nil?@"":self.productInfo.price,self.productInfo.cycle==nil?@"":self.productInfo.cycle],@[self.productInfo.stock_price==nil?@"":self.productInfo.stock_price,self.productInfo.stock_number==nil?@"":self.productInfo.stock_number],nil];
     
     _keyNameArray = @[@[@"brand",@"pmodel"],@[@"drinking",@"classification",@"filter",@"features",@"putposition",@"number",@"area",@"price",@"cycle"],@[@"stock_price",@"stock_number"]];
     
     _inputOptionDic = [NSMutableDictionary dictionaryWithDictionary:[self.productInfo toDictionary]];
+    
 }
-
-
 
 #pragma mark- UITabelViewDelegate;UITabelViewDatasource
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    
     
     if (section == 0) {
         
@@ -72,8 +70,9 @@
     if ([view isKindOfClass:[UITextField class]]) {
         
         UITextField *textField = (UITextField*)view;
-        
+    
         textField.text = [_dataArray[indexPath.section]objectAtIndex:indexPath.row];
+        
     }
     else if ([view isKindOfClass:[UILabel class]]) {
         
@@ -110,37 +109,88 @@
             saveBtn.titleLabel.font = [UIFont systemFontOfSize:18.f];
             self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:saveBtn];
             
+            
+            RACSignal*a=[self.brandTextField.rac_textSignal map:^id(NSString* value) {
+                
+                return @(value.length>0);
+            }];
+            
+            RACSignal*b=[self.pmodelTextField.rac_textSignal map:^id(NSString* value) {
+                
+                return @(value.length>0);
+            }];
+            
+            RACSignal*c=[self.stock_numberTextField.rac_textSignal map:^id(NSString* value) {
+                
+                return @(value.length>0);
+            }];
+            
+            RACSignal*d=[self.stock_priceTextField.rac_textSignal map:^id(NSString* value) {
+                
+                return @(value.length>0);
+            }];
+            
+            RACSignal *signUpActiveSignal =
+            [RACSignal combineLatest:@[a, b,c,d]
+                              reduce:^id(NSNumber*a, NSNumber *b,NSNumber*c,NSNumber*d){
+                                  
+                                  return @([a boolValue]&&[b boolValue]&&[c boolValue]&&[d boolValue]);
+                              }];
+            
+            RAC(saveBtn,enabled) = [signUpActiveSignal map:^id(id value) {
+                
+                if ([value boolValue]) {
+                    
+                    [saveBtn setTitleColor:[UIColor colorWithHex:@"007AFF"] forState:UIControlStateNormal];
+                    
+                }
+                else {
+                    
+                    [saveBtn setTitleColor:[UIColor colorWithHex:@"9b9b9b"] forState:UIControlStateNormal];
+                    
+                }
+                
+                return value;
+            }];
+            
             //保存编辑信息事件
             [[saveBtn rac_signalForControlEvents:UIControlEventTouchUpInside]subscribeNext:^(id x) {
-                
-                NSLog(@"%@",self.inputOptionDic);
-                
-                [[self.viewModel editProduct:self.inputOptionDic]subscribeNext:^(id x) {
-                   
+
+                [[[[self.viewModel editProduct:self.inputOptionDic]filter:^BOOL(id value) {
+                    
                     if ([x isKindOfClass:[AMProductInfo class]]) {
                         
                         AMProductInfo *productInfo = (AMProductInfo*)x;
                         
                         [self.dataArray removeAllObjects];
-                       
+                        
                         NSArray *array = @[@[productInfo.brand,productInfo.pmodel],
-                                          @[productInfo.drinking,productInfo.classification,productInfo.filter,productInfo.features,productInfo.putposition,productInfo.number,productInfo.area,productInfo.price,productInfo.cycle],
+                                           @[productInfo.drinking,productInfo.classification,productInfo.filter,productInfo.features,productInfo.putposition,productInfo.number,productInfo.area,productInfo.price,productInfo.cycle],
                                            @[productInfo.stock_price,productInfo.stock_number]];
                         [self.dataArray addObjectsFromArray:array];
                         
                         [self.tableView reloadData];
+                        
+                        [MBProgressHUD showText:@"编辑产品保存成功"];
+                        
+                        return YES;
                     }
                     
                     else {
                         
-                        [MBProgressHUD showText:@"编辑产品信息失败"];
+                        [MBProgressHUD showText:@"编辑产品保存失败"];
+                        
+                        return NO;
                     }
                     
+                    
+                }]delay:3]subscribeNext:^(id x) {
+                   
+                     [self.navigationController popViewControllerAnimated:YES];
                     
                 }];
   
             }];
-
         }
         
         //点击了删除产品选项
@@ -151,7 +201,6 @@
             [self presentViewController: self.alertVC animated: YES completion:nil];
             
             //点击了删除产品
-            
             self.alertVC.tapExitButtonBlock = ^() {
             
                 @strongify(self);
@@ -168,10 +217,7 @@
         }
     };
     
-    [self presentViewController: self.alertVC animated: YES completion:^{
-        
-        
-    }];
+    [self presentViewController: self.alertVC animated: YES completion:nil];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -182,9 +228,7 @@
         self.alertVC.tapActionButtonBlock = nil;
         
         NSInteger tag = [[NSString stringWithFormat:@"%ld10%ld",(long)indexPath.section,(long)indexPath.row]integerValue];
-        
         UITextField *textFiled = [tableView viewWithTag:tag];
-        
         textFiled.enabled = YES;
         [textFiled becomeFirstResponder];
         
@@ -224,8 +268,6 @@
         
         self.alertVC.actionButtonArray = [[self.productRelatedInformationArray lastObject]objectAtIndex:indexPath.row+2];
         
-        // self.alertVC.alertTag = indexPath.row + 300;
-        
         [self presentViewController: self.alertVC animated: YES completion:nil];
     }
 
@@ -262,5 +304,4 @@
         [self.navigationController popToRootViewControllerAnimated:YES];
     }
 }
-
 @end

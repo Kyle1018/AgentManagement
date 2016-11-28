@@ -18,6 +18,10 @@
 #import "Common/Control:View/CommonControl.h"
 #import <SDAutoLayout/UIView+SDAutoLayout.h>
 #import <MJRefresh_Bell/MJRefresh.h>
+#import "AMUserManager.h"
+#import "AMToast.h"
+#import "KKRequestError.h"
+
 #endif /* PrefixHeader_pch */
 
 #ifdef DEBUG

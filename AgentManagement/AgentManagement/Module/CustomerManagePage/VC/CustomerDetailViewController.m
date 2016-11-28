@@ -35,8 +35,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    NSLog(@"%@",self.customerModel);
+
     _customerDic = [NSMutableDictionary dictionaryWithDictionary:[self.customerModel toDictionary]];
     
     NSArray *orderArray = _customerDic[@"orderArray"];
@@ -255,7 +254,7 @@
     [textField resignFirstResponder];
 
 
-    self.pickerView = [PickerView showAddTo:[UIApplication sharedApplication].keyWindow];
+    self.pickerView = [PickerView showAddTo:kAppWindow];
     self.pickerView.picker.delegate = self.protocol;
     self.pickerView.picker.dataSource = self.protocol;
 
@@ -547,7 +546,7 @@
                     
                 }];
                 //编辑保存请求
-                NSLog(@"%@",self.customerDic);
+     
                 
             }];
             
@@ -626,9 +625,7 @@
         [customerDic removeObjectForKey:@"orderArray"];
         
         [customerDic safeSetObject:orderArray forKey:@"order"];
-        
-        NSLog(@"%@",customerDic);
-        
+
         [page2 setValue:customerDic forKey:@"addCutomerInfoDic"];
     }
     

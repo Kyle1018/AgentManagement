@@ -92,9 +92,7 @@
             self.lastDate = currentDateStr;
             
         }
-     
-        
-        
+
         [self.keysArray addObjectsFromArray:[self.listDataDic allKeys]];
      
     }];
@@ -146,12 +144,13 @@
 
 - (void)pullRefresh {
     
-     WeakObj(self);
-    
+    @weakify(self);
     self.formTabelView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
     
-        [selfWeak.listDataDic removeAllObjects];
-        [selfWeak.keysArray removeAllObjects];
+        @strongify(self);
+        
+        [self.listDataDic removeAllObjects];
+        [self.keysArray removeAllObjects];
         
         [[self.viewModel requestProductListDataOrSearchProductDataWithPage:0 Size:0 Search:nil]
          subscribeNext:^(NSNumber* x) {
@@ -163,10 +162,10 @@
              }
              else {
                  
-                 [selfWeak.formTabelView reloadData];
+                 [self.formTabelView reloadData];
              }
              
-             [selfWeak.formTabelView.mj_header endRefreshing];
+             [self.formTabelView.mj_header endRefreshing];
          }];
 
     }];
@@ -270,7 +269,7 @@
     UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"CostManage" bundle:nil];
     _coSearchMenuVC = [storyboard instantiateViewControllerWithIdentifier:@"CoSearchMenuViewID"];
     _coSearchMenuVC.brandAndPmodelDataArray = self.brandAndPmodelDataArray;
-    [[UIApplication sharedApplication].keyWindow addSubview:_coSearchMenuVC.view];
+    [kAppWindow addSubview:_coSearchMenuVC.view];
     
     WeakObj(self);
     //点击了搜索产品回调

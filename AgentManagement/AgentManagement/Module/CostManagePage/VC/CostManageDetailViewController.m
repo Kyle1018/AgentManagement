@@ -105,19 +105,9 @@
         NSDictionary *dic = [self.productInfo toDictionary];
         //删除请求
         [[self.viewModel deleteProduct:dic]subscribeNext:^(NSNumber* x) {
-            
-         //   if ([x boolValue]== YES) {
 
-              //  [[NSNotificationCenter defaultCenter]postNotificationName:KDeletaProductInfoNotifi object:nil userInfo:@{@"productInfo":weakSelf.productInfo}];
-                
-                [self.navigationController popViewControllerAnimated:YES];
-//                
-//            }
-//            else {
-//                
-//                [MBProgressHUD showText:@"删除失败"];
-//            }
-            
+            [self.navigationController popViewControllerAnimated:YES];
+
         }];
         
     };

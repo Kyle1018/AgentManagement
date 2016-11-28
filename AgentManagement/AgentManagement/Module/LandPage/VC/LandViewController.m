@@ -168,8 +168,10 @@
     
     self.viewModel = [[LandViewModel alloc]init];
     
+    @weakify(self);
     [[self.signinBtn rac_signalForControlEvents:UIControlEventTouchUpInside]subscribeNext:^(id x) {
         
+        @strongify(self);
         //登录请求
         [[[self.viewModel requestSigninWithUserName:self.inputUserName.text Password:self.inputPassWord.text]filter:^BOOL(id value) {
             

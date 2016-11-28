@@ -53,7 +53,6 @@
 
 - (void)requestData {
     
- 
     [[self.viewModel requestCustomerInfoListDataOrSearchCustomerInfoDataWithPage:0 size:0 search:self.selectedOptionDic]subscribeNext:^(NSNumber* x) {
         
         if ([x integerValue] == 1) {
@@ -63,9 +62,10 @@
             [self.formTabelView reloadData];
         }
         else if ([x integerValue] == 2) {
-            
-          //  [LoadingView showNoDataAddToView:self.view];
+ 
             self.formTabelView.hidden = YES;
+            [LoadingView showNoDataAddToView:self.view];
+           
         }
         
         else {
@@ -89,9 +89,7 @@
 - (void)observeData {
     
     [RACObserve(self.viewModel, customerModelArray)subscribeNext:^(NSMutableArray* x) {
-       
-        NSLog(@"%@",x);
-        
+
         self.listDataArray = x;
         
     }];
@@ -99,7 +97,11 @@
 
 - (void)pullRefresh {
     
+    @weakify(self);
+    
     self.formTabelView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        
+        @strongify(self);
         
         [[self.viewModel requestCustomerInfoListDataOrSearchCustomerInfoDataWithPage:0 size:0 search:nil]
          
@@ -171,7 +173,7 @@
     
     UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"CustomerManage" bundle:nil];
     _cSearchMenuVC = [storyboard instantiateViewControllerWithIdentifier:@"CSearchMenuID"];
-    [[UIApplication sharedApplication].keyWindow addSubview:_cSearchMenuVC.view];
+    [kAppWindow addSubview:_cSearchMenuVC.view];
     
     @weakify(self);
     //点击了搜索产品回调

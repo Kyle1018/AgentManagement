@@ -9,18 +9,17 @@
 #import "LandViewModel.h"
 #import "AMIdentifyCode.h"
 #import "AMUser.h"
+#import "AMUserManager.h"
 @implementation LandViewModel
 
 - (RACSignal*)requestIdentifyCode:(NSString*)phone {
     
-    __weak typeof(self) weakSelf = self;
- 
     __block AMIdentifyCode *identifyCodeModel = nil;
     
     return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
        
-        weakSelf.identifyCodeRequest = [[AMIdentifyCodeRequest alloc] initWithPhone:phone];
-        [weakSelf.identifyCodeRequest requestWithSuccess:^(KKBaseModel *model, KKRequestError *error) {
+        self.identifyCodeRequest = [[AMIdentifyCodeRequest alloc] initWithPhone:phone];
+        [self.identifyCodeRequest requestWithSuccess:^(KKBaseModel *model, KKRequestError *error) {
   
             identifyCodeModel = (AMIdentifyCode*)model;
             
@@ -52,15 +51,13 @@
 }
 
 - (RACSignal*)requestRegisterWithRegisterInformation:(NSDictionary*)dic {
-    
-      __weak typeof(self) weakSelf = self;
-    
-       __block AMUser *registerModel = nil;
+  
+    __block AMUser *registerModel = nil;
     return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
         
-        weakSelf.registerRequest = [[AMRegisterRequest alloc]initWithPhone:dic[@"phone"] Password:dic[@"password"] Code:dic[@"identifyCode"]];
+        self.registerRequest = [[AMRegisterRequest alloc]initWithPhone:dic[@"phone"] Password:dic[@"password"] Code:dic[@"identifyCode"]];
         
-        [weakSelf.registerRequest requestWithSuccess:^(KKBaseModel *model, KKRequestError *error) {
+        [self.registerRequest requestWithSuccess:^(KKBaseModel *model, KKRequestError *error) {
        
             registerModel = (AMUser*)model;
             
@@ -70,7 +67,7 @@
                 [subscriber sendCompleted];
             }
             else {
-                
+                kSharedUserManager.user = registerModel;
                 [subscriber sendNext:registerModel];
                 [subscriber sendCompleted];
             }
@@ -86,18 +83,15 @@
     }];
 }
 
-
 - (RACSignal*)requestSigninWithUserName:(NSString*)userName Password:(NSString*)password {
-    
-    __weak typeof(self) weakSelf = self;
     
     __block AMUser *loginModel = nil;
     
     return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
        
-        weakSelf.loginRequest = [[AMLoginRequest alloc]initWithAccount:userName password:password];
+        self.loginRequest = [[AMLoginRequest alloc]initWithAccount:userName password:password];
         
-        [weakSelf.loginRequest requestWithSuccess:^(KKBaseModel *model, KKRequestError *error) {
+        [self.loginRequest requestWithSuccess:^(KKBaseModel *model, KKRequestError *error) {
 
             loginModel = (AMUser*)model;
             
@@ -107,7 +101,7 @@
                 [subscriber sendCompleted];
             }
             else {
-                
+                kSharedUserManager.user = loginModel;
                 [subscriber sendNext:loginModel];
                 [subscriber sendCompleted];
             }
@@ -119,6 +113,49 @@
         }];
         
         return nil;
+    }];
+}
+
+- (RACSignal*)requestPhoneNumRegisterState:(NSString*)phone {
+    
+    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+       
+        self.phoneRegisterStateRequest = [[PhoneRegisterStateRequest alloc]initWithPhone:phone];
+        
+        [self.phoneRegisterStateRequest requestWithSuccess:^(KKBaseModel *model, KKRequestError *error) {
+            
+            [subscriber sendNext: (NSNumber*)model];
+            [subscriber sendCompleted];
+            
+        } failure:^(KKBaseModel *model, KKRequestError *error) {
+            
+        }];
+        
+        return [RACDisposable disposableWithBlock:^{
+            
+        }];
+    }];
+}
+
+- (RACSignal*)requestModifyPasswordWithLandInformation:(NSDictionary*)dic {
+    
+    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+       
+        self.modifyPasswordRequest = [[AMModifyPasswordRequest alloc]initWithLandInformation:dic];
+        
+        [self.modifyPasswordRequest requestWithSuccess:^(KKBaseModel *model, KKRequestError *error) {
+            
+            [subscriber sendNext: (NSNumber*)model];
+            [subscriber sendCompleted];
+            
+        } failure:^(KKBaseModel *model, KKRequestError *error) {
+            
+            [subscriber sendError:error];
+        }];
+        
+        return [RACDisposable disposableWithBlock:^{
+            
+        }];
     }];
 }
 

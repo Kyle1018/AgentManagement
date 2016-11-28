@@ -134,8 +134,11 @@
 
 - (void)pullRefresh {
     
+    @weakify(self);
+    
     self.formTabelView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         
+        @strongify(self);
         [[self.viewModel requestProductListDataOrSearchProductDataWithPage:0 Size:0 Search:nil]
          
          subscribeNext:^(NSNumber* x) {
@@ -237,7 +240,7 @@
     
     _searchMenuVC.productRelatedInformationArray = self.productRelatedInformationArray;
 
-    [[UIApplication sharedApplication].keyWindow addSubview:_searchMenuVC.view];
+    [kAppWindow addSubview:_searchMenuVC.view];
     
     @weakify(self);
     //点击了搜索产品回调
