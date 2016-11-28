@@ -12,21 +12,6 @@
 @interface ProductDetailViewController ()
 
 @property(nonatomic,strong)AlertController *alertVC;
-/*
-@property (weak, nonatomic) IBOutlet UITextField *brandTextFiled;
-@property (weak, nonatomic) IBOutlet UITextField *pmodelTextField;
-@property (weak, nonatomic) IBOutlet UITextField *priceTextFiled;
-@property (weak, nonatomic) IBOutlet UITextField *stock_priceTextFiled;
-@property (weak, nonatomic) IBOutlet UITextField *stock_numberTextFiled;
-@property (weak, nonatomic) IBOutlet UILabel *drinking;//是否可以直接饮用
-@property (weak, nonatomic) IBOutlet UILabel *classification;//分类
-@property (weak, nonatomic) IBOutlet UILabel *filter;//过滤介质
-@property (weak, nonatomic) IBOutlet UILabel *features;//产品特点
-@property (weak, nonatomic) IBOutlet UILabel *putposition;//摆放位置
-@property (weak, nonatomic) IBOutlet UILabel *number;//滤芯个数
-@property (weak, nonatomic) IBOutlet UILabel *area;//适用地区
-@property (weak, nonatomic) IBOutlet UILabel *cycle;//换滤芯周期
- */
 @property(nonatomic,strong)NSMutableDictionary *inputOptionDic;
 @property(nonatomic,strong)ProductManageViewModel *viewModel;
 @property(nonatomic,strong)NSMutableArray *dataArray;
