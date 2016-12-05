@@ -51,19 +51,24 @@
                           return @([brandInputValid boolValue]&&[modelInputValid boolValue]);
                       }];
     
+    @weakify(self);
     [[[self.brandTextField rac_textSignal]distinctUntilChanged]subscribeNext:^(NSString* x) {
-       
+        
+        
+        @strongify(self);
         [self.inputContentDic setObject:x forKey:@"brand"];
     }];
     
     [[[self.modelTextField rac_textSignal]distinctUntilChanged]subscribeNext:^(NSString* x) {
         
+        @strongify(self);
         [self.inputContentDic setObject:x forKey:@"pmodel"];
 
     }];
 
     RAC(self.nextButton,enabled) = [signUpActiveSignal map:^id(id value) {
         
+        @strongify(self);
         if ([value boolValue]) {
             
             [self.nextButton setTitleColor:[UIColor colorWithHex:@"47b6ff"] forState:UIControlStateNormal];
@@ -111,6 +116,11 @@
         [self.modelTextField becomeFirstResponder];
     }
     
+}
+
+- (void)dealloc {
+    
+    NSLog(@"ddd");
 }
 
 
