@@ -28,6 +28,8 @@
     
     [super viewDidLoad];
     
+    NSLog(@"%@",_registerInformationDic);
+    
     _viewModel = [[LandViewModel alloc]init];
 
     __block NSString *password = @"";
@@ -134,6 +136,11 @@
             
         }];
     }];
+}
+
+- (void)dealloc {
+    
+    NSLog(@"dd");
 }
 
 @end
