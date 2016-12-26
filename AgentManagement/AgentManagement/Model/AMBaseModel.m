@@ -23,7 +23,7 @@
         self = [super initWithDictionary:dataDictionary error:err];
         self.resultCode = dict[@"resultCode"];
         self.resultMessage = dict[@"resultMessage"];
-    } else {
+    }else {
         self = [super initWithDictionary:dict error:err];
     }
     return self;

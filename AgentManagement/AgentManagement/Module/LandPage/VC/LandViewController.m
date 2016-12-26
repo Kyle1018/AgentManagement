@@ -50,7 +50,7 @@
     if (self.isNotRecordPwd) {//不记住密码
 
         self.inputPassWord.text = @"";
-         self.recordPwdImage.image=[UIImage imageNamed:@"Rp1"];
+         self.recordPwdImage.image=[UIImage imageNamed:@"agree2"];
         NSMutableDictionary*dic = [NSMutableDictionary dictionaryWithDictionary: [[NSUserDefaults standardUserDefaults]objectForKey:@"landInfo"]];
         [dic removeObjectForKey:@"password"];
         [[NSUserDefaults standardUserDefaults]setObject:dic forKey:@"landInfo"];
@@ -58,7 +58,7 @@
     }
     else {//记住密码
 
-         self.recordPwdImage.image=[UIImage imageNamed:@"Rp"];
+         self.recordPwdImage.image=[UIImage imageNamed:@"agree1"];
         
         if ( self.inputUserName.text.length>0&&self.inputPassWord.text.length>0) {
             
@@ -76,7 +76,7 @@
        
         self.isNotRecordPwd = !self.isNotRecordPwd;
 
-        self.recordPwdImage.image = self.isNotRecordPwd?[UIImage imageNamed:@"Rp1"]:[UIImage imageNamed:@"Rp"];
+        self.recordPwdImage.image = self.isNotRecordPwd?[UIImage imageNamed:@"agree2"]:[UIImage imageNamed:@"agree1"];
 
           [[NSUserDefaults standardUserDefaults]setObject:@(self.isNotRecordPwd) forKey:@"isNotRecordPwd"];
           [[NSUserDefaults standardUserDefaults]synchronize];
@@ -92,7 +92,6 @@
     [self.navigationController setNavigationBarHidden:YES animated:animated];
 
 }
-
 
 #pragma mark - KeyboradNotification
 - (void)changeContentViewPosition:(NSNotification *)notification{
@@ -130,8 +129,12 @@
 #pragma mark -Signal
 - (void)racSignal {
     
+    
+    @weakify(self);
+    
      RACSignal *validLenthUserNameSignal = [self.inputUserName.rac_textSignal map:^id(NSString* value) {
     
+         @strongify(self);
          if (value.length>11) {
              
              self.inputUserName.text = [value substringToIndex:11];
@@ -144,6 +147,7 @@
     //密码输入框是否有内容
     RACSignal *validLenthPasswordSignal = [self.inputPassWord.rac_textSignal map:^id(NSString* value) {
    
+        @strongify(self);
         if (value.length>12) {
             
             self.inputPassWord.text = [value substringToIndex:12];
@@ -160,15 +164,14 @@
     
     //根据俩个输入框是否都有内容——决定登录按钮是否可以点击
     RAC(self.signinBtn,enabled) = [signUpActiveSignal map:^id(NSNumber* value) {
-        
+        @strongify(self);
         self.signinBtn.backgroundColor= [value boolValue]?[UIColor colorWithHex:@"47b6ff"]:[UIColor colorWithHex:@"b3b3b3"];
         
         return value;
     }];
     
     self.viewModel = [[LandViewModel alloc]init];
-    
-    @weakify(self);
+ 
     [[self.signinBtn rac_signalForControlEvents:UIControlEventTouchUpInside]subscribeNext:^(id x) {
         
         @strongify(self);

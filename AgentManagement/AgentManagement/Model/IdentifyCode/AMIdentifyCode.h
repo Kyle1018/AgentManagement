@@ -10,6 +10,8 @@
 
 @interface AMIdentifyCode : AMBaseModel
 
-@property (nonatomic, copy) NSString *authCode;
+@property(nonatomic,copy)NSString *data;
+
+//@property (nonatomic, copy) NSString *authCode;
 
 @end

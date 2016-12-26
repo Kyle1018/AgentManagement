@@ -126,7 +126,7 @@
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XzM-Wv-XFs">
                                         <rect key="frame" x="0.0" y="165" width="339" height="44"/>
-                                        <color key="backgroundColor" red="0.27843137254901962" green="0.71372549019607845" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.70196078431372544" green="0.70196078431372544" blue="0.70196078431372544" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="9aB-Kc-k5b"/>
                                         </constraints>
@@ -148,7 +148,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Rp" translatesAutoresizingMaskIntoConstraints="NO" id="FK4-LV-ntu">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="agree2" translatesAutoresizingMaskIntoConstraints="NO" id="FK4-LV-ntu">
                                                 <rect key="frame" x="64" y="0.0" width="21" height="21"/>
                                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -404,7 +404,7 @@
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="08T-g8-mYv">
                                         <rect key="frame" x="0.0" y="197" width="339" height="44"/>
-                                        <color key="backgroundColor" red="0.2784313725" green="0.71372549019999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.70196078431372544" green="0.70196078431372544" blue="0.70196078431372544" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="lSD-tb-fFR"/>
                                         </constraints>
@@ -727,7 +727,7 @@
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q1i-ag-Cvf">
                                         <rect key="frame" x="0.0" y="107" width="339" height="44"/>
-                                        <color key="backgroundColor" red="0.2784313725" green="0.71372549019999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.70196078431372544" green="0.70196078431372544" blue="0.70196078431372544" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="P7b-YY-zwS"/>
                                         </constraints>
@@ -769,7 +769,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Rp" width="14" height="12"/>
         <image name="agree2" width="48" height="48"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

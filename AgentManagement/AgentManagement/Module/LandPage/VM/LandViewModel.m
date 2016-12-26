@@ -23,6 +23,10 @@
   
             identifyCodeModel = (AMIdentifyCode*)model;
             
+            [subscriber sendNext:identifyCodeModel.data];
+            [subscriber sendCompleted];
+            /*
+            
             if (identifyCodeModel.authCode) {
                 
                 RACTuple *tuple = RACTuplePack(identifyCodeModel.authCode,@(YES));
@@ -34,13 +38,13 @@
                 [subscriber sendNext:@"获取验证码失败"];
                 [subscriber sendCompleted];
             }
-            
+            */
       
 
     
         } failure:^(KKBaseModel *model, KKRequestError *error) {
        
-            identifyCodeModel = (AMIdentifyCode*)model;
+           // identifyCodeModel = (AMIdentifyCode*)model;
             
             [subscriber sendNext:@"获取验证码失败"];
             [subscriber sendCompleted];
@@ -137,6 +141,8 @@
     }];
 }
 
+
+//注册时设置密码
 - (RACSignal*)requestModifyPasswordWithLandInformation:(NSDictionary*)dic {
     
     return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
@@ -145,7 +151,8 @@
         
         [self.modifyPasswordRequest requestWithSuccess:^(KKBaseModel *model, KKRequestError *error) {
             
-            [subscriber sendNext: (NSNumber*)model];
+            AMBaseModel *baseModel = (AMBaseModel*)model;
+            [subscriber sendNext:baseModel.resultMessage];
             [subscriber sendCompleted];
             
         } failure:^(KKBaseModel *model, KKRequestError *error) {

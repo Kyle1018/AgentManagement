@@ -58,8 +58,11 @@
     }];
     
     
+    @weakify(self);
     //根据俩个输入框是否都有内容——决定下一步按钮是否可以点击
     RAC(self.finishBtn,enabled) = [signUpActiveSignal map:^id(NSNumber* value) {
+        
+        @strongify(self);
         
         self.finishBtn.backgroundColor = [value boolValue]?[UIColor colorWithHex:@"47b6ff"]:[UIColor colorWithHex:@"b3b3b3"];
         
@@ -67,9 +70,10 @@
     }];
     
     
-    @weakify(self);
     //完成按钮点击事件
     [[[self.finishBtn rac_signalForControlEvents:UIControlEventTouchUpInside]filter:^BOOL(id value) {
+        
+        @strongify(self);
         
         if (![password isEqualToString:againPassword]) {
             
@@ -83,7 +87,7 @@
             if ([RegexUtils checkPassword:password]) {
                 
                 [self.registerInformationDic setObject:password forKey:@"password"];
-                
+                [self.registerInformationDic setObject:password forKey:@"re_password"];
                 return YES;
                 
             }
@@ -102,45 +106,33 @@
         @strongify(self);
         //修改密码请求
         NSLog(@"%@",self.registerInformationDic);
-        [[[self.viewModel requestModifyPasswordWithLandInformation:self.registerInformationDic]filter:^BOOL(id value) {
+        [[[self.viewModel requestModifyPasswordWithLandInformation:self.registerInformationDic]filter:^BOOL(NSString* value) {
             
-            if ([value isKindOfClass:[NSNumber class]]) {
+            if ([value isEqualToString:@"OK"]) {
+                
+                [MBProgressHUD showText:@"密码重置成功"];
                 
                 return YES;
             }
             else {
                 
-                 [MBProgressHUD showText:@"密码重置失败"];
+                [MBProgressHUD showText:value];
                 
                 return NO;
             }
+    
             
-        }]subscribeNext:^(NSNumber* x) {
+        }]subscribeNext:^(NSString* x) {
+
+            dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(4.0 * NSEC_PER_SEC));
             
-            if ([x integerValue]==0) {
+            dispatch_after(delayTime, dispatch_get_main_queue(), ^{
                 
-                  [MBProgressHUD showText:@"密码重置成功"];
+                [self.navigationController popToRootViewControllerAnimated:YES];
                 
-                dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(4.0 * NSEC_PER_SEC));
-                
-                dispatch_after(delayTime, dispatch_get_main_queue(), ^{
-                    
-                    [self.navigationController popToRootViewControllerAnimated:YES];
-                    
-                });
-            }
-            else {
-                
-                [MBProgressHUD showText:@"密码重置失败"];
-            }
-            
+            });
         }];
     }];
-}
-
-- (void)dealloc {
-    
-    NSLog(@"dd");
 }
 
 @end

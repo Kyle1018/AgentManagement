@@ -14,7 +14,7 @@
 {
     self = [super init];
     if (self) {
-        [self.requestParameters safeSetObject:account forKey:@"username"];
+        [self.requestParameters safeSetObject:account forKey:@"phone"];
         [self.requestParameters safeSetObject:password forKey:@"password"];
     }
     return self;
@@ -22,12 +22,13 @@
 
 - (NSString *)urlPath
 {
-    return @"apiuser/login";
+    return @"nativeapi/queryLogs";
 }
 
 - (id)buildModelWithJsonDictionary:(NSDictionary *)dictionary
 {
-
+    
+    NSLog(@"%@",dictionary);
     return [[AMUser alloc] initWithDictionary:dictionary error:nil];;
 }
 

@@ -83,6 +83,7 @@
             
             NSMutableArray *customerArray = [NSMutableArray array];
             
+            /*
             for (NSDictionary *dic in baseModel.data) {
                 
                 AMCustomer *customerModel = [[AMCustomer alloc]initWithDictionary:dic error:nil];
@@ -103,6 +104,7 @@
                 [customerArray addObject:customerModel];
                 
             }
+             */
             
             NSMutableArray *array = (NSMutableArray *)[[customerArray reverseObjectEnumerator] allObjects];
 
@@ -201,13 +203,14 @@
                 AMBaseModel *baseModel = (AMBaseModel*)model;
                 
                 NSMutableArray *salersNameArray = [NSMutableArray array];
-                
+                /*
                 for (NSDictionary*dic in baseModel.data) {
                     
                     AMSales *model = [[AMSales alloc]initWithDictionary:dic error:nil];
                     
                     [salersNameArray addObject:model];
                 }
+                 */
                 
                 [subscriber sendNext:salersNameArray];
                 [subscriber sendCompleted];
@@ -245,12 +248,14 @@
                  
                  NSMutableArray *nameArray = [NSMutableArray array];
                  
+                 /*
                  for (NSDictionary*dic in baseModel.data) {
                      
                      AMAdministrators *model = [[AMAdministrators alloc]initWithDictionary:dic error:nil];
                      
                      [nameArray addObject:model];
                  }
+                  */
                  
                  [subscriber sendNext:nameArray];
                  [subscriber sendCompleted];

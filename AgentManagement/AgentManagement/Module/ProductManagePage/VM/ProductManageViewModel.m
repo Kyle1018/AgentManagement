@@ -34,7 +34,7 @@
              }
              )
              */
-            NSArray *modelArray=[AMProductAndModel arrayOfModelsFromDictionaries:baseModel.data error:nil];
+         //   NSArray *modelArray=[AMProductAndModel arrayOfModelsFromDictionaries:baseModel.data error:nil];
 
             NSMutableArray *brandArray = [NSMutableArray array];//品牌数组
             
@@ -42,6 +42,7 @@
             
             NSMutableArray*CpmodelArray = [NSMutableArray array];//用于添加用户时，购买机型选项
             
+            /*
             for (AMProductAndModel *model in modelArray) {
                 
                 [brandArray addObject:model.brand];
@@ -60,6 +61,7 @@
             
                 
             }
+             */
             
       
              NSMutableArray *productAndModelArray = [NSMutableArray arrayWithObjects:brandArray,pmodelArray,CpmodelArray, nil];
@@ -105,7 +107,7 @@
             
             AMBaseModel *baseModel = (AMBaseModel*)model;
       
-            NSArray *modelArray=[AMProductRelatedInformation arrayOfModelsFromDictionaries:baseModel.data error:nil];
+          //  NSArray *modelArray=[AMProductRelatedInformation arrayOfModelsFromDictionaries:baseModel.data error:nil];
    
             NSMutableArray*optionTitleDataArray = [NSMutableArray arrayWithObjects:@"品牌",@"型号",@"直接饮用",@"分类",@"过滤介质",@"产品特点",@"摆放位置",@"滤芯个数",@"适用地区",@"零售价格",@"换芯周期", nil];
             NSMutableArray*optionDataArray = [NSMutableArray arrayWithObjects:
@@ -121,6 +123,7 @@
                                 @[@"手动输入价格"],
                                 @[@"1个月",@"3个月",@"6个月",@"12个月",@"18个月",@"24个月"],nil];//换芯周期
             
+            /*
             for (AMProductRelatedInformation *model in modelArray) {
                 
                 for (int i = 0; i < model.value.count; i++) {
@@ -176,7 +179,7 @@
                 }
                 
             }
-            
+            */
             
            NSMutableArray*productRelatedInformationArray = [NSMutableArray arrayWithObjects:optionTitleDataArray,optionDataArray, nil];
             
@@ -261,11 +264,11 @@
             
              AMProductInfo*productInfoModel = (AMProductInfo*)model;
             
-            NSArray *dataArray = [AMProductInfo arrayOfModelsFromDictionaries:productInfoModel.data];
+         //   NSArray *dataArray = [AMProductInfo arrayOfModelsFromDictionaries:productInfoModel.data];
             
-            NSMutableArray *array = (NSMutableArray *)[[dataArray reverseObjectEnumerator] allObjects];
+          //  NSMutableArray *array = (NSMutableArray *)[[dataArray reverseObjectEnumerator] allObjects];
             
-            self.productInfoDataArray =[NSMutableArray arrayWithArray:array];
+           // self.productInfoDataArray =[NSMutableArray arrayWithArray:array];
 
             if (self.productInfoDataArray.count > 0) {
                 

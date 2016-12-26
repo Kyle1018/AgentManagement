@@ -22,7 +22,7 @@
 
 - (NSString *)urlPath
 {
-    return @"apiuser/sendsms";
+    return @"nativeapi/sendCode";
 }
 
 - (id)buildModelWithJsonDictionary:(NSDictionary *)dictionary

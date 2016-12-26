@@ -12,5 +12,5 @@
 
 @property (nonatomic, copy) NSString *resultCode;
 @property (nonatomic, copy) NSString *resultMessage;
-@property (nonatomic,strong)NSArray *data;
+//@property (nonatomic,strong)NSArray *data;
 @end

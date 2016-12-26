@@ -102,14 +102,6 @@
     //获取验证码按钮点击事件
     [[[self.identifyCodeBtn rac_signalForControlEvents:UIControlEventTouchUpInside]filter:^BOOL(IdentifyCodeButton* sender) {
   
-        @strongify(self);
-        //请求判断手机号是否注册过接口
-        [[self.viewModel requestPhoneNumRegisterState:phoneText]subscribeNext:^(id x) {
-            
-            NSLog(@"%@",x);
-        }];
-        
-        
         if ([RegexUtils checkTelNumber:phoneText]) {
             
             return YES;
@@ -124,30 +116,15 @@
     }]subscribeNext:^(IdentifyCodeButton* sender) {
         
         @strongify(self);
+        
         //请求验证码
-      [[[self.viewModel requestIdentifyCode:phoneText]filter:^BOOL(id value) {
-
-           if ([value isKindOfClass:[NSString class]]) {
-               
-               [MBProgressHUD showText:value];
-               return NO;
-           }
-           else {
-               [sender start];
-               
-               return YES;
-           }
+        [[self.viewModel requestIdentifyCode:phoneText]subscribeNext:^(NSString* x) {
            
-        }]subscribeNext:^(RACTuple* x) {
-            
-            requestIdentifyCode = [x first];
-            
-#warning 测试阶段使用
-            self.inputIdentifyCode.text = requestIdentifyCode;
+            requestIdentifyCode = x;
             [registerInformationDic setValue:phoneText forKey:@"phone"];
             [registerInformationDic setValue:requestIdentifyCode forKey:@"code"];
-
         }];
+       
     }];
     
     //下一步按钮点击事件

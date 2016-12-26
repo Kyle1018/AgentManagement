@@ -16,28 +16,23 @@
     self = [super init];
     if (self) {
 
-        /*
-        [self.requestParameters safeSetObject:dic[@"identifyCode"] forKey:@"code"];
-        [self.requestParameters safeSetObject:dic[@"password"] forKey:@"password"];
-        [self.requestParameters safeSetObject:dic[@"phone"] forKey:@"phone"];
-         */
-        
-        [self.requestParameters safeSetObject:dic[@"identifyCode"] forKey:@"code"];
-        [self.requestParameters safeSetObject:dic[@"password"] forKey:@"password"];
-        [self.requestParameters safeSetObject:dic[@"phone"] forKey:@"phone"];
-        
+        [self.requestParameters addEntriesFromDictionary:dic];
+
     }
     return self;
 }
 
 - (NSString *)urlPath
 {
-    return @"apiuser/xiugai";
+    return @"nativeapi/register";
 }
 
 - (id)buildModelWithJsonDictionary:(NSDictionary *)dictionary
 {
-     return [dictionary objectForKey:@"resultCode"];
+   // NSLog(@"%@",dictionary);
+    // return [dictionary objectForKey:@"resultCode"];
+    
+    return [[AMBaseModel alloc]initWithDictionary:dictionary error:nil];
 }
 
 

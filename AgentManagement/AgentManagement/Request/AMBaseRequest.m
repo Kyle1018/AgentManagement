@@ -11,7 +11,11 @@
 #import "NSDictionary+KKAdditions.h"
 #import "NSData+KKAdditions.h"
 #import "Reachability.h"
-static NSString *const kAPIBaseURL = @"http://123.56.10.232:81/index.php?r=";
+
+//新的baseURLhttp://123.56.10.232:8080/
+//static NSString *const kAPIBaseURL = @"http://123.56.10.232:81/index.php?r=";
+static NSString *const kAPIBaseURL = @"http://123.56.10.232:8080/";
+
 
 @interface AMBaseRequest ()<ASIHTTPRequestDelegate>
 

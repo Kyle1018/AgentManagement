@@ -58,16 +58,17 @@
             
             AMProductInfo*productInfoModel = (AMProductInfo*)model;
             
-            NSArray *dataArray = [AMProductInfo arrayOfModelsFromDictionaries:productInfoModel.data];
+           // NSArray *dataArray = [AMProductInfo arrayOfModelsFromDictionaries:productInfoModel.data];
             
-            NSMutableArray *array = (NSMutableArray *)[[dataArray reverseObjectEnumerator] allObjects];
+           // NSMutableArray *array = (NSMutableArray *)[[dataArray reverseObjectEnumerator] allObjects];
             
-            productInfoArray = array;
+           // productInfoArray = array;
 
             NSMutableArray *dataArray01 = [NSMutableArray array];
             
             NSMutableDictionary *listDataDic = [NSMutableDictionary dictionary];
             
+            /*
             for (AMProductInfo *productInfo in array) {
                 
                 NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -115,7 +116,7 @@
                     
                 }
             }
-            
+            */
         
             [listDataDic enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
                
@@ -152,6 +153,7 @@
             
             NSMutableDictionary*listDataDic = [NSMutableDictionary dictionary];
             
+            /*
             for (NSDictionary*dic in baseModel.data) {
                 
                 NSArray *array = dic[@"order"];
@@ -201,7 +203,7 @@
                     }
                 }
             }
-            
+            */
             dataDic = listDataDic;
             
             [listDataDic enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
