@@ -105,6 +105,11 @@
     }]subscribeNext:^(id x) {
         @strongify(self);
         
+        //进入企业详情页面
+        UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Land" bundle:nil];
+        RegisterDetailViewController*registerDetailVC = [storyboard instantiateViewControllerWithIdentifier:@"RegisterDetail"];
+        [self.navigationController pushViewController:registerDetailVC animated:YES];
+        
         
         /*
         @strongify(self);

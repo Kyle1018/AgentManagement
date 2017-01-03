@@ -159,7 +159,7 @@
 		E221EF8A1D603238005B3417 /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E221EF891D603238005B3417 /* BaseTableViewController.m */; };
 		E224EB521D8FB8090046D4D8 /* AMSales.m in Sources */ = {isa = PBXBuildFile; fileRef = E224EB511D8FB8090046D4D8 /* AMSales.m */; };
 		E224EB551D8FB8190046D4D8 /* AMAdministrators.m in Sources */ = {isa = PBXBuildFile; fileRef = E224EB541D8FB8190046D4D8 /* AMAdministrators.m */; };
-		E22E7A991E120E1900E74D56 /* RegisterDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E22E7A981E120E1900E74D56 /* RegisterDetailViewController.m */; };
+		E22E7AE81E1B952B00E74D56 /* RegisterDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E22E7AE71E1B952B00E74D56 /* RegisterDetailViewController.m */; };
 		E244F1451D8CFFFF003BA93B /* DataAnalysisViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E244F1441D8CFFFF003BA93B /* DataAnalysisViewController.m */; };
 		E244F1541D8D072A003BA93B /* PNChartLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = E244F1491D8D072A003BA93B /* PNChartLabel.m */; };
 		E244F1561D8D072A003BA93B /* PNGenericChart.m in Sources */ = {isa = PBXBuildFile; fileRef = E244F14D1D8D072A003BA93B /* PNGenericChart.m */; };
@@ -495,8 +495,8 @@
 		E224EB511D8FB8090046D4D8 /* AMSales.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMSales.m; sourceTree = "<group>"; };
 		E224EB531D8FB8190046D4D8 /* AMAdministrators.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMAdministrators.h; sourceTree = "<group>"; };
 		E224EB541D8FB8190046D4D8 /* AMAdministrators.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMAdministrators.m; sourceTree = "<group>"; };
-		E22E7A971E120E1900E74D56 /* RegisterDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterDetailViewController.h; sourceTree = "<group>"; };
-		E22E7A981E120E1900E74D56 /* RegisterDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterDetailViewController.m; sourceTree = "<group>"; };
+		E22E7AE61E1B952B00E74D56 /* RegisterDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterDetailViewController.h; sourceTree = "<group>"; };
+		E22E7AE71E1B952B00E74D56 /* RegisterDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterDetailViewController.m; sourceTree = "<group>"; };
 		E244F1431D8CFFFF003BA93B /* DataAnalysisViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataAnalysisViewController.h; sourceTree = "<group>"; };
 		E244F1441D8CFFFF003BA93B /* DataAnalysisViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataAnalysisViewController.m; sourceTree = "<group>"; };
 		E244F1481D8D072A003BA93B /* PNChartLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNChartLabel.h; sourceTree = "<group>"; };
@@ -1746,8 +1746,8 @@
 				E2C14F791D7AA46000B0B0B2 /* RegisterViewController.m */,
 				E2C14F831D7AF73100B0B0B2 /* SetPasswordViewController.h */,
 				E2C14F841D7AF73100B0B0B2 /* SetPasswordViewController.m */,
-				E22E7A971E120E1900E74D56 /* RegisterDetailViewController.h */,
-				E22E7A981E120E1900E74D56 /* RegisterDetailViewController.m */,
+				E22E7AE61E1B952B00E74D56 /* RegisterDetailViewController.h */,
+				E22E7AE71E1B952B00E74D56 /* RegisterDetailViewController.m */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -2078,7 +2078,7 @@
 				E2FA0C071D4CFF000094A6FE /* KKRequestError.m in Sources */,
 				27CA012F1D6B10E4009F9A25 /* CALayer+Addition.m in Sources */,
 				27E26B501D6B1D360072F26E /* ProductManageViewController.m in Sources */,
-				E22E7A991E120E1900E74D56 /* RegisterDetailViewController.m in Sources */,
+				E22E7AE81E1B952B00E74D56 /* RegisterDetailViewController.m in Sources */,
 				343800051D9B9FF600B3B816 /* AMEditProductRequest.m in Sources */,
 				27CA01381D6B1167009F9A25 /* AMBaseModel.m in Sources */,
 				275F329A1D717B210033C8FF /* ASICloudFilesRequest.m in Sources */,

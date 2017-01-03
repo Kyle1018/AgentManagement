@@ -23,8 +23,17 @@
   
             identifyCodeModel = (AMIdentifyCode*)model;
             
-            [subscriber sendNext:identifyCodeModel.data];
-            [subscriber sendCompleted];
+            if ([identifyCodeModel.data isEqualToString:@""]) {
+                
+                [subscriber sendNext:identifyCodeModel.resultMessage];
+                [subscriber sendCompleted];
+            }
+            else {
+             
+                [subscriber sendNext:identifyCodeModel.data];
+                [subscriber sendCompleted];
+            }
+         
             /*
             
             if (identifyCodeModel.authCode) {

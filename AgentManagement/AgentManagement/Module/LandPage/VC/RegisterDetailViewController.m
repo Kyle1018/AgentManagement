@@ -2,8 +2,8 @@
 //  RegisterDetailViewController.m
 //  AgentManagement
 //
-//  Created by 郭华滨 on 16/12/27.
-//  Copyright © 2016年 KK. All rights reserved.
+//  Created by 郭华滨 on 17/1/3.
+//  Copyright © 2017年 KK. All rights reserved.
 //
 
 #import "RegisterDetailViewController.h"
@@ -16,6 +16,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.title = @"填写详细信息";
     // Do any additional setup after loading the view.
 }
 
@@ -24,14 +26,24 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    
+    if (section == 0) {
+        
+        return 30;
+    }
+    else {
+        
+        return 10;
+    }
 }
-*/
+
+- (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    
+    UIView *headerView = [[UIView alloc]init];
+    headerView.backgroundColor = [UIColor whiteColor];
+    
+    return headerView;
+}
 
 @end

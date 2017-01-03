@@ -121,6 +121,8 @@
         //请求验证码
         [[self.viewModel requestIdentifyCode:phoneText]subscribeNext:^(NSString* x) {
            
+            //用于测试
+            [MBProgressHUD showText:x];
             requestIdentifyCode = x;
             [registerInformationDic setValue:phoneText forKey:@"phone"];
             [registerInformationDic setValue:requestIdentifyCode forKey:@"code"];

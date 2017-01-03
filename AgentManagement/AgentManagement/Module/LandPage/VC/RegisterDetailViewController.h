@@ -2,12 +2,12 @@
 //  RegisterDetailViewController.h
 //  AgentManagement
 //
-//  Created by 郭华滨 on 16/12/27.
-//  Copyright © 2016年 KK. All rights reserved.
+//  Created by 郭华滨 on 17/1/3.
+//  Copyright © 2017年 KK. All rights reserved.
 //
 
-#import "BaseViewController.h"
+#import "BaseTableViewController.h"
 
-@interface RegisterDetailViewController : BaseViewController
+@interface RegisterDetailViewController : BaseTableViewController
 
 @end
