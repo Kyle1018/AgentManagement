@@ -29,7 +29,7 @@
 - (void)initializeControl {
     self.title = @"名字";
     
-    self.nameTextField.text = kSharedUserManager.user.nickname;
+   // self.nameTextField.text = kSharedUserManager.user.nickname;
 }
 
 @end

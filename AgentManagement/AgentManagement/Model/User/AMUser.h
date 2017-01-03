@@ -10,60 +10,54 @@
 
 @interface AMUser : AMBaseModel
 
-@property(nonatomic,copy)NSString* add_time;//
-
-@property(nonatomic,copy)NSString *address;
-
-@property(nonatomic,copy)NSString* an_id;//
-
-@property(nonatomic,copy)NSString *area;
-
-@property(nonatomic,copy)NSString *city;
-
-@property(nonatomic,copy)NSString *county;
-
-@property(nonatomic,copy)NSString*email;
-
-@property(nonatomic,copy)NSString* user_id;//
-
-@property(nonatomic,copy)NSString *img;
-
-@property(nonatomic,copy)NSString *level;
-
-@property(nonatomic,copy)NSString *nickname;
-
-@property(nonatomic,copy)NSString *password;
-
-@property(nonatomic,copy)NSString *pid;
-
-@property(nonatomic,copy)NSString *province;
-
-@property(nonatomic,copy)NSString *tphone;
-
-@property(nonatomic,copy)NSString *updated_at;
-
 @property(nonatomic,copy)NSString *username;
+@property(nonatomic,copy)NSString* userid;//
+
+@property(nonatomic,copy)NSString *update_time;
+
+@property(nonatomic,copy)NSString *status;
+
+@property(nonatomic,copy)NSString *role_id;
+
+@property(nonatomic,copy)NSString*remark;
+
+@property(nonatomic,copy)NSString* region;//
+
+@property(nonatomic,copy)NSString *phone;
+
+@property(nonatomic,copy)NSString *parent_id;
+
+@property(nonatomic,copy)NSString *op_user;
+
+@property(nonatomic,copy)NSString *op_remark;
+
+@property(nonatomic,copy)NSString *login_time;
+
+@property(nonatomic,copy)NSString *user_id;
+
+@property(nonatomic,copy)NSString *extra_info;
+
+@property(nonatomic,copy)NSString *ep_id;
+
+@property(nonatomic,copy)NSString *create_time;
 
 /**
- *     [province]: <nil>
- [user_id]: 0
- [nickname]: 13501167925
- [img]: <nil>
- [updated_at]: 0
- [city]: <nil>
- [resultCode]: 0
- [level]: 0
- [email]:
- [add_time]: 1472782222
- [resultMessage]: ok
- [area]: <nil>
- [county]: <nil>
- [an_id]: 10
- [pid]: 0
- [password]: eabd8ce9404507aa8c22714d3f5eada9
- [tphone]: <nil>
- [data]: <nil>
- [address]: <nil>
- [username]: 13501167925
+ * {
+ "create_time" = "2016-12-21 14:09:27";
+ "ep_id" = 1000005;
+ "extra_info" = "";
+ id = 17;
+ "login_time" = "1970-01-01 08:00:00";
+ "op_remark" = "\U4f01\U4e1a\U6ce8\U518c";
+ "op_user" = 13501167925;
+ "parent_id" = 0;
+ phone = 13501167925;
+ region = "";
+ remark = "";
+ "role_id" = 1;
+ status = 0;
+ "update_time" = "2016-12-21 14:09:27";
+ userid = 0;
+ username = 13501167925;
  */
 @end

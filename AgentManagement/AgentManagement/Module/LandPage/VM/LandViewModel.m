@@ -64,7 +64,9 @@
         [self.registerRequest requestWithSuccess:^(KKBaseModel *model, KKRequestError *error) {
        
             registerModel = (AMUser*)model;
-            
+           
+            NSLog(@"dd");
+            /*
             if (registerModel.an_id==0) {
                 
                 [subscriber sendNext:registerModel.resultMessage];
@@ -75,6 +77,7 @@
                 [subscriber sendNext:registerModel];
                 [subscriber sendCompleted];
             }
+             */
             
         } failure:^(KKBaseModel *model, KKRequestError *error) {
             
@@ -98,7 +101,8 @@
         [self.loginRequest requestWithSuccess:^(KKBaseModel *model, KKRequestError *error) {
 
             loginModel = (AMUser*)model;
-            
+            NSLog(@"dd");
+            /*
             if (loginModel.an_id==0) {
                 
                 [subscriber sendNext:@"手机号或密码错误"];
@@ -109,6 +113,7 @@
                 [subscriber sendNext:loginModel];
                 [subscriber sendCompleted];
             }
+             */
             
         } failure:^(KKBaseModel *model, KKRequestError *error) {
          

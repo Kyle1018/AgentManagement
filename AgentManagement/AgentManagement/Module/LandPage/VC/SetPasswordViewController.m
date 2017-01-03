@@ -10,6 +10,7 @@
 #import "RegexUtils.h"
 #import "LandViewModel.h"
 #import "AMUser.h"
+#import "RegisterDetailViewController.h"
 
 @interface SetPasswordViewController()
 
@@ -102,7 +103,10 @@
         
         
     }]subscribeNext:^(id x) {
+        @strongify(self);
         
+        
+        /*
         @strongify(self);
         //修改密码请求
         NSLog(@"%@",self.registerInformationDic);
@@ -132,6 +136,7 @@
                 
             });
         }];
+         */
     }];
 }
 

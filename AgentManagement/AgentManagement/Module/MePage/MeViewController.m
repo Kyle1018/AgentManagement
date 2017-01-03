@@ -48,6 +48,7 @@
 
 - (void)updateUserUI {
 #warning 数据未正式返回
+    /*
     [self.portraitImageView sd_setImageWithURL:[NSURL URLWithString:kSharedUserManager.user.img] placeholderImage:nil];
     self.nameLabel.text = kSharedUserManager.user.nickname;
     
@@ -56,6 +57,7 @@
         self.phoneLabel.text = [NSString stringWithFormat:@"电话：%@", kSharedUserManager.user.tphone];
     }
     self.addressLabel.text = nil;
+     */
 }
 
 - (IBAction)administratorPressed:(id)sender {

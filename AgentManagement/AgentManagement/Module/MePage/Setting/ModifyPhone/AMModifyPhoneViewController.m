@@ -29,7 +29,7 @@
 - (void)initializeControl {
     self.title = @"电话";
     
-    self.phoneTextField.text = kSharedUserManager.user.tphone;
+   // self.phoneTextField.text = kSharedUserManager.user.tphone;
 }
 
 @end

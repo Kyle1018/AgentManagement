@@ -15,7 +15,7 @@
 @property(nonatomic,strong)LandViewModel *viewModel;
 @property (weak, nonatomic) IBOutlet UITextField *inputPhone;
 @property (weak, nonatomic) IBOutlet UITextField *inputIdentifyCode;
-@property (weak, nonatomic) IBOutlet UITextField *inputRegisterName;
+//@property (weak, nonatomic) IBOutlet UITextField *inputRegisterName;
 @property (weak, nonatomic) IBOutlet IdentifyCodeButton *identifyCodeBtn;
 @property (weak, nonatomic) IBOutlet UIButton *nextBtn;
 @property (weak, nonatomic) IBOutlet UIImageView *agreeImage;
@@ -62,7 +62,7 @@
         
     }];
     
-    
+    /*
     //工商注册名称是否有内容
     RACSignal *validLenthRegisterNameSignal = [self.inputRegisterName.rac_textSignal map:^id(NSString * value) {
         
@@ -70,6 +70,7 @@
         return @(value.length>0);
         
     }];
+     */
     
     
     RACSignal *validAgreeSignal = [[self.agreeControl rac_signalForControlEvents:UIControlEventTouchUpInside]map:^id(UIControl* sender) {
@@ -84,9 +85,9 @@
     }];
     
     //验证码输入框--手机号码输入框--营业执照输入框－－是否同意协议
-    RACSignal *signUpActiveSignal = [RACSignal combineLatest:@[validLenthPhoneSignal,validLenthIdentifyCodeSignal,validLenthRegisterNameSignal,validAgreeSignal] reduce:^id(NSNumber *phoneLenthValid,NSNumber*identifyCodeLenthValid,NSNumber*registerNameLenthValid,NSNumber*agreeValid){
+    RACSignal *signUpActiveSignal = [RACSignal combineLatest:@[validLenthPhoneSignal,validLenthIdentifyCodeSignal,validAgreeSignal] reduce:^id(NSNumber *phoneLenthValid,NSNumber*identifyCodeLenthValid,NSNumber*agreeValid){
         
-        return @([phoneLenthValid boolValue] && [identifyCodeLenthValid boolValue] && [registerNameLenthValid boolValue] && [agreeValid boolValue]);
+        return @([phoneLenthValid boolValue] && [identifyCodeLenthValid boolValue] && [agreeValid boolValue]);
     }];
     
     //根据俩个输入框是否都有内容——决定下一步按钮是否可以点击

@@ -28,8 +28,10 @@
 - (id)buildModelWithJsonDictionary:(NSDictionary *)dictionary
 {
     
-    NSLog(@"%@",dictionary);
-    return [[AMUser alloc] initWithDictionary:dictionary error:nil];;
+    NSLog(@"%@",[dictionary[@"data"]class]);
+      NSLog(@"%@",[dictionary[@"data"]allKeys]);
+    
+    return [[AMUser alloc] initWithDictionary:[[dictionary[@"data"]objectForKey:@"list"]firstObject] error:nil];;
 }
 
 @end
