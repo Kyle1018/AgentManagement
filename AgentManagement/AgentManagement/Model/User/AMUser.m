@@ -10,7 +10,6 @@
 
 @implementation AMUser
 
-
 +(JSONKeyMapper*)keyMapper
 {
     return [[JSONKeyMapper alloc] initWithDictionary:@{

@@ -147,6 +147,7 @@
 		34EE98251D76BAF90040C997 /* CSearchMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34EE98241D76BAF90040C997 /* CSearchMenuViewController.m */; };
 		34F552A31D81414300CCA537 /* AMDeleteProductRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 34F552A21D81414300CCA537 /* AMDeleteProductRequest.m */; };
 		BF9F2BB189B26DBF3F73AD65 /* libPods-AgentManagement.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C806F49AB69A45A297CCBD97 /* libPods-AgentManagement.a */; };
+		E217BD621E2CD1EF00D63796 /* AMBackPassword.m in Sources */ = {isa = PBXBuildFile; fileRef = E217BD611E2CD1EF00D63796 /* AMBackPassword.m */; };
 		E21947281D7714E1001C5E5F /* CostManage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E21947271D7714E1001C5E5F /* CostManage.storyboard */; };
 		E219472C1D7714EC001C5E5F /* CostManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E219472B1D7714EC001C5E5F /* CostManageViewController.m */; };
 		E21947301D771525001C5E5F /* CostManageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E219472F1D771525001C5E5F /* CostManageTableViewCell.m */; };
@@ -473,6 +474,8 @@
 		478FBB2CEED5387933066CAF /* Pods-AgentManagement.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgentManagement.release.xcconfig"; path = "Pods/Target Support Files/Pods-AgentManagement/Pods-AgentManagement.release.xcconfig"; sourceTree = "<group>"; };
 		A4D39D6814FFFBB4493A8E64 /* Pods-AgentManagement.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgentManagement.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AgentManagement/Pods-AgentManagement.debug.xcconfig"; sourceTree = "<group>"; };
 		C806F49AB69A45A297CCBD97 /* libPods-AgentManagement.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AgentManagement.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E217BD601E2CD1EF00D63796 /* AMBackPassword.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMBackPassword.h; sourceTree = "<group>"; };
+		E217BD611E2CD1EF00D63796 /* AMBackPassword.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMBackPassword.m; sourceTree = "<group>"; };
 		E21947271D7714E1001C5E5F /* CostManage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CostManage.storyboard; sourceTree = "<group>"; };
 		E219472A1D7714EC001C5E5F /* CostManageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CostManageViewController.h; sourceTree = "<group>"; };
 		E219472B1D7714EC001C5E5F /* CostManageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CostManageViewController.m; sourceTree = "<group>"; };
@@ -837,6 +840,7 @@
 		27CA01391D6B116F009F9A25 /* Request */ = {
 			isa = PBXGroup;
 			children = (
+				E217BD5F1E2CD1DD00D63796 /* BackPassword */,
 				3411A29A1DC7299000C41F8B /* ModifyPassword */,
 				27CA013A1D6B116F009F9A25 /* AMBaseRequest.h */,
 				275F32BE1D71924B0033C8FF /* AMBaseRequest.m */,
@@ -1452,6 +1456,15 @@
 				C806F49AB69A45A297CCBD97 /* libPods-AgentManagement.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E217BD5F1E2CD1DD00D63796 /* BackPassword */ = {
+			isa = PBXGroup;
+			children = (
+				E217BD601E2CD1EF00D63796 /* AMBackPassword.h */,
+				E217BD611E2CD1EF00D63796 /* AMBackPassword.m */,
+			);
+			path = BackPassword;
 			sourceTree = "<group>";
 		};
 		E21947261D7714E1001C5E5F /* SB */ = {
@@ -2144,6 +2157,7 @@
 				270704BE1D45F9A900633390 /* main.m in Sources */,
 				27E354F41DB6C1BE006A6222 /* AMLogViewController.m in Sources */,
 				275F329C1D717B210033C8FF /* ASIS3BucketObject.m in Sources */,
+				E217BD621E2CD1EF00D63796 /* AMBackPassword.m in Sources */,
 				E24BF4861D75DDFF0054DFDC /* CustomerManageCell.m in Sources */,
 				27E355051DB6C65A006A6222 /* AMLogDetailViewController.m in Sources */,
 				E2FA0C0B1D4CFF000094A6FE /* KKAppUtility.m in Sources */,

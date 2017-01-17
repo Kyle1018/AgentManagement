@@ -98,12 +98,24 @@
     }]subscribeNext:^(IdentifyCodeButton* sender) {
         @strongify(self);
         
-        RACSignal *signal = [self requestPhoneNumRegisterState:phoneText];
+     //   RACSignal *signal = [self requestPhoneNumRegisterState:phoneText];
         
-        [signal subscribeNext:^(NSNumber* x) {
+     //   [signal subscribeNext:^(NSNumber* x) {
            
-            if ([x integerValue] == 1) {
+            //if ([x integerValue] == 1) {
                 
+                
+                
+                //请求验证码
+                [[self.viewModel requestIdentifyCode:phoneText]subscribeNext:^(NSString* x) {
+                    
+                    //用于测试
+                    [MBProgressHUD showText:x];
+                    requestIdentifyCode = x;
+                    [registerInformationDic setValue:phoneText forKey:@"phone"];
+                    [registerInformationDic setValue:requestIdentifyCode forKey:@"code"];
+                }];
+                /*
                 //请求验证码
                 [[[self.viewModel requestIdentifyCode:phoneText]filter:^BOOL(id value) {
                     
@@ -126,15 +138,16 @@
                     [registerInformationDic setValue:requestIdentifyCode forKey:@"identifyCode"];
                     
                 }];
+                 */
 
-            }
-            else {
+           // }
+          //  else {
                 
-                [MBProgressHUD showText:@"该手机号还未注册"];
+               // [MBProgressHUD showText:@"该手机号还未注册"];
                 
              
-            }
-        }];
+            //}
+        //}];
     
     }];
     

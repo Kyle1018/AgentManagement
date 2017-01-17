@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1212" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="Mlr-ws-RDc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1212" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="Mlr-ws-RDc">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -976,11 +976,11 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R2Z-3f-up5">
                                                     <rect key="frame" x="18" y="0.0" width="339" height="45"/>
                                                     <subviews>
-                                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入营业执照的工商注册名称" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="y8e-jP-k7U">
+                                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入营业执照的工商注册名称" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="y8e-jP-k7U">
                                                             <rect key="frame" x="16" y="0.0" width="323" height="45"/>
                                                             <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="14"/>
-                                                            <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                                            <textInputTraits key="textInputTraits"/>
                                                         </textField>
                                                     </subviews>
                                                     <constraints>
@@ -1021,11 +1021,11 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vTQ-zc-Wv4">
                                                     <rect key="frame" x="18" y="0.0" width="339" height="45"/>
                                                     <subviews>
-                                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入法人代表名字" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1ew-H8-0is">
+                                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入法人代表名字" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1ew-H8-0is">
                                                             <rect key="frame" x="16" y="0.0" width="323" height="45"/>
                                                             <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="14"/>
-                                                            <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                                            <textInputTraits key="textInputTraits"/>
                                                         </textField>
                                                     </subviews>
                                                     <constraints>
@@ -1066,11 +1066,11 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8ej-Gc-sHU">
                                                     <rect key="frame" x="18" y="0.0" width="339" height="45"/>
                                                     <subviews>
-                                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入手机号" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ghF-KW-tDa">
+                                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入手机号" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ghF-KW-tDa">
                                                             <rect key="frame" x="16" y="0.0" width="323" height="45"/>
                                                             <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="14"/>
-                                                            <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                                            <textInputTraits key="textInputTraits"/>
                                                         </textField>
                                                     </subviews>
                                                     <constraints>
@@ -1159,11 +1159,11 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xPl-zw-FLW">
                                                     <rect key="frame" x="18" y="0.0" width="339" height="45"/>
                                                     <subviews>
-                                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="年销售额（元）" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="k9D-Zb-UX1">
+                                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="年销售额（元）" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="k9D-Zb-UX1">
                                                             <rect key="frame" x="16" y="0.0" width="323" height="45"/>
                                                             <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="14"/>
-                                                            <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                                            <textInputTraits key="textInputTraits"/>
                                                         </textField>
                                                     </subviews>
                                                     <constraints>
@@ -1204,11 +1204,11 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jax-mM-jN2">
                                                     <rect key="frame" x="18" y="0.0" width="339" height="45"/>
                                                     <subviews>
-                                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="经营品牌" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gpl-rJ-qeE">
+                                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="经营品牌" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gpl-rJ-qeE">
                                                             <rect key="frame" x="16" y="0.0" width="323" height="45"/>
                                                             <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="14"/>
-                                                            <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                                            <textInputTraits key="textInputTraits"/>
                                                         </textField>
                                                     </subviews>
                                                     <constraints>
@@ -1249,11 +1249,11 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Kn-96-cwK">
                                                     <rect key="frame" x="18" y="0.0" width="339" height="45"/>
                                                     <subviews>
-                                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="公司人数" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Sdb-4P-ozD">
+                                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="公司人数" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Sdb-4P-ozD">
                                                             <rect key="frame" x="16" y="0.0" width="323" height="45"/>
                                                             <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="14"/>
-                                                            <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                                            <textInputTraits key="textInputTraits"/>
                                                         </textField>
                                                     </subviews>
                                                     <constraints>
@@ -1294,11 +1294,11 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EM7-os-Kkq">
                                                     <rect key="frame" x="18" y="0.0" width="339" height="45"/>
                                                     <subviews>
-                                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="门店数量" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ysr-JO-igC">
+                                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="门店数量" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ysr-JO-igC">
                                                             <rect key="frame" x="16" y="0.0" width="323" height="45"/>
                                                             <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="14"/>
-                                                            <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                                            <textInputTraits key="textInputTraits"/>
                                                         </textField>
                                                     </subviews>
                                                     <constraints>
@@ -1339,11 +1339,11 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lgU-vP-RbI">
                                                     <rect key="frame" x="18" y="0.0" width="339" height="45"/>
                                                     <subviews>
-                                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="服务车辆" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bLy-Lt-2WQ">
+                                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="服务车辆" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bLy-Lt-2WQ">
                                                             <rect key="frame" x="16" y="0.0" width="323" height="45"/>
                                                             <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="14"/>
-                                                            <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                                            <textInputTraits key="textInputTraits"/>
                                                         </textField>
                                                     </subviews>
                                                     <constraints>

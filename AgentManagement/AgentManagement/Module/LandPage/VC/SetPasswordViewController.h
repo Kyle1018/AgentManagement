@@ -12,4 +12,6 @@
 
 @property(nonatomic,strong)NSMutableDictionary *registerInformationDic;
 
+
+
 @end

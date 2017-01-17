@@ -12,6 +12,8 @@
 #import "AMUser.h"
 #import "RegisterDetailViewController.h"
 
+#define FORGETPASSWORD_PAGE [self.title isEqualToString:@"忘记密码"]
+
 @interface SetPasswordViewController()
 
 @property (weak, nonatomic) IBOutlet UITextField *inputPassword;
@@ -28,6 +30,11 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+    
+    if (FORGETPASSWORD_PAGE) {
+        
+        [self.finishBtn setTitle:@"完成" forState:UIControlStateNormal];
+    }
     
     NSLog(@"%@",_registerInformationDic);
     
@@ -87,7 +94,7 @@
             
             if ([RegexUtils checkPassword:password]) {
                 
-                [self.registerInformationDic setObject:password forKey:@"password"];
+                [self.registerInformationDic setObject:password forKey:@"new_password"];
                 [self.registerInformationDic setObject:password forKey:@"re_password"];
                 return YES;
                 
@@ -103,13 +110,30 @@
         
         
     }]subscribeNext:^(id x) {
+        
         @strongify(self);
         
-        //进入企业详情页面
-        UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Land" bundle:nil];
-        RegisterDetailViewController*registerDetailVC = [storyboard instantiateViewControllerWithIdentifier:@"RegisterDetail"];
-        [self.navigationController pushViewController:registerDetailVC animated:YES];
+        if (FORGETPASSWORD_PAGE) {
+            
+            //找回密码
+            [[self.viewModel requestBackPasswordWithLandInformation:self.registerInformationDic]subscribeNext:^(id x) {
+                
+            }];
         
+        }
+        else {
+            
+            //注册
+            [[self.viewModel requestRegisterWithRegisterInformation:self.registerInformationDic]subscribeNext:^(id x) {
+                
+                //注册完成后，进入企业详情页面
+                UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Land" bundle:nil];
+                RegisterDetailViewController*registerDetailVC = [storyboard instantiateViewControllerWithIdentifier:@"RegisterDetail"];
+                [self.navigationController pushViewController:registerDetailVC animated:YES];
+            }];
+ 
+        }
+     
         
         /*
         @strongify(self);

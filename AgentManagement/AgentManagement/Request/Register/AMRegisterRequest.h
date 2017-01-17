@@ -11,7 +11,7 @@
 @interface AMRegisterRequest : AMBaseRequest
 
 
-- (instancetype)initWithPhone:(NSString *)phone Password:(NSString*)password Code:(NSString*)code;
+- (instancetype)initWithPhone:(NSString *)phone password:(NSString*)password re_password:(NSString*)re_password agree:(NSString*)agree code:(NSString*)code;
 
 
 @end

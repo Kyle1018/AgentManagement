@@ -34,27 +34,8 @@
                 [subscriber sendCompleted];
             }
          
-            /*
-            
-            if (identifyCodeModel.authCode) {
-                
-                RACTuple *tuple = RACTuplePack(identifyCodeModel.authCode,@(YES));
-                [subscriber sendNext:tuple];
-                [subscriber sendCompleted];
-            }
-            else {
-                
-                [subscriber sendNext:@"获取验证码失败"];
-                [subscriber sendCompleted];
-            }
-            */
-      
-
-    
         } failure:^(KKBaseModel *model, KKRequestError *error) {
-       
-           // identifyCodeModel = (AMIdentifyCode*)model;
-            
+
             [subscriber sendNext:@"获取验证码失败"];
             [subscriber sendCompleted];
         }];
@@ -65,33 +46,20 @@
 
 - (RACSignal*)requestRegisterWithRegisterInformation:(NSDictionary*)dic {
   
-    __block AMUser *registerModel = nil;
     return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
         
-        self.registerRequest = [[AMRegisterRequest alloc]initWithPhone:dic[@"phone"] Password:dic[@"password"] Code:dic[@"identifyCode"]];
-        
+        self.registerRequest = [[AMRegisterRequest alloc]initWithPhone:dic[@"phone"] password:dic[@"new_password"] re_password:dic[@"re_password"] agree:dic[@"agree"] code:dic[@"code"]];
+
         [self.registerRequest requestWithSuccess:^(KKBaseModel *model, KKRequestError *error) {
        
-            registerModel = (AMUser*)model;
-           
-            NSLog(@"dd");
-            /*
-            if (registerModel.an_id==0) {
-                
-                [subscriber sendNext:registerModel.resultMessage];
-                [subscriber sendCompleted];
-            }
-            else {
-                kSharedUserManager.user = registerModel;
-                [subscriber sendNext:registerModel];
-                [subscriber sendCompleted];
-            }
-             */
+            AMBaseModel*baseModel = (AMBaseModel*)model;
+     
+            [subscriber sendNext:baseModel.resultMessage];
+            [subscriber sendCompleted];
             
         } failure:^(KKBaseModel *model, KKRequestError *error) {
             
-            [subscriber sendNext:registerModel.resultMessage];
-            [subscriber sendCompleted];
+            [subscriber sendError:error];
         }];
         
         
@@ -109,25 +77,18 @@
         
         [self.loginRequest requestWithSuccess:^(KKBaseModel *model, KKRequestError *error) {
 
+            
             loginModel = (AMUser*)model;
-            NSLog(@"dd");
-            /*
-            if (loginModel.an_id==0) {
-                
-                [subscriber sendNext:@"手机号或密码错误"];
-                [subscriber sendCompleted];
-            }
-            else {
-                kSharedUserManager.user = loginModel;
-                [subscriber sendNext:loginModel];
-                [subscriber sendCompleted];
-            }
-             */
+            
+      
+            kSharedUserManager.user = loginModel;
+            [subscriber sendNext:loginModel];
+            [subscriber sendCompleted];
             
         } failure:^(KKBaseModel *model, KKRequestError *error) {
          
-            [subscriber sendNext:@"登录失败"];
-            [subscriber sendCompleted];
+            [subscriber sendError:error];
+
         }];
         
         return nil;
@@ -156,22 +117,18 @@
 }
 
 
-//注册时设置密码
-- (RACSignal*)requestModifyPasswordWithLandInformation:(NSDictionary*)dic {
+//找回密码
+- (RACSignal*)requestBackPasswordWithLandInformation:(NSDictionary*)dic {
+    
     
     return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
        
-        self.modifyPasswordRequest = [[AMModifyPasswordRequest alloc]initWithLandInformation:dic];
+        self.backPassword = [[AMBackPassword alloc]initWithBackPasswordInformation:dic];
         
-        [self.modifyPasswordRequest requestWithSuccess:^(KKBaseModel *model, KKRequestError *error) {
-            
-            AMBaseModel *baseModel = (AMBaseModel*)model;
-            [subscriber sendNext:baseModel.resultMessage];
-            [subscriber sendCompleted];
+        [self.backPassword requestWithSuccess:^(KKBaseModel *model, KKRequestError *error) {
             
         } failure:^(KKBaseModel *model, KKRequestError *error) {
             
-            [subscriber sendError:error];
         }];
         
         return [RACDisposable disposableWithBlock:^{

@@ -10,6 +10,7 @@
 #import "BaseTabbarController.h"
 #import "LandViewModel.h"
 #import "AMUser.h"
+#import "RegisterDetailViewController.h"
 
 @interface LandViewController ()
 @property(nonatomic,strong)LandViewModel *viewModel;
@@ -176,16 +177,9 @@
         
         @strongify(self);
         //登录请求
-        [[[self.viewModel requestSigninWithUserName:self.inputUserName.text Password:self.inputPassWord.text]filter:^BOOL(id value) {
+        [[[self.viewModel requestSigninWithUserName:self.inputUserName.text Password:self.inputPassWord.text]filter:^BOOL(AMUser* value) {
             
-            if ([value isKindOfClass:[NSString class]]) {
-                
-                [MBProgressHUD showText:value];
-                
-                 return NO;
-            }
-            
-            else {
+            if (value.resultMessage==nil) {
                 
                 NSDictionary *dic = @{@"userName":self.inputUserName.text,@"password":self.inputPassWord.text};
                 [[NSUserDefaults standardUserDefaults]setObject:dic forKey:@"landInfo"];
@@ -193,16 +187,31 @@
                 
                 return YES;
             }
+            else {
+                
+                [MBProgressHUD showText:value.resultMessage];
+                
+                 return NO;
+            }
+         
+        }]subscribeNext:^(AMUser* x) {
             
-        }]subscribeNext:^(AMUser * x) {
-   
-            BaseTabbarController *rootVC=[[BaseTabbarController alloc]init];
-          
-            [self presentViewController:rootVC animated:YES completion:nil];
-
+            //进入填写客户资料
+            if ([x.ep_id isEqualToString:@"0"]) {
+                
+                UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Land" bundle:nil];
+                RegisterDetailViewController*registerDetailVC = [storyboard instantiateViewControllerWithIdentifier:@"RegisterDetail"];
+                [self.navigationController pushViewController:registerDetailVC animated:YES];
+                
+            }
+            else {//进入应用
+                
+                BaseTabbarController *rootVC=[[BaseTabbarController alloc]init];
+                
+                [self presentViewController:rootVC animated:YES completion:nil];
+            }
         }];
     }];
-
 }
 
 #pragma mark - UITextFieldDelegate

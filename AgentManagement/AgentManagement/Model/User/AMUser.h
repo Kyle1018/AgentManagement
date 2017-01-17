@@ -10,6 +10,44 @@
 
 @interface AMUser : AMBaseModel
 
+@property(nonatomic,copy)NSString *user_id;
+
+@property(nonatomic,copy)NSString *status;
+
+@property(nonatomic,copy)NSString *src_id;
+
+@property(nonatomic,copy)NSString *phone;
+
+@property(nonatomic,copy)NSString *parent_id;
+
+@property(nonatomic,copy)NSString *extra_info;
+
+@property(nonatomic,copy)NSString*remark;
+
+@property(nonatomic,copy)NSString *op_user;
+
+@property(nonatomic,copy)NSString *username;
+
+@property(nonatomic,copy)NSString* region;
+
+@property(nonatomic,copy)NSString *login_time;
+
+@property(nonatomic,copy)NSString *create_time;
+
+@property(nonatomic,copy)NSString *update_time;
+
+@property(nonatomic,copy)NSString *role_id;
+
+@property(nonatomic,copy)NSString *ep_id;
+
+
+
+
+
+
+
+
+/*
 @property(nonatomic,copy)NSString *username;
 @property(nonatomic,copy)NSString* userid;//
 
@@ -23,7 +61,7 @@
 
 @property(nonatomic,copy)NSString* region;//
 
-@property(nonatomic,copy)NSString *phone;
+
 
 @property(nonatomic,copy)NSString *parent_id;
 
@@ -40,7 +78,7 @@
 @property(nonatomic,copy)NSString *ep_id;
 
 @property(nonatomic,copy)NSString *create_time;
-
+*/
 /**
  * {
  "create_time" = "2016-12-21 14:09:27";

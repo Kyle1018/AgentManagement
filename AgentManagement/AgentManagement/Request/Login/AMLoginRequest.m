@@ -22,16 +22,21 @@
 
 - (NSString *)urlPath
 {
-    return @"nativeapi/queryLogs";
+    return @"nativeapi/login";
 }
 
 - (id)buildModelWithJsonDictionary:(NSDictionary *)dictionary
 {
     
-    NSLog(@"%@",[dictionary[@"data"]class]);
-      NSLog(@"%@",[dictionary[@"data"]allKeys]);
-    
-    return [[AMUser alloc] initWithDictionary:[[dictionary[@"data"]objectForKey:@"list"]firstObject] error:nil];;
+    if ([dictionary[@"data"]isKindOfClass:[NSDictionary class]]) {
+        
+        return  [[AMUser alloc] initWithDictionary:dictionary[@"data"] error:nil];
+
+    }
+    else {
+        
+        return [[AMBaseModel alloc]initWithDictionary:dictionary error:nil];
+    }
 }
 
 @end
