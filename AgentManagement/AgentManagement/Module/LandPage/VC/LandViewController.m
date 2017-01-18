@@ -42,8 +42,6 @@
                                                  name:UIKeyboardWillHideNotification
                                                object:nil];
     
-    
-    
     self.isNotRecordPwd=[[[NSUserDefaults standardUserDefaults]objectForKey:@"isNotRecordPwd"]boolValue];
     self.inputUserName.text = [[[NSUserDefaults standardUserDefaults]objectForKey:@"landInfo"]objectForKey:@"userName"];
     self.inputPassWord.text = [[[NSUserDefaults standardUserDefaults]objectForKey:@"landInfo"]objectForKey:@"password"];

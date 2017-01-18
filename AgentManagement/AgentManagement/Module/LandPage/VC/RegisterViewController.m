@@ -61,17 +61,7 @@
         return @(value.length>0);
         
     }];
-    
-    /*
-    //工商注册名称是否有内容
-    RACSignal *validLenthRegisterNameSignal = [self.inputRegisterName.rac_textSignal map:^id(NSString * value) {
-        
-        registerName = value;
-        return @(value.length>0);
-        
-    }];
-     */
-    
+
     
     RACSignal *validAgreeSignal = [[self.agreeControl rac_signalForControlEvents:UIControlEventTouchUpInside]map:^id(UIControl* sender) {
        

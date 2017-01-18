@@ -127,6 +127,11 @@
         
         [self.backPassword requestWithSuccess:^(KKBaseModel *model, KKRequestError *error) {
             
+            AMBaseModel *baseModel = (AMBaseModel*)model;
+            
+            [subscriber sendNext:baseModel.resultMessage];
+            [subscriber sendCompleted];
+            
         } failure:^(KKBaseModel *model, KKRequestError *error) {
             
         }];

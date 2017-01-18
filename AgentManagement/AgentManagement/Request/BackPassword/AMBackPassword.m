@@ -28,9 +28,6 @@
 
 - (id)buildModelWithJsonDictionary:(NSDictionary *)dictionary
 {
-     NSLog(@"%@",dictionary);
-    // return [dictionary objectForKey:@"resultCode"];
-    
     return [[AMBaseModel alloc]initWithDictionary:dictionary error:nil];
 }
 

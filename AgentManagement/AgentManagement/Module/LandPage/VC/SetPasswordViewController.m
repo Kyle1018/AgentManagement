@@ -116,7 +116,16 @@
         if (FORGETPASSWORD_PAGE) {
             
             //找回密码
-            [[self.viewModel requestBackPasswordWithLandInformation:self.registerInformationDic]subscribeNext:^(id x) {
+            [[self.viewModel requestBackPasswordWithLandInformation:self.registerInformationDic]subscribeNext:^(NSString* x) {
+                
+                if ([x isEqualToString:@"OK"]) {
+                    
+                    [self.navigationController popToRootViewControllerAnimated:YES];
+                }
+                else {
+                    
+                    [MBProgressHUD showText:x];
+                }
                 
             }];
         
@@ -124,48 +133,24 @@
         else {
             
             //注册
-            [[self.viewModel requestRegisterWithRegisterInformation:self.registerInformationDic]subscribeNext:^(id x) {
+            [[self.viewModel requestRegisterWithRegisterInformation:self.registerInformationDic]subscribeNext:^(NSString* x) {
                 
-                //注册完成后，进入企业详情页面
-                UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Land" bundle:nil];
-                RegisterDetailViewController*registerDetailVC = [storyboard instantiateViewControllerWithIdentifier:@"RegisterDetail"];
-                [self.navigationController pushViewController:registerDetailVC animated:YES];
+                if ([x isEqualToString:@"OK"]) {
+                    
+                    //注册完成后，进入企业详情页面
+                    UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Land" bundle:nil];
+                    RegisterDetailViewController*registerDetailVC = [storyboard instantiateViewControllerWithIdentifier:@"RegisterDetail"];
+                    [self.navigationController pushViewController:registerDetailVC animated:YES];
+                    
+                }
+                else {
+                    
+                    [MBProgressHUD showText:x];
+                }
             }];
  
         }
-     
-        
-        /*
-        @strongify(self);
-        //修改密码请求
-        NSLog(@"%@",self.registerInformationDic);
-        [[[self.viewModel requestModifyPasswordWithLandInformation:self.registerInformationDic]filter:^BOOL(NSString* value) {
-            
-            if ([value isEqualToString:@"OK"]) {
-                
-                [MBProgressHUD showText:@"密码重置成功"];
-                
-                return YES;
-            }
-            else {
-                
-                [MBProgressHUD showText:value];
-                
-                return NO;
-            }
-    
-            
-        }]subscribeNext:^(NSString* x) {
 
-            dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(4.0 * NSEC_PER_SEC));
-            
-            dispatch_after(delayTime, dispatch_get_main_queue(), ^{
-                
-                [self.navigationController popToRootViewControllerAnimated:YES];
-                
-            });
-        }];
-         */
     }];
 }
 
