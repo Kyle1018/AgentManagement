@@ -116,10 +116,8 @@
     }];
 }
 
-
 //找回密码
 - (RACSignal*)requestBackPasswordWithLandInformation:(NSDictionary*)dic {
-    
     
     return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
        
@@ -141,5 +139,24 @@
         }];
     }];
 }
+
+- (RACSignal*)requestAddEPinformation:(NSDictionary*)dic {
+    
+    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+       
+        self.EPinformationRequest = [[AMEPinformationRequest alloc]initWithEPInformation:dic];
+        
+        [self.EPinformationRequest requestWithSuccess:^(KKBaseModel *model, KKRequestError *error) {
+            
+        } failure:^(KKBaseModel *model, KKRequestError *error) {
+            
+        }];
+        
+        return [RACDisposable disposableWithBlock:^{
+            
+        }];
+    }];
+    
+}//完善企业信息
 
 @end

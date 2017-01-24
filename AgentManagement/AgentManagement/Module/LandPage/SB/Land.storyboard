@@ -1411,6 +1411,19 @@
                         </connections>
                     </tableView>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="ep_addr" destination="3VC-Ny-Wv3" id="Dsu-e9-5fM"/>
+                        <outlet property="ep_addrPlaceOrder" destination="yGm-EC-ipN" id="ZBV-QB-m1D"/>
+                        <outlet property="ep_brand" destination="gpl-rJ-qeE" id="eC2-ry-pul"/>
+                        <outlet property="ep_carnum" destination="bLy-Lt-2WQ" id="YYa-RK-Xte"/>
+                        <outlet property="ep_corp" destination="1ew-H8-0is" id="oXM-8K-7PE"/>
+                        <outlet property="ep_name" destination="y8e-jP-k7U" id="0da-Kf-MOR"/>
+                        <outlet property="ep_saleamount" destination="k9D-Zb-UX1" id="xi4-CS-DwO"/>
+                        <outlet property="ep_staffnum" destination="Sdb-4P-ozD" id="izL-VP-5c4"/>
+                        <outlet property="ep_storenum" destination="ysr-JO-igC" id="2PM-VR-tQ3"/>
+                        <outlet property="finishBtn" destination="5Vt-LF-fXQ" id="ofB-Ua-7yg"/>
+                        <outlet property="phone" destination="ghF-KW-tDa" id="hSi-Tp-5Mh"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IgN-uH-auF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

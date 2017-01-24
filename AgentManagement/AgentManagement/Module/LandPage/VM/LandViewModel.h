@@ -13,6 +13,7 @@
 #import "PhoneRegisterStateRequest.h"
 //#import "AMModifyPasswordRequest.h"
 #import "AMBackPassword.h"
+#import "AMEPinformationRequest.h"
 @interface LandViewModel : NSObject
 
 @property (nonatomic, strong) AMIdentifyCodeRequest *identifyCodeRequest;
@@ -23,9 +24,9 @@
 
 @property(nonatomic,strong)PhoneRegisterStateRequest *phoneRegisterStateRequest;
 
-//@property(nonatomic,strong)AMModifyPasswordRequest *modifyPasswordRequest;
-
 @property(nonatomic,strong)AMBackPassword *backPassword;
+
+@property(nonatomic,strong)AMEPinformationRequest *EPinformationRequest;
 
 - (RACSignal*)requestIdentifyCode:(NSString*)phone;//请求验证码
 
@@ -36,4 +37,6 @@
 - (RACSignal*)requestPhoneNumRegisterState:(NSString*)phone;//手机号是否注册过
 
 - (RACSignal*)requestBackPasswordWithLandInformation:(NSDictionary*)dic;//找回密码
+
+- (RACSignal*)requestAddEPinformation:(NSDictionary*)dic;//完善企业信息
 @end

@@ -31,10 +31,7 @@
 
 - (id)buildModelWithJsonDictionary:(NSDictionary *)dictionary
 {
-
     return [[AMBaseModel alloc]initWithDictionary:dictionary error:nil];
-   // NSLog(@"%@",dictionary);
-    //return [[AMUser alloc] initWithDictionary:dictionary error:nil];
 }
 
 @end
