@@ -1915,12 +1915,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 270704D01D45F9A900633390 /* Build configuration list for PBXNativeTarget "AgentManagement" */;
 			buildPhases = (
-				6EE97838359C73A02BE1306A /* 📦 Check Pods Manifest.lock */,
+				6EE97838359C73A02BE1306A /* [CP] Check Pods Manifest.lock */,
 				270704B51D45F9A900633390 /* Sources */,
 				270704B61D45F9A900633390 /* Frameworks */,
 				270704B71D45F9A900633390 /* Resources */,
-				FA3D025023C6ED8BEC7F5539 /* 📦 Embed Pods Frameworks */,
-				7AFD04470378C3C4198FF8F3 /* 📦 Copy Pods Resources */,
+				FA3D025023C6ED8BEC7F5539 /* [CP] Embed Pods Frameworks */,
+				7AFD04470378C3C4198FF8F3 /* [CP] Copy Pods Resources */,
 				909ADC8A4875137E4A0176A5 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
@@ -1943,7 +1943,6 @@
 				TargetAttributes = {
 					270704B81D45F9A900633390 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = QT4ATDL294;
 					};
 				};
 			};
@@ -2009,29 +2008,29 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		6EE97838359C73A02BE1306A /* 📦 Check Pods Manifest.lock */ = {
+		6EE97838359C73A02BE1306A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		7AFD04470378C3C4198FF8F3 /* 📦 Copy Pods Resources */ = {
+		7AFD04470378C3C4198FF8F3 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2054,14 +2053,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AgentManagement/Pods-AgentManagement-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		FA3D025023C6ED8BEC7F5539 /* 📦 Embed Pods Frameworks */ = {
+		FA3D025023C6ED8BEC7F5539 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2341,7 +2340,7 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = QT4ATDL294;
+				DEVELOPMENT_TEAM = "";
 				GCC_PREFIX_HEADER = "$(SRCROOT)/AgentManagement/PrefixHeader.pch";
 				INFOPLIST_FILE = AgentManagement/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
@@ -2362,7 +2361,7 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = QT4ATDL294;
+				DEVELOPMENT_TEAM = "";
 				GCC_PREFIX_HEADER = "$(SRCROOT)/AgentManagement/PrefixHeader.pch";
 				INFOPLIST_FILE = AgentManagement/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;

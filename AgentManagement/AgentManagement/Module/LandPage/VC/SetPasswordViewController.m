@@ -134,17 +134,15 @@
             
             //注册
             [[self.viewModel requestRegisterWithRegisterInformation:self.registerInformationDic]subscribeNext:^(NSString* x) {
+                AMBaseModel *model = (AMBaseModel *)x;
                 
-                if ([x isEqualToString:@"OK"]) {
-                    
+                if ([model isValid]) {
                     //注册完成后，进入企业详情页面
                     UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Land" bundle:nil];
                     RegisterDetailViewController*registerDetailVC = [storyboard instantiateViewControllerWithIdentifier:@"RegisterDetail"];
                     [self.navigationController pushViewController:registerDetailVC animated:YES];
                     
-                }
-                else {
-                    
+                } else {
                     [MBProgressHUD showText:x];
                 }
             }];

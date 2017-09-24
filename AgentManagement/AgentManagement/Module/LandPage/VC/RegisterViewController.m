@@ -112,7 +112,9 @@
         [[self.viewModel requestIdentifyCode:phoneText]subscribeNext:^(NSString* x) {
            
             //用于测试
+#if DEBUG
             [MBProgressHUD showText:x];
+#endif
             requestIdentifyCode = x;
             [registerInformationDic setValue:phoneText forKey:@"phone"];
             [registerInformationDic setValue:requestIdentifyCode forKey:@"code"];

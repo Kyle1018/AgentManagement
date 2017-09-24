@@ -147,8 +147,6 @@ static NSString *const kAPIBaseURL = @"http://123.56.10.232:8080/";
         [self.request setPostValue:parametersJSON forKey:@"data"];
     }
     [self.request startAsynchronous];
-    
-
 }
 
 - (void)handleResultWithRequest:(ASIHTTPRequest *)request

@@ -11,15 +11,11 @@
 @implementation AMEPinformationRequest
 
 - (instancetype)initWithEPInformation:(NSDictionary*)dic {
-    
     self = [super init];
     if (self) {
-        
         [self.requestParameters addEntriesFromDictionary:dic];
-        
     }
     return self;
-    
 }
 
 
@@ -30,8 +26,7 @@
 
 - (id)buildModelWithJsonDictionary:(NSDictionary *)dictionary
 {
-    NSLog(@"%@",dictionary);
-    return nil;
+    return [[AMBaseModel alloc]initWithDictionary:dictionary error:nil];
 }
 
 

@@ -54,7 +54,7 @@
        
             AMBaseModel*baseModel = (AMBaseModel*)model;
      
-            [subscriber sendNext:baseModel.resultMessage];
+            [subscriber sendNext:baseModel];
             [subscriber sendCompleted];
             
         } failure:^(KKBaseModel *model, KKRequestError *error) {
@@ -147,9 +147,10 @@
         self.EPinformationRequest = [[AMEPinformationRequest alloc]initWithEPInformation:dic];
         
         [self.EPinformationRequest requestWithSuccess:^(KKBaseModel *model, KKRequestError *error) {
-            
+            [subscriber sendNext:model];
+            [subscriber sendCompleted];
         } failure:^(KKBaseModel *model, KKRequestError *error) {
-            
+            DDLogError(@"AMEPinformationRequest fail");
         }];
         
         return [RACDisposable disposableWithBlock:^{

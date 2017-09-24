@@ -150,19 +150,35 @@
     
     //请求完善企业信息接口
     [[self.finishBtn rac_signalForControlEvents:UIControlEventTouchUpInside]subscribeNext:^(id x) {
-        
         @strongify(self);
-        
-        /*
-        self.viewModel requestAddEPinformation:@{@"phone":phone,
-                                                 @"ep_corp":ep_corp,
-                                                 @"ep_name":ep_name,
-                                                 @""}
-         */
+        [[self.viewModel requestAddEPinformation:@{@"phone" : phone,
+                                                  @"ep_corp" : ep_corp,
+                                                  @"ep_name" : ep_name,
+                                                  @"ep_saleamount" : ep_saleamount,
+                                                  @"ep_brand" : ep_brand,
+                                                  @"ep_addr" : ep_addr,
+                                                  @"ep_storenum" : ep_storenum,
+                                                  @"ep_carnum" : ep_carnum,
+                                                  @"ep_staffnum" : ep_staffnum,
+                                                  @"ep_tel" : phone
+                                                  }] subscribeNext:^(id x) {
+            AMBaseModel *model = (AMBaseModel *)x;
+            
+            if ([model isValid]) {
+            } else {
+                [MBProgressHUD showText:model.resultMessage];
+            }
+        }];
     }];
     
 }
 
+- (LandViewModel *)viewModel {
+    if (!_viewModel) {
+        _viewModel = [LandViewModel new];
+    }
+    return _viewModel;
+}
 
 #pragma mark -tabelViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
